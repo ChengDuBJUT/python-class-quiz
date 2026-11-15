@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python 编程基础与应用 · 题库练习站</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="app-header">
+      <div>
+        <h1>Python 编程基础与应用 · 题库练习站</h1>
+        <div class="sub">教材习题 第 1–12 章 · pythonProject-2025 代码复习 第 1–12 章</div>
+      </div>
+      <div class="header-counts" id="header-counts" aria-live="polite"></div>
+    </header>
+
+    <nav class="top-nav" id="top-nav" aria-label="主导航">
+      <button type="button" class="nav-btn active" data-view="quiz" id="nav-quiz">题库练习</button>
+      <button type="button" class="nav-btn" data-view="lab" id="nav-lab">代码复习 · pythonProject-2025</button>
+    </nav>
+
+    <!-- ============ 首页 ============ -->
+    <section id="home" class="card intro">
+      <div class="scope-banner">
+        <div class="scope-banner-title">考试范围</div>
+        <ul>
+          <li><strong>选择 / 填空</strong>：第 <b>1–12</b> 章（教材习题）</li>
+          <li><strong>编程题（代码）</strong>：第 <b>1–8</b> 章（教材习题）</li>
+          <li><strong>代码复习</strong>：pythonProject-2025 第 <b>1–12</b> 章全部示例代码</li>
+        </ul>
+        <p class="hint">题库还收录判断题、简答题、第 9–12 章编程题与 pythonProject 代码自测作为复习拓展，已用「考试范围 / 复习拓展」标签区分，可一键只刷考试范围。</p>
+      </div>
+
+      <p class="lead">题目来自《Python编程基础与应用习题及答案》原文；代码复习部分收录 pythonProject-2025 各章示例程序，并配了代码自测题。</p>
+      <p>客观题即时判分，简答 / 编程题给出参考答案后自评；支持收藏、错题本、抽题组卷。进度保存在本机浏览器（localStorage），不联网、不追踪。</p>
+      <div class="stats" id="home-stats"></div>
+
+      <div class="mode-chips" id="home-modes" role="tablist" aria-label="练习模式">
+        <button type="button" class="chip active" data-mode="all" id="chip-all">全部练习</button>
+        <button type="button" class="chip" data-mode="favorites" id="chip-fav">收藏 <span class="chip-n" id="chip-fav-n">0</span></button>
+        <button type="button" class="chip" data-mode="wrong" id="chip-wrong">错题 <span class="chip-n" id="chip-wrong-n">0</span></button>
+        <button type="button" class="chip" data-mode="paper" id="chip-paper">抽题组卷</button>
+      </div>
+
+      <div id="paper-panel" class="paper-panel hidden">
+        <h3 class="panel-title">抽题组卷</h3>
+        <div class="paper-grid">
+          <div class="field">
+            <label>章节（可多选）</label>
+            <div class="chapter-checks" id="paper-chapters">
+              <label class="check"><input type="checkbox" value="all" id="paper-ch-all" checked /> 全部</label>
+              <label class="check"><input type="checkbox" value="1" class="paper-ch" /> 第1章</label>
+              <label class="check"><input type="checkbox" value="2" class="paper-ch" /> 第2章</label>
+              <label class="check"><input type="checkbox" value="3" class="paper-ch" /> 第3章</label>
+              <label class="check"><input type="checkbox" value="4" class="paper-ch" /> 第4章</label>
+              <label class="check"><input type="checkbox" value="5" class="paper-ch" /> 第5章</label>
+              <label class="check"><input type="checkbox" value="6" class="paper-ch" /> 第6章</label>
+              <label class="check"><input type="checkbox" value="7" class="paper-ch" /> 第7章</label>
+              <label class="check"><input type="checkbox" value="8" class="paper-ch" /> 第8章</label>
+              <label class="check"><input type="checkbox" value="9" class="paper-ch" /> 第9章</label>
+              <label class="check"><input type="checkbox" value="10" class="paper-ch" /> 第10章</label>
+              <label class="check"><input type="checkbox" value="11" class="paper-ch" /> 第11章</label>
+              <label class="check"><input type="checkbox" value="12" class="paper-ch" /> 第12章</label>
+            </div>
+          </div>
+          <div class="paper-row">
+            <div class="field">
+              <label for="paper-type">题型</label>
+              <select id="paper-type">
+                <option value="all">全部题型</option>
+                <option value="single">单选题</option>
+                <option value="blank">填空题</option>
+                <option value="judge">判断题</option>
+                <option value="short">简答题</option>
+                <option value="code">编程题</option>
+                <option value="coderead">代码自测</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="paper-scope">范围</label>
+              <select id="paper-scope">
+                <option value="all">全部题目</option>
+                <option value="exam" selected>仅考试范围</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="paper-n">题量 N</label>
+              <input type="number" id="paper-n" min="1" value="20" />
+              <span class="hint" id="paper-pool-hint">可选池：—</span>
+            </div>
+          </div>
+          <label class="toggle paper-prop">
+            <input type="checkbox" id="paper-proportional" /> 按题型比例抽样
+          </label>
+        </div>
+        <div class="actions">
+          <button class="btn" id="btn-start-paper" type="button">生成并开始</button>
+        </div>
+      </div>
+
+      <div class="actions" id="home-enter-row">
+        <button class="btn" id="btn-enter" type="button">进入练习</button>
+        <button class="btn secondary" id="btn-exam-only" type="button">只刷考试范围</button>
+        <button class="btn ghost" id="btn-go-lab" type="button">去看代码复习</button>
+      </div>
+      <p class="kbd">快捷键：<kbd>1</kbd>–<kbd>5</kbd> 选题 · <kbd>Enter</kbd> 提交 · <kbd>←</kbd>/<kbd>→</kbd> 上一题/下一题</p>
+    </section>
+
+    <!-- ============ 练习页 ============ -->
+    <section id="practice" class="hidden">
+      <div class="toolbar card">
+        <div class="mode-chips compact" id="practice-modes">
+          <button type="button" class="chip" data-mode="all">全部练习</button>
+          <button type="button" class="chip" data-mode="favorites">收藏</button>
+          <button type="button" class="chip" data-mode="wrong">错题</button>
+          <button type="button" class="chip" data-mode="paper">抽题组卷</button>
+        </div>
+        <div class="field filter-only" id="filter-ch-wrap">
+          <label for="filter-ch">章节</label>
+          <select id="filter-ch">
+            <option value="all">全部</option>
+            <option value="1">第1章 绪论</option>
+            <option value="2">第2章 Python基础</option>
+            <option value="3">第3章 数据类型</option>
+            <option value="4">第4章 运算符</option>
+            <option value="5">第5章 流程控制</option>
+            <option value="6">第6章 组合数据类型</option>
+            <option value="7">第7章 函数</option>
+            <option value="8">第8章 类与对象</option>
+            <option value="9">第9章 异常、调试与测试</option>
+            <option value="10">第10章 文件与数据格式化</option>
+            <option value="11">第11章 标准库应用编程</option>
+            <option value="12">第12章 第三方库应用编程</option>
+          </select>
+        </div>
+        <div class="field filter-only" id="filter-type-wrap">
+          <label for="filter-type">题型</label>
+          <select id="filter-type">
+            <option value="all">全部</option>
+            <option value="single">单选题</option>
+            <option value="blank">填空题</option>
+            <option value="judge">判断题</option>
+            <option value="short">简答题</option>
+            <option value="code">编程题</option>
+            <option value="coderead">代码自测</option>
+          </select>
+        </div>
+        <div class="field filter-only" id="filter-scope-wrap">
+          <label for="filter-scope">范围</label>
+          <select id="filter-scope">
+            <option value="all">全部题目</option>
+            <option value="exam">仅考试范围</option>
+          </select>
+        </div>
+        <label class="toggle" id="shuffle-wrap"><input type="checkbox" id="toggle-shuffle" /> 随机顺序</label>
+        <button class="btn secondary" id="btn-restart" type="button">重新开始</button>
+        <button class="btn secondary" id="btn-finish" type="button">交卷</button>
+        <button class="btn ghost" id="btn-home" type="button">返回首页</button>
+      </div>
+
+      <div class="card" id="practice-card">
+        <div class="meta-row">
+          <span id="progress-text">0 / 0</span>
+          <span class="score-pill" id="score-text">答对 0 / 已答 0 · 正确率 —</span>
+        </div>
+        <div class="progress-bar"><span id="progress-fill"></span></div>
+
+        <div id="question-area"></div>
+
+        <div class="actions" id="nav-actions">
+          <button class="btn ghost" id="btn-prev" type="button">上一题</button>
+          <button class="btn" id="btn-submit" type="button">提交</button>
+          <button class="btn secondary" id="btn-next" type="button">下一题</button>
+        </div>
+      </div>
+
+      <div class="card hidden" id="summary-card">
+        <h2 class="summary-title">本场小结</h2>
+        <div id="summary-body"></div>
+        <div class="actions">
+          <button class="btn" id="btn-retry" type="button">再练一遍</button>
+          <button class="btn secondary" id="btn-retry-wrong" type="button">只练错题</button>
+          <button class="btn ghost" id="btn-summary-home" type="button">返回首页</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 代码复习 ============ -->
+    <section id="code-lab" class="hidden">
+      <div class="card lab-intro">
+        <h2 class="summary-title">代码复习 · pythonProject-2025 第 1–12 章</h2>
+        <p>左侧按章切换，中间是本章知识点清单（勾选进度会保存在本机），右侧可逐个打开课堂示例文件。点「练本章代码题」会带着章节筛选跳回练习页。</p>
+      </div>
+      <div class="lab-layout">
+        <div class="card lab-chapters">
+          <div class="lab-col-title">章节 <span class="lab-progress">共 12 章 · 可滚动</span></div>
+          <div id="lab-chapter-list"></div>
+        </div>
+        <div class="card lab-points">
+          <div class="lab-col-title">本章知识点 <span class="lab-progress" id="lab-progress"></span></div>
+          <div id="lab-point-list"></div>
+          <div class="actions">
+            <button class="btn" id="btn-lab-practice" type="button">练本章代码题</button>
+            <button class="btn secondary" id="btn-lab-readquiz" type="button">练本章代码自测</button>
+          </div>
+        </div>
+        <div class="card lab-code">
+          <div class="lab-col-title">示例文件 <span class="hint" id="lab-file-count"></span></div>
+          <div class="lab-file-tabs" id="lab-file-tabs"></div>
+          <div class="lab-file-meta" id="lab-file-meta"></div>
+          <pre class="code-block lab-view" id="lab-code-view"><code></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <footer class="note">
+      题库说明：客观题答案取自教材《Python编程基础与应用习题及答案》；教材中第 1、2、6、7、8、11、12 章判断题答案缺失，已按 Python 语义补齐并在题目中标注，建议与任课教师核对。代码复习内容来自本地 pythonProject-2025 各章示例。本站为纯静态页面，无外链依赖、无数据上传。
+    </footer>
+  </div>
+
+  <script src="data/questions.js"></script>
+  <script src="app.js"></script>
+  <script src="code_lab.js"></script>
+</body>
+</html>

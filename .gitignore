@@ -1,0 +1,10 @@
+# 本地构建 / 验证产物（含教材原文导出文本、本机浏览器路径）
+tools/source/
+tools/diagnostics.txt
+tools/smoke_test*.js
+tools/shot-*.png
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+*.log
