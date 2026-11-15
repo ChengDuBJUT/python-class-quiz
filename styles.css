@@ -297,6 +297,9 @@ textarea { min-height: 110px; resize: vertical; }
 }
 .reveal .verdict.ok { color: var(--ok); }
 .reveal .verdict.bad { color: var(--bad); }
+.reveal .verdict.peek { color: var(--cinnabar); }
+.reveal .box.answer-box { background: #fff8ee; border-color: #e6d5bc; }
+.reveal .box.answer-box strong { color: var(--cinnabar); }
 .reveal .box {
   background: #faf7f1;
   border: 1px solid var(--line);

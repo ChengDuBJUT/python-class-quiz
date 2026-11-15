@@ -106,6 +106,26 @@
     return !!(q && OBJECTIVE[q.type]);
   }
 
+  // 「不会，看答案」时用于直接展示的正确答案文案
+  function answerTextOf(q) {
+    if (q.type === 'single' || q.type === 'coderead') {
+      var hit = (q.options || []).filter(function (o) { return o.charAt(0) === q.answer; })[0];
+      return hit || String(q.answer);
+    }
+    if (q.type === 'judge') return q.answer ? '正确' : '错误';
+    if (q.type === 'blank') return q.answerText || (q.answer || []).join(' / ');
+    if (q.type === 'multi') return (q.answer || []).join('');
+    return typeof q.answer === 'string' ? q.answer : String(q.answer || '');
+  }
+
+  // 提交与「看答案」共用同一套启用 / 禁用状态
+  function setAnswerControls(enabled) {
+    var submit = document.getElementById('btn-submit');
+    var peek = document.getElementById('btn-peek');
+    if (submit) submit.disabled = !enabled;
+    if (peek) peek.disabled = !enabled;
+  }
+
   function countByType() {
     var c = { single: 0, blank: 0, judge: 0, short: 0, code: 0, coderead: 0 };
     bank.forEach(function (q) { if (c[q.type] != null) c[q.type]++; });
@@ -219,15 +239,17 @@
   function sessionScore() {
     var correct = 0;
     var answered = 0;
+    var peeked = 0;
     filtered.forEach(function (q) {
       if (!isObjective(q)) return;
       var a = state.answers[q.id];
       if (a && a.submitted && a.grade && (a.grade.correct === true || a.grade.correct === false)) {
         answered += 1;
         if (a.grade.correct) correct += 1;
+        if (a.peeked) peeked += 1;
       }
     });
-    return { correct: correct, answered: answered };
+    return { correct: correct, answered: answered, peeked: peeked };
   }
 
   function updateProgress() {
@@ -236,8 +258,9 @@
     document.getElementById('progress-text').textContent = i + ' / ' + n;
     var sc = sessionScore();
     var rate = sc.answered ? Math.round((sc.correct / sc.answered) * 100) + '%' : '—';
+    var peekSuffix = sc.peeked ? ' · 含看答案 ' + sc.peeked : '';
     document.getElementById('score-text').textContent =
-      '答对 ' + sc.correct + ' / 已答 ' + sc.answered + ' · 正确率 ' + rate;
+      '答对 ' + sc.correct + ' / 已答 ' + sc.answered + ' · 正确率 ' + rate + peekSuffix;
     document.getElementById('progress-fill').style.width = (n ? Math.round((i / n) * 100) : 0) + '%';
   }
 
@@ -262,7 +285,7 @@
     if (mode === 'wrong') {
       return '<div class="empty-state"><div class="icon">✓</div>' +
         '<p><strong>错题本为空</strong></p>' +
-        '<p>客观题答错会自动记入；简答/编程题可自行「记入错题」。答对后自动移出。</p></div>';
+        '<p>客观题答错、或点「不会 · 看答案」会自动记入；简答/编程题可自行「记入错题」。答对后自动移出，看答案的题可点「已掌握」移出。</p></div>';
     }
     if (mode === 'paper') {
       return '<div class="empty-state"><div class="icon">卷</div>' +
@@ -286,14 +309,14 @@
     practiceCard.classList.remove('hidden');
 
     currentAnswered = false;
-    document.getElementById('btn-submit').disabled = false;
+    setAnswerControls(true);
     document.getElementById('btn-prev').disabled = state.index <= 0;
     document.getElementById('btn-next').disabled = !filtered.length || state.index >= filtered.length - 1;
 
     if (!filtered.length) {
       area.innerHTML = emptyStateHtml(state.mode);
       updateProgress();
-      document.getElementById('btn-submit').disabled = true;
+      setAnswerControls(false);
       return;
     }
 
@@ -382,7 +405,7 @@
 
     if (saved && saved.submitted) {
       currentAnswered = true;
-      document.getElementById('btn-submit').disabled = true;
+      setAnswerControls(false);
       showReveal(q, saved, true);
     }
 
@@ -465,29 +488,42 @@
     el.classList.remove('hidden');
     var html = '';
     var g = record.grade || {};
+    var peeked = !!record.peeked;
 
     if (q.type === 'short' || q.type === 'code') {
       html += '<div class="side-by-side">';
-      html += '<div class="box"><strong>你的作答</strong><br>' + escapeHtml(record.text || '（未作答）') + '</div>';
+      html += '<div class="box"><strong>你的作答</strong><br>' +
+        (peeked && !String(record.text || '').trim()
+          ? '（未作答，直接看答案）'
+          : escapeHtml(record.text || '（未作答）')) + '</div>';
       html += '<div class="box"><strong>参考' + (q.type === 'code' ? '程序' : '答案') + '</strong><br>' +
         (q.type === 'code'
           ? '<pre class="code-block small">' + escapeHtml(String(q.answer || '')) + '</pre>'
           : escapeHtml(typeof q.answer === 'string' ? q.answer : JSON.stringify(q.answer))) + '</div>';
       html += '</div>';
-      var inWrong = state.wrongIds.indexOf(q.id) >= 0;
-      html += '<div class="self-mark" id="self-mark">';
-      html += '<span class="hint">主观题不自动判分，可自行记入错题本：</span>';
-      if (inWrong) {
-        html += '<button type="button" class="btn secondary" id="btn-mark-mastered">已掌握（移出错题）</button>';
-      } else {
-        html += '<button type="button" class="btn warn" id="btn-mark-wrong">记入错题</button>';
-        html += '<button type="button" class="btn ghost" id="btn-mark-skip">跳过</button>';
+      if (!peeked) {
+        var inWrong = state.wrongIds.indexOf(q.id) >= 0;
+        html += '<div class="self-mark" id="self-mark">';
+        html += '<span class="hint">主观题不自动判分，可自行记入错题本：</span>';
+        if (inWrong) {
+          html += '<button type="button" class="btn secondary" id="btn-mark-mastered">已掌握（移出错题）</button>';
+        } else {
+          html += '<button type="button" class="btn warn" id="btn-mark-wrong">记入错题</button>';
+          html += '<button type="button" class="btn ghost" id="btn-mark-skip">跳过</button>';
+        }
+        html += '</div>';
       }
-      html += '</div>';
     } else {
-      if (g.correct) html += '<div class="verdict ok">回答正确</div>';
-      else html += '<div class="verdict bad">回答不正确</div>';
-      if (q.type === 'blank' && !g.correct) {
+      if (peeked) {
+        html += '<div class="verdict peek">不会 · 已看答案</div>';
+        html += '<div class="box answer-box"><strong>正确答案</strong><br>' +
+          escapeHtml(answerTextOf(q)) + '</div>';
+      } else if (g.correct) {
+        html += '<div class="verdict ok">回答正确</div>';
+      } else {
+        html += '<div class="verdict bad">回答不正确</div>';
+      }
+      if (q.type === 'blank' && !g.correct && !peeked) {
         html += '<div class="box">期望答案：' + escapeHtml(g.expected) + '</div>';
       }
       if (q.type === 'multi') {
@@ -517,6 +553,18 @@
     }
     if (q.answerNote) {
       html += '<div class="box note-box"><strong>提示</strong><br>' + escapeHtml(q.answerNote) + '</div>';
+    }
+    if (peeked) {
+      var inWrongPeek = state.wrongIds.indexOf(q.id) >= 0;
+      html += '<div class="self-mark" id="self-mark">';
+      html += '<span class="hint">' +
+        (inWrongPeek ? '这道题已自动记入错题本，掌握后可移出：' : '可重新记入错题本：') + '</span>';
+      if (inWrongPeek) {
+        html += '<button type="button" class="btn secondary" id="btn-mark-mastered">已掌握（移出错题）</button>';
+      } else {
+        html += '<button type="button" class="btn warn" id="btn-mark-wrong">重新记入错题</button>';
+      }
+      html += '</div>';
     }
     html += '<p class="src">来源：' + escapeHtml(q.sourceKind || '') + ' · ' +
       escapeHtml(q.sourceFile) + ' · ' + escapeHtml(q.sourceLocator) + '</p>';
@@ -595,7 +643,7 @@
     }
 
     currentAnswered = true;
-    document.getElementById('btn-submit').disabled = true;
+    setAnswerControls(false);
     saveState();
     showReveal(q, record, false);
     updateProgress();
@@ -604,6 +652,31 @@
     if (state.index >= filtered.length - 1 && filtered.length > 0) {
       // leave user on last question; they can hit 交卷
     }
+  }
+
+  // 「不会 · 看答案」：不要求作答，直接显示答案 / 解析，并默认记入错题本
+  function onPeek() {
+    var q = currentQ();
+    if (!q || currentAnswered) return;
+    var response = collectResponse(q);
+    var g = grade(q, response);
+    g.correct = false; // 看了答案一律按「未掌握」计入统计，不算答对
+    var already = state.answers[q.id] && state.answers[q.id].submitted;
+    var record = {
+      submitted: true,
+      peeked: true,
+      choice: (q.type === 'single' || q.type === 'coderead' || q.type === 'judge') ? response : null,
+      text: (q.type === 'blank' || q.type === 'short' || q.type === 'code') ? response : null,
+      grade: g
+    };
+    state.answers[q.id] = record;
+    addWrong(q.id);
+    if (!already) state.scoreTotal += 1;
+    currentAnswered = true;
+    setAnswerControls(false);
+    saveState();
+    showReveal(q, record, false);
+    updateProgress();
   }
 
   function go(delta) {
@@ -717,7 +790,7 @@
           answeredObj += 1;
           if (a.grade.correct) correct += 1;
           else {
-            wrongList.push({ q: q, idx: idx, tag: '答错' });
+            wrongList.push({ q: q, idx: idx, tag: (a.peeked ? '看答案' : '答错') });
             addWrong(q.id);
           }
         } else {
@@ -746,7 +819,7 @@
     html += '<div class="stat"><div class="n">' + rate + '</div><div class="l">正确率</div></div>';
     html += '<div class="stat"><div class="n">' + subjAnswered + '/' + subjTotal + '</div><div class="l">主观作答</div></div>';
     html += '</div>';
-    html += '<p class="hint">正确率 = 答对 / 本场客观题总数（未答不计入答对）。主观题不计入正确率。</p>';
+    html += '<p class="hint">正确率 = 答对 / 本场客观题总数（未答不计入答对）。主观题不计入正确率。点「不会 · 看答案」的题按未掌握计入已答、不计入答对，清单中标注为「看答案」。</p>';
 
     if (wrongList.length) {
       html += '<div class="summary-section-title">答错题目</div><ul class="wrong-list">';
@@ -912,6 +985,7 @@
   document.getElementById('btn-home').addEventListener('click', showHome);
   document.getElementById('btn-summary-home').addEventListener('click', showHome);
   document.getElementById('btn-submit').addEventListener('click', onSubmit);
+  document.getElementById('btn-peek').addEventListener('click', onPeek);
   document.getElementById('btn-next').addEventListener('click', function () { go(1); });
   document.getElementById('btn-prev').addEventListener('click', function () { go(-1); });
   document.getElementById('btn-restart').addEventListener('click', function () {
@@ -1088,6 +1162,11 @@
       }
       return;
     }
+    if (!typing && e.key === '0') {
+      e.preventDefault();
+      onPeek();
+      return;
+    }
     if (e.key === 'Enter' && !typing) {
       e.preventDefault();
       onSubmit();
@@ -1115,6 +1194,7 @@
       }
       showPractice();
     },
+    peekAnswer: onPeek,
     getState: function () { return state; }
   };
 
