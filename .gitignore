@@ -2,7 +2,7 @@
 tools/source/
 tools/diagnostics.txt
 tools/smoke_test*.js
-tools/shot-*.png
+shot-*.png
 
 # 编辑器 / 系统
 .DS_Store
