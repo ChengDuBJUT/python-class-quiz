@@ -164,10 +164,15 @@
       meta.innerHTML = '<span class="meta-text">pythonProject-2025/chapter' + c.n + '/' + f.name +
         ' · ' + f.code.split('\n').length + ' 行' +
         (f.updated ? ' <span class="badge-new">更新版</span>' : '') +
-        '</span><button type="button" class="ask-ai" id="lab-ask-ai"' +
-        ' title="把这段代码和它的真实运行结果一起发给 DeepSeek，让它讲讲怎么理解">🤖 问 DeepSeek</button>';
-      var aiBtn = document.getElementById('lab-ask-ai');
-      if (aiBtn) aiBtn.addEventListener('click', function () { askAbout(f); });
+        '</span><span class="ask-group">' +
+        '<button type="button" class="ask-ai" data-ai="deepseek"' +
+        ' title="把这段代码和它的真实运行结果一起发给 DeepSeek，让它讲讲怎么理解">🤖 DeepSeek</button>' +
+        '<button type="button" class="ask-ai" data-ai="qwen"' +
+        ' title="同样的问题换发给通义千问——DeepSeek 额度用完时可以换着用">🤖 千问</button>' +
+        '</span>';
+      meta.querySelectorAll('.ask-ai').forEach(function (btn) {
+        btn.addEventListener('click', function () { askAbout(f, btn.getAttribute('data-ai')); });
+      });
     }
     if (view) view.innerHTML = highlight(f.code || '# 空文件');
     if (extra) extra.innerHTML = renderExtra(f);
@@ -211,11 +216,22 @@
     return h;
   }
 
-  /* ---------- 问 DeepSeek：只把「代码 + 真实运行结果」发过去，问一句大白话 ---------- */
-  var AI_URL = 'https://chat.deepseek.com/';
+  /* ---------- 问 AI：只把「代码 + 真实运行结果」发过去，问一句大白话 ---------- */
+  // 两家都支持 ?q= 自动填入；DeepSeek 限额了就换千问
+  var AI_TARGETS = [
+    { key: 'deepseek', name: 'DeepSeek', bare: 'https://chat.deepseek.com/' },
+    { key: 'qwen', name: '千问', bare: 'https://www.qianwen.com/' }
+  ];
   // 官网 ?q= 只能稳定吃下约 1.7KB，所以预算压到 2000：
   // 超了就退回「复制全文 + 裸链接」，保证带过去的内容一定是完整的（粘贴即可）
   var AI_BUDGET = 2000;
+
+  function aiTarget(key) {
+    for (var i = 0; i < AI_TARGETS.length; i++) {
+      if (AI_TARGETS[i].key === key) return AI_TARGETS[i];
+    }
+    return AI_TARGETS[0];
+  }
 
   function clip(s, max) {
     s = String(s == null ? '' : s);
@@ -302,25 +318,27 @@
     toast._t = setTimeout(function () { el.classList.remove('show'); }, 7000);
   }
 
-  function askAbout(f) {
+  function askAbout(f, key) {
     if (!f) return;
+    var t = aiTarget(key);
     var built = pickAsk(f);
     // 剪贴板里永远放不截断的全文，URL 里才可能是压缩版
     var full = askPrompt(f, 0);
-    var url = AI_URL + (built.autoFill ? '?q=' + encodeURIComponent(built.prompt) : '');
+    var url = t.bare + (built.autoFill ? '?q=' + encodeURIComponent(built.prompt) : '');
     var win = window.open(url, '_blank');
     if (win) { try { win.opener = null; } catch (e) {} }
     copyText(full).then(function (ok) {
       if (!win) { toast('浏览器拦截了新标签页，请允许本站弹窗后重试。', true); return; }
       if (!ok) {
-        toast('自动复制被拦住了：在 DeepSeek 里粘贴不出来时，手动复制页面上的代码即可。', true);
+        toast('自动复制被拦住了：在「' + t.name + '」里粘贴不出来时，手动复制页面上的代码即可。', true);
         return;
       }
       if (built.autoFill) {
-        toast('已打开 DeepSeek：代码和运行结果都填好了，直接按 Enter 发送。'
-          + (built.clipped ? '（输出太长做了截断，剪贴板里是完整版，可以 Ctrl/⌘ + V 覆盖）' : ''));
+        toast('已打开「' + t.name + '」：代码和运行结果都填好了，直接按 Enter 发送。'
+          + (built.clipped ? '（输出太长做了截断，剪贴板里是完整版，可以 Ctrl/⌘ + V 覆盖）'
+            : '（输入框是空的就 Ctrl/⌘ + V 粘贴）'));
       } else {
-        toast('这段代码比较长，全文已复制：在 DeepSeek 输入框里按 Ctrl/⌘ + V 粘贴再发送。');
+        toast('这段代码比较长，全文已复制：在「' + t.name + '」输入框里按 Ctrl/⌘ + V 粘贴再发送。');
       }
     });
   }

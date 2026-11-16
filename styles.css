@@ -914,9 +914,14 @@ body, .card { transition: background-color .18s ease, color .18s ease; }
   flex-wrap: wrap;
 }
 .lab-file-meta .meta-text { min-width: 0; overflow-wrap: anywhere; }
+.ask-group {
+  margin-left: auto;
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
 .ask-ai {
   appearance: none;
-  margin-left: auto;
   flex: 0 0 auto;
   font: inherit;
   font-family: var(--sans);
@@ -957,5 +962,5 @@ body, .card { transition: background-color .18s ease, color .18s ease; }
 .lab-ai-hint.bad { background: var(--cinnabar); color: #fff; }
 
 @media (max-width: 620px) {
-  .ask-ai { margin-left: 0; }
+  .ask-group { margin-left: 0; }
 }

@@ -689,7 +689,20 @@
     updateProgress();
   }
 
-  /* —— 问 DeepSeek：把「题目 + 我的作答 + 参考答案」打包成讲解请求 —— */
+  /* —— 问 AI（DeepSeek / 千问）：把「题目 + 我的作答 + 参考答案」打包成讲解请求 —— */
+  // 两家都支持把内容塞进 ?q= 自动填进输入框；DeepSeek 额度用完可以换千问接着问
+  var AI_TARGETS = [
+    { key: 'deepseek', name: 'DeepSeek', bare: 'https://chat.deepseek.com/' },
+    { key: 'qwen', name: '千问', bare: 'https://www.qianwen.com/' }
+  ];
+
+  function aiTarget(key) {
+    for (var i = 0; i < AI_TARGETS.length; i++) {
+      if (AI_TARGETS[i].key === key) return AI_TARGETS[i];
+    }
+    return AI_TARGETS[0];
+  }
+
   // 分级上限：先按完整长度发，超了再逐级压缩，尽量保住「自动填入输入框」
   var AI_CAPS = [
     { mine: 900, ref: 1600 },
@@ -858,17 +871,17 @@
     if (kind === 'bad') el.classList.add('bad');
   }
 
-  function askDeepSeek() {
+  function askAI(key) {
+    var t = aiTarget(key);
     var q = currentQ();
     if (!q) return;
     var record = state.answers[q.id];
     var answered = !!(record && record.submitted);
     var built = pickPrompt(q);
     var prompt = built.prompt;
-    var bare = 'https://chat.deepseek.com/';
-    var url = bare;
-    // 实测：官网会把 ?q= 的内容自动填进输入框（不自动发送）；过长才退回裸链接走手动粘贴
-    if (built.autoFill) url = bare + '?q=' + encodeURIComponent(prompt);
+    var url = t.bare;
+    // 实测：两家官网都会把 ?q= 的内容自动填进输入框（不自动发送）；过长才退回裸链接走手动粘贴
+    if (built.autoFill) url = t.bare + '?q=' + encodeURIComponent(prompt);
     var win = window.open(url, '_blank');
     if (win) {
       try { win.opener = null; } catch (e) {}
@@ -880,12 +893,14 @@
         return;
       }
       if (!built.autoFill) {
-        showAiHint('这题内容比较长，已复制到剪贴板：在 DeepSeek 里粘贴（Ctrl/⌘ + V）发送即可。');
+        showAiHint('这题内容比较长，已复制到剪贴板：在「' + t.name + '」里粘贴（Ctrl/⌘ + V）发送即可。');
       } else if (answered) {
-        showAiHint('已打开 DeepSeek：题目、你的答案、参考答案都带过去了，直接按 Enter 发送。'
-          + (built.compressed ? '（题太长，答案做了截断）' : ''));
+        showAiHint('已打开「' + t.name + '」：题目、你的答案、参考答案都带过去了，直接按 Enter 发送。'
+          + (built.compressed ? '（题太长，答案做了截断）' : '')
+          + '（输入框是空的就 Ctrl/⌘ + V 粘贴）');
       } else {
-        showAiHint('已打开 DeepSeek：这题你还没作答，所以只让它给思路。做完再点一次，它就会针对你的答案讲。');
+        showAiHint('已打开「' + t.name + '」：这题你还没作答，所以只让它给思路。做完再点一次，它就会针对你的答案讲。'
+          + '（输入框是空的就 Ctrl/⌘ + V 粘贴）');
       }
     });
     if (!win) {
@@ -1200,7 +1215,9 @@
   document.getElementById('btn-summary-home').addEventListener('click', showHome);
   document.getElementById('btn-submit').addEventListener('click', onSubmit);
   document.getElementById('btn-peek').addEventListener('click', onPeek);
-  document.getElementById('btn-ai').addEventListener('click', askDeepSeek);
+  document.querySelectorAll('.ai-btn').forEach(function (b) {
+    b.addEventListener('click', function () { askAI(b.getAttribute('data-ai')); });
+  });
   document.getElementById('btn-next').addEventListener('click', function () { go(1); });
   document.getElementById('btn-prev').addEventListener('click', function () { go(-1); });
   document.getElementById('btn-restart').addEventListener('click', function () {
@@ -1412,7 +1429,8 @@
     peekAnswer: onPeek,
     buildAiPrompt: buildAiPrompt,
     pickPrompt: pickPrompt,
-    askDeepSeek: askDeepSeek,
+    askDeepSeek: askAI,
+    askAI: askAI,
     getState: function () { return state; }
   };
 
