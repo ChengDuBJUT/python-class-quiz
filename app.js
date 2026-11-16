@@ -33,6 +33,7 @@
       scoreCorrect: 0,
       scoreTotal: 0,
       paperIds: null,
+      keyword: null,
       sessionEnded: false
     };
   }
@@ -60,6 +61,8 @@
         if (!Array.isArray(d.favorites)) d.favorites = [];
         if (!Array.isArray(d.wrongIds)) d.wrongIds = [];
         d.version = 2;
+        // 关键词筛选不跨会话保留：否则下次进来只剩几道题，容易以为题库丢了
+        d.keyword = null;
       }
       return d;
     } catch (e) {
@@ -191,8 +194,17 @@
   }
 
   function applyScope(list) {
-    if (!state.examOnly) return list;
-    return list.filter(function (q) { return !!q.exam; });
+    var out = list;
+    if (state.examOnly) out = out.filter(function (q) { return !!q.exam; });
+    var kw = state.keyword;
+    if (kw && kw.tokens && kw.tokens.length) {
+      out = out.filter(function (q) {
+        var hay = (q.stem || '') + ' ' + (q.options || []).join(' ') + ' ' +
+          (q.answer || '') + ' ' + (q.answerText || '') + ' ' + (q.code || '');
+        return kw.tokens.some(function (t) { return hay.indexOf(t) >= 0; });
+      });
+    }
+    return out;
   }
 
   function basePool() {
@@ -990,6 +1002,19 @@
     }
   }
 
+  function updateKeywordChip() {
+    var el = document.getElementById('filter-keyword');
+    if (!el) return;
+    var kw = state.keyword;
+    if (kw && kw.label) {
+      el.textContent = '只看：' + kw.label;
+      el.classList.remove('hidden');
+    } else {
+      el.textContent = '';
+      el.classList.add('hidden');
+    }
+  }
+
   function showPractice() {
     document.getElementById('home').classList.add('hidden');
     document.getElementById('practice').classList.remove('hidden');
@@ -999,6 +1024,7 @@
     if (fs) fs.value = state.examOnly ? 'exam' : 'all';
     document.getElementById('toggle-shuffle').checked = !!state.shuffle;
     state.sessionEnded = false;
+    updateKeywordChip();
     syncModeChips();
     rebuildFilter(false);
     renderQuestion();
@@ -1294,13 +1320,17 @@
 
   document.getElementById('filter-ch').addEventListener('change', function (e) {
     state.chapter = e.target.value;
+    state.keyword = null;
     state.order = [];
+    updateKeywordChip();
     rebuildFilter(true);
     renderQuestion();
   });
   document.getElementById('filter-type').addEventListener('change', function (e) {
     state.type = e.target.value;
+    state.keyword = null;
     state.order = [];
+    updateKeywordChip();
     rebuildFilter(true);
     renderQuestion();
   });
@@ -1309,6 +1339,16 @@
     scopeSel.addEventListener('change', function (e) {
       state.examOnly = e.target.value === 'exam';
       state.order = [];
+      rebuildFilter(true);
+      renderQuestion();
+    });
+  }
+  var kwChip = document.getElementById('filter-keyword');
+  if (kwChip) {
+    kwChip.addEventListener('click', function () {
+      state.keyword = null;
+      state.order = [];
+      updateKeywordChip();
       rebuildFilter(true);
       renderQuestion();
     });
@@ -1446,6 +1486,7 @@
         if (opts.chapter != null) state.chapter = String(opts.chapter);
         if (opts.type != null) state.type = opts.type;
         if (opts.examOnly != null) state.examOnly = !!opts.examOnly;
+        state.keyword = opts.keyword || null;
         state.mode = 'all';
         state.order = [];
         state.sessionEnded = false;

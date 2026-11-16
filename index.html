@@ -16,7 +16,7 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=20261116n" />
+  <link rel="stylesheet" href="styles.css?v=20261116u" />
 </head>
 <body>
   <div class="wrap">
@@ -176,6 +176,7 @@
         <button class="btn secondary" id="btn-restart" type="button">重新开始</button>
         <button class="btn secondary" id="btn-finish" type="button">交卷</button>
         <button class="btn ghost" id="btn-home" type="button">返回首页</button>
+        <button class="chip kw-chip hidden" id="filter-keyword" type="button" title="点一下取消关键词筛选"></button>
       </div>
 
       <div class="card" id="practice-card">
@@ -215,10 +216,10 @@
         <div class="sy-hero-top">
           <div>
             <h2 class="summary-title">期末考纲对照</h2>
-            <p class="sy-hero-sub">老师 2026-11 公布的考试结构与 20 个考点，逐条对到题库里的实际题量。
+            <p class="sy-hero-sub">老师 2026-11 公布的考试结构与 20 个考点，逐条对到题库里的实际题量（不含「代码自测」题）。
               数字由脚本从题库现算，补题后会自动变。</p>
           </div>
-          <div class="sy-stamp"><b id="sy-total">—</b><span>教材题 + 补充题</span></div>
+          <div class="sy-stamp"><b id="sy-total">—</b><span>教材 + 补充题</span></div>
         </div>
         <div class="sy-paper" id="sy-paper"></div>
         <p class="sy-note" id="sy-note"></p>
@@ -282,10 +283,10 @@
     </footer>
   </div>
 
-  <script src="data/questions.js?v=20261116n"></script>
-  <script src="data/syllabus.js?v=20261116n"></script>
-  <script src="app.js?v=20261116n"></script>
-  <script src="code_lab.js?v=20261116n"></script>
-  <script src="syllabus_view.js?v=20261116n"></script>
+  <script src="data/questions.js?v=20261116u"></script>
+  <script src="data/syllabus.js?v=20261116u"></script>
+  <script src="app.js?v=20261116u"></script>
+  <script src="code_lab.js?v=20261116u"></script>
+  <script src="syllabus_view.js?v=20261116u"></script>
 </body>
 </html>

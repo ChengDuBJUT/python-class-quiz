@@ -28,6 +28,14 @@
     return list.map(function (n) { return '第' + n + '章'; }).join(' · ');
   }
 
+  /* 带筛选跳进题库：先把视图从「考纲对照」切回练习页，
+     否则考纲页和练习卡会同时留在页面上（两个 section 都显示着）。 */
+  function gotoPractice(opts) {
+    if (!window.QuizApp) return;
+    if (window.ViewSwitcher) window.ViewSwitcher.setView('quiz');
+    window.QuizApp.showPractice(opts);
+  }
+
   /* ---------- 考试结构 ---------- */
   function renderPaper() {
     var box = document.getElementById('sy-paper');
@@ -70,6 +78,12 @@
   }
 
   /* ---------- 考点覆盖 ---------- */
+  var TOPIC_KW = {
+    recursion: { label: '递归', tokens: ['递归', '阶乘', '斐波那契', '汉诺塔'] },
+    file: { label: '文件读写', tokens: ['文件', 'open(', 'read', 'write', 'csv', '.txt'] },
+    base: { label: '数制转换', tokens: ['进制', '二进制', '八进制', '十六进制'] }
+  };
+
   function renderTopics() {
     var box = document.getElementById('sy-topics');
     if (!box) return;
@@ -93,9 +107,10 @@
         '</div>' +
         '<span class="sy-badge ' + lv.cls + '">' + lv.text + '</span>' +
         '<div class="sy-topic-go">' +
-          '<button type="button" class="sy-go" data-ch="' + t.chapters[0] + '" data-type="all">刷客观</button>' +
+          '<button type="button" class="sy-go" data-ch="' + t.chapters[0] + '" data-type="all" data-kw="">刷客观</button>' +
           (t.codeInExam && t.nCode
-            ? '<button type="button" class="sy-go ghost" data-ch="' + t.chapters[0] + '" data-type="code">刷编程</button>'
+            ? '<button type="button" class="sy-go ghost" data-ch="' + t.chapters[0] + '" data-type="code" data-kw="' +
+              (TOPIC_KW[t.key] ? t.key : '') + '">刷编程</button>'
             : '') +
         '</div>' +
       '</div>';
@@ -103,11 +118,12 @@
 
     box.querySelectorAll('.sy-go').forEach(function (b) {
       b.addEventListener('click', function () {
-        if (!window.QuizApp) return;
-        window.QuizApp.showPractice({
+        var k = b.getAttribute('data-kw');
+        gotoPractice({
           chapter: b.getAttribute('data-ch'),
           type: b.getAttribute('data-type'),
-          examOnly: true
+          examOnly: true,
+          keyword: (k && TOPIC_KW[k]) ? TOPIC_KW[k] : null
         });
       });
     });
@@ -132,14 +148,19 @@
       '</div>';
     }).join('');
 
-    var TPL_CH = { file: 10, recursion: 7, base: 3 };
+    var TPL = {
+      file: { ch: 10, kw: { label: '文件读写', tokens: ['文件', 'open(', 'read', 'write', 'csv', '.txt'] } },
+      recursion: { ch: 7, kw: { label: '递归', tokens: ['递归', '阶乘', '斐波那契', '汉诺塔'] } },
+      base: { ch: 3, kw: { label: '数制转换', tokens: ['进制', '二进制', '八进制', '十六进制'] } }
+    };
     box.querySelectorAll('.sy-go').forEach(function (b) {
       b.addEventListener('click', function () {
-        if (!window.QuizApp) return;
-        window.QuizApp.showPractice({
-          chapter: TPL_CH[b.getAttribute('data-tpl')] || 'all',
+        var t = TPL[b.getAttribute('data-tpl')] || {};
+        gotoPractice({
+          chapter: t.ch || 'all',
           type: 'code',
-          examOnly: true
+          examOnly: true,
+          keyword: t.kw || null
         });
       });
     });

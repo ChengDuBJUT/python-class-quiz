@@ -66,6 +66,8 @@
   if (goLab) goLab.addEventListener('click', function () { setView('lab'); });
   var goSy = document.getElementById('btn-go-syllabus');
   if (goSy) goSy.addEventListener('click', function () { setView('syllabus'); });
+  // 考纲页里的「刷客观 / 刷编程」要先把视图切回题库，否则两块会叠在一起
+  window.ViewSwitcher = { setView: setView };
 
   /* ---------- 章节列表 ---------- */
   function renderChapterList() {

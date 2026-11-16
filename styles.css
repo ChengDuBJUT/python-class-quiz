@@ -1151,3 +1151,14 @@ body, .card { transition: background-color .18s ease, color .18s ease; }
   color: var(--muted);
 }
 .form-note b { color: var(--accent); }
+
+/* 关键词筛选 chip（从考纲页「去刷这类编程题」跳过来时显示，点一下取消） */
+.kw-chip {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line-strong);
+  color: var(--accent);
+  font-size: 0.8rem;
+  padding: 0.28rem 0.7rem;
+}
+.kw-chip::after { content: ' ×'; opacity: 0.6; }
+.kw-chip:hover { background: var(--surface-4); }

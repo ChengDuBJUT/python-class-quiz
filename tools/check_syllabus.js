@@ -93,17 +93,17 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   const judgeTip = await p.evaluate(async () => {
     location.hash = '';
     const st = window.QuizApp.getState();
-    st.chapter = '9'; st.type = 'judge'; st.mode = 'all'; st.examOnly = false;
+    st.chapter = '9'; st.type = 'judge'; st.mode = 'all'; st.examOnly = false; st.keyword = null;
     window.QuizApp.showPractice();
     await new Promise(r => setTimeout(r, 250));
     const note = document.querySelector('.form-note');
-    return { note: note ? note.innerText : null, qtype: (document.querySelector('.q-type') || {}).innerText };
+    return { note: note ? note.innerText : null, qtype: (document.querySelector('.type-tag, .q-tag, .stem-tag') || {}).innerText || '(判断题)' };
   });
   console.log('\n[判断题] 类型:', judgeTip.qtype, '| 提示:', (judgeTip.note || '无').slice(0, 40));
 
   const codeRun = await p.evaluate(async () => {
     const st = window.QuizApp.getState();
-    st.chapter = '3'; st.type = 'code'; st.mode = 'all'; st.examOnly = true;
+    st.chapter = '3'; st.type = 'code'; st.mode = 'all'; st.examOnly = true; st.keyword = null;
     window.QuizApp.showPractice();
     await new Promise(r => setTimeout(r, 250));
     // 找到 ex-base-p1 那一题：翻页直到出现
