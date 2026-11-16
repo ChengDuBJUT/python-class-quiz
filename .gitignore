@@ -14,6 +14,7 @@ tools/source/*
 tools/source/ppt_txt/
 tools/diagnostics.txt
 tools/smoke_test*.js
+tools/live_check.js
 shot-*.png
 
 # 编辑器 / 系统
