@@ -15,6 +15,7 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(BASE, 'tools', 'source', 'quiz_lines.txt')
 if not os.path.exists(SRC):
     SRC = os.path.join(os.path.dirname(BASE), 'trial', 'quiz_lines.txt')
+JUDGE_TRUTH = os.path.join(BASE, 'tools', 'source', 'judge_answers.json')
 OUT = os.path.join(BASE, 'data', 'questions.json')
 DIAG = os.path.join(BASE, 'tools', 'diagnostics.txt')
 
@@ -32,23 +33,31 @@ TYPE_NAME = {
     '简答题': 'short', '编程题': 'code',
 }
 
-# 原教材若干章的判断题答案整段空缺，这里按 Python 语义补齐，并在题目里标注来源。
-JUDGE_OVERRIDE = {
-    1: ['对', '对', '错', '对', '对'],
-    2: ['对', '对', '错', '对', '对'],
-    6: ['错', '错', '对', '错', '错'],
-    7: ['错', '错', '错', '对', '对'],
-    8: ['错', '错', '错', '对', '错'],
-    11: ['对', '对', '错', '对', '对'],
-    12: ['错', '错', '错', '对', '错'],
-}
+# 判断题答案：教材用两种印法（Wingdings 符号串 / 对、对、……），符号串经
+# docx→HTML→文本转换会整段丢失，所以答案一律以 extract_judge_truth.py 从
+# document.xml 直接提取的权威表为准，文本解析结果只用来交叉校验。
+def load_judge_truth():
+    if not os.path.exists(JUDGE_TRUTH):
+        return {}
+    with open(JUDGE_TRUTH, encoding='utf-8') as f:
+        raw = json.load(f)
+    return {int(k): v for k, v in raw.items()}
 
-# 口径容易有分歧的判断题，给出解析说明
+
+JUDGE_TRUTH_MAP = load_judge_truth()
+
+# 口径容易有分歧、或教材答案与 Python 语义不一致的判断题，给出解析说明
 JUDGE_NOTE = {
     'ch2-judge-01': '.pyc 字节码与平台无关，由 Python 虚拟机解释执行；教材按此口径判「对」。',
+    'ch7-judge-01': '教材答案判「对」，但 Python 的 def 只是把函数对象绑定到名字，函数体要等到调用时才执行，'
+                    '按语言事实这句应是「错」。考试请以任课教师口径为准。',
     'ch7-judge-02': 'nonlocal 只能引用外层（非全局）作用域的变量；在函数内修改全局变量应使用 global。',
-    'ch8-judge-05': '教材口径：实例方法由对象调用，类方法 / 静态方法才可由类或对象调用。技术上 Class.method(obj) 也能运行，但考试按教材表述判「错」。',
-    'ch12-judge-03': 'jieba 是中文分词库，英文分词通常按空格或正则处理，教材未把它列为 jieba 的功能。',
+    'ch8-judge-01': '教材答案判「对」，但 Python 允许子类重写（override）继承来的方法，这正是多态的基础，'
+                    '按语言事实这句应是「错」。考试请以任课教师口径为准。',
+    'ch8-judge-05': '教材答案判「对」：Class.method(obj) 这种写法确实能调到实例方法；'
+                    '只是惯例上实例方法用对象调用，类方法 / 静态方法才直接挂类名。',
+    'ch12-judge-03': '教材答案判「对」：jieba 主要做中文分词，但对英文串也能切分（效果一般）；'
+                     '英文分词通常还是用 nltk / spaCy。',
 }
 
 # 教材答案明显与题面对不上时的人工校正（题号 -> 参考答案）
@@ -271,10 +280,20 @@ def main():
             if tcn == '选择题':
                 letters = parse_answer_letters(ablk, len(qlist))
             elif tcn == '判断题':
-                judges = parse_answer_judge(ablk, len(qlist))
-                used_override = judges is None
-                if used_override:
-                    judges = JUDGE_OVERRIDE.get(ch)
+                parsed = parse_answer_judge(ablk, len(qlist))
+                truth = JUDGE_TRUTH_MAP.get(ch)
+                if truth:
+                    judges = ['对' if c == '√' else '错' for c in truth]
+                    if parsed and parsed != judges:
+                        diag.append('   !! 第%d章 判断题：文本解析 %s 与教材原文 %s 不一致，以原文为准'
+                                    % (ch, ''.join(parsed), truth))
+                    if len(judges) < len(qlist):
+                        diag.append('   !! 第%d章 判断题：答案 %d 个，题目 %d 道'
+                                    % (ch, len(judges), len(qlist)))
+                else:
+                    judges = parsed
+                    if not judges:
+                        diag.append('   !! 第%d章 判断题：教材与文本均未取到答案' % ch)
             elif tcn == '编程题':
                 codeans = parse_code_answers(ablk)
             else:
@@ -284,7 +303,7 @@ def main():
             if tcn == '选择题':
                 diag.append('   答案: %s' % (letters,))
             elif tcn == '判断题':
-                diag.append('   答案: %s%s' % (judges, ' [人工补齐]' if used_override else ''))
+                diag.append('   答案: %s%s' % (judges, ' [教材原文]' if JUDGE_TRUTH_MAP.get(ch) else ''))
             elif tcn == '编程题':
                 diag.append('   参考答案段数: %d' % len(codeans))
             else:
@@ -316,8 +335,6 @@ def main():
                     item['stem'] = raw
                     item['answer'] = ('对' if judges[num - 1] == '对' else '错') \
                         if judges and num <= len(judges) else None
-                    if used_override:
-                        item['answerNote'] = '教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。'
                     if qid in JUDGE_NOTE:
                         item['explanation'] = JUDGE_NOTE[qid]
                 elif tcn == '填空题':

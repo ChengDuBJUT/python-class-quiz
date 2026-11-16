@@ -176,8 +176,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第1章 习题 判断题 (1)",
     "stem": "Python语言可以用面向对象的方法编程。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch1-judge-02",
@@ -189,8 +188,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第1章 习题 判断题 (2)",
     "stem": "Python是一门跨平台、开源、免费的动态编程语言。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch1-judge-03",
@@ -202,8 +200,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第1章 习题 判断题 (3)",
     "stem": "在同一台计算机上不可以安装多个不同的Python版本。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch1-judge-04",
@@ -215,8 +212,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第1章 习题 判断题 (4)",
     "stem": "相比C++程序，Python程序的代码更加简洁、语法更加优美，但效率较低。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch1-judge-05",
@@ -228,8 +224,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第1章 习题 判断题 (5)",
     "stem": "PyCharm是Python的集成开发环境。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch1-short-01",
@@ -549,7 +544,6 @@ window.QUESTION_BANK = [
     "sourceLocator": "第2章 习题 判断题 (1)",
     "stem": "字节码文件是与平台无关的二进制码，执行时由解释器解释成本地机器码。",
     "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。",
     "explanation": ".pyc 字节码与平台无关，由 Python 虚拟机解释执行；教材按此口径判「对」。"
   },
   {
@@ -562,8 +556,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第2章 习题 判断题 (2)",
     "stem": "Python中的标识符不能使用关键字。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch2-judge-03",
@@ -575,8 +568,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第2章 习题 判断题 (3)",
     "stem": "Python中的标识符不区分大小写。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch2-judge-04",
@@ -588,8 +580,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第2章 习题 判断题 (4)",
     "stem": "Python 3中可以使用中文作为变量名。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch2-judge-05",
@@ -601,8 +592,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第2章 习题 判断题 (5)",
     "stem": "Python使用缩进来体现代码之间的逻辑关系。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch2-short-01",
@@ -1952,8 +1942,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第6章 习题 判断题 (1)",
     "stem": "列表可以作为字典的“键”。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch6-judge-02",
@@ -1965,8 +1954,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第6章 习题 判断题 (2)",
     "stem": "列表只能存储同一类型的数据。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch6-judge-03",
@@ -1978,8 +1966,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第6章 习题 判断题 (3)",
     "stem": "列表的长度和内容都是可变的。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch6-judge-04",
@@ -1991,8 +1978,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第6章 习题 判断题 (4)",
     "stem": "元组支持增加、删除和修改元素的操作。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch6-judge-05",
@@ -2004,8 +1990,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第6章 习题 判断题 (5)",
     "stem": "元组是可变数据类型。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch6-short-01",
@@ -2338,8 +2323,8 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第7章 习题 判断题 (1)",
     "stem": "函数在定义完成后会立刻执行。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true,
+    "explanation": "教材答案判「对」，但 Python 的 def 只是把函数对象绑定到名字，函数体要等到调用时才执行，按语言事实这句应是「错」。考试请以任课教师口径为准。"
   },
   {
     "id": "ch7-judge-02",
@@ -2352,7 +2337,6 @@ window.QUESTION_BANK = [
     "sourceLocator": "第7章 习题 判断题 (2)",
     "stem": "函数内可以使用nonlocal关键字调用全局变量。",
     "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。",
     "explanation": "nonlocal 只能引用外层（非全局）作用域的变量；在函数内修改全局变量应使用 global。"
   },
   {
@@ -2365,8 +2349,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第7章 习题 判断题 (3)",
     "stem": "变量在程序的任意位置都可以被访问。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch7-judge-04",
@@ -2378,8 +2361,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第7章 习题 判断题 (4)",
     "stem": "局部变量的作用域是整个函数内部。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch7-judge-05",
@@ -2391,8 +2373,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第7章 习题 判断题 (5)",
     "stem": "函数可以提高代码的复用性。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch7-short-01",
@@ -2693,8 +2674,8 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 判断题 (1)",
     "stem": "子类中不能重新实现从父类继承的方法。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true,
+    "explanation": "教材答案判「对」，但 Python 允许子类重写（override）继承来的方法，这正是多态的基础，按语言事实这句应是「错」。考试请以任课教师口径为准。"
   },
   {
     "id": "ch8-judge-02",
@@ -2706,8 +2687,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 判断题 (2)",
     "stem": "Python中一个类只能创建一个对象。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch8-judge-03",
@@ -2719,8 +2699,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 判断题 (3)",
     "stem": "Python通过类可以创建对象，有且只有一个对象。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch8-judge-04",
@@ -2732,8 +2711,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 判断题 (4)",
     "stem": "在类的方法中可以调用类中定义的其他方法。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch8-judge-05",
@@ -2745,9 +2723,8 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 判断题 (5)",
     "stem": "对象方法可以由类和对象调用。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。",
-    "explanation": "教材口径：实例方法由对象调用，类方法 / 静态方法才可由类或对象调用。技术上 Class.method(obj) 也能运行，但考试按教材表述判「错」。"
+    "answer": true,
+    "explanation": "教材答案判「对」：Class.method(obj) 这种写法确实能调到实例方法；只是惯例上实例方法用对象调用，类方法 / 静态方法才直接挂类名。"
   },
   {
     "id": "ch8-short-01",
@@ -3752,8 +3729,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第11章 习题 判断题 (1)",
     "stem": "函数max()的功能是返回指定参数的最大值，参数可以是序列。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch11-judge-02",
@@ -3765,8 +3741,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第11章 习题 判断题 (2)",
     "stem": "函数floor(x)返回参数x的下舍整数，返回值小于或等于x。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch11-judge-03",
@@ -3778,8 +3753,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第11章 习题 判断题 (3)",
     "stem": "时间差的计算没有意义。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch11-judge-04",
@@ -3791,8 +3765,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第11章 习题 判断题 (4)",
     "stem": "生成随机数首先需要导入random模块。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch11-judge-05",
@@ -3804,8 +3777,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第11章 习题 判断题 (5)",
     "stem": "socket是Python的标准模块。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch11-short-01",
@@ -4110,8 +4082,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第12章 习题 判断题 (1)",
     "stem": "库Seaborn与Matplotlib无关。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch12-judge-02",
@@ -4123,8 +4094,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第12章 习题 判断题 (2)",
     "stem": "自定义库只能自己在本地使用。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch12-judge-03",
@@ -4136,9 +4106,8 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第12章 习题 判断题 (3)",
     "stem": "jieba库是中文分词库，但也可以用于英文分词。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。",
-    "explanation": "jieba 是中文分词库，英文分词通常按空格或正则处理，教材未把它列为 jieba 的功能。"
+    "answer": true,
+    "explanation": "教材答案判「对」：jieba 主要做中文分词，但对英文串也能切分（效果一般）；英文分词通常还是用 nltk / spaCy。"
   },
   {
     "id": "ch12-judge-04",
@@ -4150,8 +4119,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第12章 习题 判断题 (4)",
     "stem": "开发人员可以使用标准库，也可以使用第三方库。",
-    "answer": true,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": true
   },
   {
     "id": "ch12-judge-05",
@@ -4163,8 +4131,7 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第12章 习题 判断题 (5)",
     "stem": "Flask是用于图形界面开发的框架。",
-    "answer": false,
-    "answerNote": "教材本节未印出判断题答案，此答案按 Python 语义与教材口径补齐，建议与任课教师核对。"
+    "answer": false
   },
   {
     "id": "ch12-short-01",

@@ -1,5 +1,7 @@
 # 本地构建 / 验证产物（含教材原文导出文本、本机浏览器路径）
-tools/source/
+tools/source/*
+# 但判断题答案表要入库：它是构建输入，且只含 14 行勾叉答案
+!tools/source/judge_answers.json
 tools/diagnostics.txt
 tools/smoke_test*.js
 shot-*.png
