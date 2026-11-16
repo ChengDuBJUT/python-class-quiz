@@ -189,16 +189,16 @@
         ? '<div class="ce-title">🎯 这段考什么：' + esc(f.title) + '</div>' : '';
     }
     var h = '<div class="code-extra">';
-    if (f.output || f.err) {
-      h += '<div class="ce-block"><div class="ce-label">运行输出';
-      if (f.stdin) h += '（运行输入：' + esc(f.stdin.replace(/\n/g, '⏎')) + '）';
-      h += '</div><pre class="ce-out">' + esc(f.output || '（无标准输出）') + '</pre>';
-      if (f.err) {
-        h += '<div class="ce-label ce-label-err">运行时异常（多为故意演示）</div>' +
-          '<pre class="ce-out ce-err">' + esc(f.err) + '</pre>';
-      }
-      h += '</div>';
+    // 输出块始终显示：确实没有输出的（如 matplotlib 只出图）也要让人看到「无标准输出」，
+    // 而不是以为这一栏坏了
+    h += '<div class="ce-block"><div class="ce-label">运行输出';
+    if (f.stdin) h += '（运行输入：' + esc(f.stdin.replace(/\n/g, '⏎')) + '）';
+    h += '</div><pre class="ce-out">' + esc(f.output || '（无标准输出）') + '</pre>';
+    if (f.err) {
+      h += '<div class="ce-label ce-label-err">运行时异常（多为故意演示）</div>' +
+        '<pre class="ce-out ce-err">' + esc(f.err) + '</pre>';
     }
+    h += '</div>';
     if (f.notes && f.notes.length) {
       h += '<div class="ce-block"><div class="ce-label">关键注释</div><ol class="ce-notes">';
       f.notes.forEach(function (n) { h += '<li>' + esc(n) + '</li>'; });
