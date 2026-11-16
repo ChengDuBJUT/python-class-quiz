@@ -645,7 +645,7 @@ footer.note {
 }
 
 .q-head-left { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
-.exam-tag, .review-tag {
+.exam-tag, .review-tag, .hard-tag {
   font-size: 0.74rem;
   border-radius: 999px;
   padding: 0.12rem 0.55rem;
@@ -653,6 +653,7 @@ footer.note {
 }
 .exam-tag { background: var(--cinnabar-soft); color: var(--cinnabar); border: 1px solid var(--cinnabar-line); }
 .review-tag { background: var(--surface-4); color: var(--muted); border: 1px solid var(--line); }
+.hard-tag { background: var(--answer-bg); color: var(--tok-num); border: 1px solid var(--answer-line); }
 
 .stem { white-space: pre-wrap; font-size: 1.02rem; }
 .note-box { background: var(--answer-bg); border-color: var(--answer-line); }

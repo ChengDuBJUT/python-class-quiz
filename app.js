@@ -345,6 +345,7 @@
       ' · 第' + q.chapter + '章 ' + escapeHtml(q.chapterTitle || '') + '</span>';
     html += q.exam ? '<span class="exam-tag">考试范围</span>'
                    : '<span class="review-tag">复习拓展</span>';
+    if (q.hard) html += '<span class="hard-tag">附加题</span>';
     html += '</div>';
     html += '<button type="button" class="fav-btn' + (favOn ? ' on' : '') + '" id="btn-fav" aria-pressed="' +
       (favOn ? 'true' : 'false') + '"><span class="heart">' + (favOn ? '♥' : '♡') +
