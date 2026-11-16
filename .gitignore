@@ -1,8 +1,17 @@
 # 本地构建 / 验证产物（含教材原文导出文本、本机浏览器路径）
 tools/source/*
-# 但答案表要入库：它们是构建输入，且只含答案字母 / 勾叉 / 填空词
+# 但构建输入要入库：答案表（只含答案字母 / 勾叉 / 填空词）、
+# 简答题参考答案、代码学习卡、代码自测题定义、真实运行输出
 !tools/source/judge_answers.json
 !tools/source/answers_0429.json
+!tools/source/short_answers.json
+!tools/source/short_stems.json
+!tools/source/official_short_raw.json
+!tools/source/code_notes.json
+!tools/source/quiz_extra.json
+!tools/source/newcode_runs.json
+# 课件全文（6MB，版权与体积原因不入库；locate.py 可本地重新生成）
+tools/source/ppt_txt/
 tools/diagnostics.txt
 tools/smoke_test*.js
 shot-*.png

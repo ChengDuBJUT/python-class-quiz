@@ -1,0 +1,767 @@
+[
+ {
+  "ch": 4,
+  "file": "test1.py",
+  "kind": "output",
+  "code": "a = 0\nb = a and print(\"1a:\", a)\nprint(\"1b:\", b)\n",
+  "stem": "【读结果】a = 0 时，b = a and print(...) 的完整输出是？",
+  "options": [
+   "1b: 0",
+   "1a: 0 换行 1b: 0",
+   "1b: None",
+   "1b: False"
+  ],
+  "ans": 0,
+  "expl": "and 左边为假立即短路，右边的 print 根本不执行，所以没有 “1a:” 这行；b 直接得到操作数 0。",
+  "expect_in": "1b: 0",
+  "run": true
+ },
+ {
+  "ch": 4,
+  "file": "test1.py",
+  "kind": "output",
+  "code": "a = 0\nb = not a and print(\"2a:\", a)\nprint(\"2b:\", b)\n",
+  "stem": "【读结果】not 0 得 True，and 必须继续算右边，b 最终是什么？",
+  "options": [
+   "None",
+   "True",
+   "0",
+   "2a: 0"
+  ],
+  "ans": 0,
+  "expl": "print() 的返回值是 None，所以 b 拿到 None，输出 “2a: 0” 和 “2b: None” 两行。",
+  "expect_in": "2b: None",
+  "run": true
+ },
+ {
+  "ch": 4,
+  "file": "test1.py",
+  "kind": "concept",
+  "code": "a = 0\nb = not a or print(\"4a:\", a)\nprint(\"4b:\", b)\n",
+  "stem": "【机制】表达式 not a or print(...) 中，右侧的 print 会不会执行？",
+  "options": [
+   "不会执行，or 左边已为 True 直接短路，b 得到 True",
+   "会执行，因为没有括号",
+   "会执行，or 一定算右边",
+   "报语法错误"
+  ],
+  "ans": 0,
+  "expl": "not 0 == True，or 左边为真立即短路并返回左值 True，右侧 print 不执行。",
+  "expect_in": "4b: True",
+  "run": true
+ },
+ {
+  "ch": 4,
+  "file": "test3.py",
+  "kind": "output",
+  "code": "x = [1, 2, 3]\ny = [1, 2, 3]\nz = x\nprint(x is y, x == y, z is x)\n",
+  "stem": "【读结果】三个判断依次输出的结果是？",
+  "options": [
+   "False True True",
+   "True True True",
+   "False False True",
+   "True False True"
+  ],
+  "ans": 0,
+  "expl": "x、y 是两个内容相同的不同对象：is 判身份为 False、== 判值相等为 True；z = x 是同一个对象，z is x 为 True。",
+  "expect_in": "False True True",
+  "run": true
+ },
+ {
+  "ch": 4,
+  "file": "test3.py",
+  "kind": "output",
+  "code": "A = {1, 2, 3, 4, 5}\nB = {1, 3, 5, 7, 9, 11}\nprint(A - B)\nprint(A ^ B)\n",
+  "stem": "【读结果】差集 A - B 与对称差 A ^ B 依次是？",
+  "options": [
+   "{2, 4} 和 {2, 4, 7, 9, 11}",
+   "{2, 4} 和 {7, 9, 11}",
+   "{1, 3, 5} 和 {2, 4, 7, 9, 11}",
+   "{2, 4} 和 {1, 2, 3, 4, 5, 7, 9, 11}"
+  ],
+  "ans": 0,
+  "expl": "- 是差集（在 A 不在 B）；^ 是对称差（只属于其中一个集合）。",
+  "expect_in": "{2, 4}",
+  "run": true
+ },
+ {
+  "ch": 4,
+  "file": "test5.py",
+  "kind": "output",
+  "code": "for i in range(10, 20):\n    print(i, end=\" \")\n",
+  "stem": "【读结果】这段循环最后输出的那个数字是？",
+  "options": [
+   "19",
+   "20",
+   "18",
+   "10"
+  ],
+  "ans": 0,
+  "expl": "range(10, 20) 左闭右开，生成 10~19 共 10 个数，不包含 20。",
+  "expect_in": "19",
+  "run": true
+ },
+ {
+  "ch": 4,
+  "file": "test4.py",
+  "kind": "output",
+  "code": "x = 8\ny = 3\nprint(x - y if x + y > 10 else x * y)\nprint(x + y if x > y else (x - y if x + y > 10 else x * y))\n",
+  "stem": "【读结果】两行输出依次是？",
+  "options": [
+   "5 和 11",
+   "24 和 11",
+   "5 和 5",
+   "11 和 5"
+  ],
+  "ans": 0,
+  "expl": "第一个：x+y=11>10 成立取 x-y=5；第二个：x>y 成立直接取 x+y=11，后面嵌套不求值。",
+  "expect_in": "5\n11",
+  "run": true
+ },
+ {
+  "ch": 5,
+  "file": "test1.py",
+  "kind": "output",
+  "code": "day = \"3\"\nmatch day:\n    case \"1\":\n        print(\"星期一\")\n    case \"3\":\n        print(\"星期三\")\n    case _:\n        print(\"请输入一个有效数字！\")\n",
+  "stem": "【读结果】day = \"3\" 时输出什么？",
+  "options": [
+   "星期三",
+   "星期一",
+   "请输入一个有效数字！",
+   "没有输出"
+  ],
+  "ans": 0,
+  "expl": "match 按顺序比对字面量，命中 case \"3\" 后执行并退出整个 match；case _ 是兜底分支。",
+  "expect_in": "星期三",
+  "run": true
+ },
+ {
+  "ch": 5,
+  "file": "test1.py",
+  "kind": "concept",
+  "code": "day = 3\nmatch day:\n    case \"3\":\n        print(\"星期三\")\n    case _:\n        print(\"其他\")\n",
+  "stem": "【找错】输入用 input() 得到的是字符串，若这里写 day = 3（整数），会输出什么？",
+  "options": [
+   "其他",
+   "星期三",
+   "报 TypeError",
+   "没有任何输出"
+  ],
+  "ans": 0,
+  "expl": "case \"3\" 是字符串，而 day 是整数 3，类型不同匹配不上，只能落到兜底 case _。",
+  "expect_in": "其他",
+  "run": true
+ },
+ {
+  "ch": 5,
+  "file": "test2.py",
+  "kind": "output",
+  "code": "score = 0\nif score >= 90:\n    print(\"考试优秀\")\nelif 80 <= score < 90:\n    print(\"考试良好\")\nelif 60 <= score < 70:\n    print(\"考试及格\")\nelse:\n    print(\"考试不及格\")\n    print(\"Good luck to you!\")\n",
+  "stem": "【读结果】score = 0 时输出几行、内容是什么？",
+  "options": [
+   "两行：考试不及格 / Good luck to you!",
+   "一行：考试不及格",
+   "一行：考试优秀",
+   "什么都不输出"
+  ],
+  "ans": 0,
+  "expl": "所有条件都不成立走 else；else 块里有两条语句，靠缩进决定它们都属于 else。",
+  "expect_in": "Good luck to you!",
+  "run": true
+ },
+ {
+  "ch": 5,
+  "file": "test3.py",
+  "kind": "output",
+  "code": "gender = \"女\"\nheight = 165\nif gender == \"男\":\n    if height > 170:\n        print(\"高个子男生\")\n    else:\n        print(\"矮个子男生\")\nelse:\n    if height > 170:\n        print(\"高个子女生\")\n    else:\n        print(\"矮个子女生\")\n",
+  "stem": "【读结果】gender = \"女\"、height = 165 时输出？",
+  "options": [
+   "矮个子女生",
+   "高个子女生",
+   "矮个子男生",
+   "高个子男生"
+  ],
+  "ans": 0,
+  "expl": "外层 gender == \"男\" 不成立走外层 else，内层 height > 170 不成立，输出矮个子女生。",
+  "expect_in": "矮个子女生",
+  "run": true
+ },
+ {
+  "ch": 5,
+  "file": "test4.py",
+  "kind": "output",
+  "code": "i = 1\nsum = 0\nwhile i <= 10:\n    sum = sum + i\n    i = i + 1\nprint(sum)\n",
+  "stem": "【读结果】循环结束后打印的 sum 是？",
+  "options": [
+   "55",
+   "45",
+   "10",
+   "66"
+  ],
+  "ans": 0,
+  "expl": "i 从 1 加到 10，sum = 1+2+…+10 = 55；i 变成 11 时条件不成立退出。",
+  "expect_in": "55",
+  "run": true
+ },
+ {
+  "ch": 5,
+  "file": "test5.py",
+  "kind": "output",
+  "code": "print(range(5))\nresult = 0\nfor i in range(101):\n    result = result + i\nprint(result)\n",
+  "stem": "【读结果】print(range(5)) 与累加结果依次是？",
+  "options": [
+   "range(0, 5) 和 5050",
+   "[0, 1, 2, 3, 4] 和 5050",
+   "range(0, 5) 和 4950",
+   "0 1 2 3 4 和 5050"
+  ],
+  "ans": 0,
+  "expl": "range 对象直接打印显示为 range(0, 5)；range(101) 生成 0~100，累加得 5050。",
+  "expect_in": "range(0, 5)",
+  "run": true
+ },
+ {
+  "ch": 5,
+  "file": "test5.py",
+  "kind": "concept",
+  "code": "result = 0\nfor i in range(101):\n    result = result + i\nprint(result)\n",
+  "stem": "【机制】range(101) 一共生成多少个数？",
+  "options": [
+   "101 个（0 到 100）",
+   "100 个（1 到 100）",
+   "101 个（1 到 101）",
+   "100 个（0 到 99）"
+  ],
+  "ans": 0,
+  "expl": "range(n) 从 0 开始、到 n-1 结束，共 n 个数；这里 n=101，所以是 0~100 共 101 个。",
+  "expect_in": "5050",
+  "run": true
+ },
+ {
+  "ch": 5,
+  "file": "test6.py",
+  "kind": "output",
+  "code": "my_dict = {'python 教程': 'http://a', 'java 教程': 'http://b'}\nfor ele in my_dict:\n    print(ele)\n",
+  "stem": "【读结果】for ele in my_dict 时 ele 得到的是什么？",
+  "options": [
+   "字典的键（如 python 教程）",
+   "字典的值（如 http://a）",
+   "键值对组成的元组",
+   "会抛异常"
+  ],
+  "ans": 0,
+  "expl": "直接遍历字典拿到的是键；要取值必须写 my_dict[ele]，要键值对用 my_dict.items()。",
+  "expect_in": "python 教程",
+  "run": true
+ },
+ {
+  "ch": 5,
+  "file": "test7.py",
+  "kind": "output",
+  "code": "j = 3\ni = 1\nwhile i <= j:\n    print(f'{i}*{j}={j*i}', end='\\t')\n    i += 1\nprint()\n",
+  "stem": "【读结果】这一段（j=3）会打印几个式子？",
+  "options": [
+   "3 个，写在同一行（用制表符分隔）",
+   "3 个，各占一行",
+   "1 个",
+   "9 个"
+  ],
+  "ans": 0,
+  "expl": "内层 i 从 1 到 3 共 3 次；end='\\t' 让它们不换行、用制表符隔开，最后的 print() 才换行。",
+  "expect_in": "3*3=9",
+  "run": true
+ },
+ {
+  "ch": 5,
+  "file": "test9.py",
+  "kind": "concept",
+  "code": "for j in range(3):\n    for i in range(6):\n        if i == 4:\n            continue\n        print(\"j:\", j, \"i:\", i)\n    if j == 0:\n        break\n",
+  "stem": "【机制】为什么输出里没有 i: 4，而且只有 j: 0 这一轮？",
+  "options": [
+   "i==4 时 continue 跳过本轮剩余语句；内层跑完后 j==0 触发外层 break",
+   "i==4 时 break 结束了全部循环",
+   "range(6) 里没有 4",
+   "嵌套循环不能使用 continue"
+  ],
+  "ans": 0,
+  "expl": "continue 只跳过内层当前这一轮（所以缺 i: 4）；内层 6 轮结束后外层判断 j==0 成立，break 跳出外层。",
+  "expect_in": "j: 0",
+  "run": true
+ },
+ {
+  "ch": 6,
+  "file": "test13.py",
+  "kind": "output",
+  "code": "tp = (i*2 for i in range(1, 10) if i%2 == 0)\nprint(tuple(tp))\nprint(list(tp))\n",
+  "stem": "【读结果】两次展开生成器，第二行输出什么？",
+  "options": [
+   "[]",
+   "(4, 8, 12, 16)",
+   "重复输出 (4, 8, 12, 16)",
+   "抛出 StopIteration"
+  ],
+  "ans": 0,
+  "expl": "tuple(tp) 已经把生成器取空，再 list(tp) 只能得到空列表——生成器只能遍历一次。",
+  "expect_in": "[]",
+  "run": true
+ },
+ {
+  "ch": 6,
+  "file": "test18.py",
+  "kind": "output",
+  "code": "l1 = [1, 2, 3]\nl2 = [10, 20, 30]\nit = zip(l1, l2)\ndc3 = {k*2: v*2 for k, v in it}\ndc4 = {k*2: v*2 for k, v in it}\nprint(dc3)\nprint(dc4)\n",
+  "stem": "【读结果】dc4 为什么是空字典 {}？",
+  "options": [
+   "zip 返回的迭代器已被 dc3 的推导式取完",
+   "字典推导式不能连续使用",
+   "l1 和 l2 长度不同",
+   "dc4 的键重复被去重了"
+  ],
+  "ans": 0,
+  "expl": "zip 在 Python 3 返回一次性迭代器，第一次推导已耗尽，第二次自然得到空字典。",
+  "expect_in": "{}",
+  "run": true
+ },
+ {
+  "ch": 6,
+  "file": "test21.py",
+  "kind": "output",
+  "code": "dc = {'语文': 90}\ndc1 = dc\ndc2 = dc.copy()\ndc.update({'美术': 90})\nprint(dc1)\nprint(dc2)\n",
+  "stem": "【读结果】dc1 与 dc2 分别输出什么？",
+  "options": [
+   "dc1 含美术，dc2 不含美术",
+   "两者都不含美术",
+   "两者都含美术",
+   "dc1 不含，dc2 含"
+  ],
+  "ans": 0,
+  "expl": "dc1 = dc 只是起别名，指向同一个字典；dc2 = dc.copy() 是独立副本，不受后续修改影响。",
+  "expect_in": "{'语文': 90}",
+  "run": true
+ },
+ {
+  "ch": 6,
+  "file": "test11.py",
+  "kind": "output",
+  "code": "ls1 = [1, 2, 3]\nls2 = [3, 4, 5]\nls4 = [x+y for x in ls1 if x%2 == 0 for y in ls2 if y <= 4]\nprint(ls4)\n",
+  "stem": "【读结果】这个带条件的多重推导式结果是？",
+  "options": [
+   "[5, 6]",
+   "[4, 5, 6]",
+   "[5]",
+   "[4, 6, 8]"
+  ],
+  "ans": 0,
+  "expl": "x 只取偶数 2；y 取 3、4（5 被 y<=4 过滤）；相加得 5 和 6。",
+  "expect_in": "[5, 6]",
+  "run": true
+ },
+ {
+  "ch": 6,
+  "file": "test16.py",
+  "kind": "concept",
+  "code": "st = {1, 2, 3}\nst.discard(99)\nprint(st)\n",
+  "stem": "【机制】discard 一个不存在的元素会怎样？",
+  "options": [
+   "集合保持不变，正常输出 {1, 2, 3}",
+   "抛出 KeyError",
+   "抛出 TypeError",
+   "集合被清空"
+  ],
+  "ans": 0,
+  "expl": "discard 删除不存在的元素不报错；换成 remove(99) 就会抛 KeyError——这是两者的关键区别。",
+  "expect_in": "{1, 2, 3}",
+  "run": true
+ },
+ {
+  "ch": 6,
+  "file": "test17.py",
+  "kind": "fix",
+  "code": "st = {1, 2, 3}\nst.add((4, 5))\nst.add([6, 7])\n",
+  "stem": "【找错】第二句 st.add([6, 7]) 会报什么错？",
+  "options": [
+   "TypeError: unhashable type: 'list'",
+   "正常运行，得到 {1,2,3,(4,5),[6,7]}",
+   "KeyError: 6",
+   "AttributeError: 'set' object has no attribute 'add'"
+  ],
+  "ans": 0,
+  "expl": "集合元素必须可哈希（不可变）；元组可哈希能加入，列表可变不可哈希，加入时报 TypeError。",
+  "expect_in": null,
+  "run": false
+ },
+ {
+  "ch": 6,
+  "file": "test1.py",
+  "kind": "output",
+  "code": "tp = (10, 25, 16, 8, 32)\nprint(sorted(tp))\nprint(list(reversed(tp)))\n",
+  "stem": "【读结果】sorted 与 list(reversed(...)) 的结果依次是？",
+  "options": [
+   "[8, 10, 16, 25, 32] 和 [32, 8, 16, 25, 10]",
+   "[8, 10, 16, 25, 32] 和 [8, 10, 16, 25, 32]",
+   "(8, 10, 16, 25, 32) 和 [32, 8, 16, 25, 10]",
+   "[32, 8, 16, 25, 10] 和 [8, 10, 16, 25, 32]"
+  ],
+  "ans": 0,
+  "expl": "sorted 返回排好序的新列表；reversed 返回反向迭代器，需 list() 展开才能看到元素。",
+  "expect_in": "[8, 10, 16, 25, 32]",
+  "run": true
+ },
+ {
+  "ch": 6,
+  "file": "test12.py",
+  "kind": "output",
+  "code": "ls = [1, 2, 3]\nls.append([4, 5])\nls.extend([6, 7])\nprint(ls)\n",
+  "stem": "【读结果】append 之后再 extend，列表变成？",
+  "options": [
+   "[1, 2, 3, [4, 5], 6, 7]",
+   "[1, 2, 3, 4, 5, 6, 7]",
+   "[1, 2, 3, [4, 5, [6, 7]]]",
+   "[1, 2, 3, 6, 7]"
+  ],
+  "ans": 0,
+  "expl": "append 把 [4,5] 整个当成一个元素塞进去；extend 才把 6、7 逐个追加。",
+  "expect_in": "[1, 2, 3, [4, 5], 6, 7]",
+  "run": true
+ },
+ {
+  "ch": 7,
+  "file": "test10.py",
+  "kind": "output",
+  "code": "def test1(a, b, c=33, *args, **kwargs):\n    print(a, b, c, args, kwargs)\n\ntest1(1, 2, 3, 4, 6, e=6)\n",
+  "stem": "【读结果】混合参数传递后，args 与 kwargs 分别是什么？",
+  "options": [
+   "args=(4, 6)，kwargs={'e': 6}",
+   "args=(4,)，kwargs={'e': 6}",
+   "args=(3, 4, 6)，kwargs={}",
+   "args=()，kwargs={'e': 6}"
+  ],
+  "ans": 0,
+  "expl": "a=1、b=2、c=3 按位置填满，多出来的 4 和 6 都进 *args；e=6 是关键字参数进 **kwargs。",
+  "expect_in": "(4, 6) {'e': 6}",
+  "run": true
+ },
+ {
+  "ch": 7,
+  "file": "test5.py",
+  "kind": "output",
+  "code": "def add(x, y, z):\n    return x+y, z-y, \"python\"\n\nx, y, z = add(10, 20, 30)\nprint(x, y, z)\n",
+  "stem": "【读结果】return 了三个值并用三个变量接收，输出是？",
+  "options": [
+   "30 10 python",
+   "30 20 python",
+   "10 30 python",
+   "TypeError: too many values to unpack"
+  ],
+  "ans": 0,
+  "expl": "return x+y, z-y, \"python\" 返回元组 (30,10,'python')，序列解包依次赋给 x、y、z。",
+  "expect_in": "30 10 python",
+  "run": true
+ },
+ {
+  "ch": 7,
+  "file": "test15.py",
+  "kind": "output",
+  "code": "def gen(n):\n    print(\"开始执行\")\n    i = 0\n    while i < n:\n        yield i\n        i += 1\n\ng = gen(2)\nprint(\"创建完毕\")\nprint(next(g))\n",
+  "stem": "【机制】这段代码的输出顺序说明什么？",
+  "options": [
+   "先“创建完毕”，再“开始执行”，最后 0：生成器函数体在首次取值时才运行",
+   "先“开始执行”，再“创建完毕”，最后 0",
+   "两行内容都不会输出",
+   "调用 gen(2) 时函数体已经跑完"
+  ],
+  "ans": 0,
+  "expl": "调用生成器函数只是造出生成器对象，函数体一行都不执行；第一次 next() 才真正开始运行并停在 yield。",
+  "expect_in": "创建完毕",
+  "run": true
+ },
+ {
+  "ch": 7,
+  "file": "test16.py",
+  "kind": "fix",
+  "code": "def gen(n):\n    i = 0\n    while i < n:\n        yield i\n        i += 1\n\ng = gen(2)\nprint(next(g), next(g))\nprint(next(g))\n",
+  "stem": "【找错】生成器只产 2 个值，第三次 next(g) 会怎样？",
+  "options": [
+   "抛出 StopIteration 异常",
+   "输出 2",
+   "输出 0 并重新开始",
+   "陷入死循环"
+  ],
+  "ans": 0,
+  "expl": "生成器 yield 完 n 个值就结束，再多取一次必抛 StopIteration；应改用 for 遍历或 try-except。",
+  "expect_in": null,
+  "run": false
+ },
+ {
+  "ch": 7,
+  "file": "test20.py",
+  "kind": "output",
+  "code": "ls = [1, 2, 3, 4, 5]\nres = map(lambda x: x*x, ls)\nprint(next(res))\nprint([i for i in res])\n",
+  "stem": "【读结果】map 对象先被 next 取走一个元素，剩下的是什么？",
+  "options": [
+   "[4, 9, 16, 25]",
+   "[1, 4, 9, 16, 25]",
+   "[1]",
+   "[]"
+  ],
+  "ans": 0,
+  "expl": "map 返回一次性迭代器；next(res) 已取走 1，剩余 4、9、16、25。",
+  "expect_in": "[4, 9, 16, 25]",
+  "run": true
+ },
+ {
+  "ch": 7,
+  "file": "test17.py",
+  "kind": "concept",
+  "code": "def wrapper(fun):\n    print(\"装饰中\")\n    def inner():\n        print(\"验证\")\n        fun()\n    return inner\n\n@wrapper\ndef test():\n    print(\"test\")\n\nprint(\"---\")\ntest()\n",
+  "stem": "【机制】“装饰中”这三个字在什么时候打印？",
+  "options": [
+   "定义 test 时（即 @wrapper 生效那一刻）",
+   "调用 test() 时",
+   "import 该模块时",
+   "永远不会打印"
+  ],
+  "ans": 0,
+  "expl": "@wrapper 等价于 test = wrapper(test)，装饰发生在函数定义时，所以先打印“装饰中”，再打印“---”，最后才执行 inner。",
+  "expect_in": "装饰中",
+  "run": true
+ },
+ {
+  "ch": 7,
+  "file": "test12.py",
+  "kind": "output",
+  "code": "n = 10\ndef outer():\n    n = 1\n    def inner():\n        n = 2\n        print(n)\n    inner()\n    print(n)\nouter()\n",
+  "stem": "【读结果】inner 里的 print 与 outer 里的 print 分别输出？",
+  "options": [
+   "2 和 1",
+   "2 和 2",
+   "10 和 10",
+   "1 和 2"
+  ],
+  "ans": 0,
+  "expl": "inner 里的 n = 2 创建了新的局部变量（没有 nonlocal），不影响 outer 的 n=1。",
+  "expect_in": "2\n1",
+  "run": true
+ },
+ {
+  "ch": 7,
+  "file": "test11.py",
+  "kind": "concept",
+  "code": "number = 10\ndef test():\n    print(number)\ntest()\n",
+  "stem": "【机制】函数内只读取 number、没有赋值，为什么能拿到 10？",
+  "options": [
+   "沿 LEGB 规则向外查找，找到了全局变量 number",
+   "因为 number 是内置变量",
+   "因为用了 global 声明",
+   "会报 NameError"
+  ],
+  "ans": 0,
+  "expl": "函数内只读不写时，Python 依次查局部→闭包→全局→内置命名空间，找到全局的 number=10。",
+  "expect_in": "10",
+  "run": true
+ },
+ {
+  "ch": 8,
+  "file": "test2.py",
+  "kind": "output",
+  "code": "class Car:\n    color = \"red\"\n\ncar = Car()\nCar.color = \"white\"\ncar.color = \"black\"\nprint(Car.color, car.color)\n",
+  "stem": "【读结果】最后一行输出什么？",
+  "options": [
+   "white black",
+   "black black",
+   "white white",
+   "red black"
+  ],
+  "ans": 0,
+  "expl": "Car.color='white' 改类属性；car.color='black' 给实例新建了同名实例属性，从此实例属性优先，类属性仍是 white。",
+  "expect_in": "white black",
+  "run": true
+ },
+ {
+  "ch": 8,
+  "file": "test3.py",
+  "kind": "fix",
+  "code": "class Car:\n    def drive(self):\n        self.color = \"white\"\n\ncar = Car()\ncar.drive()\nprint(Car.color)\n",
+  "stem": "【找错】最后一行 print(Car.color) 会怎样？",
+  "options": [
+   "抛 AttributeError：类对象 Car 上没有 color 属性",
+   "输出 white",
+   "输出 None",
+   "输出 red"
+  ],
+  "ans": 0,
+  "expl": "self.color='white' 只给实例加了属性，类上并没有 color，所以用类名访问会报 AttributeError。",
+  "expect_in": null,
+  "run": false
+ },
+ {
+  "ch": 8,
+  "file": "test6.py",
+  "kind": "concept",
+  "code": "class Car:\n    color = \"black\"\n    @classmethod\n    def stop1(cls):\n        cls.color = \"red\"\n\ncar = Car()\ncar.stop1()\nprint(Car.color)\n",
+  "stem": "【机制】类方法里 cls.color = \"red\" 改的是谁？",
+  "options": [
+   "类属性，所以 Car.color 也变成 red",
+   "只是 car 这个实例的属性",
+   "两个都改",
+   "改不了，会报错"
+  ],
+  "ans": 0,
+  "expl": "cls 代表类本身，cls.属性 = 值 改的是类属性，对所有没有自己同名实例属性的对象都生效。",
+  "expect_in": "red",
+  "run": true
+ },
+ {
+  "ch": 8,
+  "file": "test7.py",
+  "kind": "fix",
+  "code": "class Car:\n    color = \"black\"\n    @staticmethod\n    def test():\n        print(self.color)\n",
+  "stem": "【找错】静态方法里写 self.color 会发生什么？",
+  "options": [
+   "报 NameError：静态方法没有 self 参数",
+   "正常输出 black",
+   "输出 None",
+   "自动把实例传进来"
+  ],
+  "ans": 0,
+  "expl": "静态方法既没有 self 也没有 cls，方法体里根本没有 self 这个名字；要访问类属性得写 Car.color。",
+  "expect_in": null,
+  "run": false
+ },
+ {
+  "ch": 8,
+  "file": "test9.py",
+  "kind": "output",
+  "code": "class Person:\n    def __init__(self):\n        self.__age = 18\n    @property\n    def age(self):\n        return self.__age\n    @age.setter\n    def age(self, v):\n        self.__age = v + 1\n\np = Person()\np.age = 25\nprint(p.age)\n",
+  "stem": "【读结果】赋值 p.age = 25 之后再读取，输出是？",
+  "options": [
+   "26",
+   "25",
+   "18",
+   "AttributeError"
+  ],
+  "ans": 0,
+  "expl": "setter 里写的是 self.__age = v + 1，所以实际存进去是 26；@property 让 age 可以像属性一样读写。",
+  "expect_in": "26",
+  "run": true
+ },
+ {
+  "ch": 8,
+  "file": "test11.py",
+  "kind": "fix",
+  "code": "class Car:\n    def __init__(self):\n        self.color = \"blue\"\n    def __del__(self):\n        print(\"销毁\")\n\ncar = Car()\ndel car\nprint(car.color)\n",
+  "stem": "【找错】del car 之后再访问 car.color 会怎样？",
+  "options": [
+   "NameError：car 这个名字已经不存在了，同时对象被回收会打印“销毁”",
+   "输出 blue",
+   "输出 None",
+   "抛 AttributeError"
+  ],
+  "ans": 0,
+  "expl": "del 删除的是变量名（引用）；对象没有引用后被回收并触发 __del__，之后再使用 car 这个名字就是 NameError。",
+  "expect_in": null,
+  "run": false
+ },
+ {
+  "ch": 8,
+  "file": "test17.py",
+  "kind": "output",
+  "code": "class A:\n    def show(self):\n        print(\"A.show()\")\nclass B(A):\n    pass\nclass C(A):\n    def show(self):\n        print(\"C.show()\")\nclass D(B, C):\n    pass\nD().show()\n",
+  "stem": "【读结果】D().show() 输出什么？",
+  "options": [
+   "C.show()",
+   "A.show()",
+   "B.show()",
+   "抛 AttributeError"
+  ],
+  "ans": 0,
+  "expl": "MRO 顺序是 D → B → C → A，B 没有定义 show，于是取 C 的 show()。",
+  "expect_in": "C.show()",
+  "run": true
+ },
+ {
+  "ch": 8,
+  "file": "test24.py",
+  "kind": "output",
+  "code": "class House:\n    def play(self):\n        print(\"House play!\")\nclass Car:\n    def play(self):\n        print(\"Car play!\")\nclass TouringCar(House, Car):\n    pass\n\nTouringCar().play()\n",
+  "stem": "【读结果】两个父类都有 play，子类这样写会执行哪一个？",
+  "options": [
+   "House play!（父类列表中写在前面的优先）",
+   "Car play!",
+   "两个都执行",
+   "报错：方法冲突"
+  ],
+  "ans": 0,
+  "expl": "多继承按 MRO 顺序查找同名成员，House 在 Car 前面，所以先找到 House.play()。",
+  "expect_in": "House play!",
+  "run": true
+ },
+ {
+  "ch": 8,
+  "file": "test23.py",
+  "kind": "fix",
+  "code": "class Dog:\n    def __init__(self):\n        self.__age = 18\nclass WolfDog(Dog):\n    pass\n\nw = WolfDog()\nprint(w.__age)\n",
+  "stem": "【找错】子类实例访问父类的私有属性会怎样？",
+  "options": [
+   "AttributeError：子类不继承父类的私有成员",
+   "输出 18",
+   "输出 None",
+   "输出 0"
+  ],
+  "ans": 0,
+  "expl": "私有属性名被改写为 _Dog__age，子类实例上只有 _WolfDog__* 的改写形式，所以访问不到。",
+  "expect_in": null,
+  "run": false
+ },
+ {
+  "ch": 8,
+  "file": "test26.py",
+  "kind": "concept",
+  "code": "class Cat:\n    def shout(self):\n        print(\"喵喵喵...\")\nclass Dog:\n    def shout(self):\n        print(\"汪汪汪...\")\n\ndef f(obj):\n    obj.shout()\n\nf(Cat())\nf(Dog())\n",
+  "stem": "【机制】函数 f 不关心传进来的是什么类型，这体现了什么？",
+  "options": [
+   "多态（鸭子类型）：只要对象有 shout 方法就能被调用",
+   "继承：Cat 和 Dog 必须继承同一个父类",
+   "封装：把方法藏起来",
+   "重载：同名函数定义两次"
+  ],
+  "ans": 0,
+  "expl": "Cat 与 Dog 没有继承关系，但都实现了 shout；f 只依赖“有这个方法”，这就是 Python 的多态。",
+  "expect_in": "喵喵喵...",
+  "run": true
+ },
+ {
+  "ch": 8,
+  "file": "test12.py",
+  "kind": "concept",
+  "code": "class Demo:\n    def __new__(cls, *args, **kwargs):\n        print(\"__new__ 执行\")\n        return super().__new__(cls)\n    def __init__(self):\n        print(\"__init__ 执行\")\n\nDemo()\n",
+  "stem": "【机制】实例化 Demo() 时两个方法的执行顺序是？",
+  "options": [
+   "先 __new__ 后 __init__",
+   "先 __init__ 后 __new__",
+   "只执行 __init__",
+   "只执行 __new__"
+  ],
+  "ans": 0,
+  "expl": "__new__ 负责创建并返回实例，只有它返回了对象，__init__ 才会被调用来初始化。",
+  "expect_in": "__new__ 执行",
+  "run": true
+ },
+ {
+  "ch": 8,
+  "file": "test5.py",
+  "kind": "concept",
+  "code": "class Car:\n    __color = \"white\"\n    _wheels = 4\n\n    def testColor(self):\n        print(self.__color)\n\ncar = Car()\ncar.testColor()\nprint(car._wheels)\n",
+  "stem": "【机制】为什么 car.__color 在类外访问不到，而 car._wheels 可以？",
+  "options": [
+   "双下划线触发了名称改写（_Car__color），单下划线只是约定、语法上仍可访问",
+   "双下划线表示常量，单下划线表示变量",
+   "两者都应该报错",
+   "因为 __color 是实例属性"
+  ],
+  "ans": 0,
+  "expl": "私有属性 __color 被改写成 _Car__color，类外用原名访问会失败；单下划线 _wheels 只是“别乱用”的约定。",
+  "expect_in": "4",
+  "run": true
+ }
+]

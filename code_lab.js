@@ -153,14 +153,58 @@
       });
     });
     var f = c.files[currentFile];
+    var extra = document.getElementById('lab-file-extra');
     if (!f) {
       if (meta) meta.textContent = '本章暂无示例文件';
       if (view) view.innerHTML = '';
+      if (extra) extra.innerHTML = '';
       return;
     }
-    if (meta) meta.textContent = 'pythonProject-2025/chapter' + c.n + '/' + f.name +
-      ' · ' + f.code.split('\n').length + ' 行';
+    if (meta) {
+      meta.innerHTML = 'pythonProject-2025/chapter' + c.n + '/' + f.name +
+        ' · ' + f.code.split('\n').length + ' 行' +
+        (f.updated ? ' <span class="badge-new">更新版</span>' : '');
+    }
     if (view) view.innerHTML = highlight(f.code || '# 空文件');
+    if (extra) extra.innerHTML = renderExtra(f);
+  }
+
+  /* 每个文件的「考什么 / 运行输出 / 关键注释 / 易错点」学习卡 */
+  function renderExtra(f) {
+    var titleBox = document.getElementById('lab-file-title');
+    var extraBox = document.getElementById('lab-file-extra');
+    if (!f.title && !f.output && !f.notes) {
+      if (titleBox) titleBox.innerHTML = '';
+      if (extraBox) extraBox.innerHTML =
+        '<div class="ce-empty">该文件暂未整理学习卡（目前第 4-8 章更新版代码已全部覆盖）。</div>';
+      return '';
+    }
+    // 考点导读放在代码上方，输出/注释放在代码下方
+    if (titleBox) {
+      titleBox.innerHTML = f.title
+        ? '<div class="ce-title">🎯 这段考什么：' + esc(f.title) + '</div>' : '';
+    }
+    var h = '<div class="code-extra">';
+    if (f.output || f.err) {
+      h += '<div class="ce-block"><div class="ce-label">运行输出';
+      if (f.stdin) h += '（运行输入：' + esc(f.stdin.replace(/\n/g, '⏎')) + '）';
+      h += '</div><pre class="ce-out">' + esc(f.output || '（无标准输出）') + '</pre>';
+      if (f.err) {
+        h += '<div class="ce-label ce-label-err">运行时异常（多为故意演示）</div>' +
+          '<pre class="ce-out ce-err">' + esc(f.err) + '</pre>';
+      }
+      h += '</div>';
+    }
+    if (f.notes && f.notes.length) {
+      h += '<div class="ce-block"><div class="ce-label">关键注释</div><ol class="ce-notes">';
+      f.notes.forEach(function (n) { h += '<li>' + esc(n) + '</li>'; });
+      h += '</ol></div>';
+    }
+    if (f.pitfall) {
+      h += '<div class="ce-pitfall"><strong>易错点</strong>' + esc(f.pitfall) + '</div>';
+    }
+    h += '</div>';
+    return h;
   }
 
   function renderAll() {

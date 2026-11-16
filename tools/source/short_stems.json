@@ -1,0 +1,302 @@
+[
+ {
+  "id": "ch1-short-01",
+  "stem": "简述Python的两种运行模式。",
+  "chapter": 1
+ },
+ {
+  "id": "ch1-short-02",
+  "stem": "浏览Python主页，找出与我们所用的计算机相匹配的版本。",
+  "chapter": 1
+ },
+ {
+  "id": "ch1-short-03",
+  "stem": "简述Python的特点与应用领域。",
+  "chapter": 1
+ },
+ {
+  "id": "ch1-short-04",
+  "stem": "简述Python模块、包和库。",
+  "chapter": 1
+ },
+ {
+  "id": "ch1-short-05",
+  "stem": "简述turtle程序面向对象特性。",
+  "chapter": 1
+ },
+ {
+  "id": "ch2-short-01",
+  "stem": "简述Python变量的命名规则。",
+  "chapter": 2
+ },
+ {
+  "id": "ch2-short-02",
+  "stem": "简述Python解释器的工作原理。",
+  "chapter": 2
+ },
+ {
+  "id": "ch2-short-03",
+  "stem": "简述Python命名空间分类。",
+  "chapter": 2
+ },
+ {
+  "id": "ch2-short-04",
+  "stem": "简述Python模块对象的创建机制。",
+  "chapter": 2
+ },
+ {
+  "id": "ch2-short-05",
+  "stem": "简述Python内置函数与类型。",
+  "chapter": 2
+ },
+ {
+  "id": "ch3-short-01",
+  "stem": "简述Python的可变数据类型和不可变数据类型。",
+  "chapter": 3
+ },
+ {
+  "id": "ch3-short-02",
+  "stem": "简述Python字符串的创建方法。",
+  "chapter": 3
+ },
+ {
+  "id": "ch3-short-03",
+  "stem": "列举布尔值为False的常见值。",
+  "chapter": 3
+ },
+ {
+  "id": "ch3-short-04",
+  "stem": "请写出“李杰”分别用UTF-8和GBK编码所占的位数。",
+  "chapter": 3
+ },
+ {
+  "id": "ch3-short-05",
+  "stem": "Python如何判断数据类型？",
+  "chapter": 3
+ },
+ {
+  "id": "ch4-short-01",
+  "stem": "Python的操作运算符有哪几类？",
+  "chapter": 4
+ },
+ {
+  "id": "ch4-short-02",
+  "stem": "什么是运算符的优先级？简单介绍一下Python各类运算符的优先级情况。",
+  "chapter": 4
+ },
+ {
+  "id": "ch4-short-03",
+  "stem": "简述运算符//、％、* *各自的功能。",
+  "chapter": 4
+ },
+ {
+  "id": "ch4-short-04",
+  "stem": "简述三目运算规则及应用场景。",
+  "chapter": 4
+ },
+ {
+  "id": "ch4-short-05",
+  "stem": "Python中有哪些关系运算符和逻辑运算符？关系运算和逻辑运算有哪些联系？",
+  "chapter": 4
+ },
+ {
+  "id": "ch5-short-01",
+  "stem": "程序有哪3种基本结构？",
+  "chapter": 5
+ },
+ {
+  "id": "ch5-short-02",
+  "stem": "简述条件语句中if与else的配对关系是如何确定的。",
+  "chapter": 5
+ },
+ {
+  "id": "ch5-short-03",
+  "stem": "简述break语句和continue语句各自的功能。",
+  "chapter": 5
+ },
+ {
+  "id": "ch5-short-04",
+  "stem": "简述for循环和while循环的区别与联系。",
+  "chapter": 5
+ },
+ {
+  "id": "ch5-short-05",
+  "stem": "在多重循环语句中，在内循环体内使用break语句可以跳到所有的循环体外吗？说一说如果想要实现上述目标应该怎么做？",
+  "chapter": 5
+ },
+ {
+  "id": "ch6-short-01",
+  "stem": "列举Python中常用的组合数据类型，简单说明它们的异同。",
+  "chapter": 6
+ },
+ {
+  "id": "ch6-short-02",
+  "stem": "简单介绍删除字典元素的几种方式。",
+  "chapter": 6
+ },
+ {
+  "id": "ch6-short-03",
+  "stem": "什么是字符串？",
+  "chapter": 6
+ },
+ {
+  "id": "ch6-short-04",
+  "stem": "请简述Python中格式化字符串的几种方式。",
+  "chapter": 6
+ },
+ {
+  "id": "ch6-short-05",
+  "stem": "请简述Python中字符串对齐的几种内置方法。",
+  "chapter": 6
+ },
+ {
+  "id": "ch7-short-01",
+  "stem": "简述位置参数传递、关键字参数传递、默认参数传递的区别。",
+  "chapter": 7
+ },
+ {
+  "id": "ch7-short-02",
+  "stem": "简述函数参数混合传递的规则。",
+  "chapter": 7
+ },
+ {
+  "id": "ch7-short-03",
+  "stem": "简述局部变量和全局变量的区别。",
+  "chapter": 7
+ },
+ {
+  "id": "ch7-short-04",
+  "stem": "简述函数参数的打包与解包过程。",
+  "chapter": 7
+ },
+ {
+  "id": "ch7-short-05",
+  "stem": "什么是匿名函数？",
+  "chapter": 7
+ },
+ {
+  "id": "ch8-short-01",
+  "stem": "简述对象方法、类方法、静态方法的区别。",
+  "chapter": 8
+ },
+ {
+  "id": "ch8-short-02",
+  "stem": "简述构造方法和析构方法的特点。",
+  "chapter": 8
+ },
+ {
+  "id": "ch8-short-03",
+  "stem": "简述类方法的装饰器。",
+  "chapter": 8
+ },
+ {
+  "id": "ch8-short-04",
+  "stem": "简述私有方法与特殊方法的异同。",
+  "chapter": 8
+ },
+ {
+  "id": "ch8-short-05",
+  "stem": "简述面向对象的三大特性。",
+  "chapter": 8
+ },
+ {
+  "id": "ch9-short-01",
+  "stem": "简述异常的定义及其种类。",
+  "chapter": 9
+ },
+ {
+  "id": "ch9-short-02",
+  "stem": "简述try-except语句的用法与作用。",
+  "chapter": 9
+ },
+ {
+  "id": "ch9-short-03",
+  "stem": "简述raise语句与assert语句抛出异常的工作原理。",
+  "chapter": 9
+ },
+ {
+  "id": "ch9-short-04",
+  "stem": "简述程序调试的方法。",
+  "chapter": 9
+ },
+ {
+  "id": "ch9-short-05",
+  "stem": "简述程序测试的方法。",
+  "chapter": 9
+ },
+ {
+  "id": "ch10-short-01",
+  "stem": "简述Python字符编码方法。",
+  "chapter": 10
+ },
+ {
+  "id": "ch10-short-02",
+  "stem": "简述文件对象的操作方法。",
+  "chapter": 10
+ },
+ {
+  "id": "ch10-short-03",
+  "stem": "简述open()函数的语法及参数的含义。",
+  "chapter": 10
+ },
+ {
+  "id": "ch10-short-04",
+  "stem": "简述文本文件和二进制文件的区别。",
+  "chapter": 10
+ },
+ {
+  "id": "ch10-short-05",
+  "stem": "简述数据的维度及存储格式。",
+  "chapter": 10
+ },
+ {
+  "id": "ch11-short-01",
+  "stem": "简述os模块的功能。",
+  "chapter": 11
+ },
+ {
+  "id": "ch11-short-02",
+  "stem": "简述sys模块的功能。",
+  "chapter": 11
+ },
+ {
+  "id": "ch11-short-03",
+  "stem": "简述Python多任务编程的实现方法。",
+  "chapter": 11
+ },
+ {
+  "id": "ch11-short-04",
+  "stem": "简述Python通信模块socket的作用。",
+  "chapter": 11
+ },
+ {
+  "id": "ch11-short-05",
+  "stem": "简述Python内置数据库sqlite的操作方法。",
+  "chapter": 11
+ },
+ {
+  "id": "ch12-short-01",
+  "stem": "简述Python编程计算生态。",
+  "chapter": 12
+ },
+ {
+  "id": "ch12-short-02",
+  "stem": "简述NumPy库及数据结构。",
+  "chapter": 12
+ },
+ {
+  "id": "ch12-short-03",
+  "stem": "简述pyplot模块绘制基本图形的步骤与语法。",
+  "chapter": 12
+ },
+ {
+  "id": "ch12-short-04",
+  "stem": "简述软件开发框架。",
+  "chapter": 12
+ },
+ {
+  "id": "ch12-short-05",
+  "stem": "简述Pandas库及数据结构。",
+  "chapter": 12
+ }
+]

@@ -15,6 +15,19 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJ = os.path.join(os.path.dirname(BASE), 'pythonProject-2025')
 BANK_JSON = os.path.join(BASE, 'data', 'questions.json')
 OUT_JS = os.path.join(BASE, 'data', 'questions.js')
+SRC = os.path.join(BASE, 'tools', 'source')
+NOTES_JSON = os.path.join(SRC, 'code_notes.json')
+RUNS_JSON = os.path.join(SRC, 'newcode_runs.json')
+
+# 第 4-8 章老师发过更新版代码，优先使用
+UPDATED_DIR = None
+if os.path.isdir(PROJ):
+    for _n in os.listdir(PROJ):
+        _p = os.path.join(PROJ, _n)
+        if os.path.isdir(_p) and _n.startswith('\u66f4') and 'chapter' in _n.lower():
+            UPDATED_DIR = _p
+            break
+UPDATED_CHAPS = {4, 5, 6, 7, 8}
 
 CHAPTER_TITLES = {
     1: '绪论', 2: 'Python基础', 3: '数据类型', 4: '运算符',
@@ -222,10 +235,27 @@ QUIZ = [
 ]
 
 
+def load_json(path):
+    if os.path.exists(path):
+        return json.load(open(path, encoding='utf-8'))
+    return {}
+
+
+def chapter_dir(n):
+    """第 4-8 章优先用「更新后的chapter」里的新版代码。"""
+    if UPDATED_DIR and n in UPDATED_CHAPS:
+        cand = os.path.join(UPDATED_DIR, 'chapter%d' % n, 'chapter%d' % n)
+        if os.path.isdir(cand):
+            return cand, True
+    return os.path.join(PROJ, 'chapter%d' % n), False
+
+
 def collect_files():
+    notes = load_json(NOTES_JSON)
+    runs = load_json(RUNS_JSON)
     chapters = []
     for n in range(1, 13):
-        d = os.path.join(PROJ, 'chapter%d' % n)
+        d, is_new = chapter_dir(n)
         paths = glob.glob(os.path.join(d, '*.py'))
 
         def key(p):
@@ -238,9 +268,28 @@ def collect_files():
                 code = open(p, encoding='utf-8', errors='replace').read().rstrip()
             except Exception as e:
                 code = '# 读取失败: %s' % e
-            files.append({'name': os.path.basename(p), 'code': code})
+            name = os.path.basename(p)
+            item = {'name': name, 'code': code}
+            if is_new:
+                item['updated'] = True
+            key_note = 'ch%d/%s' % (n, name)
+            meta = notes.get(key_note)
+            if meta:
+                item['title'] = meta.get('title', '')
+                item['notes'] = meta.get('notes', [])
+                if meta.get('pitfall'):
+                    item['pitfall'] = meta['pitfall']
+            run = runs.get(key_note)
+            if run:
+                item['output'] = run.get('out', '')
+                if run.get('err'):
+                    item['err'] = run['err']
+                if run.get('stdin'):
+                    item['stdin'] = run['stdin']
+            files.append(item)
         chapters.append({'n': n, 'title': CHAPTER_TITLES[n],
-                         'points': POINTS[n], 'files': files})
+                         'points': POINTS[n], 'files': files,
+                         'updated': bool(is_new)})
     return chapters
 
 
@@ -282,7 +331,11 @@ def build_quiz():
     items = []
     counters = {}
     warnings = []
-    for item in QUIZ:
+    # 第 4-8 章代码老师已更新，改用 tools/source/quiz_extra.json 里按新代码出的题
+    extra_path = os.path.join(SRC, 'quiz_extra.json')
+    extra = load_json(extra_path) if os.path.exists(extra_path) else []
+    quiz_list = [q for q in QUIZ if q['ch'] not in UPDATED_CHAPS] + list(extra)
+    for item in quiz_list:
         ch = item['ch']
         counters[ch] = counters.get(ch, 0) + 1
         seq = counters[ch]
@@ -291,16 +344,25 @@ def build_quiz():
             real, err = run_snippet(item['code'])
             if real is None:
                 warnings.append('运行失败 ch%d-%02d: %s' % (ch, seq, err))
-            elif real != item['expected']:
-                warnings.append('输出与预期不符 ch%d-%02d: 实际=%r 预期=%r'
-                                % (ch, seq, real, item['expected']))
-            if real is not None and matched(item['options'][item['ans']], real):
-                verified = True
+            else:
+                # expected 优先；没有则退回用正确选项文本比对整段 stdout
+                want = item.get('expected', item['options'][item['ans']])
+                if item.get('expect_in'):
+                    if item['expect_in'] not in real:
+                        warnings.append('预期片段未出现 ch%d-%02d: 期望含 %r 实际=%r'
+                                        % (ch, seq, item['expect_in'], real[:120]))
+                    else:
+                        verified = True
+                elif real != want:
+                    warnings.append('输出与预期不符 ch%d-%02d: 实际=%r 预期=%r'
+                                    % (ch, seq, real, want))
+                elif matched(item['options'][item['ans']], real):
+                    verified = True
         # 确定性轮转选项，避免正确答案全落在 A 上
         shift = (ch * 7 + seq * 3) % len(item['options'])
         rotated = item['options'][shift:] + item['options'][:shift]
         new_ans = (item['ans'] - shift) % len(item['options'])
-        items.append({
+        out = {
             'id': 'lab%d-read-%02d' % (ch, seq),
             'chapter': ch,
             'chapterTitle': CHAPTER_TITLES[ch],
@@ -315,7 +377,12 @@ def build_quiz():
             'answer': chr(65 + new_ans),
             'explanation': item['expl'],
             'verified': verified,
-        })
+        }
+        if item.get('kind'):
+            out['kind'] = item['kind']
+        if item.get('note'):
+            out['note'] = item['note']
+        items.append(out)
     return items, warnings
 
 

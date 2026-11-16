@@ -504,8 +504,13 @@
       html += '<div class="box"><strong>参考' + (q.type === 'code' ? '程序' : '答案') + '</strong><br>' +
         (q.type === 'code'
           ? '<pre class="code-block small">' + escapeHtml(String(q.answer || '')) + '</pre>'
-          : escapeHtml(typeof q.answer === 'string' ? q.answer : JSON.stringify(q.answer))) + '</div>';
+          : '<div class="answer-body">' + escapeHtml(typeof q.answer === 'string' ? q.answer : JSON.stringify(q.answer)) + '</div>') + '</div>';
       html += '</div>';
+      if (q.type === 'short' && q.basis) {
+        var tag = q.answerOrigin === 'official' ? '教材答案' : '据课件整理';
+        html += '<div class="answer-basis">📖 出处：' + escapeHtml(q.basis) +
+          ' <span class="basis-tag">' + tag + '</span></div>';
+      }
       if (!peeked) {
         var inWrong = state.wrongIds.indexOf(q.id) >= 0;
         html += '<div class="self-mark" id="self-mark">';

@@ -1,0 +1,809 @@
+{
+ "_readme": "新版代码学习卡：title=这段代码考什么；notes=关键注释/逐行讲解；pitfall=易错点。运行输出由 newcode_runs.json 自动合并。",
+ "ch4/test1.py": {
+  "title": "and / or / not 的返回值与短路求值",
+  "notes": [
+   "a = 0，b = a and print(...)：and 左边为假直接短路，print 不执行，b 得到操作数本身 0。所以没有 \"1a:\" 输出，只有 \"1b: 0\"。",
+   "b = not a and print(\"2a:\",a)：not 0 得 True，and 左边为真必须继续算右边，print 先输出 \"2a: 0\"，而 print 的返回值是 None，故 b = None。",
+   "b = a or print(\"3a:\",a)：a=0 为假，or 继续算右边，print 输出 \"3a: 0\"，b 同样得到 None。",
+   "b = not a or print(...)：not 0 为 True，or 直接短路，右侧 print 不执行，b = True。",
+   "结论：and / or 返回的是“参与运算的那个操作数本身”，不一定返回 True/False；只有 not 一定返回 bool。"
+  ],
+  "pitfall": "别以为 a and f() 一定会调用 f()——左边为假时 f() 根本不会执行。这是短路求值最常考的点。"
+ },
+ "ch4/test2.py": {
+  "title": "成员运算符 in",
+  "notes": [
+   "\"小花\" 在列表 class_list 中，name in class_list 返回 True。",
+   "\"小王\" 不在列表中，返回 False。",
+   "in / not in 用于判断元素是否属于序列或容器，结果是布尔值。",
+   "文件下方用三引号包住的海象运算符（:=）示例被当成注释，不参与执行。"
+  ]
+ },
+ "ch4/test3.py": {
+  "title": "is 与 == 的区别、集合运算符",
+  "notes": [
+   "x = [1,2,3] 与 y = [1,2,3] 内容相同但创建了两个不同对象，id 不同，所以 x is y 为 False，而 x == y 为 True。",
+   "z = x 只让 z 指向同一个对象，id(z) 与 id(x) 相同，所以 z is x 为 True。",
+   "is 比较的是身份（是不是同一个内存对象），== 比较的是值是否相等。",
+   "x += 1 后 x 变成 1（此处 x 已被重新赋值为整数 0，再自增）。",
+   "A&B 交集、A|B 并集、A-B 差集（在 A 不在 B）、A^B 对称差（只属于其中一个集合）。"
+  ],
+  "pitfall": "id 的具体数字每次运行都不一样，考试只会问 is / == 的 True/False，不会让你背地址。"
+ },
+ "ch4/test4.py": {
+  "title": "三目（条件）表达式与嵌套",
+  "notes": [
+   "语法是 值A if 条件 else 值B：条件为真取 A，为假取 B。",
+   "输入 x=8、y=3：x+y=11>10 成立，所以 x-y if x+y>10 else x*y 取 8-3 = 5。",
+   "第二个表达式先判断 x>y（8>3 成立），直接取 x+y = 11，后面的嵌套分支不再求值。",
+   "三目表达式可以嵌套，但可读性差，复杂逻辑仍应写 if-else。",
+   "文件下方被三引号注释的 comparexy() 函数，就是这段三目表达式的等价 if-else 写法，可对照理解。"
+  ]
+ },
+ "ch4/test5.py": {
+  "title": "range() 的左闭右开",
+  "notes": [
+   "range(10, 20) 生成 10,11,…,19 共 10 个整数，包含起点 10，不包含终点 20。",
+   "for i in range(10,20) 依次把每个整数赋给 i 并打印，所以输出 10 到 19 各一行。"
+  ],
+  "pitfall": "range(a, b) 永远不含 b；range(5) 等价于 range(0,5)，输出 0~4。"
+ },
+ "ch5/test1.py": {
+  "title": "match-case 结构匹配",
+  "notes": [
+   "day = input(...) 得到的是字符串，match day 用字符串字面量 \"1\"~\"7\" 逐个比对。",
+   "输入 3 时命中 case \"3\"，输出“星期三”，执行完该分支即退出 match，不再看后面的分支。",
+   "case _ 是通配（相当于 default），前面所有 case 都不匹配时才执行。",
+   "分支可以有多个语句，但必须缩进在 case 之下。"
+  ],
+  "pitfall": "input() 返回 str，如果把分支写成 case 3（整数）就永远匹配不上，这是最常见的错。"
+ },
+ "ch5/test2.py": {
+  "title": "if-elif-else 多分支",
+  "notes": [
+   "三引号里包住的是老师演示用的单分支、双分支示例，被当作多行注释，不执行。",
+   "score = 0：>=90、80~90、70~80、60~70 四个条件都不成立，最终走 else。",
+   "else 块中有两条语句（“考试不及格”和“Good luck to you!”），所以输出两行。",
+   "elif 即 else if：多分支只会执行第一个成立的分支，其余跳过。"
+  ]
+ },
+ "ch5/test3.py": {
+  "title": "if 语句嵌套",
+  "notes": [
+   "外层先判断 gender == \"男\"，成立后再进内层判断 height > 170。",
+   "gender=\"男\"、height=172，两层都成立，输出“高个子男生”。",
+   "外层条件不成立时走外层 else，再在外层 else 里做内层判断，形成 4 种组合。",
+   "else 与同缩进级别的 if 配对，缩进决定了层次。"
+  ]
+ },
+ "ch5/test4.py": {
+  "title": "while 循环累加与过程输出",
+  "notes": [
+   "i 从 1 开始，每轮先把 i 加到 sum，再打印当前的 i 和 sum，最后 i 自增 1。",
+   "输出可以看到 sum 的变化：1、3、6、10、15、21、28、36、45、55。",
+   "循环在 i 变成 11 时因 i<=10 不成立而自然结束，循环结束后最后一行打印总和 55。",
+   "1+2+…+10 = 55，这是等差求和的经典结果。"
+  ]
+ },
+ "ch5/test5.py": {
+  "title": "for + range 累加，以及 range 对象的打印",
+  "notes": [
+   "print(range(5)) 打印的是 range 对象本身，显示为 range(0, 5)，不是 [0,1,2,3,4]。",
+   "range(101) 生成 0~100 共 101 个数，累加结果 5050。",
+   "result 初值必须为 0，否则无法做累加（会 NameError）。",
+   "循环体 result = result + i 每轮把当前 i 加到累计值上。"
+  ],
+  "pitfall": "range(101) 是从 0 开始、到 100 结束（不含 101），求和时 0 不影响结果，但个数要数对。"
+ },
+ "ch5/test6.py": {
+  "title": "for 遍历列表、元组、字典、集合、字符串",
+  "notes": [
+   "列表 [1,2,3] 和元组 (4,5,6) 遍历时迭代变量依次得到每个元素。",
+   "遍历字典时迭代变量拿到的是“键”，要取对应的值必须写 my_dict[ele]。",
+   "集合 {2,3,4} 也能直接遍历，但集合是无序的，输出顺序不保证与书写顺序一致。",
+   "字符串 \"北京工业大学\" 遍历时每次得到一个汉字，所以竖着打印成 6 行。"
+  ],
+  "pitfall": "字典直接 for 循环拿到的是键不是键值对；想要键值对用 my_dict.items()。"
+ },
+ "ch5/test7.py": {
+  "title": "while 嵌套打印九九乘法表",
+  "notes": [
+   "外层 j 控制行（1~9），内层 i 控制列，且 i <= j，所以第 j 行有 j 个式子。",
+   "print(f'{i}*{j}={j*i}', end='\\t') 中 end='\\t' 表示输出后不换行、改用制表符分隔，同一行的式子才排在一行。",
+   "内层循环结束后执行 print()，输出一个空行实现换行，再进入下一行。",
+   "内层每轮都要把 i 重新置 1，否则第二轮内层不会执行。"
+  ],
+  "pitfall": "内层 i = 1 的初始化必须写在外层循环体内、内层循环之前，写错位置会导致只打印一行。"
+ },
+ "ch5/test8.py": {
+  "title": "嵌套循环打印数字三角形",
+  "notes": [
+   "layer 由 input() 输入（需转 int），决定三角形层数。",
+   "外层 i 从 1 到 layer 控制行数；内层 j 从 1 到 i，输出 1~i。",
+   "end=\" \" 让同一行的数字用空格隔开不换行；内层结束后 print(\"\") 换行。",
+   "输入 4 时，第 1 行 1，第 2 行 1 2，第 3 行 1 2 3，第 4 行 1 2 3 4。"
+  ]
+ },
+ "ch5/test9.py": {
+  "title": "嵌套循环中 continue 与 break 的作用范围",
+  "notes": [
+   "i == 4 时执行 continue，跳过本轮剩余的 print，所以输出里没有 “i: 4”。",
+   "continue 只影响内层当前这一轮，i=5 仍会继续执行。",
+   "内层 6 轮（i=0..5）跑完后，外层判断 j == 0 成立，执行 break 跳出外层循环。",
+   "因此整个程序只有 j: 0 这一组输出，共 5 组 (j,i) 组合。",
+   "文件里被注释掉的 #break 提示了这个演示的另一版本：换成 break 后内层在 i=4 就直接结束。"
+  ],
+  "pitfall": "break 只跳出它所在的那一层循环；要跳出多层必须靠外层条件或标志变量。"
+ },
+ "ch6/test1.py": {
+  "title": "元组的聚合函数、迭代器对象与集合的可哈希限制",
+  "notes": [
+   "max/min/sum/len 直接作用于元组：(10,25,16,8,32) 得最大值 32、最小值 8、和 91、长度 5。",
+   "sorted(tp) 返回排好序的新列表 [8,10,16,25,32]，原元组 tp 不变（元组本身不可变）。",
+   "reversed(tp) 返回的是 reversed 迭代器对象，直接 print 显示 <reversed object>，要 list() 才能看到 [32,8,16,25,10]。",
+   "enumerate(tp) 返回枚举对象，list() 后得到 [(0,10),(1,25),...]；for index,value in enumerate(tp) 可同时拿到下标和值。",
+   "set1.add(3)、add(4) 之后把 b 改成 5，集合仍是 {3,4}——集合里存的是加入那一刻的值副本。",
+   "l1 = list([a,b]) 同样是值拷贝，之后 a=5 不会改变 l1，仍为 [3,5]。",
+   "set1.add(l1) 抛 TypeError: unhashable type: 'list'——列表是可变类型、不可哈希，不能放进集合（也不能当字典键）。"
+  ],
+  "pitfall": "集合/字典的键必须是可哈希（不可变）的对象；列表、字典、集合都放不进去，元组可以（只要其元素也都可哈希）。"
+ },
+ "ch6/test2.py": {
+  "title": "iter() 生成迭代器、next() 逐个取值",
+  "notes": [
+   "for i in l 是最常用的遍历方式，背后自动完成 iter() 与 next()。",
+   "iter(l) 把可迭代对象转成迭代器，type 显示 <class 'list_iterator'>。",
+   "next(x) 每次取出一个元素；这里正好调用 4 次，所以依次输出 1、2、3、4。",
+   "若再多调一次 next() 就会抛 StopIteration。"
+  ]
+ },
+ "ch6/test3.py": {
+  "title": "while True + StopIteration 手动遍历迭代器",
+  "notes": [
+   "iter(l) 得到迭代器 d，每次 next(d) 取下一个元素。",
+   "取完 5 个元素后再 next(d) 会抛 StopIteration，被 except 捕获后打印 iteration finished! 并 break。",
+   "这就是 for 循环的底层机制：不断 next() 直到 StopIteration。"
+  ]
+ },
+ "ch6/test4.py": {
+  "title": "自定义可迭代类：__iter__ 与 __next__",
+  "notes": [
+   "__iter__ 返回迭代器自身并把计数 n 重置为 0，使对象可被 for 遍历或 iter() 转换。",
+   "__next__ 返回当前 n 并自增；当 n 超过 max 时 raise StopIteration 结束迭代。",
+   "max=5 时 if self.n <= self.max 成立 6 次，所以输出 e: 0 到 e: 5。",
+   "while True 循环结束后又调了一次 next(myIter)，此时已越界，抛出的 StopIteration 无人捕获——这是老师故意留下的演示错误。"
+  ],
+  "pitfall": "__next__ 必须用 raise StopIteration 表示结束；越界后再 next() 一定报错，别在循环外用。"
+ },
+ "ch6/test5.py": {
+  "title": "跨文件导入自定义类",
+  "notes": [
+   "from test4 import MyIterable 把同目录下另一个模块里的类导入使用。",
+   "两个 .py 文件在同一目录时可直接按模块名（去掉 .py）导入。",
+   "for i in numbers 会自动调用 __iter__ 和 __next__，max=3 时输出 0、1、2、3 共 4 行。"
+  ]
+ },
+ "ch6/test7.py": {
+  "title": "字符串查找、替换与对齐",
+  "notes": [
+   "三引号里是 find() 三种签名的说明，被当成注释，不执行。",
+   "str.replace('t','s') 返回新字符串 bjus，原字符串 str 仍是 bjut——字符串不可变。",
+   "ljust(10,'s') 左对齐并用 s 补到总宽 10 位，得 bjutssssss。",
+   "isdigit() 判断是否全为数字，成立才转 float，1234567 变成 1234567.0。",
+   "find 返回首次出现的下标（找不到返回 -1），rfind 从右往左找，count 统计出现次数。",
+   "find('.',7) 从下标 7 开始找；find('.',7,-3) 在 [7, 长度-3) 区间内找，所以 n2、n3 都是 8。",
+   "replace('u','o',2) 的第三个参数限制最多替换 2 次，只把前两个 u 换成 o。"
+  ]
+ },
+ "ch6/test8.py": {
+  "title": "replace / split / join 与大小写转换链",
+  "notes": [
+   "replace('hello','HELLO',1) 只替换第一个 hello。",
+   "sr1.split() 不传参数时按任意空白切分，得到 5 个单词的列表。",
+   "'-how '.join(sr2) 用分隔符把列表元素连接成一个字符串。",
+   "lower 全小写、capitalize 首字母大写、title 每个单词首字母大写、upper 全大写，四种转换逐级叠加。",
+   "这些方法都返回新字符串，原字符串始终不变。"
+  ],
+  "pitfall": "capitalize 只把整串的第一个字符大写，title 才把每个单词首字母都大写。"
+ },
+ "ch6/test9.py": {
+  "title": "strip / lstrip / rstrip 去除首尾字符",
+  "notes": [
+   "strip('x') 去掉首尾所有的 x，中间的不动。",
+   "lstrip('y') 只去左边，rstrip('z') 只去右边。",
+   "strip() 不带参数时去掉首尾空白（空格、换行、制表符）。",
+   "参数是“字符集合”而不是子串：strip('xyz') 会去掉首尾任意 x、y、z 字符。"
+  ]
+ },
+ "ch6/test10.py": {
+  "title": "三种对齐：ljust / rjust / center",
+  "notes": [
+   "ljust(40,'*') 左对齐、右侧补 * 到总宽 40。",
+   "rjust(40,'$') 右对齐、左侧补 $。",
+   "center(40,'%') 居中、两边补 %；长度差为奇数时左边会比右边少一个。"
+  ],
+  "pitfall": "宽度参数是“补到总宽多少列”，不是“补几个字符”，字符串本身已占去一部分宽度。"
+ },
+ "ch6/test11.py": {
+  "title": "列表推导式全解（含嵌套、条件、zip）",
+  "notes": [
+   "remove(3) 按值删除；pop(2) 按下标删除并返回被删元素。",
+   "[x for x in range(1,5)] 得 [1,2,3,4]。",
+   "[i*2 for i in range(1,10) if i%2==0] 先筛偶数再乘 2，得 [4,8,12,16]。",
+   "[i+1 if i%2==0 else i*2 for i in (1,2,3,4)] 是推导式里的三目：偶数 +1、奇数 ×2，得 [2,3,6,5]。",
+   "[x+y for x in ls1 for y in ls2] 是双重 for，相当于嵌套循环，共 9 个元素，顺序 x 优先。",
+   "[x+y for (x,y) in zip(ls1,ls2)] 用 zip 按位置配对，得 [4,6,8]。",
+   "print(zip(...)) 显示 <zip object>，zip 返回迭代器，要用 list() 才能看到内容。",
+   "多重推导式里的 if 归属于离它最近的那层 for。"
+  ],
+  "pitfall": "嵌套 for 推导式中元素顺序是“外层慢、内层快”；zip 则是按位置一一配对，两者结果完全不同。"
+ },
+ "ch6/test12.py": {
+  "title": "列表的增删方法",
+  "notes": [
+   "append 把参数当成一个整体追加到末尾。",
+   "extend 把另一个序列的元素逐个追加进来。",
+   "insert(3,4) 在下标 3 处插入 4，后面的元素依次后移。",
+   "remove('5s') 按值删除第一次出现的元素。",
+   "pop(1) 按下标删除并返回该元素；pop() 不传参时删除最后一个。",
+   "同一列表里混放整数和字符串是允许的，Python 列表不要求元素类型一致。"
+  ],
+  "pitfall": "append([7,8]) 只会把列表整体塞成一个元素；要合并两个列表请用 extend 或 +。"
+ },
+ "ch6/test13.py": {
+  "title": "生成器表达式（圆括号）与“只能消费一次”",
+  "notes": [
+   "(i*2 for i in ...) 用圆括号是生成器表达式，返回 generator 对象，需 tuple()/list() 才展开。",
+   "tuple(tp1) 展开得 (4,8,12,16)。",
+   "tp2 被 while True 循环用 next() 逐个取完（e is 2、3、6、5），取完后抛 StopIteration 并打印结束提示。",
+   "关键：生成器耗尽后再 list(tp2) 得到空列表 []——生成器只能遍历一次。"
+  ],
+  "pitfall": "生成器/迭代器是“一次性”的，用过就空；要重复使用必须先 list() 存成列表。"
+ },
+ "ch6/test14.py": {
+  "title": "集合推导式",
+  "notes": [
+   "{i*2 for i in range(1,10) if i%2==0} 得 {4,8,12,16}。",
+   "{i+1 if i%2==0 else i*2 for i in [1,2,3,4]} 得 {2,3,5,6}。",
+   "集合自动去重且无序，打印顺序不保证与生成顺序一致。"
+  ]
+ },
+ "ch6/test15.py": {
+  "title": "集合增删与 copy 的意义",
+  "notes": [
+   "add 加入单个元素，update 批量加入。",
+   "pop() 随机弹出一个元素并返回（这里弹出 1）。",
+   "st1 = st.copy() 得到独立副本，之后 st1.add(7) 不影响原集合 st。",
+   "注释里那句 st1=st 是反面对照：直接赋值只是起别名，改一个另一个跟着变。"
+  ]
+ },
+ "ch6/test16.py": {
+  "title": "集合的运算方法与判断方法",
+  "notes": [
+   "intersection 交集、union 并集、difference 差集。",
+   "intersection_update 把交集写回 set1，于是 set1 变成 {3,4}。",
+   "symmetric_difference_update 求对称差并写回，set1 变成 {5,6}。",
+   "isdisjoint 判断是否无交集（False 说明有交集）；issubset 判断子集；issuperset 判断超集。",
+   "remove(4) 删除指定元素，不存在会报错；discard(2) 删除指定元素，不存在不报错。",
+   "clear() 清空集合，结果是 set()。"
+  ],
+  "pitfall": "remove 删不存在的元素会 KeyError，discard 不会——这是两者的唯一实质区别。"
+ },
+ "ch6/test17.py": {
+  "title": "可哈希性：为什么元组能进集合、列表不能",
+  "notes": [
+   "重复 add(1)、add(3) 集合内容不变，说明集合会自动去重。",
+   "frozenset 是不可变的“冻结集合”，可哈希，因此能作为元素放进集合。",
+   "st.add(tp1) 中元组 (1,2) 可哈希能加入；列表 li1 不可哈希，所以那一行被注释掉了。",
+   "li1.insert 前后 id 相同，说明列表是原地修改；原地可变就不能哈希。",
+   "对字符串 str 调用 capitalize 后赋回原名变量，id 变了——字符串不可变，相当于新建对象。",
+   "两个内容相同的字符串哈希值相同，说明 hash 由内容决定。",
+   "dc.__hash__ 打印的是方法对象本身，因为字典不可哈希，不能进集合。"
+  ],
+  "pitfall": "可哈希的前提是不可变；看 id 是否变化就能判断一个操作是原地修改还是产生了新对象。"
+ },
+ "ch6/test18.py": {
+  "title": "字典推导式与 zip 迭代器只能消费一次",
+  "notes": [
+   "{i:i**2 for i in range(1,10) if i%2==1} 只取奇数作键，值为其平方。",
+   "{i:i**2 if i%2==1 else i*2 for i in range(1,6)} 是值部分的三目：奇数平方、偶数乘 2。",
+   "zip(l1,l2) 返回迭代器，dc3 遍历完它之后已被耗尽。",
+   "紧接着 dc4 用同一个 iterable 推导，得到空字典 {}。",
+   "dc5 重新写了一次 zip(l1,l2) 才取到数据，筛出偶数键得 {4:40,8:80}。",
+   "对 dict 反复调用 iter(dc5) 每次都从第一个键开始，所以 next 反复打印 4。"
+  ],
+  "pitfall": "zip 对象是一次性迭代器，不能重复遍历；而对字典本身 iter() 每次都能得到新的迭代器。"
+ },
+ "ch6/test19.py": {
+  "title": "split 拆分 + 字典推导式构造字典",
+  "notes": [
+   "strings.split('/') 按斜杠切成 5 段。",
+   "每段再 split('=') 得到 [键, 值]，用 [0]、[1] 分别取键和值。",
+   "{k:v for ...} 把所有键值对一次性组装成字典。",
+   "注意值是字符串 '1' 而非整数 1，需要时用 int() 转换。"
+  ]
+ },
+ "ch6/test20.py": {
+  "title": "字典的常用视图：keys / values / items",
+  "notes": [
+   "dict.fromkeys(course, 60) 用列表元素作键、统一给同一个默认值，批量建字典。",
+   "get('语文') 按键取值，键不存在时返回 None，比 dc['键'] 安全。",
+   "keys() / values() / items() 返回视图对象，打印形如 dict_keys([...])。",
+   "for key in dc.keys() 遍历键；for k,v in dc.items() 同时遍历键和值。",
+   "视图随字典动态更新；这里没做修改，所以两次遍历结果相同。"
+  ],
+  "pitfall": "dict_keys 不是列表，要 list() 转换；dc['不存在的键'] 会 KeyError，get 只返回 None。"
+ },
+ "ch6/test21.py": {
+  "title": "字典的 update / setdefault / copy / pop / popitem",
+  "notes": [
+   "update({'语文':90}) 会覆盖同名键的值，传入新键则相当于新增。",
+   "setdefault('语文',96)：键已存在，返回原值 90，不修改。",
+   "setdefault('体育',90)：键不存在，插入并返回 90。",
+   "dc1 = dc 只是起别名，之后 dc 更新，dc1 跟着变。",
+   "dc2 = dc.copy() 是独立副本，dc 后来加 '美术' 时 dc2 里没有。",
+   "pop('语文') 按键删除并返回值；popitem() 删除并返回最后一个键值对。"
+  ],
+  "pitfall": "dc1 = dc 与 dc2 = dc.copy() 结果完全不同，试卷常把这两行放一起考。"
+ },
+ "ch7/test1.py": {
+  "title": "函数也是对象：type、id、文档字符串",
+  "notes": [
+   "def 定义函数后，函数名 add 本身是一个对象（type 为 <class 'function'>）。",
+   "三引号写在函数体第一行是文档字符串（docstring），可用 add.__doc__ 取出。",
+   "print(type(add)) 说明函数是一等对象，可以赋值、传参、返回。",
+   "if __name__ == '__main__': 下的代码只在“直接运行本文件”时执行，被 import 时不执行。"
+  ]
+ },
+ "ch7/test2.py": {
+  "title": "函数重名覆盖、函数可赋值给变量",
+  "notes": [
+   "同名函数 fun 定义了两次，后一个覆盖前一个，所以 fun(2,3) 返回 'ok'。",
+   "add_object = add_return 把函数对象赋给另一个变量，两者指向同一个函数，id 相同。",
+   "由 from test1 import add 可见：被导入模块的顶层代码不会因 import 而重复执行（有 __main__ 保护）。"
+  ],
+  "pitfall": "Python 没有函数重载，同名 def 只会保留最后一个；想按参数个数区分必须自己写判断或用默认参数。"
+ },
+ "ch7/test3.py": {
+  "title": "return 返回值的打印顺序",
+  "notes": [
+   "print(test()) 的执行顺序：先进入函数执行 print(666)，函数 return 888，最后才把 888 打印出来。",
+   "所以输出是 666 在前、888 在后。",
+   "没有写 return 的函数返回 None。"
+  ]
+ },
+ "ch7/test4.py": {
+  "title": "函数返回函数自身",
+  "notes": [
+   "test2 内部先打印 a 1，再把 test2 这个函数对象自己 return 出去。",
+   "b = test2() 时执行一次，b 得到函数对象；之后每次 b() 又会打印一次 a 1 并再返回函数。",
+   "每次调用 a 都重新初始化为 0 再 +1，所以永远打印 a 1（局部变量不跨调用保留）。",
+   "for 循环 5 次，每次都多打印一行 a 1 和一行 b <function ...>。"
+  ],
+  "pitfall": "局部变量 a 在每次调用时都重新创建，所以不会累加；要累加必须用闭包 nonlocal 或全局变量。"
+ },
+ "ch7/test5.py": {
+  "title": "return 返回多个值与序列解包",
+  "notes": [
+   "return sum,sub,ss 实际返回的是一个元组 (30,10,'python')。",
+   "x,y,z = add(10,20,30) 用序列解包把元组的三个元素分别赋给三个变量。",
+   "所以 x=30、y=10、z=python。"
+  ]
+ },
+ "ch7/test6.py": {
+  "title": "关键字参数与默认参数",
+  "notes": [
+   "connect(ip=..., port=...) 用关键字参数传参，顺序可以打乱，结果一样。",
+   "文件中 connect 定义了两次，第二个带默认值 port=8080，覆盖了第一个。",
+   "所以 connect('192.168.0.1') 只传了 ip，port 取默认值 8080。"
+  ],
+  "pitfall": "同一文件里重复 def 同名函数，前面的会被后面覆盖——看到两个 connect 别以为都会生效。"
+ },
+ "ch7/test7.py": {
+  "title": "*args 把多余位置实参打包成元组",
+  "notes": [
+   "形参写成 *args，调用时传入的所有位置实参被打包成一个元组。",
+   "test(10,20,30) 时 len(args)=3，用 args[i] 逐个取出打印。",
+   "test(11,22,33,44,55) 时 args 有 5 个元素，全部打印。"
+  ]
+ },
+ "ch7/test8.py": {
+  "title": "**kwargs 把关键字实参打包成字典",
+  "notes": [
+   "形参写成 **kwargs，所有带键的实参被打包成字典，type(kwargs) 为 dict。",
+   "遍历 dict.keys() 拿到每个键，再用 dict.get(key) 取对应的值。",
+   "调用 test(x=10,y=20) 输出 x/10、y/20；五个键的调用则输出 10 行。"
+  ]
+ },
+ "ch7/test9.py": {
+  "title": "调用时用 * 解包元组",
+  "notes": [
+   "l1 = (11,22,33,44) 是一个元组，直接 test(l1) 只会传一个参数（会报错，已被注释）。",
+   "test(*l1) 在调用时把元组拆成 4 个位置实参，正好对上 a,b,c,d。",
+   "所以输出 11 22 33 44。"
+  ],
+  "pitfall": "* 放在形参前是“打包”，放在实参前是“解包”，位置不同含义相反。"
+ },
+ "ch7/test10.py": {
+  "title": "混合参数传递的分配规则",
+  "notes": [
+   "被三引号包住的第一个示例演示：test(*d1) 解包字典得到的是“键”，test(**d1) 得到的才是键值对。",
+   "def test1(a,b,c=33,*args,**kwargs) 的分配顺序：先按位置填 a、b，再填 c，多余位置实参进 args，关键字实参进 kwargs。",
+   "test1(1,2) → c 取默认值 33，args、kwargs 都为空。",
+   "test1(1,2,3,4) → 4 超出固定形参个数，被 *args 收进元组 (4,)。",
+   "test1(1,2,3,4,6,6,6,6,e=6,d=5) → 中间多余的 6 全进 args，e、d 进 kwargs。",
+   "test1(1,2,3,d=3,e=6) → d、e 是关键字参数直接进 kwargs，不影响位置参数。",
+   "最后的 test111(l1) 传的是列表，函数只打印它，不涉及解包。"
+  ],
+  "pitfall": "位置参数必须写在关键字参数之前；test1(1, e=6) 会报错，因为 b 没有值。"
+ },
+ "ch7/test11.py": {
+  "title": "全局变量读取、import 的副作用",
+  "notes": [
+   "函数内只读取 number 时，沿 LEGB 找到全局的 10，所以打印 1 10、3 10。",
+   "被注释掉的 global number / number = 0 说明了：函数内一旦给全局名赋值，就必须先声明 global，否则会变成新的局部变量。",
+   "global 语句被注释掉后，test1 只是读取，全局 number 始终是 10（2、4、5 行都是 10）。",
+   "import test10 会执行 test10 的顶层代码，所以输出里突然多出 test10 那 6 行内容。",
+   "test3 中 test10.l1 = [55,66,77,88] 修改的是模块属性，所以函数外的 test10.l1 也跟着变。"
+  ],
+  "pitfall": "import 一个模块不只是“引入名字”，模块顶层的语句都会被执行一遍——这是输出里多出内容的原因。"
+ },
+ "ch7/test12.py": {
+  "title": "nonlocal 与变量作用域",
+  "notes": [
+   "test_in 里写了 number = 1，这会在内层创建新的局部变量，内层打印 1+1=2。",
+   "nonlocal number 被注释掉，所以内层的 number 与外层的 number=10 是两个变量。",
+   "外层 print(number) 仍是 10——内层的赋值没有影响外层。"
+  ],
+  "pitfall": "想让内层改外层局部变量必须写 nonlocal；想让函数改全局变量必须写 global。"
+ },
+ "ch7/test13.py": {
+  "title": "递归求阶乘 + lambda 匿名函数",
+  "notes": [
+   "func(num) 用递归实现阶乘：num==1 是终止条件，否则 return num*func(num-1)。",
+   "输入 5 时 5! = 120，按 %d!=%d 的格式输出 5!=120。",
+   "lambda a,b,c: a+b*c 定义了匿名函数，f 保存后可用 f(1,2,3) 调用。",
+   "注意运算优先级：先算 b*c 再加 a，所以 1+2*3 = 7，不是 9。"
+  ],
+  "pitfall": "lambda 的函数体只能是一个表达式，不能写 if 语句块、循环等复杂结构。"
+ },
+ "ch7/test14.py": {
+  "title": "闭包计数器与 nonlocal",
+  "notes": [
+   "fun1 内部定义 fun2 并返回它，fun2 引用了外层的 local_val，这就是闭包。",
+   "nonlocal local_val 让 fun2 能修改外层变量，每次调用 +1。",
+   "count = fun1() 创建了一个闭包；之后反复 count() 会在同一个 local_val 上累加，得到 1、2、3、4、5。",
+   "而循环里 print(fun1()) 每次都新建一个闭包对象，所以打印的是函数对象地址而不是数值。"
+  ],
+  "pitfall": "闭包的状态保存在“那一次 fun1() 调用”的局部变量里；重新调用 fun1() 会得到全新的计数器，从 0 开始。"
+ },
+ "ch7/test15.py": {
+  "title": "列表推导、生成器表达式与 yield 生成器的执行时机",
+  "notes": [
+   "[x*x for x in range(5)] 立刻算出完整列表 [0,1,4,9,16]。",
+   "(x*x for x in range(5)) 是生成器表达式，for 遍历时才逐个产出。",
+   "gen(n) 用 yield 定义生成器函数，每次 yield 暂停并交出一个值，index 每次 +2。",
+   "关键：print('111111, gen!') 在 for 循环真正开始迭代时才输出，说明生成器函数体不会在调用时立即运行。",
+   "index 从 0 开始每次加 2，5 以内得到 0、2、4 三个值。"
+  ],
+  "pitfall": "调用生成器函数只是“造出生成器对象”，函数体一行都不执行；第一次 next()/for 才真正开始跑。"
+ },
+ "ch7/test16.py": {
+  "title": "生成器耗尽后抛 StopIteration",
+  "notes": [
+   "gen(3) 依次 yield 0、1、2，共 3 个值。",
+   "第 4 次 next(g) 时生成器已结束，抛 StopIteration——这是文件里的演示错误。",
+   "正确写法是用 for 遍历，或把 next() 包在 try-except 中。"
+  ],
+  "pitfall": "next() 调用次数不能超过元素个数，多调一次就报 StopIteration。"
+ },
+ "ch7/test17.py": {
+  "title": "装饰器的基本结构",
+  "notes": [
+   "装饰器本质是“接收函数、返回新函数”的高阶函数。",
+   "@wrapper 等价于 test = wrapper(test)，所以装饰发生在函数定义时，而不是调用时。",
+   "wrapper 内部的 print 在装饰那一刻就执行，因此先输出 1.、<class 'function'>、2.。",
+   "真正调用 test() 时执行的是 inner：先打印验证权限，再调用原函数打印 test。"
+  ]
+ },
+ "ch7/test18.py": {
+  "title": "多个装饰器叠加的执行顺序",
+  "notes": [
+   "@wrapper1 在 @wrapper2 之上，装饰顺序由内向外：先用 wrapper2 装饰 test，再用 wrapper1 装饰其结果。",
+   "所以装饰阶段先打印 wrapper2 的 3.、正在装饰 2，再打印 wrapper1 的 2.、正在装饰 1。",
+   "运行时由外向内：inner1 先执行（正在验证权限 1），再调用 inner2（正在验证权限 2），最后才是真正的 test。",
+   "两个 time.sleep 让装饰过程与运行过程有明显时间间隔，便于观察顺序。"
+  ],
+  "pitfall": "离函数越近的装饰器越先装饰（越在内层），但执行时越靠外层的包装器越先运行。"
+ },
+ "ch7/test19.py": {
+  "title": "带参数的装饰器 + functools.wraps + 写日志",
+  "notes": [
+   "logit(logfile) 返回 logging_decorator，logging_decorator 再返回 wrapped_function，三层嵌套是“带参数装饰器”的标准写法。",
+   "@logit() 相当于先调用 logit() 得到装饰器，再用它装饰 myfunc1。",
+   "wrapped_function(*args, **kwargs) 先把调用信息拼成字符串打印并追加写入 out.log，再 return func(*args, **kwargs) 执行原函数。",
+   "@wraps(func) 保留原函数的 __name__ 和文档字符串，否则被装饰后函数名会变成 wrapped_function。",
+   "所以输出先是一行调用日志（含时间、函数名、参数），然后是 myfunc1 的结果 7。"
+  ],
+  "pitfall": "装饰器里一定要 return 原函数的调用结果，否则被装饰函数就“没有返回值”了。"
+ },
+ "ch7/test20.py": {
+  "title": "map 返回迭代器，只能消费一次",
+  "notes": [
+   "map(square, ls) 返回 map 对象（迭代器），直接 print 显示 <map object>，不是列表。",
+   "4 次 next(res) 分别取出 1、4、9、16。",
+   "之后再 for i in res，只剩下最后一个元素 25，所以 lm 是 [25]。"
+  ],
+  "pitfall": "map/filter/zip 在 Python 3 都返回一次性迭代器，取过的元素不会再有；要保留请先 list()。"
+ },
+ "ch7/test21.py": {
+  "title": "zip 与字典配合：迭代字典得到的是键",
+  "notes": [
+   "被三引号包住的第一段演示 zip 两个序列的情况。",
+   "zip(ls, dn) 把列表元素与字典的“键”配对，得到 (1,31)、(2,32)、(3,33)。",
+   "dn[v] 再用键 v 取出对应的值 2、6、8。",
+   "zip(ls, dc) 同理，配对出的是城市名的键，所以输出 1 北京、2 纽约、3 巴黎。"
+  ],
+  "pitfall": "直接迭代字典（或 zip 里放字典）拿到的是键，不是键值对；需要值请显式用 dc[key]。"
+ },
+ "ch7/test81.py": {
+  "title": "*args 与 **kwargs 同时使用",
+  "notes": [
+   "def test(*args, **kwargs) 同时接收任意个位置实参和关键字实参。",
+   "args 是元组，用 len() + 下标遍历；kwargs 是字典，用 keys() + get() 遍历。",
+   "调用 test(1,2,3) 时只有位置实参，所以只输出 1、2、3，kwargs 部分没有输出。",
+   "本文件被前面的 test11 等模块 import，注意区分“单独运行”与“被导入”时的输出差异。"
+  ]
+ },
+ "ch8/test1.py": {
+  "title": "类属性与实例方法的最小示例",
+  "notes": [
+   "color=\"red\" 写在类里、方法外，是类属性，所有实例共享。",
+   "car.color 先在实例上找，找不到就去类里找，所以得到 red。",
+   "car.drive() 调用实例方法，self 自动绑定为 car，所以方法体里能直接用 self。",
+   "输出顺序：先打印 red，再打印 行驶。"
+  ]
+ },
+ "ch8/test2.py": {
+  "title": "类属性与实例属性的赋值差异（最常考）",
+  "notes": [
+   "初始时 Car.color 是 red，实例 car.color 读取类属性也是 red。",
+   "Car.color='white' 改的是类属性，所有还没自己定义 color 的实例读到的都变成 white。",
+   "car.color='black' 是给实例新建了一个同名实例属性，从此 car.color 走自己的，与类属性无关。",
+   "所以第 5 行 Car.color 仍是 white，第 6 行 car.color 变成 black。"
+  ],
+  "pitfall": "实例.属性 = 值 只会创建/修改实例属性，不会改动类属性；要改类属性必须写 类名.属性 = 值 或在类方法里用 cls。"
+ },
+ "ch8/test3.py": {
+  "title": "self.color 只存在于实例上",
+  "notes": [
+   "drive 里 self.color='white' 给实例加了一个属性，不是给类加。",
+   "所以 car.color 和 car.print_color() 都能拿到 white。",
+   "但 Car.color 在类上根本不存在，最后一行抛 AttributeError——这是老师故意留的演示错误。"
+  ],
+  "pitfall": "self.xxx = 值 只影响当前实例；类名.xxx 访问不到实例属性。"
+ },
+ "ch8/test4.py": {
+  "title": "实例属性被方法改写、动态添加属性、用类名显式传 self",
+  "notes": [
+   "car.drive() 把 self.color 设为 white；随后 car.color='red' 覆盖为 red；再调 drive 又回到 white。",
+   "car.wheels=4 说明 Python 允许随时给对象动态添加属性，不必在类里预先声明。",
+   "Car.drive(car) 是用“类名.方法名(实例)”的方式调用，等价于 car.drive()，self 由括号里的 car 提供。",
+   "Car.drive(car) 会重新把 color 设为 white，所以倒数第二行又打印 white。",
+   "print(Car.drive(car)) 打印的是方法的返回值；drive 没有 return，所以输出 None。"
+  ]
+ },
+ "ch8/test5.py": {
+  "title": "私有属性、单下划线约定、__dict__ 与 __doc__",
+  "notes": [
+   "__color 双下划线开头是私有属性，名字被改写为 _Car__color，类外不能直接用 car.__color 访问。",
+   "_wheels 单下划线开头只是“约定为内部使用”，语法上仍可从外部访问，所以 car._wheels 得 4。",
+   "car.testColor() 与 Car.testColor(car) 等价，都是把实例作为 self 传入。",
+   "print(car.testColor()) 打印返回值，方法没有 return，输出 None。",
+   "car.__dict__ 只包含实例属性，这里是 {'size': 100}——__color 和 _wheels 都是类属性，不在其中。",
+   "car.__doc__ 是 None：三引号写在了类属性之后，不是类的第一行，所以不算类的文档字符串。"
+  ],
+  "pitfall": "双下划线是“名称改写”而非真正的私有，用 _Car__color 仍可访问；单下划线纯属约定。"
+ },
+ "ch8/test6.py": {
+  "title": "类方法改类属性，影响所有实例",
+  "notes": [
+   "@classmethod 修饰的 stop1 第一个参数是 cls（代表类本身），里面 cls.color='red' 改的是类属性。",
+   "改完之后，所有还没有自己 color 实例属性的对象读到的都是 red。",
+   "stop2 是普通实例方法，self.color='green' 只给 car1 建了实例属性，不影响类。",
+   "car2、car3 没有经过 stop2 前读到 red（类属性），执行 stop2 后各自变成 green。",
+   "所以每个分支都是先打印当前颜色，再打印修改后的颜色。"
+  ],
+  "pitfall": "cls.color = 改的是类属性（全局生效），self.color = 改的是实例属性（只影响自己）。"
+ },
+ "ch8/test7.py": {
+  "title": "静态方法既没有 self 也没有 cls",
+  "notes": [
+   "@staticmethod 修饰的 test 没有 self/cls，就是一个写在类里的普通函数。",
+   "它访问颜色时只能写 Car.color（硬编码类名），不能写 self.color。",
+   "静态方法用 对象.方法() 或 类.方法() 都能调用，效果一样。",
+   "drive 是实例方法，self.color='red' 只影响 car 这个实例。",
+   "所以三次调用 test 打印的 Car.color 始终是 black，不会因 drive 而改变。"
+  ],
+  "pitfall": "静态方法拿不到实例，无法访问实例属性；想访问实例属性必须定义成实例方法。"
+ },
+ "ch8/test8.py": {
+  "title": "@property 把方法变成只读属性",
+  "notes": [
+   "__age 先作为类属性定义为 10，__init__ 里又给实例设了私有属性 __age=18。",
+   "@property 把 age1 变成“读取属性”，访问时写 person.age1，不加括号。",
+   "age1 有一个带默认值的参数 x=1，返回 self.__age + x，所以结果是 18+1 = 19。",
+   "被注释的三行说明：只定义了 getter 时，给属性赋值会报 AttributeError（只读）。"
+  ],
+  "pitfall": "加了 @property 后必须用 person.age1 访问，写 person.age1() 会报 'int' object is not callable。"
+ },
+ "ch8/test9.py": {
+  "title": "@property + @setter 实现可读可写的受控属性",
+  "notes": [
+   "@property 定义 getter，返回私有属性 __age。",
+   "@age.setter 定义 setter，注意装饰器名要与属性名一致，且方法名也叫 age。",
+   "setter 里写 self.__age = age+1，所以 person.age = 25 实际存进去的是 26。",
+   "因此第一次打印 18，赋值后再打印 26。"
+  ],
+  "pitfall": "setter 里不要写成 self.age = age，那会递归调用 setter 导致无限递归。"
+ },
+ "ch8/test10.py": {
+  "title": "私有方法只能通过类内部调用",
+  "notes": [
+   "__drive 双下划线开头是私有方法，类外 car.__drive() 会报 AttributeError。",
+   "公有方法 test 内部写 self.__drive()，在类内部可以正常调用私有方法。",
+   "所以外部只调 car.test() 就能间接执行私有方法，输出 行驶。",
+   "构造方法接收 color 参数，所以实例化时必须传 'red'。"
+  ]
+ },
+ "ch8/test11.py": {
+  "title": "构造方法与析构方法的调用时机",
+  "notes": [
+   "创建对象时自动执行 __init__，打印“对象被创建”并设置 color。",
+   "type(car) 显示 <class '__main__.Car'>，说明对象属于当前模块的 Car 类。",
+   "del car 删除引用后，对象被回收，自动执行 __del__，打印“对象被销毁”。",
+   "del 之后再 print(car.color) 会 NameError——car 这个名字已经不存在了。"
+  ],
+  "pitfall": "del 删的是“变量名（引用）”而不是对象本身；对象在没有任何引用时才被回收并触发 __del__。"
+ },
+ "ch8/test12.py": {
+  "title": "__new__ 与 __init__ 的先后顺序",
+  "notes": [
+   "实例化 Demo() 时先调用 __new__ 创建对象，再调用 __init__ 初始化。",
+   "所以先打印“此处是 __new__()方法的执行...”，再打印“此处是 __init__()方法的执行...”。",
+   "__new__ 收到的 args、kwargs 是空元组和空字典，因为实例化时没传参。",
+   "__new__ 必须 return super().__new__(cls) 把对象交出去，否则 __init__ 不会执行。"
+  ]
+ },
+ "ch8/test13.py": {
+  "title": "方法重定义与动态加属性",
+  "notes": [
+   "类里 area 定义了两次，后一个覆盖前一个（Python 不支持方法重载）。",
+   "length、width 在类里被注释掉了，通过 r.length, r.width = 13, 8 动态加到实例上。",
+   "area() 返回 self.length * self.width = 13*8 = 104。"
+  ],
+  "pitfall": "同一个类里重复定义同名方法，只有最后一个有效——和函数重名覆盖是同一回事。"
+ },
+ "ch8/test14.py": {
+  "title": "单例模式：用 __new__ 保证只创建一个实例",
+  "notes": [
+   "__new__ 里判断 cls.instance 是否为空，为空才创建，否则直接返回已有实例——这就是单例。",
+   "两次 MusicPlayer() 打印的对象地址完全相同，说明拿到的是同一个对象。",
+   "init_flag 保证“初始化音乐播放器”只打印一次，即使重复实例化也不会重复初始化。",
+   "del player1 后对象仍有 player2 引用所以不销毁；“销毁”在程序结束时才打印。"
+  ],
+  "pitfall": "单例要在 __new__ 里控制对象创建；__init__ 每次实例化都会执行，需要额外标志位防止重复初始化。"
+ },
+ "ch8/test15.py": {
+  "title": "用 type() 动态创建类",
+  "notes": [
+   "type(类名, 父类元组, 属性字典) 是动态创建类的标准写法。",
+   "这里类名写成 MyClass0，父类是 (object,)，属性字典把 say、say2、name、color 一次性塞进去。",
+   "创建出的类可以正常实例化并调用方法、读取属性。",
+   "type(myobj) 显示 <class '__main__.MyClass0'>，说明类的名字是字典第一个参数决定的。"
+  ]
+ },
+ "ch8/test16.py": {
+  "title": "自定义元类，在类创建时动态改属性",
+  "notes": [
+   "继承 type 定义元类，重写 __new__ 即可在“类被创建”的那一刻修改它的属性。",
+   "attrs['name']='李红' 把类属性 name 强制改成李红；attrs['say']=say 给类动态添加方法。",
+   "class MyClass(object, metaclass=MyMetaclass) 指定用这个元类来创建 MyClass。",
+   "所以 myobj.name 得李红，say1 是类里自己定义的 hello，say 是元类塞进来的我爱Python。"
+  ],
+  "pitfall": "元类改的是“类”的创建过程，影响所有用它的类；日常开发极少用到，多用于框架。"
+ },
+ "ch8/test17.py": {
+  "title": "多继承的 MRO（方法解析顺序）",
+  "notes": [
+   "class D(B, C) 同时继承 B 和 C，B、C 都继承 A。",
+   "D.__mro__ 与 D.mro() 展示查找顺序：D → B → C → A → object（C3 线性化）。",
+   "调用 x.show() 时按 MRO 顺序找，B 里没有 show，C 里有，所以执行 C.show()。",
+   "这正是“菱形继承”问题的解决方式：Python 用 MRO 保证每个类只出现一次且顺序确定。"
+  ],
+  "pitfall": "多继承同签名方法时，取 MRO 中靠前的那个类的方法，而不是“父类里定义的那个”。"
+ },
+ "ch8/test18.py": {
+  "title": "元类重写 __instancecheck__ 定制 isinstance 行为",
+  "notes": [
+   "元类里定义 __instancecheck__，会改变 isinstance 对这个类实例的判断逻辑。",
+   "isinstance(demo, Demo) 走的是元类的 __instancecheck__，里面又调用了真正的 isinstance。",
+   "isinstance(Demo, MyMetaclass) 为 True，说明 Demo 这个类本身是 MyMetaclass 的实例。",
+   "后两行手动调用 __instancecheck__，所以会额外打印 __instancecheck__call。"
+  ]
+ },
+ "ch8/test19.py": {
+  "title": "抽象基类 ABC 与 @abstractmethod",
+  "notes": [
+   "继承 ABC 的类就是抽象基类，用 @abstractmethod 标记的方法必须由子类实现。",
+   "抽象基类本身不能实例化，否则报 TypeError。",
+   "ConcreteClass 实现了 abstract_method 和 abstract_property，可以正常实例化并调用。",
+   "被注释的 IncompleteClass 没有实现抽象方法，实例化时会报错——这是抽象类的约束作用。"
+  ]
+ },
+ "ch8/test20.py": {
+  "title": "用 register() 注册虚拟子类",
+  "notes": [
+   "VirtualSubclass 并没有继承 AbstractBaseClass，但通过 .register() 注册成了虚拟子类。",
+   "注册后 issubclass 和 isinstance 都返回 True。",
+   "这只是“声明式”的关联，不会真的继承父类的方法，抽象方法仍需自己实现。",
+   "虚拟子类常用于“这个类已经存在、不方便改继承关系”的场景。"
+  ]
+ },
+ "ch8/test21.py": {
+  "title": "属性名不一致导致的 AttributeError",
+  "notes": [
+   "__init__ 里设的是私有属性 self.__age=18，实际名字被改写成 _Person__age。",
+   "而 get_age 读的是 self.age（不是 __age），两者根本不是同一个属性。",
+   "第一次 print(person.get_age()) 时 age 还没被创建，于是抛 AttributeError。",
+   "set_age 里写的是 self.age=new_age，所以要先调用 set_age 才会有 age 这个属性。"
+  ],
+  "pitfall": "__age 与 age 是两个完全不同的属性；getter/setter 里必须用同一个名字，否则就会出现这种“读不到”的错误。"
+ },
+ "ch8/test22.py": {
+  "title": "子类自动继承父类的公有成员",
+  "notes": [
+   "WolfDog(Dog) 只写了 pass，但因为继承，自动拥有父类的 __init__ 和 walk。",
+   "实例化时 WolfDog(\"gray\") 调用的是父类的 __init__，把 color 设为 gray。",
+   "wolfdog.color 能读到 gray，wolfdog.walk() 能执行“狗跳”。"
+  ]
+ },
+ "ch8/test23.py": {
+  "title": "子类不会继承父类的私有成员",
+  "notes": [
+   "父类里 __age、__test 是私有成员，名字被改写为 _Dog__age、_Dog__test。",
+   "子类 WolfDog 的实例上不存在 __age（改写后是 _WolfDog__age，根本没创建过）。",
+   "所以 print(wolfdog.__age) 直接抛 AttributeError——这就是本文件注释说的“子类不会拥有父类的私有成员”。",
+   "若要在子类使用，应通过父类的公有方法间接访问，或改成单下划线 _age。"
+  ],
+  "pitfall": "私有成员的名称改写带类名，父类的 __x 变成 _Dog__x，子类里的 __x 会变成 _WolfDog__x，二者不通。"
+ },
+ "ch8/test24.py": {
+  "title": "多继承时同名方法取哪一个",
+  "notes": [
+   "TouringCar(House, Car) 同时继承 House 和 Car。",
+   "live 只在 House 里有，drive 只在 Car 里有，都可以正常调用。",
+   "play 在两个父类里都有：按 MRO 顺序，House 在前，所以执行 House.play()。",
+   "输出“House play!”而不是“Car play!”，这就是多继承同名成员的解析规则。"
+  ],
+  "pitfall": "父类列表里写在前面的优先，这是 MRO 的直接体现，考卷常把两个父类顺序调换来设陷阱。"
+ },
+ "ch8/test25.py": {
+  "title": "子类方法重写（override）",
+  "notes": [
+   "子类 Chinese 重新定义了 say_hello，覆盖父类 Person 的同名方法。",
+   "调用 chinese.say_hello() 时优先用子类自己的版本，输出“吃了吗”。",
+   "若子类没有重写，则沿用父类的“打招呼”。"
+  ]
+ },
+ "ch8/test26.py": {
+  "title": "多态的经典写法：同一接口不同实现",
+  "notes": [
+   "Cat 和 Dog 各自实现 shout，二者没有继承关系。",
+   "函数 shout(obj) 只关心“传进来的对象有 shout 方法”，不关心它是什么类型。",
+   "传 cat 就“喵喵喵”，传 dog 就“汪汪汪”，这就是多态（鸭子类型）。",
+   "Python 的多态靠“方法名一致”实现，不要求继承同一个父类。"
+  ]
+ }
+}

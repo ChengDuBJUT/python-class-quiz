@@ -17,6 +17,7 @@ if not os.path.exists(SRC):
     SRC = os.path.join(os.path.dirname(BASE), 'trial', 'quiz_lines.txt')
 JUDGE_TRUTH = os.path.join(BASE, 'tools', 'source', 'judge_answers.json')
 ANSWERS_0429 = os.path.join(BASE, 'tools', 'source', 'answers_0429.json')
+SHORT_ANS_PATH = os.path.join(BASE, 'tools', 'source', 'short_answers.json')
 OUT = os.path.join(BASE, 'data', 'questions.json')
 DIAG = os.path.join(BASE, 'tools', 'diagnostics.txt')
 
@@ -62,6 +63,21 @@ def load_answers_0429():
 
 
 AUTH_0429 = load_answers_0429()
+
+
+def load_short_answers():
+    """简答题参考答案：教材答案区多为「略」，这里用
+    ① 教材/习题答案区原文（origin=official）
+    ② 依据课件（教材正文 PDF）对应知识点提炼（origin=ppt，带页码可溯源）
+    两者合成，键为题目 id。"""
+    if not os.path.exists(SHORT_ANS_PATH):
+        return {}
+    with open(SHORT_ANS_PATH, encoding='utf-8') as f:
+        raw = json.load(f)
+    return {k: v for k, v in raw.items() if not k.startswith('_')}
+
+
+SHORT_ANS = load_short_answers()
 
 # 口径容易有分歧、或教材答案与 Python 语义不一致的判断题，给出解析说明
 JUDGE_NOTE = {
@@ -436,7 +452,15 @@ def main():
                 elif tcn == '简答题':
                     item['stem'] = raw
                     a = numans.get(num, '').strip()
-                    item['answer'] = a if a and a != '略' else '（教材未给出参考答案，请对照课件自行作答）'
+                    extra = SHORT_ANS.get(qid)
+                    if extra and extra.get('answerText'):
+                        item['answer'] = extra['answerText']
+                        if extra.get('basis'):
+                            item['basis'] = extra['basis']
+                        if extra.get('origin'):
+                            item['answerOrigin'] = extra['origin']
+                    else:
+                        item['answer'] = a if a and a != '略' else '（教材未给出参考答案）'
                 else:
                     item['stem'] = raw
                     item['answer'] = CODE_ANSWER_OVERRIDE.get(qid, codeans.get(num, ''))

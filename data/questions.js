@@ -236,7 +236,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第1章 习题 简答题 (1)",
     "stem": "简述Python的两种运行模式。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "Python 有两种运行模式：\n(1) 交互模式（interactive mode）：以主提示符 >>> 为标志，在解释器命令行中逐条输入语句，按回车即执行并立即显示结果，适合验证少量语句、边写边试。\n(2) 文件模式（file mode）：先用编辑工具把程序写成后缀为 .py 的源文件，再交给解释器整体执行（如 python hello.py），适合编写、保存和运行完整程序。\n另外，教材指出 Jupyter Notebook 兼有两种模式的优点：既能反复修改编辑框中的程序，又能立即查看执行结果。",
+    "basis": "第1章 p13-14、p31",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch1-short-02",
@@ -248,7 +250,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第1章 习题 简答题 (2)",
     "stem": "浏览Python主页，找出与我们所用的计算机相匹配的版本。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "操作步骤（以官方标准版为例）：\n(1) 打开 Python 官网 https://www.python.org，进入 Downloads 菜单，可下载最新版及各历史版本；\n(2) 进入下载页面后，按本机操作系统选择平台，即选择 Windows 平台安装包；\n(3) 按本机位数选择 64 位（amd64）安装包，如本书所用 python-3.11.1-amd64.exe；\n(4) 双击安装包，按安装界面提示完成安装。\n要点：下载的版本必须与本机的操作系统平台和位数相匹配，64 位 Windows 应选 amd64（64-bit）安装包。",
+    "basis": "第1章 p11-12",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch1-short-03",
@@ -260,7 +264,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第1章 习题 简答题 (3)",
     "stem": "简述Python的特点与应用领域。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "Python 的 8 个特点：\n(1) 简单易学：设计理念是优雅、明确、简单，语法简洁，可专注于解决问题本身；\n(2) 免费开源：属自由/开放源码软件，可自由发布副本、阅读和修改源代码；\n(3) 高级解释性语言：解释器先把源代码编译成字节码，再由虚拟机翻译为机器语言执行，开发者无须关心底层细节；\n(4) 面向对象：既支持面向过程的编程，也支持面向对象的编程；\n(5) 可移植性：可在 Windows、Linux、macOS、Android 等多种平台运行；\n(6) 可扩展性：可用 C、C++ 编写扩充模块；\n(7) 可嵌入性：可嵌入 C、C++、Matlab 程序，为它们提供脚本功能；\n(8) 丰富的库：拥有丰富的标准库和第三方库。\n应用领域（9 个）：科学计算与数据分析、人工智能与机器学习、系统网络运维、常规软件开发、图形用户界面、数据库编程、网络编程、网络爬虫、Web 应用开发。",
+    "basis": "第1章 p5-10",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch1-short-04",
@@ -272,7 +278,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第1章 习题 简答题 (4)",
     "stem": "简述Python模块、包和库。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "三者是 Python 代码由小到大的组织单位：\n(1) 模块（module）：Python 代码通常保存在一个 .py 文件中，因此代码的基本组织单位是文件，也称模块。一个项目往往由多个模块组成——Python 程序由模块组成，模块由语句组成。\n(2) 包（package）：当一个项目中有多个模块时，把功能类似的模块放到一个文件夹中即形成包。包就是包含 __init__.py 文件的文件夹，包内可包含模块，也可包含子包（subpackage），如同文件夹可包含文件和子文件夹。\n(3) 库（library）：借用其他编程语言的概念，没有特别具体的定义；库强调的是功能性而不是代码组织，通常把实现某一功能的包或模块的集合称为库。\n按来源，模块还可分为内建模块（解释器运行时自动导入）、标准模块（安装解释器时已装到本地，需用 import 导入后才可使用）、第三方模块（需下载并安装）和自己编写的自定义模块（文件名即模块名）。",
+    "basis": "第1章 p34-35",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch1-short-05",
@@ -284,7 +292,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第1章 习题 简答题 (5)",
     "stem": "简述turtle程序面向对象特性。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "turtle 绘图本身就是由一系列软件对象构成的软件系统，其编程体现了面向对象的思想：\n(1) 一切皆对象：小海龟是画笔（pen）对象，记录小海龟爬行轨迹的是画布（canvas）对象，此外还有屏幕窗口对象等；\n(2) 属性与方法：画笔的形状、颜色、大小等特征称为画笔对象的属性；画笔的前进、后退、左转、右转等动作称为画笔对象的方法；\n(3) 编程方式：绘图编程就是根据绘图要求先设置画笔对象的属性、再调用画笔对象的方法，通过对象完成程序功能，程序逻辑清晰；\n(4) 由类创建对象：教材用 class 定义海龟类、用 def 定义类中的方法（第一个参数 self 表示使用该方法的对象自身），再由类创建一个个实例对象；turtle 只是把类和对象预先设计好了，解决其他问题时对象往往需要自己设计。",
+    "basis": "第1章 p46-50、p75",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch1-code-01",
@@ -605,7 +615,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第2章 习题 简答题 (1)",
     "stem": "简述Python变量的命名规则。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "标识符就是对变量、常量、函数、类等对象起的名字，命名须遵守以下规则：\n(1) 只能由字母、数字、下画线组成；\n(2) 不能以数字开头（如 4word 非法）；\n(3) 区分大小写；\n(4) 以下画线开头的标识符有特殊含义：以双下画线开头的（如 __foo）代表类的私有成员，不能直接从外部调用；以双下画线开头并结尾的（如 __foo__）是 Python 特殊方法专用标识；\n(5) 不允许使用关键字（预定义标识符，如 try、if）作为自定义标识符，也不能含特殊字符（如 $money 非法）。\n命名还建议遵循两点规范：①见名知意，如用 name 表示姓名；②按用途分大小写——常量名用大写单词或下画线连接（如 ORDER_LIST_LIMIT），模块名、函数名用小写单词或下画线连接（如 low_with_under），类名用大写字母开头的单词（如 Cat、CapWorld）。",
+    "basis": "第2章 p7-9",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch2-short-02",
@@ -617,7 +629,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第2章 习题 简答题 (2)",
     "stem": "简述Python解释器的工作原理。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "Python 解释器本身也是一个程序，由一个编译器和一台虚拟机构成：编译器负责把源代码转换成字节码，虚拟机负责逐行解释执行字节码。因此解释型语言也有编译过程，只是不直接生成目标代码，而是生成中间代码（字节码）。\n源程序的执行过程为：\n(1) 执行 python XX.py，启动 Python 解释器；\n(2) 编译器把 .py 源文件编译成字节码，生成 PyCodeObject 字节码对象存放在内存中；\n(3) 虚拟机执行内存中的字节码对象，将其转换为机器语言，并通过与操作系统交互使机器语言在硬件上运行；\n(4) 运行结束后解释器把 PyCodeObject 写入 pyc 文件；程序第二次运行时先在硬盘中寻找 pyc 文件，找到则直接载入，否则重复上述过程。\n常见解释器有 6 款：CPython（C 语言开发的官方默认解释器）、IPython（基于 CPython 的交互式解释器）、PyPy（采用 JIT 技术动态编译，提高执行速度）、Jython（运行在 Java 平台）、IronPython（运行在 .Net 平台）、MicroPython（面向嵌入式）。",
+    "basis": "第2章 p17-19",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch2-short-03",
@@ -629,7 +643,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第2章 习题 简答题 (3)",
     "stem": "简述Python命名空间分类。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "命名空间就是一些名称的集合，名称与相应对象有对应关系；多个命名空间相互独立，允许不同命名空间中有相同的名称。Python 的命名空间分为 3 类：\n(1) 内置命名空间：运行解释器时解释器自动导入内建模块 builtins 时创建，包含内置常量、内置函数、内置异常类等对象，在整个应用程序中都可以使用；\n(2) 全局命名空间：解释器执行 Python 源文件时创建，包含当前文件中的函数、类、全局变量以及导入的其他模块的成员。解释器启动时会自动把它作为主模块对象，其 __name__ 属性值为 \"__main__\"；\n(3) 局部命名空间：在定义类、调用函数时创建，包含类的属性、被调用函数的参数和函数内部定义的变量等。\n当需要使用变量时，Python 依次按局部命名空间 → 全局命名空间 → 内置命名空间的顺序查找。同一命名空间中变量不能重名，不同命名空间中变量可以重名。",
+    "basis": "第2章 p19-28",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch2-short-04",
@@ -641,7 +657,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第2章 习题 简答题 (4)",
     "stem": "简述Python模块对象的创建机制。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "模块对应于 Python 源代码文件（.py 文件），在模块中可以定义变量、函数、类和普通语句。模块对象的创建机制如下：\n(1) 除内建模块外，使用其他模块都要先导入；通过 import 导入一个模块时，解释器最终会生成一个对象来代表被加载的模块，这个对象称为模块对象，其类型是 module；\n(2) 一个模块无论导入多少次，在整个解释器内有且仅有一个模块对象，再次导入时不会重新执行模块代码，只是复用该对象；\n(3) 导入模块时解释器实际上还创建了一个以模块名命名的命名空间（可理解为局部命名空间），通过模块变量可以引用模块中的全部内容；给模块起别名，本质只是新创建一个变量去引用已加载的模块对象；用 import 导入多个模块，本质上就是生成多个 module 类的对象；\n(4) 解释器启动时把当前启动脚本文件作为主模块，其 __name__ 属性为 \"__main__\"；被导入的其他模块，__name__ 属性就是模块名。",
+    "basis": "第2章 p50-52",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch2-short-05",
@@ -653,7 +671,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第2章 习题 简答题 (5)",
     "stem": "简述Python内置函数与类型。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "1. 内置函数：Python 提供的、可以直接使用的函数，是解释器启动时自动导入内建模块时所加载的函数。教材表 2-2 列出了 69 个常用内置函数（如 abs()、len()、type()、print()、input()、range() 等），按功能可分为 12 类，如数学运算、类型转换、序列操作、高阶函数（map()、filter()）、对象属性（id()、dir()、isinstance()）、编译执行（eval()、exec()）、命名空间（globals()、locals()）等。调用格式为“函数名([参数名])”；用 dir(__builtins__) 可查看当前版本全部内置常量和函数（Python 3.11 共 159 个），用 help() 可查看其用法。\n2. 内置类型（类型对象）分为：\n(1) object 类型对象，也称为基类；\n(2) 基本数据类型对象：整数 int、浮点 float、复数 complex、布尔 bool（只有 True、False 两个实例对象）；\n(3) 组合数据类型对象：字符串 str、字节组 bytes、列表 list、元组 tuple、集合 set、字典 dict。\n此外内置元类对象只有一个，即 type。内置的实例对象则有数值对象、常量对象（None、True、False）和内置函数对象（如 abs()）。",
+    "basis": "第2章 p29-32、p38-39",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch2-code-01",
@@ -966,7 +986,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第3章 习题 简答题 (1)",
     "stem": "简述Python的可变数据类型和不可变数据类型。",
-    "answer": "参考答案：Number数值型（整型、布尔型、浮点型、复数）、String字符串类型、List列表、Tuple元组、Set集合、Dictionary字典。"
+    "answer": "不可变类型（数字、字符串、元组、不可变集合）；\n可变类型（列表、字典、可变集合）。",
+    "basis": "第3章 习题答案 简答(2)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch3-short-02",
@@ -978,7 +1000,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第3章 习题 简答题 (2)",
     "stem": "简述Python字符串的创建方法。",
-    "answer": "参考答案：\n不可变类型（数字、字符串、元组、不可变集合）；\u000b可变类型（列表、字典、可变集合）。"
+    "answer": "字符串是由字母、符号或数字组成的字符序列。Python 支持用三种引号创建（定义）字符串：\n(1) 单引号：s1 = '单引号定义字符串'，通常用于定义单行字符串；\n(2) 双引号：s2 = \"双引号定义字符串\"，通常用于定义单行字符串；\n(3) 三引号：用三个单引号 '''…''' 或三个双引号 \"\"\"…\"\"\" 成对括起，通常用于定义多行字符串。\n注意：单引号与双引号的作用完全相同，只是当字符串内容本身含引号时可交替使用以免转义；Python 不支持单字符类型，单字符（如 'a'）同样作为一个字符串使用。此外还可以用 str() 函数把其他类型的数据转换为字符串。",
+    "basis": "第3章 p13-14",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch3-short-03",
@@ -990,7 +1014,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第3章 习题 简答题 (3)",
     "stem": "列举布尔值为False的常见值。",
-    "answer": "参考答案：0, [] , () , {} , '' , False , None"
+    "answer": "0, [] , () , {} , '' , False , None",
+    "basis": "第3章 习题答案 简答(3)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch3-short-04",
@@ -1002,7 +1028,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第3章 习题 简答题 (4)",
     "stem": "请写出“李杰”分别用UTF-8和GBK编码所占的位数。",
-    "answer": "参考答案：6，4"
+    "answer": "“李杰”是 2 个汉字。\n(1) UTF-8 编码：一个汉字通常占 3 个字节，2 个汉字共 6 个字节，即 48 位；\n(2) GBK 编码：一个汉字占 2 个字节，2 个汉字共 4 个字节，即 32 位。\n教材给出的答案为：6，4（单位为字节）。\n补充：可用 len(\"李杰\".encode('utf-8')) 得到 6、len(\"李杰\".encode('gbk')) 得到 4 来验证——encode() 把字符串按指定编码转换成字节组，decode() 则相反。",
+    "basis": "第3章 习题答案 简答(4)；编码说明见 p34-35",
+    "answerOrigin": "official"
   },
   {
     "id": "ch3-short-05",
@@ -1014,7 +1042,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第3章 习题 简答题 (5)",
     "stem": "Python如何判断数据类型？",
-    "answer": "参考答案：\n在python中可以使用isinstance()函数来判断数据类型，isinstance()函数来判断一个对象是否是一个已知的类型，类似 type()。\nisinstance() 与 type() 区别：\ntype() 不会认为子类是一种父类类型，不考虑继承关系。isinstance() 会认为子类是一种父类类型，考虑继承关系。如果要判断两个类型是否相同推荐使用 isinstance()。"
+    "answer": "在python中可以使用isinstance()函数来判断数据类型，isinstance()函数来判断一个对象是否是一个已知的类型，类似 type()。\nisinstance() 与 type() 区别：\ntype() 不会认为子类是一种父类类型，不考虑继承关系。isinstance() 会认为子类是一种父类类型，考虑继承关系。如果要判断两个类型是否相同推荐使用 isinstance()。",
+    "basis": "第3章 习题答案 简答(5)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch3-code-01",
@@ -1315,7 +1345,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第4章 习题 简答题 (1)",
     "stem": "Python的操作运算符有哪几类？",
-    "answer": "参考答案：\n算术运算符、赋值运算符、比较运算符、逻辑运算符、成员运算符、身份运算符、位运算符、三目运算符。"
+    "answer": "算术运算符、赋值运算符、比较运算符、逻辑运算符、成员运算符、身份运算符、位运算符、三目运算符。",
+    "basis": "第4章 习题答案 简答(1)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch4-short-02",
@@ -1327,7 +1359,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第4章 习题 简答题 (2)",
     "stem": "什么是运算符的优先级？简单介绍一下Python各类运算符的优先级情况。",
-    "answer": "参考答案：\n一个表达式往往不只包含一个运算符，当一个表达式存在多个运算符时，就需要告诉计算机先算哪个、后算哪个，这种运算的先后顺序就被称为运算符的优先级。如果在一个表达式中，几个运算符处于同一优先级，那么则从左到右依次运算。"
+    "answer": "一个表达式往往不只包含一个运算符，当一个表达式存在多个运算符时，就需要告诉计算机先算哪个、后算哪个，这种运算的先后顺序就被称为运算符的优先级。如果在一个表达式中，几个运算符处于同一优先级，那么则从左到右依次运算。",
+    "basis": "第4章 习题答案 简答(2)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch4-short-03",
@@ -1339,7 +1373,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第4章 习题 简答题 (3)",
     "stem": "简述运算符//、％、* *各自的功能。",
-    "answer": "参考答案：\n//(Floor Division)-这是一个除法运算符，它返回除法的整数部分，例如：5 // 2 = 2。\n％(模数)-返回除法的余数，例如：5 ％ 2 = 1。\n**(幂)-它对运算符执行指数计算，a ** b表示a的b次方，例如：\n5 ** 2 = 25、5 ** 3 = 125。"
+    "answer": "//(Floor Division)-这是一个除法运算符，它返回除法的整数部分，例如：5 // 2 = 2。\n％(模数)-返回除法的余数，例如：5 ％ 2 = 1。\n**(幂)-它对运算符执行指数计算，a ** b表示a的b次方，例如：\n5 ** 2 = 25、5 ** 3 = 125。",
+    "basis": "第4章 习题答案 简答(3)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch4-short-04",
@@ -1351,7 +1387,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第4章 习题 简答题 (4)",
     "stem": "简述三目运算规则及应用场景。",
-    "answer": "参考答案：\n规则：为真时的结果 if 判定条件 else 为假时的结果。\u000b应用场景：在赋值变量的时候，可以直接加判断，然后赋值。"
+    "answer": "规则：为真时的结果 if 判定条件 else 为假时的结果。\n应用场景：在赋值变量的时候，可以直接加判断，然后赋值。",
+    "basis": "第4章 习题答案 简答(4)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch4-short-05",
@@ -1363,7 +1401,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第4章 习题 简答题 (5)",
     "stem": "Python中有哪些关系运算符和逻辑运算符？关系运算和逻辑运算有哪些联系？",
-    "answer": "参考答案：\n关系运算符：>、》=、<、<=、==、!=、is、is not。逻辑运算符：not、and、or。\n关系运算有二个同类操作数进行比较，运算结果是True或者False；逻辑运算二个逻辑值运算，运算结果是True或者False。"
+    "answer": "1. 关系运算符（比较运算符）：>、>=、<、<=、==、!=，另有身份运算符 is、is not。关系运算的结果是布尔值 True 或 False。\n2. 逻辑运算符：and（逻辑与）、or（逻辑或）、not（逻辑非）。\n3. 两者的联系：\n(1) 关系运算的结果是布尔值，正好可以作为逻辑运算的操作数，因此逻辑运算符一般和关系运算符结合使用。例如 14>6 and 45.6>90，先算关系运算得 True and False，整个表达式结果为 False。\n(2) 借助逻辑运算可以把多个关系表达式连接成一个复合条件，用于 if、while 的判断，如 age>=18 and age<=30 and height>=170。\n(3) 逻辑运算符可以操作任何类型的表达式，结果不一定是 bool 类型——and 和 or 返回的是其中一个表达式的值（如 100 and 200 得 200，\"\" or \"abc\" 得 \"abc\"）；not 的结果一定是布尔值。\n(4) and、or 具有短路特性：and 左边为假时不再计算右边，直接返回左边的值；or 左边为真时不再计算右边，直接返回左边的值。",
+    "basis": "第4章 习题答案 简答(5)；结合 p15-19",
+    "answerOrigin": "official"
   },
   {
     "id": "ch4-code-01",
@@ -1663,7 +1703,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第5章 习题 简答题 (1)",
     "stem": "程序有哪3种基本结构？",
-    "answer": "参考答案：程序的三种基本结构为：顺序结构、选择结构和循环结构。"
+    "answer": "程序的三种基本结构为：顺序结构、选择结构和循环结构。",
+    "basis": "第5章 习题答案 简答(1)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch5-short-02",
@@ -1675,7 +1717,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第5章 习题 简答题 (2)",
     "stem": "简述条件语句中if与else的配对关系是如何确定的。",
-    "answer": "参考答案：略"
+    "answer": "if 与 else 的配对遵循“就近配对”原则：else 子句总是与它前面最近的、尚未与其它 else 配对的 if 配对；else 不能单独使用，必须有对应的 if。\n在嵌套的 if 语句中，配对关系由缩进（代码块层次）确定，而不是简单地看谁离得近：缩进级别相同的 if 与该 else 属于同一层，因此书写时应把配对的 if 与 else 对齐在同一缩进列上。\n教材的 if 嵌套示例（p14-16）说明了这一层次关系：外层 if 判断性别 gender，内层 if 判断身高 height；每个 else 都与同缩进级别的那个 if 配对，程序“从外到内根据条件一个个地进行判断”。",
+    "basis": "第5章 p9-16（教材按语法与 if 嵌套示例给出，未单列“配对”字样）",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch5-short-03",
@@ -1687,7 +1731,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第5章 习题 简答题 (3)",
     "stem": "简述break语句和continue语句各自的功能。",
-    "answer": "参考答案：\nbreak：在满足条件时，它将导致程序退出循环。\ncontinue：将返回到循环的开头，它使程序在当前循环迭代中的跳过所有剩余语句。\npass：使程序传递所有剩余语句而不执行。"
+    "answer": "break：在满足条件时，它将导致程序退出循环。\ncontinue：将返回到循环的开头，它使程序在当前循环迭代中的跳过所有剩余语句。\npass：使程序传递所有剩余语句而不执行。",
+    "basis": "第5章 习题答案 简答(3)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch5-short-04",
@@ -1699,7 +1745,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第5章 习题 简答题 (4)",
     "stem": "简述for循环和while循环的区别与联系。",
-    "answer": "参考答案：略"
+    "answer": "1. while 循环：按条件循环。语法为 while 条件表达式: 代码块。条件为真时重复执行循环体，为假时退出。循环次数由条件决定，事先往往不确定。\n2. for 循环：按遍历循环。语法为 for 迭代变量 in 可迭代对象: 代码块。依次取出字符串、列表、元组、字典、range() 等对象中的每个元素赋给迭代变量并执行一次循环体，遍历结束即退出。循环次数由可迭代对象的元素个数决定，事先已知。\n3. 区别：①while 由条件控制，for 由遍历对象控制；②while 一般需在循环体内手动修改条件变量，否则易形成死循环，for 的迭代变量由遍历自动更新，无须手动维护；③已知循环次数或遍历数据时用 for 更简洁，循环次数未知、由条件驱动时用 while 更合适。\n4. 联系：两者都是循环语句，都能实现代码的重复执行；都可以嵌套使用（while 嵌套、for 嵌套及相互嵌套）；都可以配合 break、continue 结束或跳过循环，也都可以带 else 子句；多数情况下两者可以相互改写。",
+    "basis": "第5章 p17-28",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch5-short-05",
@@ -1711,7 +1759,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第5章 习题 简答题 (5)",
     "stem": "在多重循环语句中，在内循环体内使用break语句可以跳到所有的循环体外吗？说一说如果想要实现上述目标应该怎么做？",
-    "answer": "参考答案：略"
+    "answer": "不可以。break 语句只结束本层循环：教材明确指出“若循环嵌套使用了 break 语句，当程序执行到 break 语句时就会结束本层循环”，即内层的 break 只会跳出内层循环，外层循环仍会继续执行。\n要一次跳出所有循环，常用以下方法：\n(1) 设置标志变量：内层 break 前先把标志变量置为 True（或 False），内层跳出后在外层判断该标志，满足条件时再 break，逐层向外跳出；\n(2) 封装成函数，用 return 直接结束整个函数，从而跳出所有循环；\n(3) 抛出并捕获异常：在内层 raise 一个自定义异常，在外层用 try-except 捕获，直接跳出嵌套结构；\n(4) 改造循环条件：把外层的条件表达式与内层的中断条件关联，使外层条件不再成立而自然退出。\n其中标志变量法最常用，也最符合本章已学语法。",
+    "basis": "第5章 p35-37；实现方法为通用做法补充",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch5-code-01",
@@ -2010,7 +2060,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第6章 习题 简答题 (1)",
     "stem": "列举Python中常用的组合数据类型，简单说明它们的异同。",
-    "answer": "Python中组合类型有列表、元组、字典和集合，这些数据类型都可以存储任意个元素。从访问元素来看，列表、元组和集合都可以通过索引获取数据，而字典类型数据没有索引；从存储数据来看，列表中的元素可以随意更改；存储在元组中的元素不可更改；存储在字典中键具有唯一性；存储在集合中的元素具有不重复性。"
+    "answer": "Python中组合类型有列表、元组、字典和集合，这些数据类型都可以存储任意个元素。从访问元素来看，列表、元组和集合都可以通过索引获取数据，而字典类型数据没有索引；从存储数据来看，列表中的元素可以随意更改；存储在元组中的元素不可更改；存储在字典中键具有唯一性；存储在集合中的元素具有不重复性。",
+    "basis": "第6章 习题答案 简答(1)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch6-short-02",
@@ -2022,7 +2074,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第6章 习题 简答题 (2)",
     "stem": "简单介绍删除字典元素的几种方式。",
-    "answer": "字典中移除元素的方式有3种，分别为pop()、popitem()和clear()，pop()方法可以根据指定的键值删除字典中指定的元素；popitem()方法会随机删除字典中的元素；clear()方法会清空字典中的元素。"
+    "answer": "字典中移除元素的方式有3种，分别为pop()、popitem()和clear()，pop()方法可以根据指定的键值删除字典中指定的元素；popitem()方法会随机删除字典中的元素；clear()方法会清空字典中的元素。",
+    "basis": "第6章 习题答案 简答(2)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch6-short-03",
@@ -2034,7 +2088,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第6章 习题 简答题 (3)",
     "stem": "什么是字符串？",
-    "answer": "字符串是由字母、符号或者数字组成的字符序列，Python支持使用单引号、双引号和三引号定义字符串。"
+    "answer": "字符串是由字母、符号或者数字组成的字符序列，Python支持使用单引号、双引号和三引号定义字符串。",
+    "basis": "第6章 习题答案 简答(3)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch6-short-04",
@@ -2046,7 +2102,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第6章 习题 简答题 (4)",
     "stem": "请简述Python中格式化字符串的几种方式。",
-    "answer": "Python有三种格式化字符串的方式：使用%格式化、使用format()方法格式化和使用f-string格式化字符串，其中使用%格式化格式为format % values；format()方法格式为str.format(values)；f-string只需要在字符串前加上引领的字符f或F即可。"
+    "answer": "Python有三种格式化字符串的方式：使用%格式化、使用format()方法格式化和使用f-string格式化字符串，其中使用%格式化格式为format % values；format()方法格式为str.format(values)；f-string只需要在字符串前加上引领的字符f或F即可。",
+    "basis": "第6章 习题答案 简答(4)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch6-short-05",
@@ -2058,7 +2116,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第6章 习题 简答题 (5)",
     "stem": "请简述Python中字符串对齐的几种内置方法。",
-    "answer": "Python提供了center()、ljust()、rjust()这3个方法来设置字符串的对齐方式，center()方法表示居中对齐显示；ljust()方法表示左对齐显示；rjust()方法表示右对齐显示。"
+    "answer": "Python提供了center()、ljust()、rjust()这3个方法来设置字符串的对齐方式，center()方法表示居中对齐显示；ljust()方法表示左对齐显示；rjust()方法表示右对齐显示。",
+    "basis": "第6章 习题答案 简答(5)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch6-code-01",
@@ -2394,7 +2454,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第7章 习题 简答题 (1)",
     "stem": "简述位置参数传递、关键字参数传递、默认参数传递的区别。",
-    "answer": "位置参数会将实参依次传递给形参；关键字参数是通过“形参=实参”形式将实参传递给形参；默认参数是在定义函数时，为形参赋值。"
+    "answer": "位置参数会将实参依次传递给形参；关键字参数是通过“形参=实参”形式将实参传递给形参；默认参数是在定义函数时，为形参赋值。",
+    "basis": "第7章 习题答案 简答(1)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch7-short-02",
@@ -2406,7 +2468,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第7章 习题 简答题 (2)",
     "stem": "简述函数参数混合传递的规则。",
-    "answer": "混合传递参数规则为：优先按位置参数传递；然后按照关键字参数方式传递；之后按照默认参数传递；最后按照打包传递方式传递。"
+    "answer": "混合传递参数规则为：优先按位置参数传递；然后按照关键字参数方式传递；之后按照默认参数传递；最后按照打包传递方式传递。",
+    "basis": "第7章 习题答案 简答(2)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch7-short-03",
@@ -2418,7 +2482,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第7章 习题 简答题 (3)",
     "stem": "简述局部变量和全局变量的区别。",
-    "answer": "根据作用域的不同，变量可以分为全局变量和局部变量。全局变量指的是可以在整个程序的范围内起作用；局部变量通常指在函数内定义的变量，该变量只能在函数体中使用。"
+    "answer": "根据作用域的不同，变量可以分为全局变量和局部变量。全局变量指的是可以在整个程序的范围内起作用；局部变量通常指在函数内定义的变量，该变量只能在函数体中使用。",
+    "basis": "第7章 习题答案 简答(3)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch7-short-04",
@@ -2430,7 +2496,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第7章 习题 简答题 (4)",
     "stem": "简述函数参数的打包与解包过程。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "参数传递中的打包与解包分别作用于函数定义和调用两个环节。\n1. 打包（定义函数时）：当函数在定义时无法确定需要接收多少个数据，可在形参前加“*”或“**”把实参打包。\n(1) 形参前加“*”（如 *args）：Python 解释器把传给该函数的所有位置实参打包成一个元组再赋给形参，如 test(10,20,30) 中 args 得到 (10,20,30)；\n(2) 形参前加“**”（如 **kwargs）：把所有带关键字的实参打包成字典再赋给形参，如 test(x=10,y=20) 中 kwargs 得到 {'x':10,'y':20}。\n形参名可以是符合规范的任意名称，但一般约定用 *args 和 **kwargs；若没有接收到任何数据，它们分别为空元组和空字典。\n2. 解包（调用函数时）：在实参前加“*”或“**”把容器拆开。\n(1) 实参是元组（或列表）时，用“*”将其拆分为多个值，按位置参数方式依次赋给形参，如 test(*(11,22,33,44))；\n(2) 实参是字典时，用“**”将其拆分为多个键值对，按键名对应形参、以关键字参数方式赋值，如 test(**{'a':11,'b':22,'c':33,'d':44})。\n一句话概括：定义时用“*”“**”把散装的实参打包成元组或字典，调用时用“*”“**”把元组或字典解包成散装实参。",
+    "basis": "第7章 p17-21",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch7-short-05",
@@ -2442,7 +2510,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第7章 习题 简答题 (5)",
     "stem": "什么是匿名函数？",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "匿名函数是用 lambda 表达式声明的、没有函数名的函数。\n(1) 语法：lambda 参数1, 参数2, … : 表达式。冒号前是参数列表，冒号后的表达式相当于函数体，表达式的运算结果就是函数的返回值。\n(2) 特点：lambda 函数是一种简单的一行内定义函数的方法，实际生成的是一个函数对象；它只允许包含一个表达式，不能包含复杂语句（不能写循环、分支等语句块）。\n(3) 使用方式：定义好的匿名函数不能直接使用，最好先赋给一个变量保存，把该变量当作函数的临时名称来调用，如 f = lambda a, b, c: a + b + c，再 f(1,2,3) 得 6；也可直接作为 map()、filter()、sorted() 等函数的参数使用。\n(4) 适用场景：lambda 匿名函数适用于实现简单功能的函数，功能复杂时仍应用 def 定义具名函数，以便阅读和复用。",
+    "basis": "第7章 p41-43",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch7-code-01",
@@ -2746,7 +2816,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 简答题 (1)",
     "stem": "简述对象方法、类方法、静态方法的区别。",
-    "answer": "类方法需要使用@classmethod进行标识，该方法可以访问类属性，无法访问实例属性，可以通过类实例和类进行调用。静态方法使用@staticmethod进行标识，该方法无法访问实例属性和类属性，起到类似于函数的作用，使用类或者类实例进行调用。实例方法直接在类中使用def进行定义，可以访问其实例属性和类属性，使用类实例进行调用。如果要修改实例属性的值，就直接使用实例方法；如果要修改类属性的值，就直接使用类方法；如果是辅助功能，比如打印菜单，这时可以考虑使用静态方法，可以在不创建对象的前提下使用。"
+    "answer": "类方法需要使用@classmethod进行标识，该方法可以访问类属性，无法访问实例属性，可以通过类实例和类进行调用。静态方法使用@staticmethod进行标识，该方法无法访问实例属性和类属性，起到类似于函数的作用，使用类或者类实例进行调用。实例方法直接在类中使用def进行定义，可以访问其实例属性和类属性，使用类实例进行调用。如果要修改实例属性的值，就直接使用实例方法；如果要修改类属性的值，就直接使用类方法；如果是辅助功能，比如打印菜单，这时可以考虑使用静态方法，可以在不创建对象的前提下使用。",
+    "basis": "第8章 习题答案 简答(1)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch8-short-02",
@@ -2758,7 +2830,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 简答题 (2)",
     "stem": "简述构造方法和析构方法的特点。",
-    "answer": "构造方法为__init__()作用是初始化对象的属性，析构方法为__del__()作为是释放类所占用的资源。"
+    "answer": "构造方法为__init__()作用是初始化对象的属性，析构方法为__del__()作为是释放类所占用的资源。",
+    "basis": "第8章 习题答案 简答(2)",
+    "answerOrigin": "official"
   },
   {
     "id": "ch8-short-03",
@@ -2770,7 +2844,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 简答题 (3)",
     "stem": "简述类方法的装饰器。",
-    "answer": "封装是指隐藏类的实现细节，只提供访问类成员的公开接口；继承是指在一个现有类的基础上构建一个新的类；多态是指在不考虑对象类型的情况下使用对象。"
+    "answer": "类方法是用装饰器 @classmethod 修饰的方法，定义在类内部。其语法格式为：\n@classmethod\ndef 类方法名(cls):\n    方法体\n要点：\n(1) 装饰器 @classmethod 写在 def 上一行，作用是把下面的普通函数声明为类方法；\n(2) 参数列表的第一个参数约定写为 cls，代表类本身，调用时由系统自动接收调用该方法的类，不需要手动传入；\n(3) 由于 cls 代表类，类方法可以通过“类名.方法名()”直接调用，也可以通过“对象名.方法名()”调用；\n(4) 类方法中可以借助 cls 访问和修改类属性，但不能访问实例属性（它拿不到 self）；\n(5) 与之对照，@staticmethod 修饰的是静态方法，没有 cls 和 self，相当于写在类里的普通函数；@property 装饰器则用于把方法变成可按属性方式访问的属性。",
+    "basis": "第8章 p20-22",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch8-short-04",
@@ -2782,7 +2858,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 简答题 (4)",
     "stem": "简述私有方法与特殊方法的异同。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "1. 私有方法：用双下画线（__）开头命名的方法，仅允许在类内部调用，类对象和派生类都不能调用。在类外调用会报 AttributeError（提示对象没有该属性）；若要使用，只能通过类中的公有方法来间接调用。\n2. 特殊方法：在方法名的前后各加双下画线命名的方法，如 __init__()、__del__()、__repr__()、__str__()。这类方法是基类 object 自带的，用于实现特殊功能（初始化对象、销毁对象、打印对象等），在类的外部可以正常调用，且常由系统在特定时机自动调用（如创建对象时自动执行 __init__）。\n3. 相同点：两者都在类内部定义，命名都用双下画线，都属于“有特殊约定”的方法而非普通公有方法。\n4. 不同点：①命名形式不同——私有方法只有开头有双下画线，特殊方法首尾都有双下画线；②可见性不同——私有方法不能在类外调用，特殊方法可以在类外调用；③调用方式不同——私有方法需通过公有方法间接调用，特殊方法常由解释器在特定操作时自动触发；④来源不同——私有方法是开发者自己定义以封装细节，特殊方法多为继承自 object 的预定义方法。",
+    "basis": "第8章 p29-33",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch8-short-05",
@@ -2794,7 +2872,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 简答题 (5)",
     "stem": "简述面向对象的三大特性。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "封装是指隐藏类的实现细节，只提供访问类成员的公开接口；继承是指在一个现有类的基础上构建一个新的类；多态是指在不考虑对象类型的情况下使用对象。",
+    "basis": "第8章 习题答案 简答(3)（原答案按此条给出）",
+    "answerOrigin": "official"
   },
   {
     "id": "ch8-code-01",
@@ -3094,7 +3174,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第9章 习题 简答题 (1)",
     "stem": "简述异常的定义及其种类。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "1. 定义：解释器能自动检测发现的程序故障就是异常，异常是可以被捕获、也可以被处理的。（与之相对，解释器无法自动检测发现的程序故障称为错误。）\n2. 种类：Python 用异常类来描述异常行为。BaseException 是所有异常类型的基类，派生出 4 个子类：\n(1) Exception：所有内置的、非系统退出的异常的基类；\n(2) KeyboardInterrupt：用户中断执行时产生的异常；\n(3) GeneratorExit：生成器退出异常；\n(4) SystemExit：Python 解释器退出异常。\nException 类内置了很多常见异常，如 NameError（使用未定义的变量）、IndexError（越界访问）、AttributeError（访问不存在的属性）、ZeroDivisionError（除数为 0）、ValueError（值不合法）、AssertionError（断言失败）等。此外开发者还可以通过继承 Exception 自定义异常类。",
+    "basis": "第9章 p3-4、p6-7",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch9-short-02",
@@ -3106,7 +3188,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第9章 习题 简答题 (2)",
     "stem": "简述try-except语句的用法与作用。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "1. 作用：try-except 用于捕获并处理程序运行中可能出现的异常，使程序不会因异常而直接终止，从而提高程序的稳健性。\n2. 用法：\n(1) try-except：把可能出错的代码放在 try 块中，出现异常时由 except 按指定的异常类型捕获并执行处理代码。except 后可写具体异常类型（如 IndexError）、写 Exception（捕获全部异常）或省略不写；用“except 异常类型 as error”可获取异常对象及其描述信息（省略异常类型时就无法获取具体信息）。\n(2) try-except-else：没有发生异常时执行 else 块，用于区分“正常走完”与“出错被捕获”两种情况。\n(3) try-except-else-finally：finally 块无论是否发生异常都会执行，常用于关闭文件、释放资源等收尾工作。\n3. 执行流程：try 中代码正常执行则跳过 except、执行 else，最后执行 finally；若 try 中抛出异常，则跳过 try 中剩余语句，转入匹配的 except 处理，然后执行 finally。",
+    "basis": "第9章 p14-23",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch9-short-03",
@@ -3118,7 +3202,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第9章 习题 简答题 (3)",
     "stem": "简述raise语句与assert语句抛出异常的工作原理。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "1. raise 语句：用于显式地抛出异常，有 3 种格式。\n(1) raise 异常类：如 raise IndexError。执行时先隐式创建该异常类的实例，再引发该异常；\n(2) raise 异常类对象：如 raise IndexError(\"索引超出范围\")。直接提供一个异常对象，并可通过字符串指定异常的具体描述信息，这是较常见的形式；\n(3) raise：不带任何参数，用于重新引发刚刚发生的异常，常在 except 块中使用——try 检测到异常、except 捕获后又把它原样抛出。\n2. assert 语句：又称断言语句，语法为 assert 表达式[, 异常信息]。\n(1) 当表达式的值为 True 时不做任何操作，程序继续向下执行；\n(2) 当表达式的值为 False 时触发 AssertionError 异常，表达式之后可用字符串描述异常信息，如 assert num2 != 0, '除数不能为0'。\n(3) 用途：帮助开发者在开发阶段调试程序、检查必要条件是否成立；启动解释器时可用 -O 参数关闭 assert，关闭后所有 assert 语句相当于 pass。",
+    "basis": "第9章 p23-29",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch9-short-04",
@@ -3130,7 +3216,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第9章 习题 简答题 (4)",
     "stem": "简述程序调试的方法。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "调试是排除故障的过程，即定位故障并修复故障，目的是找到问题并解决问题。\n1. 程序调试策略（5 种）：\n(1) 试探法：分析故障特征、猜测故障位置，通过在程序中插入输出语句等手段逐步试探，效率较低，适合结构简单的程序；\n(2) 回溯法：从发现问题的位置沿控制流程反向跟踪代码，直到找到错误根源，适合小型程序；\n(3) 对分查找法：在已知变量正确取值的位置赋值观察输出，不断缩小故障范围；\n(4) 归纳法：从测试暴露的问题出发，收集正确与错误数据、分析其间关系，提出假想的错误原因并验证；\n(5) 演绎法：根据测试结果列出所有可能原因，排除矛盾项，选可能性最大者完善假设并证实。\n2. Python 常用的调试方法（4 种）：\n(1) print 方法：在合适位置插入 print 输出提示或变量值，判断执行情况，缺点是用完要删除，适合小型程序；\n(2) assert 方法：断言紧接其后的代码是否正确，不满足条件即中断并抛出 AssertionError，缺点同样是事后需要删除；\n(3) pdb 调试器：用 python -m pdb 启动后单步运行，l 查看代码、n 单步、p 查看变量、q 退出；也可导入 pdb 并用 pdb.set_trace() 设置断点，效率更高；\n(4) IDE 调试：IDLE 通过 Debug | Debugger 打开 Debug Control 窗口，设置断点、单步执行、跟踪变量，PyCharm、VS Code 等 IDE 也都有强大的调试功能。\n此外还可使用标准模块 logging、warnings 和第三方模块 PySnooper、Better-exceptions 等辅助调试。",
+    "basis": "第9章 p36-49",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch9-short-05",
@@ -3142,7 +3230,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第9章 习题 简答题 (5)",
     "stem": "简述程序测试的方法。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "测试是在规定的条件下对程序进行操作，以发现程序故障、衡量软件质量，并评估其是否满足设计要求的过程，目的是寻找问题。\n1. 按测试阶段分类（4 种）：\n(1) 单元测试：对最小的软件设计单元进行验证，确保模块被正确编码；\n(2) 集成测试：在单元测试基础上把多个模块组装起来测试，重点关注模块接口；\n(3) 系统测试：把项目作为一个整体进行测试；\n(4) 验收测试：确认产品能否满足合同或用户需求。\n2. 按测试方式分类（6 种）：静态测试、动态测试、黑盒测试（只通过输入数据观察输出结果，不关心内部结构）、白盒测试（依据源代码对内部工作过程进行测试）、手工测试、自动化测试。\n3. Python 的测试技术：常用测试框架有内置的 unittest 和第三方的 pytest、Selenium 等。unittest 是 Python 内置的自动化单元测试框架，具备完整的测试结构，主要包含 TestCase（测试用例）、TestSuite（测试套件，把多个用例集成在一起）、TestRunner（执行测试用例）等，提供丰富的断言方法并可生成测试报告。单元测试针对程序模块进行，在集成测试之前进行，每次修改代码后都要做，常采用测试驱动开发（TDD）模式。",
+    "basis": "第9章 p49-56",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch9-code-01",
@@ -3451,7 +3541,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第10章 习题 简答题 (1)",
     "stem": "简述Python字符编码方法。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "字符编码就是把中文、英文等符号映射成数字，再把数字转换为计算机能存储的二进制数。常见的编码有 ASCII、GB2312、GBK、unicode、UTF-8。\n\n(1) ASCII 编码：最初把 127 个字符（大小写英文字母、数字和符号）编码，用单字节二进制位表示，如大写字母 A 是 65、小写字母 z 是 122。只适用于纯英文数字场景。\n\n(2) GB2312 编码：处理中文时一个字节不够，且不能与 ASCII 冲突，因此中国制定了 GB2312，用两个字节表示非 ASCII 字符且最高位不为 0，同时兼容 ASCII（ASCII 可表示的字符仍占一个字节）。它收录了 6763 个汉字。\n\n(3) GBK 编码：GB2312 的扩展，增加了大量汉字、支持繁体字，同样兼容 GB2312，非 ASCII 字符仍用两个字节。\n\n(4) unicode 编码：把世界上所有字符映射为唯一的数字，解决各国编码各自为政导致的乱码问题；它把每个字符用固定宽度的二进制位表示（如都用两个字节）。\n\n(5) UTF-8 编码：为 unicode 设计的一种在存储和传输时节省空间的变长编码方案，用 1~4 个字节表示字符——英文占 1 个字节、欧洲语系字符占 2 个字节、东亚字符（汉字）占 3 个字节、其他及特殊字符占 4 个字节。计算机内存中统一使用 unicode，保存到硬盘或传输时再转换为 UTF-8。\n\nPython 中用 ord() 取字符的 unicode 编码、chr() 由编码还原字符，字符串用 encode() 编码成字节组、字节组用 decode() 解码回字符串。",
+    "basis": "第10章 p5-9",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch10-short-02",
@@ -3463,7 +3555,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第10章 习题 简答题 (2)",
     "stem": "简述文件对象的操作方法。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "文件对象的操作可分为属性查看、打开关闭、读、写和指针操作几类。\n\n(1) 属性：name（文件名）、mode（打开模式）、closed（是否已关闭，关闭为 True）。\n\n(2) 打开与关闭：用内置函数 open() 创建文件对象，操作完应及时用 close() 关闭；更推荐用 with-as 语句，它会在代码块结束时（无论是否发生异常）自动关闭文件。\n\n(3) 读方法：read(size) 读取指定数量的字符（不指定则读全部）；readline() 读取一行；readlines() 读取所有行并返回列表。\n\n(4) 写方法：write(data) 把字符串写入文件，返回写入的字符长度；writelines(lines) 写入一个字符串序列，若需换行必须在每个元素中自行加换行符。\n\n(5) 指针操作：tell() 返回文件当前位置；seek(offset, whence) 把读写指针移动到指定位置（0 文件开头、1 当前位置、2 文件末尾）。\n\n(6) 其他：flush() 刷新缓冲区，把缓冲数据立刻写入文件；isatty() 判断文件是否连接到终端设备。\n\n此外还可以通过上下文管理器协议（__enter__ 与 __exit__）自定义可用 with 操作的对象。",
+    "basis": "第10章 p13-26",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch10-short-03",
@@ -3475,7 +3569,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第10章 习题 简答题 (3)",
     "stem": "简述open()函数的语法及参数的含义。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "open() 函数的语法格式为：\n\nopen(file, mode='r', encoding=None)\n\n三个参数的含义：\n\n(1) file：接收文件名或文件的完整路径，指明要打开哪个文件。\n\n(2) mode：设置文件的打开模式，默认值为 'r'。常用的基本模式有三种：r 以只读方式打开（文件指针在开头）；w 以只写方式打开（文件已存在则从头开始编辑、原有内容被删除，不存在则新建）；a 以追加方式打开（文件指针放在结尾，新内容写入原有内容之后，不存在则新建）。基本模式可与 b、t、+ 搭配：b 表示二进制模式，t 表示文本模式（默认），+ 表示以更新（可读可写）方式打开。常见组合有 r/rb、w/wb、a/ab、r+/rb+、w+/wb+、a+/ab+。\n\n(3) encoding：指定文件的编码格式（如 'utf-8'、'gbk'），文本模式下用于正确解码/编码内容；不指定时使用系统默认编码。\n\nopen() 调用成功会返回一个文件对象，通过它即可读取、写入或查看文件属性。",
+    "basis": "第10章 p10-12",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch10-short-04",
@@ -3487,7 +3583,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第10章 习题 简答题 (4)",
     "stem": "简述文本文件和二进制文件的区别。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "按数据的逻辑存储结构，计算机中的文件分为文本文件和二进制文件。\n\n(1) 文本文件：专门用于存储文本字符数据。如果一个文件中没有包含除文本字符以外的其他数据，就认为它是文本文件。文本文件可以直接用文字处理程序（如记事本）打开并正常阅读。\n\n(2) 二进制文件：计算机中存储的图像、音频、视频、可执行文件等都属于二进制文件。这类文件不能直接使用文字处理程序正常读写，必须使用专用程序才能正确获取其中的信息。\n\n(3) 两者的本质联系：在物理层面上，计算机中的数据都是以二进制形式存储的，区别只在于逻辑存储结构以及能否被文本工具直接解读。\n\n(4) 在 Python 中的对应：用 open() 的 t 模式（文本模式，默认）打开按字符处理，读取到的是 str；用 b 模式（二进制模式）打开按字节处理，读取到的是 bytes 字节组。",
+    "basis": "第10章 p4",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch10-short-05",
@@ -3499,7 +3597,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第10章 习题 简答题 (5)",
     "stem": "简述数据的维度及存储格式。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "1. 数据的维度：维度是与数据“有联系”的参数的数量。按此划分，数据分为一维、二维和多维数据。\n\n(1) 一维数据：具有对等关系的一组线性数据，对应数学中的集合和一维数组。Python 中的一维列表、一维元组、一维集合都是一维数据，元素之间用逗号、空格等符号分隔。\n\n(2) 二维数据：关联参数数量为 2，对应数学中的矩阵和二维数组。Python 中的二维列表、二维元组都是二维数据；表格是最常见的二维数据组织形式，因此二维数据也称为表格数据。\n\n(3) 多维数据：利用键值对等二元关系展开数据间的复杂结构，Python 中的字典类型数据就是多维数据。计算机中常见的多维数据格式有 HTML、XML、JSON。\n\n2. 数据的存储格式：数据通常以文件形式存储，并按约定格式组织以便读写。\n\n(1) 一维、二维数据：国际上通用的存储格式是 CSV（逗号分隔值）。CSV 以纯文本形式存储，用逗号分隔每个数据元素，也可使用其他字符作分隔符，因此 CSV 也称字符分隔值。二维数据可视为一维数据的集合。\n\n(2) 多维数据：常用 HTML、XML、JSON 等格式存储，通过网络传输和应用交换。",
+    "basis": "第10章 p36-39",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch10-code-01",
@@ -3801,7 +3901,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第11章 习题 简答题 (1)",
     "stem": "简述os模块的功能。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "os 模块为 Python 脚本调用各类操作系统（Unix、Mac OS、DOS 等）的接口提供了统一的封装，使脚本代码与平台无关，从而增强了代码的可移植性。当需要实现某些功能却无法直接使用命令行工具时，就可以导入这个模块。\n\n主要功能可分为属性和方法两部分：\n\n(1) 常用属性（描述当前系统的环境信息）：os.name 记录操作系统名称（Windows 为 nt，Linux/Unix 为 posix）；os.sep 记录路径分隔符（Unix 为 '/'，Windows 为 '\\'）；os.extsep 记录文件名与扩展名的分隔符；os.linesep 记录行分隔符（Unix 为 '\\n'，Windows 为 '\\r\\n'）；os.curdir、os.pardir 分别表示当前目录和父目录；os.defpath 记录系统默认查找路径。\n\n(2) 常用方法（操作文件与目录）：os.getcwd() 返回当前工作目录；os.mkdir() 创建目录（只能建一级）；os.rmdir() 删除目录（不能删非空目录）；os.listdir() 返回指定目录下所有文件名和目录名组成的列表；os.rename() 重命名文件或目录；os.remove() 删除指定文件；os.chmod() 修改访问权限；os.getenv()/os.putenv() 获取和设置环境变量。\n\n此外 os.path 子模块专门负责路径处理，如拼接、拆分、判断文件是否存在等。",
+    "basis": "第11章 p5-7",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch11-short-02",
@@ -3813,7 +3915,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第11章 习题 简答题 (2)",
     "stem": "简述sys模块的功能。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "sys 模块是与 Python 解释器交互的一个接口，提供了许多属性和方法，用来与解释器进行信息交互。\n\n(1) 常用属性：sys.version 返回版本信息字符串；sys.platform 返回操作系统平台名称；sys.path 是模块搜索路径（path[0] 是当前脚本程序所在路径）；sys.modules 是已加载模块的字典；sys.argv 是命令行参数（argv[0] 是当前脚本程序路径名）；sys.builtin_module_names 是内建模块名称组成的字符串元组；sys.executable 是解释程序路径；sys.stdin、sys.stdout、sys.stderr 分别是标准输入、标准输出、标准错误流（input() 和 print() 底层就用它们）。\n\n(2) 常用方法：sys.exit([arg]) 在程序中间退出（arg=0 表示正常退出）；sys.getdefaultencoding()/sys.setdefaultencoding() 获取和设置系统默认编码；sys.getfilesystemencoding() 获取文件系统编码（Windows 下返回 'mbcs'）；sys.getrecursionlimit()/sys.setrecursionlimit(n) 获取和修改递归深度限制；sys.getrefcount() 查看对象的引用计数。\n\n借助这些属性和方法，程序可以获得运行环境信息（路径、平台、版本）、接收命令行参数、控制程序退出，从而实现与解释器的交互。",
+    "basis": "第11章 p8-11",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch11-short-03",
@@ -3825,7 +3929,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第11章 习题 简答题 (3)",
     "stem": "简述Python多任务编程的实现方法。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "Python 中实现并发执行（多任务）有 3 种方式：多进程、多线程、多协程，分别对应 multiprocessing、threading、asyncio 三个模块。\n\n(1) 多进程：进程是具有一定独立功能的程序在某个数据集合上的一次运行活动，是系统进行资源分配和调度的一个独立单位，也是资源（内存）分配的最小单位。每个进程有独立的内存空间，进程间通过通信机制通信；上下文切换开销较大，但稳定、安全。用 multiprocessing.Process 类创建进程对象（有 name、pid、daemon 等属性，用 start() 启动、join() 等待）。\n\n(2) 多线程：线程是进程的一个实体，是 CPU 调度和分配的基本单位，比进程更小。线程本身基本不拥有系统资源，可与同一进程内的其他线程共享进程的全部资源；线程间通信主要通过共享内存，切换速度快、开销少，但不够稳定、容易丢失数据。用 threading.Thread 创建线程。\n\n(3) 多协程：协程是用户态的轻量级线程，调度完全由用户控制，拥有自己的寄存器上下文和栈；切换时没有内核切换开销，可以不加锁地访问全局变量，因此切换非常快。用 asyncio 模块的 async/await、事件循环（loop）与任务（task）实现。\n\n选择依据：先判断程序属于 CPU 密集型还是 I/O 密集型。CPU 密集型（科学计算、机器学习等偏重计算的程序）选多进程；I/O 密集型（如爬虫这类频繁输入输出的程序）选多线程或多协程。",
+    "basis": "第11章 p54-57、p63-74",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch11-short-04",
@@ -3837,7 +3943,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第11章 习题 简答题 (4)",
     "stem": "简述Python通信模块socket的作用。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "socket 模块的作用是：通过 TCP/IP 协议族中的 TCP 和 UDP 实现计算机之间的网络通信。\n\n(1) 通信协议：TCP 是流协议，在客户机与服务器之间建立持续的开放连接，连接存续期内字节可经该连接写出并保证顺序正确，但字节流内部没有结构，需高层协议自己分隔数据记录；UDP 是数据报协议，不需要建立连接，只在地址之间传输报文，其包是自分隔的（每个数据报明确标明起止位置），但不保证按顺序到达、甚至不保证能到达，优点是效率高。\n\n(2) socket（套接字）本身是操作系统内核中的一个数据结构，几乎是所有网络通信的基础。网络通信最终实现的是计算机进程间的通信：网络中每个节点都有 IP 地址，通信时先确定 IP 地址，再用端口号与进程一一对应，由 IP 地址加端口号确定一次通信的一端，即一个 socket 对象。\n\n(3) 编程接口：通过 socket 对象的相关方法（如 connect() 连接、bind() 绑定、listen() 监听、accept() 接受连接、send()/recv() 收发数据、close() 关闭）完成通信连接和数据传输，从而编写客户端与服务器端程序。",
+    "basis": "第11章 p74-76",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch11-short-05",
@@ -3849,7 +3957,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第11章 习题 简答题 (5)",
     "stem": "简述Python内置数据库sqlite的操作方法。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "sqlite3 是 Python 内置的轻量级关系型数据库模块，无需单独安装服务器，数据保存在单个文件中即可使用 SQL 进行增删改查。基本操作步骤如下：\n\n(1) 导入模块并连接数据库：import sqlite3；conn = sqlite3.connect('test.db')。数据库文件不存在时会自动创建，返回一个连接对象。\n\n(2) 创建游标：cur = conn.cursor()。游标用于执行 SQL 语句并获取结果。\n\n(3) 执行 SQL：cur.execute(sql) 执行一条语句，如建表 CREATE TABLE、插入 INSERT、更新 UPDATE、删除 DELETE、查询 SELECT；批量执行可用 cur.executemany(sql, 序列)。SQL 中可用 ? 作占位符并通过参数元组传值，避免拼接字符串带来的注入风险。\n\n(4) 提交事务：执行增、删、改后必须调用 conn.commit() 才会真正写入数据库；失败时可用 conn.rollback() 回滚。\n\n(5) 获取查询结果：cur.fetchone() 取一行、cur.fetchmany(n) 取 n 行、cur.fetchall() 取全部行；也可直接迭代游标。\n\n(6) 释放资源：cur.close() 关闭游标，conn.close() 关闭连接（也可用 with 语句自动管理）。\n\n说明：本课程课件仅把 sqlite3 列在标准库清单中，未展开讲解，以上为 Python 标准用法，考试若考到按此流程作答即可。",
+    "basis": "第11章 标准库列表中提及 sqlite3（课件未展开此小节，操作步骤按 Python 官方标准用法整理）",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch11-code-01",
@@ -4156,7 +4266,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第12章 习题 简答题 (1)",
     "stem": "简述Python编程计算生态。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "随着开源运动的兴起，大量专业人士通过开源库发布各领域的研究与开发成果，形成了庞大的编程计算生态；Python 语言能把不同语言、不同特点、不同使用方式的代码统一起来，从诞生之初就致力于开源开放，建立起了全球最大的编程计算生态。\n\n(1) 规模：Python 拥有十几万个第三方库，其基本信息可通过 Python 官网或 GitHub 搜索到，几乎覆盖了信息技术的所有领域。一个人不可能熟悉所有库，只需记住名称，解决问题时再深入研究。\n\n(2) 常用应用领域及代表库：\n· 网络爬虫：requests（网络请求）、BeautifulSoup（网页解析）、Scrapy/Pyspider（爬虫框架）；\n· 数据分析：NumPy（科学计算基础包）、SciPy（数学科学工程计算）、Pandas（高性能数据结构与分析工具）；\n· 数据可视化：Matplotlib（pyplot 绘图）、TVTK（三维可视化）等；\n· Web 开发：Django（最流行的 Web 框架）、Tornado（Web 框架兼异步网络库）、Flask（微型框架）；\n· 其他：自然语言处理、办公自动化、音视频处理、图像处理、图形艺术、游戏开发（Pygame、Panda3D）、硬件开发（rospy、Pingo）、经济金融（TA-Lib、Quantopian）、社会网络分析（NetworkX）等。\n\n(3) 意义：这种生态使开发者可以“站在他人肩上”，通过 import 复用成熟代码，大幅降低开发难度、提高效率。",
+    "basis": "第12章 p3-19",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch12-short-02",
@@ -4168,7 +4280,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第12章 习题 简答题 (2)",
     "stem": "简述NumPy库及数据结构。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "1. NumPy 简介：NumPy（Numerical Python）是 Python 的一种开源数值计算扩展库，可用来存储和处理大型矩阵，比 Python 自身的嵌套列表结构高效得多；它支持大量的多维度数组与矩阵运算，并针对数组运算提供了大量数学函数库。它是数据分析“三剑客”之一，侧重于科学计算（Pandas 侧重数据分析，Matplotlib 侧重可视化）。\n\n2. NumPy 的数据结构：NumPy 中最重要的对象是 ndarray，即 N 维数组类型对象（也称 array 对象）。它描述相同类型元素的集合，可使用基于 0 的索引访问元素；ndarray 中每个元素在内存中占用相同大小的块，每个元素都是数据类型对象（dtype）的对象，NumPy 支持的数据类型比 Python 内置类型多得多。\n\nndarray 具有矢量算术能力、复杂的广播能力和高维数组处理能力，进行复杂科学计算时还会自动并行计算，运算效率远高于纯 Python 代码。\n\n3. 常用属性：ndim（秩，即轴的数量/维度数）、shape（数组维度，矩阵为 n 行 m 列）、size（元素总个数，等于 shape 的 n*m）、dtype（元素类型）、itemsize（每个元素占用的字节数）、flags（内存信息）、real/imag（元素的实部/虚部）、data（数据缓冲区）、T（转置）。\n\n4. 常用操作：用 np.array(列表) 创建数组，另有 arange、zeros、ones、reshape 等；支持 max/min/mean/sum 等聚合运算并可用 axis 指定按行或按列计算。",
+    "basis": "第12章 p24-26",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch12-short-03",
@@ -4180,7 +4294,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第12章 习题 简答题 (3)",
     "stem": "简述pyplot模块绘制基本图形的步骤与语法。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "使用 pyplot 模块绘制基本图形的一般步骤与语法如下：\n\n(1) 导入模块：import matplotlib.pyplot as plt（常同时导入 numpy 用于生成数据）。\n\n(2) 创建画布对象：fig = plt.figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None, frameon=True)。参数含义：num 为图像编号或名称（数字是编号、字符串是名称）；figsize 指定 figure 的宽和高，单位为英寸；dpi 指定分辨率，即每英寸多少像素，缺省为 80；facecolor 为背景颜色；edgecolor 为边框颜色；frameon 表示是否显示边框。\n\n(3) 绘制图形：\n· 直接用 pyplot：plt.plot([1,2,3,4], [1,2,3,4])，可加 color、linestyle、marker 等参数，另有 bar()、scatter()、pie() 等；\n· 或用 axes 方式：ax = fig.add_subplot(1,1,1) 取得子图对象后 ax.plot(x, y)，适合在一个画布中绘制多个子图。\n\n(4) 设置与修饰：plt.title() 设标题、plt.xlabel()/plt.ylabel() 设坐标轴标签、plt.legend() 显示图例、plt.grid() 显示网格。\n\n(5) 显示或保存：plt.show() 显示图形；plt.savefig('a.png') 保存为图片文件。\n\n核心三步可概括为：创建画布（figure）→ 绘制图形（plot）→ 显示（show）。",
+    "basis": "第12章 p56-58",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch12-short-04",
@@ -4192,7 +4308,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第12章 习题 简答题 (4)",
     "stem": "简述软件开发框架。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "软件开发框架是为某一类软件开发提供基础结构与通用功能的“半成品”代码库：框架负责程序的骨架、流程控制和通用机制，开发者只需按约定填充业务逻辑，从而避免重复造轮子、统一开发规范、提高开发效率。\n\n按应用领域，常见的 Python 开发框架可分为：\n\n(1) Web 框架：用于 Web 程序开发。Django 是 Python 界最流行的 Web 框架（全栈、功能完备，自带 ORM、后台管理）；Tornado 既是 Web 框架又是异步网络库，适合高并发；Flask 是微型框架，轻量灵活，适合中小型项目与快速原型。\n\n(2) 网络爬虫框架：Scrapy、Pyspider 等，提供请求调度、解析、去重、存储的完整流程。\n\n(3) 深度学习框架：TensorFlow（谷歌开源）、PyTorch 等，提供张量与自动求导等能力。\n\n(4) 游戏开发框架：Pygame（一组用于编写游戏的模块）、Panda3D（3D 游戏引擎）、RenPy（视觉小说引擎）、Harfang3D（支持 3D、VR）。\n\n(5) 图形界面框架：跨平台的 GUI 框架（如 PyQt、Tkinter 等）。\n\n(6) 测试与其他专用框架：unittest、pytest（测试框架），以及各垂直领域（金融、硬件、社会网络分析）的专用框架。\n\n使用框架的一般思路是：选型（按项目规模与需求选全栈或微型框架）→ 按框架约定组织目录与代码 → 在框架提供的扩展点上编写业务逻辑 → 借助框架内置的中间件、模板、ORM 等能力完成开发与部署。",
+    "basis": "第12章 p15（Web 框架库表）、p4-19（各类框架库）",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch12-short-05",
@@ -4204,7 +4322,9 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第12章 习题 简答题 (5)",
     "stem": "简述Pandas库及数据结构。",
-    "answer": "（教材未给出参考答案，请对照课件自行作答）"
+    "answer": "1. Pandas 简介：Pandas 是 Python 的一个扩展程序库，是一个强大的用于分析结构化数据的工具集，其使用基础是 NumPy（由 NumPy 提供高性能的矩阵运算）。它纳入了大量库和标准数据模型，并提供了高效操作大型数据集所需的工具。\n\n2. 功能：可以从各种文件格式（CSV、JSON、SQL、Microsoft Excel 等）导入数据；可对数据进行归并、再成形、选择等运算操作；还具备数据清洗和数据特征加工等功能，被广泛应用于学术、金融、统计学等数据分析领域。\n\n3. Pandas 的数据结构：主要数据结构是 Series（一维数据）与 DataFrame（二维数据），二者足以处理金融、统计、社会科学、工程等领域中的大多数典型用例。\n· Series 对象：类似于一维数组的对象，由一组数据（各种 NumPy 数据类型）及一组与之相关的数据标签（即索引）组成；仅有一组数据也可产生简单的 Series 对象。\n· DataFrame 对象：Pandas 中的表格型数据结构，包含一组有序的列，每列可以是不同的值类型（数值、字符串、布尔型等）；DataFrame 既有行索引也有列索引，可以看作由 Series 组成的字典。\n\n4. 与 NumPy 的关系与分工：NumPy 侧重科学计算、提供 ndarray 多维数组；Pandas 建立在其之上，侧重结构化数据的处理与分析，用带标签的 Series/DataFrame 弥补了 ndarray 缺少行列标签的不足。",
+    "basis": "第12章 p35-36",
+    "answerOrigin": "ppt"
   },
   {
     "id": "ch12-code-01",
@@ -4417,216 +4537,6 @@ window.QUESTION_BANK = [
     "verified": true
   },
   {
-    "id": "lab4-read-01",
-    "chapter": 4,
-    "chapterTitle": "运算符",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter4/test0.py",
-    "sourceLocator": "第4章 代码自测 1",
-    "stem": "表达式 40 // 2 ** 2 的值是？",
-    "code": "print(40 // 2 ** 2)",
-    "options": [
-      "A. 2",
-      "B. 10",
-      "C. 20",
-      "D. 40"
-    ],
-    "answer": "B",
-    "explanation": "** 优先级高于 //：2**2=4，40//4=10。",
-    "verified": true
-  },
-  {
-    "id": "lab4-read-02",
-    "chapter": 4,
-    "chapterTitle": "运算符",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter4/test2.py",
-    "sourceLocator": "第4章 代码自测 2",
-    "stem": "含海象运算符的这段代码输出？",
-    "code": "x = 5\ns = x + (y := 10)\nprint(s, y)",
-    "options": [
-      "A. 15 5",
-      "B. SyntaxError",
-      "C. 15 10",
-      "D. 5 10"
-    ],
-    "answer": "C",
-    "explanation": "(y := 10) 在表达式内把 10 赋给 y 并返回 10，故 s=5+10=15。",
-    "verified": true
-  },
-  {
-    "id": "lab5-read-01",
-    "chapter": 5,
-    "chapterTitle": "流程控制",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter5/test1.py",
-    "sourceLocator": "第5章 代码自测 1",
-    "stem": "跳过偶数后累加，输出是？",
-    "code": "total = 0\nfor i in range(1, 5):\n    if i % 2 == 0:\n        continue\n    total += i\nprint(total)",
-    "options": [
-      "A. 6",
-      "B. 3",
-      "C. 4",
-      "D. 10"
-    ],
-    "answer": "C",
-    "explanation": "range(1,5)=1,2,3,4；偶数被 continue 跳过，只累加 1+3=4。",
-    "verified": true
-  },
-  {
-    "id": "lab5-read-02",
-    "chapter": 5,
-    "chapterTitle": "流程控制",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter5/test1.py",
-    "sourceLocator": "第5章 代码自测 2",
-    "stem": "match-case 匹配字符串 \"3\" 时输出？",
-    "code": "day = \"3\"\nmatch day:\n    case \"1\":\n        print(\"一\")\n    case \"2\":\n        print(\"二\")\n    case \"3\":\n        print(\"三\")\n    case _:\n        print(\"其他\")",
-    "options": [
-      "A. 一",
-      "B. 其他",
-      "C. SyntaxError",
-      "D. 三"
-    ],
-    "answer": "D",
-    "explanation": "match 按顺序匹配字面量分支，命中 case \"3\"；case _ 是兜底。",
-    "verified": true
-  },
-  {
-    "id": "lab6-read-01",
-    "chapter": 6,
-    "chapterTitle": "组合数据类型",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter6/test11.py",
-    "sourceLocator": "第6章 代码自测 1",
-    "stem": "先 remove(3) 再 pop(2)，列表变为？",
-    "code": "ls1 = [1, 3, 5, 7, 9]\nls1.remove(3)\nls1.pop(2)\nprint(ls1)",
-    "options": [
-      "A. [1, 5, 7, 9]",
-      "B. [1, 3, 7, 9]",
-      "C. [5, 7, 9]",
-      "D. [1, 5, 9]"
-    ],
-    "answer": "D",
-    "explanation": "remove(3) 按值删除 → [1,5,7,9]；pop(2) 按索引删除 7 → [1,5,9]。",
-    "verified": true
-  },
-  {
-    "id": "lab6-read-02",
-    "chapter": 6,
-    "chapterTitle": "组合数据类型",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter6/test10.py",
-    "sourceLocator": "第6章 代码自测 2",
-    "stem": "center(8, \"%\") 的输出是？",
-    "code": "sr = 'code'\nprint(sr.center(8, '%'))",
-    "options": [
-      "A. %%code%%",
-      "B. code%%%%",
-      "C. %code%",
-      "D.   code  "
-    ],
-    "answer": "A",
-    "explanation": "字符串长 4，居中到 8 需左右各补 2 个 \"%\"。",
-    "verified": true
-  },
-  {
-    "id": "lab7-read-01",
-    "chapter": 7,
-    "chapterTitle": "函数",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter7/test10.py",
-    "sourceLocator": "第7章 代码自测 1",
-    "stem": "混合参数传递的打印结果是？",
-    "code": "def test1(a, b, c=33, *args, **kwargs):\n    print(a, b, c, args, kwargs)\n\ntest1(1, 2, 3, 4, e=6)",
-    "options": [
-      "A. 1 2 3 (4,) {'e': 6}",
-      "B. 1 2 3 (4, 6) {}",
-      "C. 1 2 33 (3, 4) {'e': 6}",
-      "D. TypeError"
-    ],
-    "answer": "A",
-    "explanation": "a=1, b=2, c=3（位置参数覆盖默认值），多余的 4 进 *args，e=6 进 **kwargs。",
-    "verified": true
-  },
-  {
-    "id": "lab7-read-02",
-    "chapter": 7,
-    "chapterTitle": "函数",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter7/test11.py",
-    "sourceLocator": "第7章 代码自测 2",
-    "stem": "函数内读取全局 number，输出？",
-    "code": "number = 10\ndef test():\n    print(number)\n\ntest()",
-    "options": [
-      "A. 0",
-      "B. 10",
-      "C. NameError",
-      "D. None"
-    ],
-    "answer": "B",
-    "explanation": "只读取不赋值时，函数会沿 LEGB 链找到全局变量 number=10。",
-    "verified": true
-  },
-  {
-    "id": "lab8-read-01",
-    "chapter": 8,
-    "chapterTitle": "类与对象",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter8/test1.py",
-    "sourceLocator": "第8章 代码自测 1",
-    "stem": "访问类属性并调用实例方法，输出？",
-    "code": "class Car:\n    color = \"red\"\n    def drive(self):\n        print(\"行驶\")\n\ncar = Car()\nprint(car.color)\ncar.drive()",
-    "options": [
-      "A. AttributeError",
-      "B. red / 行驶",
-      "C. 行驶 / red",
-      "D. None / 行驶"
-    ],
-    "answer": "B",
-    "explanation": "实例可读取类属性 color；drive(self) 由实例调用时 self 自动传入。",
-    "verified": true
-  },
-  {
-    "id": "lab8-read-02",
-    "chapter": 8,
-    "chapterTitle": "类与对象",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter8/test10.py",
-    "sourceLocator": "第8章 代码自测 2",
-    "stem": "构造方法中赋值实例属性，输出？",
-    "code": "class Car:\n    def __init__(self, color):\n        self.color = color\n\ncar = Car(\"blue\")\nprint(car.color)",
-    "options": [
-      "A. None",
-      "B. TypeError",
-      "C. blue",
-      "D. red"
-    ],
-    "answer": "C",
-    "explanation": "__init__ 接收 \"blue\" 并绑定到 self.color，创建对象时自动执行。",
-    "verified": true
-  },
-  {
     "id": "lab9-read-01",
     "chapter": 9,
     "chapterTitle": "异常、调试与测试",
@@ -4793,6 +4703,996 @@ window.QUESTION_BANK = [
     "answer": "C",
     "explanation": "head(2) 取前两个元素，tolist() 转成 Python 列表 [1, 2]。",
     "verified": false
+  },
+  {
+    "id": "lab4-read-01",
+    "chapter": 4,
+    "chapterTitle": "运算符",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter4/test1.py",
+    "sourceLocator": "第4章 代码自测 1",
+    "stem": "【读结果】a = 0 时，b = a and print(...) 的完整输出是？",
+    "code": "a = 0\nb = a and print(\"1a:\", a)\nprint(\"1b:\", b)",
+    "options": [
+      "A. 1b: False",
+      "B. 1b: 0",
+      "C. 1a: 0 换行 1b: 0",
+      "D. 1b: None"
+    ],
+    "answer": "B",
+    "explanation": "and 左边为假立即短路，右边的 print 根本不执行，所以没有 “1a:” 这行；b 直接得到操作数 0。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab4-read-02",
+    "chapter": 4,
+    "chapterTitle": "运算符",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter4/test1.py",
+    "sourceLocator": "第4章 代码自测 2",
+    "stem": "【读结果】not 0 得 True，and 必须继续算右边，b 最终是什么？",
+    "code": "a = 0\nb = not a and print(\"2a:\", a)\nprint(\"2b:\", b)",
+    "options": [
+      "A. 0",
+      "B. 2a: 0",
+      "C. None",
+      "D. True"
+    ],
+    "answer": "C",
+    "explanation": "print() 的返回值是 None，所以 b 拿到 None，输出 “2a: 0” 和 “2b: None” 两行。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab4-read-03",
+    "chapter": 4,
+    "chapterTitle": "运算符",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter4/test1.py",
+    "sourceLocator": "第4章 代码自测 3",
+    "stem": "【机制】表达式 not a or print(...) 中，右侧的 print 会不会执行？",
+    "code": "a = 0\nb = not a or print(\"4a:\", a)\nprint(\"4b:\", b)",
+    "options": [
+      "A. 会执行，因为没有括号",
+      "B. 会执行，or 一定算右边",
+      "C. 报语法错误",
+      "D. 不会执行，or 左边已为 True 直接短路，b 得到 True"
+    ],
+    "answer": "D",
+    "explanation": "not 0 == True，or 左边为真立即短路并返回左值 True，右侧 print 不执行。",
+    "verified": true,
+    "kind": "concept"
+  },
+  {
+    "id": "lab4-read-04",
+    "chapter": 4,
+    "chapterTitle": "运算符",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter4/test3.py",
+    "sourceLocator": "第4章 代码自测 4",
+    "stem": "【读结果】三个判断依次输出的结果是？",
+    "code": "x = [1, 2, 3]\ny = [1, 2, 3]\nz = x\nprint(x is y, x == y, z is x)",
+    "options": [
+      "A. False True True",
+      "B. True True True",
+      "C. False False True",
+      "D. True False True"
+    ],
+    "answer": "A",
+    "explanation": "x、y 是两个内容相同的不同对象：is 判身份为 False、== 判值相等为 True；z = x 是同一个对象，z is x 为 True。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab4-read-05",
+    "chapter": 4,
+    "chapterTitle": "运算符",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter4/test3.py",
+    "sourceLocator": "第4章 代码自测 5",
+    "stem": "【读结果】差集 A - B 与对称差 A ^ B 依次是？",
+    "code": "A = {1, 2, 3, 4, 5}\nB = {1, 3, 5, 7, 9, 11}\nprint(A - B)\nprint(A ^ B)",
+    "options": [
+      "A. {2, 4} 和 {1, 2, 3, 4, 5, 7, 9, 11}",
+      "B. {2, 4} 和 {2, 4, 7, 9, 11}",
+      "C. {2, 4} 和 {7, 9, 11}",
+      "D. {1, 3, 5} 和 {2, 4, 7, 9, 11}"
+    ],
+    "answer": "B",
+    "explanation": "- 是差集（在 A 不在 B）；^ 是对称差（只属于其中一个集合）。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab4-read-06",
+    "chapter": 4,
+    "chapterTitle": "运算符",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter4/test5.py",
+    "sourceLocator": "第4章 代码自测 6",
+    "stem": "【读结果】这段循环最后输出的那个数字是？",
+    "code": "for i in range(10, 20):\n    print(i, end=\" \")",
+    "options": [
+      "A. 18",
+      "B. 10",
+      "C. 19",
+      "D. 20"
+    ],
+    "answer": "C",
+    "explanation": "range(10, 20) 左闭右开，生成 10~19 共 10 个数，不包含 20。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab4-read-07",
+    "chapter": 4,
+    "chapterTitle": "运算符",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter4/test4.py",
+    "sourceLocator": "第4章 代码自测 7",
+    "stem": "【读结果】两行输出依次是？",
+    "code": "x = 8\ny = 3\nprint(x - y if x + y > 10 else x * y)\nprint(x + y if x > y else (x - y if x + y > 10 else x * y))",
+    "options": [
+      "A. 24 和 11",
+      "B. 5 和 5",
+      "C. 11 和 5",
+      "D. 5 和 11"
+    ],
+    "answer": "D",
+    "explanation": "第一个：x+y=11>10 成立取 x-y=5；第二个：x>y 成立直接取 x+y=11，后面嵌套不求值。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab5-read-01",
+    "chapter": 5,
+    "chapterTitle": "流程控制",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter5/test1.py",
+    "sourceLocator": "第5章 代码自测 1",
+    "stem": "【读结果】day = \"3\" 时输出什么？",
+    "code": "day = \"3\"\nmatch day:\n    case \"1\":\n        print(\"星期一\")\n    case \"3\":\n        print(\"星期三\")\n    case _:\n        print(\"请输入一个有效数字！\")",
+    "options": [
+      "A. 请输入一个有效数字！",
+      "B. 没有输出",
+      "C. 星期三",
+      "D. 星期一"
+    ],
+    "answer": "C",
+    "explanation": "match 按顺序比对字面量，命中 case \"3\" 后执行并退出整个 match；case _ 是兜底分支。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab5-read-02",
+    "chapter": 5,
+    "chapterTitle": "流程控制",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter5/test1.py",
+    "sourceLocator": "第5章 代码自测 2",
+    "stem": "【找错】输入用 input() 得到的是字符串，若这里写 day = 3（整数），会输出什么？",
+    "code": "day = 3\nmatch day:\n    case \"3\":\n        print(\"星期三\")\n    case _:\n        print(\"其他\")",
+    "options": [
+      "A. 星期三",
+      "B. 报 TypeError",
+      "C. 没有任何输出",
+      "D. 其他"
+    ],
+    "answer": "D",
+    "explanation": "case \"3\" 是字符串，而 day 是整数 3，类型不同匹配不上，只能落到兜底 case _。",
+    "verified": true,
+    "kind": "concept"
+  },
+  {
+    "id": "lab5-read-03",
+    "chapter": 5,
+    "chapterTitle": "流程控制",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter5/test2.py",
+    "sourceLocator": "第5章 代码自测 3",
+    "stem": "【读结果】score = 0 时输出几行、内容是什么？",
+    "code": "score = 0\nif score >= 90:\n    print(\"考试优秀\")\nelif 80 <= score < 90:\n    print(\"考试良好\")\nelif 60 <= score < 70:\n    print(\"考试及格\")\nelse:\n    print(\"考试不及格\")\n    print(\"Good luck to you!\")",
+    "options": [
+      "A. 两行：考试不及格 / Good luck to you!",
+      "B. 一行：考试不及格",
+      "C. 一行：考试优秀",
+      "D. 什么都不输出"
+    ],
+    "answer": "A",
+    "explanation": "所有条件都不成立走 else；else 块里有两条语句，靠缩进决定它们都属于 else。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab5-read-04",
+    "chapter": 5,
+    "chapterTitle": "流程控制",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter5/test3.py",
+    "sourceLocator": "第5章 代码自测 4",
+    "stem": "【读结果】gender = \"女\"、height = 165 时输出？",
+    "code": "gender = \"女\"\nheight = 165\nif gender == \"男\":\n    if height > 170:\n        print(\"高个子男生\")\n    else:\n        print(\"矮个子男生\")\nelse:\n    if height > 170:\n        print(\"高个子女生\")\n    else:\n        print(\"矮个子女生\")",
+    "options": [
+      "A. 高个子男生",
+      "B. 矮个子女生",
+      "C. 高个子女生",
+      "D. 矮个子男生"
+    ],
+    "answer": "B",
+    "explanation": "外层 gender == \"男\" 不成立走外层 else，内层 height > 170 不成立，输出矮个子女生。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab5-read-05",
+    "chapter": 5,
+    "chapterTitle": "流程控制",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter5/test4.py",
+    "sourceLocator": "第5章 代码自测 5",
+    "stem": "【读结果】循环结束后打印的 sum 是？",
+    "code": "i = 1\nsum = 0\nwhile i <= 10:\n    sum = sum + i\n    i = i + 1\nprint(sum)",
+    "options": [
+      "A. 10",
+      "B. 66",
+      "C. 55",
+      "D. 45"
+    ],
+    "answer": "C",
+    "explanation": "i 从 1 加到 10，sum = 1+2+…+10 = 55；i 变成 11 时条件不成立退出。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab5-read-06",
+    "chapter": 5,
+    "chapterTitle": "流程控制",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter5/test5.py",
+    "sourceLocator": "第5章 代码自测 6",
+    "stem": "【读结果】print(range(5)) 与累加结果依次是？",
+    "code": "print(range(5))\nresult = 0\nfor i in range(101):\n    result = result + i\nprint(result)",
+    "options": [
+      "A. [0, 1, 2, 3, 4] 和 5050",
+      "B. range(0, 5) 和 4950",
+      "C. 0 1 2 3 4 和 5050",
+      "D. range(0, 5) 和 5050"
+    ],
+    "answer": "D",
+    "explanation": "range 对象直接打印显示为 range(0, 5)；range(101) 生成 0~100，累加得 5050。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab5-read-07",
+    "chapter": 5,
+    "chapterTitle": "流程控制",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter5/test5.py",
+    "sourceLocator": "第5章 代码自测 7",
+    "stem": "【机制】range(101) 一共生成多少个数？",
+    "code": "result = 0\nfor i in range(101):\n    result = result + i\nprint(result)",
+    "options": [
+      "A. 101 个（0 到 100）",
+      "B. 100 个（1 到 100）",
+      "C. 101 个（1 到 101）",
+      "D. 100 个（0 到 99）"
+    ],
+    "answer": "A",
+    "explanation": "range(n) 从 0 开始、到 n-1 结束，共 n 个数；这里 n=101，所以是 0~100 共 101 个。",
+    "verified": true,
+    "kind": "concept"
+  },
+  {
+    "id": "lab5-read-08",
+    "chapter": 5,
+    "chapterTitle": "流程控制",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter5/test6.py",
+    "sourceLocator": "第5章 代码自测 8",
+    "stem": "【读结果】for ele in my_dict 时 ele 得到的是什么？",
+    "code": "my_dict = {'python 教程': 'http://a', 'java 教程': 'http://b'}\nfor ele in my_dict:\n    print(ele)",
+    "options": [
+      "A. 会抛异常",
+      "B. 字典的键（如 python 教程）",
+      "C. 字典的值（如 http://a）",
+      "D. 键值对组成的元组"
+    ],
+    "answer": "B",
+    "explanation": "直接遍历字典拿到的是键；要取值必须写 my_dict[ele]，要键值对用 my_dict.items()。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab5-read-09",
+    "chapter": 5,
+    "chapterTitle": "流程控制",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter5/test7.py",
+    "sourceLocator": "第5章 代码自测 9",
+    "stem": "【读结果】这一段（j=3）会打印几个式子？",
+    "code": "j = 3\ni = 1\nwhile i <= j:\n    print(f'{i}*{j}={j*i}', end='\\t')\n    i += 1\nprint()",
+    "options": [
+      "A. 1 个",
+      "B. 9 个",
+      "C. 3 个，写在同一行（用制表符分隔）",
+      "D. 3 个，各占一行"
+    ],
+    "answer": "C",
+    "explanation": "内层 i 从 1 到 3 共 3 次；end='\\t' 让它们不换行、用制表符隔开，最后的 print() 才换行。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab5-read-10",
+    "chapter": 5,
+    "chapterTitle": "流程控制",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter5/test9.py",
+    "sourceLocator": "第5章 代码自测 10",
+    "stem": "【机制】为什么输出里没有 i: 4，而且只有 j: 0 这一轮？",
+    "code": "for j in range(3):\n    for i in range(6):\n        if i == 4:\n            continue\n        print(\"j:\", j, \"i:\", i)\n    if j == 0:\n        break",
+    "options": [
+      "A. i==4 时 break 结束了全部循环",
+      "B. range(6) 里没有 4",
+      "C. 嵌套循环不能使用 continue",
+      "D. i==4 时 continue 跳过本轮剩余语句；内层跑完后 j==0 触发外层 break"
+    ],
+    "answer": "D",
+    "explanation": "continue 只跳过内层当前这一轮（所以缺 i: 4）；内层 6 轮结束后外层判断 j==0 成立，break 跳出外层。",
+    "verified": true,
+    "kind": "concept"
+  },
+  {
+    "id": "lab6-read-01",
+    "chapter": 6,
+    "chapterTitle": "组合数据类型",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter6/test13.py",
+    "sourceLocator": "第6章 代码自测 1",
+    "stem": "【读结果】两次展开生成器，第二行输出什么？",
+    "code": "tp = (i*2 for i in range(1, 10) if i%2 == 0)\nprint(tuple(tp))\nprint(list(tp))",
+    "options": [
+      "A. (4, 8, 12, 16)",
+      "B. 重复输出 (4, 8, 12, 16)",
+      "C. 抛出 StopIteration",
+      "D. []"
+    ],
+    "answer": "D",
+    "explanation": "tuple(tp) 已经把生成器取空，再 list(tp) 只能得到空列表——生成器只能遍历一次。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab6-read-02",
+    "chapter": 6,
+    "chapterTitle": "组合数据类型",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter6/test18.py",
+    "sourceLocator": "第6章 代码自测 2",
+    "stem": "【读结果】dc4 为什么是空字典 {}？",
+    "code": "l1 = [1, 2, 3]\nl2 = [10, 20, 30]\nit = zip(l1, l2)\ndc3 = {k*2: v*2 for k, v in it}\ndc4 = {k*2: v*2 for k, v in it}\nprint(dc3)\nprint(dc4)",
+    "options": [
+      "A. zip 返回的迭代器已被 dc3 的推导式取完",
+      "B. 字典推导式不能连续使用",
+      "C. l1 和 l2 长度不同",
+      "D. dc4 的键重复被去重了"
+    ],
+    "answer": "A",
+    "explanation": "zip 在 Python 3 返回一次性迭代器，第一次推导已耗尽，第二次自然得到空字典。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab6-read-03",
+    "chapter": 6,
+    "chapterTitle": "组合数据类型",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter6/test21.py",
+    "sourceLocator": "第6章 代码自测 3",
+    "stem": "【读结果】dc1 与 dc2 分别输出什么？",
+    "code": "dc = {'语文': 90}\ndc1 = dc\ndc2 = dc.copy()\ndc.update({'美术': 90})\nprint(dc1)\nprint(dc2)",
+    "options": [
+      "A. dc1 不含，dc2 含",
+      "B. dc1 含美术，dc2 不含美术",
+      "C. 两者都不含美术",
+      "D. 两者都含美术"
+    ],
+    "answer": "B",
+    "explanation": "dc1 = dc 只是起别名，指向同一个字典；dc2 = dc.copy() 是独立副本，不受后续修改影响。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab6-read-04",
+    "chapter": 6,
+    "chapterTitle": "组合数据类型",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter6/test11.py",
+    "sourceLocator": "第6章 代码自测 4",
+    "stem": "【读结果】这个带条件的多重推导式结果是？",
+    "code": "ls1 = [1, 2, 3]\nls2 = [3, 4, 5]\nls4 = [x+y for x in ls1 if x%2 == 0 for y in ls2 if y <= 4]\nprint(ls4)",
+    "options": [
+      "A. [5]",
+      "B. [4, 6, 8]",
+      "C. [5, 6]",
+      "D. [4, 5, 6]"
+    ],
+    "answer": "C",
+    "explanation": "x 只取偶数 2；y 取 3、4（5 被 y<=4 过滤）；相加得 5 和 6。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab6-read-05",
+    "chapter": 6,
+    "chapterTitle": "组合数据类型",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter6/test16.py",
+    "sourceLocator": "第6章 代码自测 5",
+    "stem": "【机制】discard 一个不存在的元素会怎样？",
+    "code": "st = {1, 2, 3}\nst.discard(99)\nprint(st)",
+    "options": [
+      "A. 抛出 KeyError",
+      "B. 抛出 TypeError",
+      "C. 集合被清空",
+      "D. 集合保持不变，正常输出 {1, 2, 3}"
+    ],
+    "answer": "D",
+    "explanation": "discard 删除不存在的元素不报错；换成 remove(99) 就会抛 KeyError——这是两者的关键区别。",
+    "verified": true,
+    "kind": "concept"
+  },
+  {
+    "id": "lab6-read-06",
+    "chapter": 6,
+    "chapterTitle": "组合数据类型",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter6/test17.py",
+    "sourceLocator": "第6章 代码自测 6",
+    "stem": "【找错】第二句 st.add([6, 7]) 会报什么错？",
+    "code": "st = {1, 2, 3}\nst.add((4, 5))\nst.add([6, 7])",
+    "options": [
+      "A. TypeError: unhashable type: 'list'",
+      "B. 正常运行，得到 {1,2,3,(4,5),[6,7]}",
+      "C. KeyError: 6",
+      "D. AttributeError: 'set' object has no attribute 'add'"
+    ],
+    "answer": "A",
+    "explanation": "集合元素必须可哈希（不可变）；元组可哈希能加入，列表可变不可哈希，加入时报 TypeError。",
+    "verified": false,
+    "kind": "fix"
+  },
+  {
+    "id": "lab6-read-07",
+    "chapter": 6,
+    "chapterTitle": "组合数据类型",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter6/test1.py",
+    "sourceLocator": "第6章 代码自测 7",
+    "stem": "【读结果】sorted 与 list(reversed(...)) 的结果依次是？",
+    "code": "tp = (10, 25, 16, 8, 32)\nprint(sorted(tp))\nprint(list(reversed(tp)))",
+    "options": [
+      "A. [32, 8, 16, 25, 10] 和 [8, 10, 16, 25, 32]",
+      "B. [8, 10, 16, 25, 32] 和 [32, 8, 16, 25, 10]",
+      "C. [8, 10, 16, 25, 32] 和 [8, 10, 16, 25, 32]",
+      "D. (8, 10, 16, 25, 32) 和 [32, 8, 16, 25, 10]"
+    ],
+    "answer": "B",
+    "explanation": "sorted 返回排好序的新列表；reversed 返回反向迭代器，需 list() 展开才能看到元素。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab6-read-08",
+    "chapter": 6,
+    "chapterTitle": "组合数据类型",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter6/test12.py",
+    "sourceLocator": "第6章 代码自测 8",
+    "stem": "【读结果】append 之后再 extend，列表变成？",
+    "code": "ls = [1, 2, 3]\nls.append([4, 5])\nls.extend([6, 7])\nprint(ls)",
+    "options": [
+      "A. [1, 2, 3, [4, 5, [6, 7]]]",
+      "B. [1, 2, 3, 6, 7]",
+      "C. [1, 2, 3, [4, 5], 6, 7]",
+      "D. [1, 2, 3, 4, 5, 6, 7]"
+    ],
+    "answer": "C",
+    "explanation": "append 把 [4,5] 整个当成一个元素塞进去；extend 才把 6、7 逐个追加。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab7-read-01",
+    "chapter": 7,
+    "chapterTitle": "函数",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter7/test10.py",
+    "sourceLocator": "第7章 代码自测 1",
+    "stem": "【读结果】混合参数传递后，args 与 kwargs 分别是什么？",
+    "code": "def test1(a, b, c=33, *args, **kwargs):\n    print(a, b, c, args, kwargs)\n\ntest1(1, 2, 3, 4, 6, e=6)",
+    "options": [
+      "A. args=(4, 6)，kwargs={'e': 6}",
+      "B. args=(4,)，kwargs={'e': 6}",
+      "C. args=(3, 4, 6)，kwargs={}",
+      "D. args=()，kwargs={'e': 6}"
+    ],
+    "answer": "A",
+    "explanation": "a=1、b=2、c=3 按位置填满，多出来的 4 和 6 都进 *args；e=6 是关键字参数进 **kwargs。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab7-read-02",
+    "chapter": 7,
+    "chapterTitle": "函数",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter7/test5.py",
+    "sourceLocator": "第7章 代码自测 2",
+    "stem": "【读结果】return 了三个值并用三个变量接收，输出是？",
+    "code": "def add(x, y, z):\n    return x+y, z-y, \"python\"\n\nx, y, z = add(10, 20, 30)\nprint(x, y, z)",
+    "options": [
+      "A. TypeError: too many values to unpack",
+      "B. 30 10 python",
+      "C. 30 20 python",
+      "D. 10 30 python"
+    ],
+    "answer": "B",
+    "explanation": "return x+y, z-y, \"python\" 返回元组 (30,10,'python')，序列解包依次赋给 x、y、z。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab7-read-03",
+    "chapter": 7,
+    "chapterTitle": "函数",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter7/test15.py",
+    "sourceLocator": "第7章 代码自测 3",
+    "stem": "【机制】这段代码的输出顺序说明什么？",
+    "code": "def gen(n):\n    print(\"开始执行\")\n    i = 0\n    while i < n:\n        yield i\n        i += 1\n\ng = gen(2)\nprint(\"创建完毕\")\nprint(next(g))",
+    "options": [
+      "A. 两行内容都不会输出",
+      "B. 调用 gen(2) 时函数体已经跑完",
+      "C. 先“创建完毕”，再“开始执行”，最后 0：生成器函数体在首次取值时才运行",
+      "D. 先“开始执行”，再“创建完毕”，最后 0"
+    ],
+    "answer": "C",
+    "explanation": "调用生成器函数只是造出生成器对象，函数体一行都不执行；第一次 next() 才真正开始运行并停在 yield。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab7-read-04",
+    "chapter": 7,
+    "chapterTitle": "函数",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter7/test16.py",
+    "sourceLocator": "第7章 代码自测 4",
+    "stem": "【找错】生成器只产 2 个值，第三次 next(g) 会怎样？",
+    "code": "def gen(n):\n    i = 0\n    while i < n:\n        yield i\n        i += 1\n\ng = gen(2)\nprint(next(g), next(g))\nprint(next(g))",
+    "options": [
+      "A. 输出 2",
+      "B. 输出 0 并重新开始",
+      "C. 陷入死循环",
+      "D. 抛出 StopIteration 异常"
+    ],
+    "answer": "D",
+    "explanation": "生成器 yield 完 n 个值就结束，再多取一次必抛 StopIteration；应改用 for 遍历或 try-except。",
+    "verified": false,
+    "kind": "fix"
+  },
+  {
+    "id": "lab7-read-05",
+    "chapter": 7,
+    "chapterTitle": "函数",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter7/test20.py",
+    "sourceLocator": "第7章 代码自测 5",
+    "stem": "【读结果】map 对象先被 next 取走一个元素，剩下的是什么？",
+    "code": "ls = [1, 2, 3, 4, 5]\nres = map(lambda x: x*x, ls)\nprint(next(res))\nprint([i for i in res])",
+    "options": [
+      "A. [4, 9, 16, 25]",
+      "B. [1, 4, 9, 16, 25]",
+      "C. [1]",
+      "D. []"
+    ],
+    "answer": "A",
+    "explanation": "map 返回一次性迭代器；next(res) 已取走 1，剩余 4、9、16、25。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab7-read-06",
+    "chapter": 7,
+    "chapterTitle": "函数",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter7/test17.py",
+    "sourceLocator": "第7章 代码自测 6",
+    "stem": "【机制】“装饰中”这三个字在什么时候打印？",
+    "code": "def wrapper(fun):\n    print(\"装饰中\")\n    def inner():\n        print(\"验证\")\n        fun()\n    return inner\n\n@wrapper\ndef test():\n    print(\"test\")\n\nprint(\"---\")\ntest()",
+    "options": [
+      "A. 永远不会打印",
+      "B. 定义 test 时（即 @wrapper 生效那一刻）",
+      "C. 调用 test() 时",
+      "D. import 该模块时"
+    ],
+    "answer": "B",
+    "explanation": "@wrapper 等价于 test = wrapper(test)，装饰发生在函数定义时，所以先打印“装饰中”，再打印“---”，最后才执行 inner。",
+    "verified": true,
+    "kind": "concept"
+  },
+  {
+    "id": "lab7-read-07",
+    "chapter": 7,
+    "chapterTitle": "函数",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter7/test12.py",
+    "sourceLocator": "第7章 代码自测 7",
+    "stem": "【读结果】inner 里的 print 与 outer 里的 print 分别输出？",
+    "code": "n = 10\ndef outer():\n    n = 1\n    def inner():\n        n = 2\n        print(n)\n    inner()\n    print(n)\nouter()",
+    "options": [
+      "A. 10 和 10",
+      "B. 1 和 2",
+      "C. 2 和 1",
+      "D. 2 和 2"
+    ],
+    "answer": "C",
+    "explanation": "inner 里的 n = 2 创建了新的局部变量（没有 nonlocal），不影响 outer 的 n=1。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab7-read-08",
+    "chapter": 7,
+    "chapterTitle": "函数",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter7/test11.py",
+    "sourceLocator": "第7章 代码自测 8",
+    "stem": "【机制】函数内只读取 number、没有赋值，为什么能拿到 10？",
+    "code": "number = 10\ndef test():\n    print(number)\ntest()",
+    "options": [
+      "A. 因为 number 是内置变量",
+      "B. 因为用了 global 声明",
+      "C. 会报 NameError",
+      "D. 沿 LEGB 规则向外查找，找到了全局变量 number"
+    ],
+    "answer": "D",
+    "explanation": "函数内只读不写时，Python 依次查局部→闭包→全局→内置命名空间，找到全局的 number=10。",
+    "verified": true,
+    "kind": "concept"
+  },
+  {
+    "id": "lab8-read-01",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test2.py",
+    "sourceLocator": "第8章 代码自测 1",
+    "stem": "【读结果】最后一行输出什么？",
+    "code": "class Car:\n    color = \"red\"\n\ncar = Car()\nCar.color = \"white\"\ncar.color = \"black\"\nprint(Car.color, car.color)",
+    "options": [
+      "A. red black",
+      "B. white black",
+      "C. black black",
+      "D. white white"
+    ],
+    "answer": "B",
+    "explanation": "Car.color='white' 改类属性；car.color='black' 给实例新建了同名实例属性，从此实例属性优先，类属性仍是 white。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab8-read-02",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test3.py",
+    "sourceLocator": "第8章 代码自测 2",
+    "stem": "【找错】最后一行 print(Car.color) 会怎样？",
+    "code": "class Car:\n    def drive(self):\n        self.color = \"white\"\n\ncar = Car()\ncar.drive()\nprint(Car.color)",
+    "options": [
+      "A. 输出 None",
+      "B. 输出 red",
+      "C. 抛 AttributeError：类对象 Car 上没有 color 属性",
+      "D. 输出 white"
+    ],
+    "answer": "C",
+    "explanation": "self.color='white' 只给实例加了属性，类上并没有 color，所以用类名访问会报 AttributeError。",
+    "verified": false,
+    "kind": "fix"
+  },
+  {
+    "id": "lab8-read-03",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test6.py",
+    "sourceLocator": "第8章 代码自测 3",
+    "stem": "【机制】类方法里 cls.color = \"red\" 改的是谁？",
+    "code": "class Car:\n    color = \"black\"\n    @classmethod\n    def stop1(cls):\n        cls.color = \"red\"\n\ncar = Car()\ncar.stop1()\nprint(Car.color)",
+    "options": [
+      "A. 只是 car 这个实例的属性",
+      "B. 两个都改",
+      "C. 改不了，会报错",
+      "D. 类属性，所以 Car.color 也变成 red"
+    ],
+    "answer": "D",
+    "explanation": "cls 代表类本身，cls.属性 = 值 改的是类属性，对所有没有自己同名实例属性的对象都生效。",
+    "verified": true,
+    "kind": "concept"
+  },
+  {
+    "id": "lab8-read-04",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test7.py",
+    "sourceLocator": "第8章 代码自测 4",
+    "stem": "【找错】静态方法里写 self.color 会发生什么？",
+    "code": "class Car:\n    color = \"black\"\n    @staticmethod\n    def test():\n        print(self.color)",
+    "options": [
+      "A. 报 NameError：静态方法没有 self 参数",
+      "B. 正常输出 black",
+      "C. 输出 None",
+      "D. 自动把实例传进来"
+    ],
+    "answer": "A",
+    "explanation": "静态方法既没有 self 也没有 cls，方法体里根本没有 self 这个名字；要访问类属性得写 Car.color。",
+    "verified": false,
+    "kind": "fix"
+  },
+  {
+    "id": "lab8-read-05",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test9.py",
+    "sourceLocator": "第8章 代码自测 5",
+    "stem": "【读结果】赋值 p.age = 25 之后再读取，输出是？",
+    "code": "class Person:\n    def __init__(self):\n        self.__age = 18\n    @property\n    def age(self):\n        return self.__age\n    @age.setter\n    def age(self, v):\n        self.__age = v + 1\n\np = Person()\np.age = 25\nprint(p.age)",
+    "options": [
+      "A. AttributeError",
+      "B. 26",
+      "C. 25",
+      "D. 18"
+    ],
+    "answer": "B",
+    "explanation": "setter 里写的是 self.__age = v + 1，所以实际存进去是 26；@property 让 age 可以像属性一样读写。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab8-read-06",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test11.py",
+    "sourceLocator": "第8章 代码自测 6",
+    "stem": "【找错】del car 之后再访问 car.color 会怎样？",
+    "code": "class Car:\n    def __init__(self):\n        self.color = \"blue\"\n    def __del__(self):\n        print(\"销毁\")\n\ncar = Car()\ndel car\nprint(car.color)",
+    "options": [
+      "A. 输出 None",
+      "B. 抛 AttributeError",
+      "C. NameError：car 这个名字已经不存在了，同时对象被回收会打印“销毁”",
+      "D. 输出 blue"
+    ],
+    "answer": "C",
+    "explanation": "del 删除的是变量名（引用）；对象没有引用后被回收并触发 __del__，之后再使用 car 这个名字就是 NameError。",
+    "verified": false,
+    "kind": "fix"
+  },
+  {
+    "id": "lab8-read-07",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test17.py",
+    "sourceLocator": "第8章 代码自测 7",
+    "stem": "【读结果】D().show() 输出什么？",
+    "code": "class A:\n    def show(self):\n        print(\"A.show()\")\nclass B(A):\n    pass\nclass C(A):\n    def show(self):\n        print(\"C.show()\")\nclass D(B, C):\n    pass\nD().show()",
+    "options": [
+      "A. A.show()",
+      "B. B.show()",
+      "C. 抛 AttributeError",
+      "D. C.show()"
+    ],
+    "answer": "D",
+    "explanation": "MRO 顺序是 D → B → C → A，B 没有定义 show，于是取 C 的 show()。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab8-read-08",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test24.py",
+    "sourceLocator": "第8章 代码自测 8",
+    "stem": "【读结果】两个父类都有 play，子类这样写会执行哪一个？",
+    "code": "class House:\n    def play(self):\n        print(\"House play!\")\nclass Car:\n    def play(self):\n        print(\"Car play!\")\nclass TouringCar(House, Car):\n    pass\n\nTouringCar().play()",
+    "options": [
+      "A. House play!（父类列表中写在前面的优先）",
+      "B. Car play!",
+      "C. 两个都执行",
+      "D. 报错：方法冲突"
+    ],
+    "answer": "A",
+    "explanation": "多继承按 MRO 顺序查找同名成员，House 在 Car 前面，所以先找到 House.play()。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab8-read-09",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test23.py",
+    "sourceLocator": "第8章 代码自测 9",
+    "stem": "【找错】子类实例访问父类的私有属性会怎样？",
+    "code": "class Dog:\n    def __init__(self):\n        self.__age = 18\nclass WolfDog(Dog):\n    pass\n\nw = WolfDog()\nprint(w.__age)",
+    "options": [
+      "A. 输出 0",
+      "B. AttributeError：子类不继承父类的私有成员",
+      "C. 输出 18",
+      "D. 输出 None"
+    ],
+    "answer": "B",
+    "explanation": "私有属性名被改写为 _Dog__age，子类实例上只有 _WolfDog__* 的改写形式，所以访问不到。",
+    "verified": false,
+    "kind": "fix"
+  },
+  {
+    "id": "lab8-read-10",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test26.py",
+    "sourceLocator": "第8章 代码自测 10",
+    "stem": "【机制】函数 f 不关心传进来的是什么类型，这体现了什么？",
+    "code": "class Cat:\n    def shout(self):\n        print(\"喵喵喵...\")\nclass Dog:\n    def shout(self):\n        print(\"汪汪汪...\")\n\ndef f(obj):\n    obj.shout()\n\nf(Cat())\nf(Dog())",
+    "options": [
+      "A. 封装：把方法藏起来",
+      "B. 重载：同名函数定义两次",
+      "C. 多态（鸭子类型）：只要对象有 shout 方法就能被调用",
+      "D. 继承：Cat 和 Dog 必须继承同一个父类"
+    ],
+    "answer": "C",
+    "explanation": "Cat 与 Dog 没有继承关系，但都实现了 shout；f 只依赖“有这个方法”，这就是 Python 的多态。",
+    "verified": true,
+    "kind": "concept"
+  },
+  {
+    "id": "lab8-read-11",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test12.py",
+    "sourceLocator": "第8章 代码自测 11",
+    "stem": "【机制】实例化 Demo() 时两个方法的执行顺序是？",
+    "code": "class Demo:\n    def __new__(cls, *args, **kwargs):\n        print(\"__new__ 执行\")\n        return super().__new__(cls)\n    def __init__(self):\n        print(\"__init__ 执行\")\n\nDemo()",
+    "options": [
+      "A. 先 __init__ 后 __new__",
+      "B. 只执行 __init__",
+      "C. 只执行 __new__",
+      "D. 先 __new__ 后 __init__"
+    ],
+    "answer": "D",
+    "explanation": "__new__ 负责创建并返回实例，只有它返回了对象，__init__ 才会被调用来初始化。",
+    "verified": true,
+    "kind": "concept"
+  },
+  {
+    "id": "lab8-read-12",
+    "chapter": 8,
+    "chapterTitle": "类与对象",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter8/test5.py",
+    "sourceLocator": "第8章 代码自测 12",
+    "stem": "【机制】为什么 car.__color 在类外访问不到，而 car._wheels 可以？",
+    "code": "class Car:\n    __color = \"white\"\n    _wheels = 4\n\n    def testColor(self):\n        print(self.__color)\n\ncar = Car()\ncar.testColor()\nprint(car._wheels)",
+    "options": [
+      "A. 双下划线触发了名称改写（_Car__color），单下划线只是约定、语法上仍可访问",
+      "B. 双下划线表示常量，单下划线表示变量",
+      "C. 两者都应该报错",
+      "D. 因为 __color 是实例属性"
+    ],
+    "answer": "A",
+    "explanation": "私有属性 __color 被改写成 _Car__color，类外用原名访问会失败；单下划线 _wheels 只是“别乱用”的约定。",
+    "verified": true,
+    "kind": "concept"
   }
 ];
 
@@ -4836,7 +5736,8 @@ window.CODE_LAB = [
         "name": "test6.py",
         "code": "import turtle\nturtle.circle(90,60)\nturtle.home()\nturtle.circle(90,-60)\nturtle.home()\nturtle.circle(-90,60)\nturtle.home()\nturtle.circle(-90, -60)\nturtle.home()\nturtle.goto(0,50)\nturtle.fillcolor('red')\nturtle.begin_fill()\nturtle.circle(50)\nturtle.end_fill()\nturtle.goto(0, -120)\nturtle.circle(50,steps=6)\nturtle.done()"
       }
-    ]
+    ],
+    "updated": false
   },
   {
     "n": 2,
@@ -4885,7 +5786,8 @@ window.CODE_LAB = [
         "name": "test8.py",
         "code": "f = open(\"test.txt\", 'w')\nf.write(\"Python is a great language.\\n\")\nf.write(\"Python is a great language.\\n\")\nf.write(\"Python is a great language.\\n\")\nf.close()"
       }
-    ]
+    ],
+    "updated": false
   },
   {
     "n": 3,
@@ -4950,7 +5852,8 @@ window.CODE_LAB = [
         "name": "test14.py",
         "code": "import random\n\n\ndef main():\n    # 游戏选项\n    options = ['剪刀', '石头', '布']\n\n    # 玩家赢的组合\n    winning_combinations = [\n        ['剪刀', '布'],  # 剪刀赢布\n        ['石头', '剪刀'],  # 石头赢剪刀\n        ['布', '石头']  # 布赢石头\n    ]\n\n    print(\"欢迎来到猜拳游戏！\")\n    print(\"请输入你的选择：0-剪刀，1-石头，2-布\")\n\n    # 让玩家输入选择\n    while True:\n        try:\n            player_choice_index = int(input(\"请输入 0、1 或 2：\"))\n            if player_choice_index in [0, 1, 2]:\n                break\n            else:\n                print(\"输入无效，请输入 0、1 或 2！\")\n        except ValueError:\n            print(\"输入无效，请输入数字！\")\n\n    player_choice = options[player_choice_index]\n    print(f\"\\n你选择了：{player_choice}\")\n\n    # 计算机随机选择\n    computer_choice_index = random.randint(0, 2)\n    computer_choice = options[computer_choice_index]\n    print(f\"计算机选择了：{computer_choice}\\n\")\n\n    # 判断输赢\n    if player_choice == computer_choice:\n        print(\"平局！\")\n    elif [player_choice, computer_choice] in winning_combinations:\n        print(\"你赢了！\")\n    else:\n        print(\"你输了！\")\n\n\nif __name__ == \"__main__\":\n    main()"
       }
-    ]
+    ],
+    "updated": false
   },
   {
     "n": 4,
@@ -4964,30 +5867,77 @@ window.CODE_LAB = [
     ],
     "files": [
       {
-        "name": "test0.py",
-        "code": "x=3.5\ny=4.6\nz=5.7\nprint(40//2**2)"
-      },
-      {
         "name": "test1.py",
-        "code": "a = int( input(\"输入数字a：\") )\nb = int( input(\"输入数字b：\") )\n\nprint(\"a 大于b\") if a>b else ( print(\"a 小于b\") if a<b else print(\"a 等于b\") )"
+        "code": "#a = int( input(\"输入数字a：\") )\n#b = int( input(\"输入数字b：\") )\n\n#print(\"a 大于b\") if a>b else ( print(\"a 小于b\") if a<b else print(\"a 等于b\") )\n\na =0\n\nb = a and print(\"1a:\", a)\n\nprint(\"1b:\", b)\n\nb = not a and print(\"2a:\", a)\n\nprint(\"2b:\", b)\n\nb = a or print(\"3a:\", a)\n\nprint(\"3b:\", b)\n\nb = not a or print(\"4a:\", a)\n\nprint(\"4b:\", b)",
+        "updated": true,
+        "title": "and / or / not 的返回值与短路求值",
+        "notes": [
+          "a = 0，b = a and print(...)：and 左边为假直接短路，print 不执行，b 得到操作数本身 0。所以没有 \"1a:\" 输出，只有 \"1b: 0\"。",
+          "b = not a and print(\"2a:\",a)：not 0 得 True，and 左边为真必须继续算右边，print 先输出 \"2a: 0\"，而 print 的返回值是 None，故 b = None。",
+          "b = a or print(\"3a:\",a)：a=0 为假，or 继续算右边，print 输出 \"3a: 0\"，b 同样得到 None。",
+          "b = not a or print(...)：not 0 为 True，or 直接短路，右侧 print 不执行，b = True。",
+          "结论：and / or 返回的是“参与运算的那个操作数本身”，不一定返回 True/False；只有 not 一定返回 bool。"
+        ],
+        "pitfall": "别以为 a and f() 一定会调用 f()——左边为假时 f() 根本不会执行。这是短路求值最常考的点。",
+        "output": "1b: 0\n2a: 0\n2b: None\n3a: 0\n3b: None\n4b: True"
       },
       {
         "name": "test2.py",
-        "code": "x=5\nsum=x+(y :=10)\nprint(sum)\nprint(y)"
+        "code": "name = \"小花\"\nclass_list = [\"小红\",\"小花\",\"小敏\"]\nprint(name in class_list)\nprint(\"小王\" in class_list)\n\n\n\"\"\"\nx=5\nsum=x+(y :=10)\nprint(sum)\nprint(y)\n\"\"\"",
+        "updated": true,
+        "title": "成员运算符 in",
+        "notes": [
+          "\"小花\" 在列表 class_list 中，name in class_list 返回 True。",
+          "\"小王\" 不在列表中，返回 False。",
+          "in / not in 用于判断元素是否属于序列或容器，结果是布尔值。",
+          "文件下方用三引号包住的海象运算符（:=）示例被当成注释，不参与执行。"
+        ],
+        "output": "True\nFalse"
       },
       {
         "name": "test3.py",
-        "code": "x = [1, 2, 3]\ny = [1, 2, 3]\nz = x\nprint(\"x is y: \", x is y)\nprint(\"z is x: \", z is x)\nprint(\"x == y: \", x == y)\nprint(\"z == x: \", z == x)"
+        "code": "\nx = [1, 2, 3]\ny = [1, 2, 3]\nz = x\n\nprint(\"id x: \", id(x)) #地址\nprint(\"id y: \", id(y)) #地址\nprint(\"id z: \", id(z)) #地址\n\n\nprint(\"x is y: \", x is y)\nprint(\"x is not y: \", x is not y)\nprint(\"z is x: \", z is x)\nprint(\"x == y: \", x == y)\nprint(\"z == x: \", z == x)\n\nx=0;\n\nx +=1;\n\nprint(x)\n\nA={1,2,3,4,5}\nB={1,3,5,7,9,11}\n\nprint(\"A&B\",A&B)\n\nprint(\"A|B\",A|B)\n\nprint(\"A-B\",A-B)\n\nprint(\"A^B\",A^B)",
+        "updated": true,
+        "title": "is 与 == 的区别、集合运算符",
+        "notes": [
+          "x = [1,2,3] 与 y = [1,2,3] 内容相同但创建了两个不同对象，id 不同，所以 x is y 为 False，而 x == y 为 True。",
+          "z = x 只让 z 指向同一个对象，id(z) 与 id(x) 相同，所以 z is x 为 True。",
+          "is 比较的是身份（是不是同一个内存对象），== 比较的是值是否相等。",
+          "x += 1 后 x 变成 1（此处 x 已被重新赋值为整数 0，再自增）。",
+          "A&B 交集、A|B 并集、A-B 差集（在 A 不在 B）、A^B 对称差（只属于其中一个集合）。"
+        ],
+        "pitfall": "id 的具体数字每次运行都不一样，考试只会问 is / == 的 True/False，不会让你背地址。",
+        "output": "id x:  2161295350528\nid y:  2161308922368\nid z:  2161295350528\nx is y:  False\nx is not y:  True\nz is x:  True\nx == y:  True\nz == x:  True\n1\nA&B {1, 3, 5}\nA|B {1, 2, 3, 4, 5, 7, 9, 11}\nA-B {2, 4}\nA^B {2, 4, 7, 9, 11}"
       },
       {
         "name": "test4.py",
-        "code": "x = int( input(\"输入数字x：\") )\ny = int( input(\"输入数字y：\") )\n\nprint(x+y if x>y else (x-y if x+y>10 else x*y))\n\n\n\n\"\"\"\ndef comparexy(x, y):\n    if x>y:\n        return x+y\n    else:\n        return x-y\n\"\"\""
+        "code": "x = int( input(\"输入数字x：\") )\ny = int( input(\"输入数字y：\") )\n\nprint(x-y if x+y>10 else x*y)\n\nprint(x+y if x>y else (x-y if x+y>10 else x*y))\n\n\n\n\"\"\"\ndef comparexy(x, y):\n    if x>y:\n        return x+y\n    else:\n        return x-y\n\"\"\"",
+        "updated": true,
+        "title": "三目（条件）表达式与嵌套",
+        "notes": [
+          "语法是 值A if 条件 else 值B：条件为真取 A，为假取 B。",
+          "输入 x=8、y=3：x+y=11>10 成立，所以 x-y if x+y>10 else x*y 取 8-3 = 5。",
+          "第二个表达式先判断 x>y（8>3 成立），直接取 x+y = 11，后面的嵌套分支不再求值。",
+          "三目表达式可以嵌套，但可读性差，复杂逻辑仍应写 if-else。",
+          "文件下方被三引号注释的 comparexy() 函数，就是这段三目表达式的等价 if-else 写法，可对照理解。"
+        ],
+        "output": "输入数字x：输入数字y：5\n11",
+        "stdin": "8\n3\n"
       },
       {
         "name": "test5.py",
-        "code": "for i in range(10,20):\n    print(i)"
+        "code": "for i in range(10,20):\n    print(i)",
+        "updated": true,
+        "title": "range() 的左闭右开",
+        "notes": [
+          "range(10, 20) 生成 10,11,…,19 共 10 个整数，包含起点 10，不包含终点 20。",
+          "for i in range(10,20) 依次把每个整数赋给 i 并打印，所以输出 10 到 19 各一行。"
+        ],
+        "pitfall": "range(a, b) 永远不含 b；range(5) 等价于 range(0,5)，输出 0~4。",
+        "output": "10\n11\n12\n13\n14\n15\n16\n17\n18\n19"
       }
-    ]
+    ],
+    "updated": true
   },
   {
     "n": 5,
@@ -5002,9 +5952,131 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test1.py",
-        "code": "day=input(\"请输入一个数字(1～7)：\")\n\nmatch day:\n    case \"1\":\n        print(\"星期一\")\n    case \"2\":\n        print(\"星期二\")\n    case \"3\":\n        print(\"星期三\")\n    case \"4\":\n        print(\"星期四\")\n    case \"5\":\n        print(\"星期五\")\n    case \"6\":\n        print(\"星期六\")\n    case \"7\":\n        print(\"星期日\")\n    case _:\n        print(\"请输入一个有效数字！\")"
+        "code": "day=input(\"请输入一个数字(1～7)：\")\n\nmatch day:\n    case \"1\":\n        print(\"星期一\")\n    case \"2\":\n        print(\"星期二\")\n    case \"3\":\n        print(\"星期三\")\n    case \"4\":\n        print(\"星期四\")\n    case \"5\":\n        print(\"星期五\")\n    case \"6\":\n        print(\"星期六\")\n    case \"7\":\n        print(\"星期日\")\n    case _: #缺省 default\n        print(\"请输入一个有效数字！\")",
+        "updated": true,
+        "title": "match-case 结构匹配",
+        "notes": [
+          "day = input(...) 得到的是字符串，match day 用字符串字面量 \"1\"~\"7\" 逐个比对。",
+          "输入 3 时命中 case \"3\"，输出“星期三”，执行完该分支即退出 match，不再看后面的分支。",
+          "case _ 是通配（相当于 default），前面所有 case 都不匹配时才执行。",
+          "分支可以有多个语句，但必须缩进在 case 之下。"
+        ],
+        "pitfall": "input() 返回 str，如果把分支写成 case 3（整数）就永远匹配不上，这是最常见的错。",
+        "output": "请输入一个数字(1～7)：星期三",
+        "stdin": "3\n"
+      },
+      {
+        "name": "test2.py",
+        "code": "\"\"\"\nscore = 50\n\nif score >= 60:\n    print(\"成绩合格，你很棒！\")\n\nprint(\"欢迎来到Python 语言课堂\")\n\nscore = 50\nif score >= 60:\n    print(\"考试合格\")\nelse:\n    print(\"考试不及格\")\n\n\"\"\"\n\nscore = 0\nif score >=90:\n    print(\"考试优秀\")\nelif 80<=score <90:\n    print(\"考试良好\")\nelif 70<=score <80:\n    print(\"考试中等\")\nelif 60<=score <70:\n    print(\"考试及格\")\nelse:\n    print(\"考试不及格\")\n    print(\"Good luck to you!\")",
+        "updated": true,
+        "title": "if-elif-else 多分支",
+        "notes": [
+          "三引号里包住的是老师演示用的单分支、双分支示例，被当作多行注释，不执行。",
+          "score = 0：>=90、80~90、70~80、60~70 四个条件都不成立，最终走 else。",
+          "else 块中有两条语句（“考试不及格”和“Good luck to you!”），所以输出两行。",
+          "elif 即 else if：多分支只会执行第一个成立的分支，其余跳过。"
+        ],
+        "output": "考试不及格\nGood luck to you!"
+      },
+      {
+        "name": "test3.py",
+        "code": "gender = \"男\"\nheight = 172\n\nif gender == \"男\":\n    if height > 170:\n        print(\"高个子男生\")\n    else:\n        print(\"矮个子男生\")\nelse:\n    if height > 170:\n        print(\"高个子女生\")\n    else:\n        print(\"矮个子女生\")",
+        "updated": true,
+        "title": "if 语句嵌套",
+        "notes": [
+          "外层先判断 gender == \"男\"，成立后再进内层判断 height > 170。",
+          "gender=\"男\"、height=172，两层都成立，输出“高个子男生”。",
+          "外层条件不成立时走外层 else，再在外层 else 里做内层判断，形成 4 种组合。",
+          "else 与同缩进级别的 if 配对，缩进决定了层次。"
+        ],
+        "output": "高个子男生"
+      },
+      {
+        "name": "test4.py",
+        "code": "i=1\nsum=0\n\nwhile i<=10:\n    print(\"i\", i)\n    sum = sum+i\n    print(\"sum\", sum)\n    i =i+1\n\nprint(sum)",
+        "updated": true,
+        "title": "while 循环累加与过程输出",
+        "notes": [
+          "i 从 1 开始，每轮先把 i 加到 sum，再打印当前的 i 和 sum，最后 i 自增 1。",
+          "输出可以看到 sum 的变化：1、3、6、10、15、21、28、36、45、55。",
+          "循环在 i 变成 11 时因 i<=10 不成立而自然结束，循环结束后最后一行打印总和 55。",
+          "1+2+…+10 = 55，这是等差求和的经典结果。"
+        ],
+        "output": "i 1\nsum 1\ni 2\nsum 3\ni 3\nsum 6\ni 4\nsum 10\ni 5\nsum 15\ni 6\nsum 21\ni 7\nsum 28\ni 8\nsum 36\ni 9\nsum 45\ni 10\nsum 55\n55"
+      },
+      {
+        "name": "test5.py",
+        "code": "print(\"计算 1+2+…+100 的结果为：\")\nprint(range(5))\n\nresult = 0\n\nfor i in range(101):\n    result = result + i\n\nprint(result)",
+        "updated": true,
+        "title": "for + range 累加，以及 range 对象的打印",
+        "notes": [
+          "print(range(5)) 打印的是 range 对象本身，显示为 range(0, 5)，不是 [0,1,2,3,4]。",
+          "range(101) 生成 0~100 共 101 个数，累加结果 5050。",
+          "result 初值必须为 0，否则无法做累加（会 NameError）。",
+          "循环体 result = result + i 每轮把当前 i 加到累计值上。"
+        ],
+        "pitfall": "range(101) 是从 0 开始、到 100 结束（不含 101），求和时 0 不影响结果，但个数要数对。",
+        "output": "计算 1+2+…+100 的结果为：\nrange(0, 5)\n5050"
+      },
+      {
+        "name": "test6.py",
+        "code": "my_list = [1,2,3]\nfor ele in my_list:\n    print('ele =', ele)\n\n\nmy_tuple = (4,5,6)\nfor ele in my_tuple:\n    print('ele =', ele)\n\nmy_dict = {'python 教程':\"http://www.ahu.net/python/\",\\\n           'shell 教程':\"http://www.ahu.net/shell/\",\\\n           'java 教程':\"http://www.ahu.net/java/\"}\n\nfor ele in my_dict:\n    print('ele =', ele)\n    print('dict[ele]=',my_dict[ele])\n\nset1 = {2,3,4}\n\nfor i in set1:\n    print(i)\n\nstr = \"北京工业大学\"\n\nfor i in str:\n    print(i)",
+        "updated": true,
+        "title": "for 遍历列表、元组、字典、集合、字符串",
+        "notes": [
+          "列表 [1,2,3] 和元组 (4,5,6) 遍历时迭代变量依次得到每个元素。",
+          "遍历字典时迭代变量拿到的是“键”，要取对应的值必须写 my_dict[ele]。",
+          "集合 {2,3,4} 也能直接遍历，但集合是无序的，输出顺序不保证与书写顺序一致。",
+          "字符串 \"北京工业大学\" 遍历时每次得到一个汉字，所以竖着打印成 6 行。"
+        ],
+        "pitfall": "字典直接 for 循环拿到的是键不是键值对；想要键值对用 my_dict.items()。",
+        "output": "ele = 1\nele = 2\nele = 3\nele = 4\nele = 5\nele = 6\nele = python 教程\ndict[ele]= http://www.ahu.net/python/\nele = shell 教程\ndict[ele]= http://www.ahu.net/shell/\nele = java 教程\ndict[ele]= http://www.ahu.net/java/\n2\n3\n4\n北\n京\n工\n业\n大\n学"
+      },
+      {
+        "name": "test7.py",
+        "code": "j = 1\nwhile j <= 9:\n    i = 1\n    while i <= j:\n        print(f'{i}*{j}={j*i}', end='\\t')\n        i += 1\n    print()\n    j += 1\n\n#leetcode.com 力扣社区#",
+        "updated": true,
+        "title": "while 嵌套打印九九乘法表",
+        "notes": [
+          "外层 j 控制行（1~9），内层 i 控制列，且 i <= j，所以第 j 行有 j 个式子。",
+          "print(f'{i}*{j}={j*i}', end='\\t') 中 end='\\t' 表示输出后不换行、改用制表符分隔，同一行的式子才排在一行。",
+          "内层循环结束后执行 print()，输出一个空行实现换行，再进入下一行。",
+          "内层每轮都要把 i 重新置 1，否则第二轮内层不会执行。"
+        ],
+        "pitfall": "内层 i = 1 的初始化必须写在外层循环体内、内层循环之前，写错位置会导致只打印一行。",
+        "output": "1*1=1\t\n1*2=2\t2*2=4\t\n1*3=3\t2*3=6\t3*3=9\t\n1*4=4\t2*4=8\t3*4=12\t4*4=16\t\n1*5=5\t2*5=10\t3*5=15\t4*5=20\t5*5=25\t\n1*6=6\t2*6=12\t3*6=18\t4*6=24\t5*6=30\t6*6=36\t\n1*7=7\t2*7=14\t3*7=21\t4*7=28\t5*7=35\t6*7=42\t7*7=49\t\n1*8=8\t2*8=16\t3*8=24\t4*8=32\t5*8=40\t6*8=48\t7*8=56\t8*8=64\t\n1*9=9\t2*9=18\t3*9=27\t4*9=36\t5*9=45\t6*9=54\t7*9=63\t8*9=72\t9*9=81\t"
+      },
+      {
+        "name": "test8.py",
+        "code": "layer = int(input(\"请输入您想打印的数字三角形的层数：\"))\nfor i in range(1, layer + 1):\n    for j in range(1,i + 1):\n        print(j,end=\" \")\n    print(\"\")",
+        "updated": true,
+        "title": "嵌套循环打印数字三角形",
+        "notes": [
+          "layer 由 input() 输入（需转 int），决定三角形层数。",
+          "外层 i 从 1 到 layer 控制行数；内层 j 从 1 到 i，输出 1~i。",
+          "end=\" \" 让同一行的数字用空格隔开不换行；内层结束后 print(\"\") 换行。",
+          "输入 4 时，第 1 行 1，第 2 行 1 2，第 3 行 1 2 3，第 4 行 1 2 3 4。"
+        ],
+        "output": "请输入您想打印的数字三角形的层数：1 \n1 2 \n1 2 3 \n1 2 3 4 ",
+        "stdin": "4\n"
+      },
+      {
+        "name": "test9.py",
+        "code": "\nfor j in range (3):\n    for i in range(6):\n        if i==4:\n            #break\n            continue\n        print(\"j:\", j)\n        print(\"i:\", i)\n\n    if j==0:\n        break",
+        "updated": true,
+        "title": "嵌套循环中 continue 与 break 的作用范围",
+        "notes": [
+          "i == 4 时执行 continue，跳过本轮剩余的 print，所以输出里没有 “i: 4”。",
+          "continue 只影响内层当前这一轮，i=5 仍会继续执行。",
+          "内层 6 轮（i=0..5）跑完后，外层判断 j == 0 成立，执行 break 跳出外层循环。",
+          "因此整个程序只有 j: 0 这一组输出，共 5 组 (j,i) 组合。",
+          "文件里被注释掉的 #break 提示了这个演示的另一版本：换成 break 后内层在 i=4 就直接结束。"
+        ],
+        "pitfall": "break 只跳出它所在的那一层循环；要跳出多层必须靠外层条件或标志变量。",
+        "output": "j: 0\ni: 0\nj: 0\ni: 1\nj: 0\ni: 2\nj: 0\ni: 3\nj: 0\ni: 5"
       }
-    ]
+    ],
+    "updated": true
   },
   {
     "n": 6,
@@ -5019,85 +6091,299 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test1.py",
-        "code": "tp=(10,25,16,8,32)\nprint(max(tp),min(tp),sum(tp))\nprint(\"sorted(tp): \", sorted(tp))\ntemp1 = reversed(tp)\nprint(temp1)\nprint(f\"list(temp1) is {list(temp1)}.\")\n\ntemp2 = enumerate(tp)\nprint(\"temp2: \", temp2)\nprint(list(temp2))\n#for (i,j) in temp2:\n#    print(i)\n#fruits = [\"apple\", \"banana\", \"cherry\"]\nfor index, value in enumerate(tp):\n    print(f\"Index {index}: {value}\")\n# 输出：\n# Index 0: apple\n# Index 1: banana\n# Index 2: cherry\n\na = 3; b=4\nset1 = set()\nset1.add(a)\nset1.add(b)\nprint(set1)\nb = 5;\nprint(set1)\n\nl1 = list([a,b])\nprint(l1)\na = 5\nprint(l1)\n\nclass Cat():\n    color = \"white\"\n\ncat1 = Cat()\ncat1.color = \"black\"\ncat2 = Cat()\ncat2.color = \"gray\"\n\nset2 =set()\nset2.add(cat1)\nset2.add(cat2)\nfor i in set2:\n    print(i.color)\n\ncat2.color = \"blue\"\nfor i in set2:\n    print(i.color)\n\nprint(type(3.0))"
+        "code": "tp=(10,25,16,8,32)\nprint(max(tp),min(tp),sum(tp),len(tp))\nprint(\"sorted(tp): \", sorted(tp))\ntemp1 = reversed(tp)\nprint(temp1)\nprint(type(temp1))\n\nprint(f\"list(temp1) is {list(temp1)}.\")\n\ntemp2 = enumerate(tp)\nprint(\"temp2: \", temp2)\nprint(list(temp2))\n#for (i,j) in temp2:\n#    print(i)\n#fruits = [\"apple\", \"banana\", \"cherry\"]\nfor index, value in enumerate(tp):\n    print(f\"Index {index}: {value}\")\n# 输出：\n# Index 0: apple\n# Index 1: banana\n# Index 2: cherry\n\na = 3; b = 4\nset1 = set()\nset1.add(a)\nset1.add(b)\nprint(\"1. set1: \", set1)\nb = 5;\nprint(\"2. set1: \", set1)\n\nl1 = list([a,b])\nprint(\"1 l1: \", l1)\na = 5\nprint(\"2 l1: \", l1)\n\nset2=set1.add(l1)\nprint(\"1 set2: \", set2)\n\n#pytorch cuda\n\nclass Cat():\n    color = \"white\"\n\ncat1 = Cat()\ncat1.color = \"black\"\ncat2 = Cat()\ncat2.color = \"gray\"\n\nset2 =set()\nset2.add(cat1)\nset2.add(cat2)\nfor i in set2:\n    print(i.color)\n\ncat2.color = \"blue\"\nfor i in set2:\n    print(i.color)\n\nprint(type(3.0))",
+        "updated": true,
+        "title": "元组的聚合函数、迭代器对象与集合的可哈希限制",
+        "notes": [
+          "max/min/sum/len 直接作用于元组：(10,25,16,8,32) 得最大值 32、最小值 8、和 91、长度 5。",
+          "sorted(tp) 返回排好序的新列表 [8,10,16,25,32]，原元组 tp 不变（元组本身不可变）。",
+          "reversed(tp) 返回的是 reversed 迭代器对象，直接 print 显示 <reversed object>，要 list() 才能看到 [32,8,16,25,10]。",
+          "enumerate(tp) 返回枚举对象，list() 后得到 [(0,10),(1,25),...]；for index,value in enumerate(tp) 可同时拿到下标和值。",
+          "set1.add(3)、add(4) 之后把 b 改成 5，集合仍是 {3,4}——集合里存的是加入那一刻的值副本。",
+          "l1 = list([a,b]) 同样是值拷贝，之后 a=5 不会改变 l1，仍为 [3,5]。",
+          "set1.add(l1) 抛 TypeError: unhashable type: 'list'——列表是可变类型、不可哈希，不能放进集合（也不能当字典键）。"
+        ],
+        "pitfall": "集合/字典的键必须是可哈希（不可变）的对象；列表、字典、集合都放不进去，元组可以（只要其元素也都可哈希）。",
+        "output": "32 8 91 5\nsorted(tp):  [8, 10, 16, 25, 32]\n<reversed object at 0x000002AE91FFBFD0>\n<class 'reversed'>\nlist(temp1) is [32, 8, 16, 25, 10].\ntemp2:  <enumerate object at 0x000002AE8FE115D0>\n[(0, 10), (1, 25), (2, 16), (3, 8), (4, 32)]\nIndex 0: 10\nIndex 1: 25\nIndex 2: 16\nIndex 3: 8\nIndex 4: 32\n1. set1:  {3, 4}\n2. set1:  {3, 4}\n1 l1:  [3, 5]\n2 l1:  [3, 5]",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter6\\chapter6\\test1.py\", line 36, in <module>\n    set2=set1.add(l1)\n         ^^^^^^^^^^^^\nTypeError: unhashable type: 'list'"
       },
       {
         "name": "test2.py",
-        "code": "l=[1,2,3,4]\n#for i in l:\n#    print(i)\n\nx=iter(l)\nprint(type(x))\nprint(next(x))\nprint(next(x))\nprint(next(x))\nprint(next(x))"
+        "code": "#attention is all need;\n\nl=[1,2,3,4]\n\nfor i in l:\n   print(i)\n\nx=iter(l)\nprint(type(x))\nprint(next(x))\nprint(next(x))\nprint(next(x))\nprint(next(x))",
+        "updated": true,
+        "title": "iter() 生成迭代器、next() 逐个取值",
+        "notes": [
+          "for i in l 是最常用的遍历方式，背后自动完成 iter() 与 next()。",
+          "iter(l) 把可迭代对象转成迭代器，type 显示 <class 'list_iterator'>。",
+          "next(x) 每次取出一个元素；这里正好调用 4 次，所以依次输出 1、2、3、4。",
+          "若再多调一次 next() 就会抛 StopIteration。"
+        ],
+        "output": "1\n2\n3\n4\n<class 'list_iterator'>\n1\n2\n3\n4"
       },
       {
         "name": "test3.py",
-        "code": "l=[1,2,3,4,5]\nd=iter(l)\nwhile True:\n    try:\n        e=next(d)\n        print(e)\n    except StopIteration:\n        print(\"iteration finished!\")\n        break"
+        "code": "l=[1,2,3,4,5]\nd=iter(l)\nwhile True:\n    try:\n        e=next(d)\n        print(e)\n    except StopIteration:\n        print(\"iteration finished!\")\n        break",
+        "updated": true,
+        "title": "while True + StopIteration 手动遍历迭代器",
+        "notes": [
+          "iter(l) 得到迭代器 d，每次 next(d) 取下一个元素。",
+          "取完 5 个元素后再 next(d) 会抛 StopIteration，被 except 捕获后打印 iteration finished! 并 break。",
+          "这就是 for 循环的底层机制：不断 next() 直到 StopIteration。"
+        ],
+        "output": "1\n2\n3\n4\n5\niteration finished!"
       },
       {
         "name": "test4.py",
-        "code": "class MyIterable:\n    def __init__(self, max=0):\n        self.max = max\n    def __iter__(self):\n        self.n = 0\n        return self\n    def __next__(self):\n        if self.n <= self.max:\n            result = self.n\n            self.n += 1\n            return result\n        else:\n            raise StopIteration\n\nif __name__ == \"__main__\":\n    n = MyIterable(5) #max=5\n    myIterator=iter(n) #对可迭代对象进行迭代就是生成了一个迭代器；\n\n    while True:\n        try:\n            e=next(myIterator)\n            print(e)\n        except StopIteration:\n            break\n\n\"\"\"\nprint(next(myIterator))\nprint(next(myIterator))\nprint(next(myIterator))\nprint(next(myIterator))\nprint(next(myIterator))\nprint(next(myIterator))\nprint(next(myIterator))\n\"\"\""
+        "code": "\nclass MyIterable:\n\n    def __init__(self, max=0):\n        self.max = max\n\n    def __iter__(self):\n        self.n = 0\n        return self\n\n    def __next__(self):\n        if self.n <= self.max:\n            result = self.n\n            self.n += 1\n            return result\n        else:\n            raise StopIteration\n\nif __name__ == \"__main__\":\n    m = MyIterable(5) #max=5\n    myIter = iter(m) #对可迭代对象进行迭代就是生成了一个迭代器；\n\n    while True:\n        try:\n            e=next(myIter)\n            print(\"e: \", e)\n        except StopIteration:\n            break\n\n\n    print(next(myIter))\n\"\"\"\nprint(next(myIterator))\nprint(next(myIterator))\nprint(next(myIterator))\nprint(next(myIterator))\nprint(next(myIterator))\nprint(next(myIterator))\n\"\"\"",
+        "updated": true,
+        "title": "自定义可迭代类：__iter__ 与 __next__",
+        "notes": [
+          "__iter__ 返回迭代器自身并把计数 n 重置为 0，使对象可被 for 遍历或 iter() 转换。",
+          "__next__ 返回当前 n 并自增；当 n 超过 max 时 raise StopIteration 结束迭代。",
+          "max=5 时 if self.n <= self.max 成立 6 次，所以输出 e: 0 到 e: 5。",
+          "while True 循环结束后又调了一次 next(myIter)，此时已越界，抛出的 StopIteration 无人捕获——这是老师故意留下的演示错误。"
+        ],
+        "pitfall": "__next__ 必须用 raise StopIteration 表示结束；越界后再 next() 一定报错，别在循环外用。",
+        "output": "e:  0\ne:  1\ne:  2\ne:  3\ne:  4\ne:  5",
+        "err": "hon_class\\pythonProject-2025\\更新后的chapter\\chapter6\\chapter6\\test4.py\", line 31, in <module>\n    print(next(myIter))\n          ^^^^^^^^^^^^\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter6\\chapter6\\test4.py\", line 17, in __next__\n    raise StopIteration\nStopIteration"
       },
       {
         "name": "test5.py",
-        "code": "from test4 import MyIterable\n\nnumbers = MyIterable(2)\nfor i in numbers:\n    print(i)"
+        "code": "from test4 import MyIterable\n\nnumbers = MyIterable(3)\nfor i in numbers:\n    print(i)",
+        "updated": true,
+        "title": "跨文件导入自定义类",
+        "notes": [
+          "from test4 import MyIterable 把同目录下另一个模块里的类导入使用。",
+          "两个 .py 文件在同一目录时可直接按模块名（去掉 .py）导入。",
+          "for i in numbers 会自动调用 __iter__ 和 __next__，max=3 时输出 0、1、2、3 共 4 行。"
+        ],
+        "output": "0\n1\n2\n3"
       },
       {
         "name": "test7.py",
-        "code": "\"\"\"\nstring.find(sub[,start[,end]])\n\nstring.find(sub)\n\nstring.find(sub,start)\n\nstring.find(sub,start,end)\n\"\"\"\nstr = 'bjut';\nstr1 = str.replace('t','')\nprint(str)\nprint(str1)\nprint(str.ljust(10,'t'))\n\nstr2 = '1234567'\nif str2.isdigit():\n    print(float(str2))\n\nstring = \"www.bjut.edu.cn\"\nn0 = string.find('w')\nn1 = string.find('.')\nn2 = string.find('.',7)\nn3 = string.find('.',7,-3)\nn4 = string.rfind('.')\nn5 = string.count('u')\nprint(n0,n1,n2,n3,n4,n5)\nstr1 = string.replace('u','o',2)\nprint(f\"str1 is {str1}.\")"
+        "code": "\"\"\"\nstring.find(sub[,start[,end]])\n\nstring.find(sub)\n\nstring.find(sub,start)\n\nstring.find(sub,start,end)\n\"\"\"\nstr = 'bjut';\nstr1 = str.replace('t','s')\nprint(\"str:\" , str)\nprint(\"str1:\" , str1)\nprint(str.ljust(10,'s'))\n\nstr2 = '1234567'\nif str2.isdigit():\n    print(float(str2))\n\nstring = \"www.bjut.edu.cn\"\nn0 = string.find('w')\nn1 = string.find('.')\nn2 = string.find('.',7)\nn3 = string.find('.',7,-3)\nn4 = string.rfind('.')\nn5 = string.count('u')\nprint(n0,n1,n2,n3,n4,n5)\nstr1 = string.replace('u','o',2)\nprint(f\"str1 is {str1}.\")",
+        "updated": true,
+        "title": "字符串查找、替换与对齐",
+        "notes": [
+          "三引号里是 find() 三种签名的说明，被当成注释，不执行。",
+          "str.replace('t','s') 返回新字符串 bjus，原字符串 str 仍是 bjut——字符串不可变。",
+          "ljust(10,'s') 左对齐并用 s 补到总宽 10 位，得 bjutssssss。",
+          "isdigit() 判断是否全为数字，成立才转 float，1234567 变成 1234567.0。",
+          "find 返回首次出现的下标（找不到返回 -1），rfind 从右往左找，count 统计出现次数。",
+          "find('.',7) 从下标 7 开始找；find('.',7,-3) 在 [7, 长度-3) 区间内找，所以 n2、n3 都是 8。",
+          "replace('u','o',2) 的第三个参数限制最多替换 2 次，只把前两个 u 换成 o。"
+        ],
+        "output": "str: bjut\nstr1: bjus\nbjutssssss\n1234567.0\n0 3 8 8 12 2\nstr1 is www.bjot.edo.cn."
       },
       {
         "name": "test8.py",
-        "code": "sr = 'hello ahu code,hello python'\nsr1 = sr.replace('hello','HELLO',1)\nprint(f\"sr1 is {sr1}.\")\n#sr2 = sr1.split(\",\")\nsr2 = sr1.split()\nprint(f\"sr2 is {sr2}.\")\nsr3 = ' '.join(sr2)\nprint(f\"sr3 is {sr3}.\")\nsr4 = sr3.lower()\nprint(f\"sr4 is {sr4}.\")\nsr5 = sr4.capitalize()\nprint(f\"sr5 is {sr5}.\")\nsr6 = sr5.title()\nprint(f\"sr6 is {sr6}.\")\nsr7 = sr6.upper()\nprint(f\"sr7 is {sr7}.\")"
+        "code": "sr = 'hello ahu code, hello python'\nsr1 = sr.replace('hello','HELLO',1)\nprint(f\"sr1 is {sr1}.\")\n#sr2 = sr1.split(\",\")\nsr2 = sr1.split()\nprint(f\"sr2 is {sr2}.\")\nsr3 = '-how '.join(sr2)\nprint(f\"sr3 is {sr3}.\")\nsr4 = sr3.lower()\nprint(f\"sr4 is {sr4}.\")\nsr5 = sr4.capitalize()\nprint(f\"sr5 is {sr5}.\")\nsr6 = sr5.title()\nprint(f\"sr6 is {sr6}.\")\nsr7 = sr6.upper()\nprint(f\"sr7 is {sr7}.\")",
+        "updated": true,
+        "title": "replace / split / join 与大小写转换链",
+        "notes": [
+          "replace('hello','HELLO',1) 只替换第一个 hello。",
+          "sr1.split() 不传参数时按任意空白切分，得到 5 个单词的列表。",
+          "'-how '.join(sr2) 用分隔符把列表元素连接成一个字符串。",
+          "lower 全小写、capitalize 首字母大写、title 每个单词首字母大写、upper 全大写，四种转换逐级叠加。",
+          "这些方法都返回新字符串，原字符串始终不变。"
+        ],
+        "pitfall": "capitalize 只把整串的第一个字符大写，title 才把每个单词首字母都大写。",
+        "output": "sr1 is HELLO ahu code, hello python.\nsr2 is ['HELLO', 'ahu', 'code,', 'hello', 'python'].\nsr3 is HELLO-how ahu-how code,-how hello-how python.\nsr4 is hello-how ahu-how code,-how hello-how python.\nsr5 is Hello-how ahu-how code,-how hello-how python.\nsr6 is Hello-How Ahu-How Code,-How Hello-How Python.\nsr7 is HELLO-HOW AHU-HOW CODE,-HOW HELLO-HOW PYTHON."
       },
       {
         "name": "test9.py",
-        "code": "sr ='xxxyyy hello ahu code,hello python zzxx'\nprint(f\"sr is {sr}.\")\nsr1 = sr.strip('x')\nprint(f\"sr1 is {sr1}.\")\nsr2 = sr1.lstrip('y')\nprint(f\"sr2 is {sr2}.\")\nsr3 = sr2.rstrip('z')\nprint(f\"sr3 is {sr3}.\")\nsr4 = sr3.strip()\nprint(f\"sr4 is {sr4}.\")"
+        "code": "sr ='xxxyyy hello ahu code,hello python zzxx'\nprint(f\"sr is {sr}.\")\nsr1 = sr.strip('x')\nprint(f\"sr1 is {sr1}.\")\nsr2 = sr1.lstrip('y')\nprint(f\"sr2 is {sr2}.\")\nsr3 = sr2.rstrip('z')\nprint(f\"sr3 is {sr3}.\")\nsr4 = sr3.strip()\nprint(f\"sr4 is {sr4}\")",
+        "updated": true,
+        "title": "strip / lstrip / rstrip 去除首尾字符",
+        "notes": [
+          "strip('x') 去掉首尾所有的 x，中间的不动。",
+          "lstrip('y') 只去左边，rstrip('z') 只去右边。",
+          "strip() 不带参数时去掉首尾空白（空格、换行、制表符）。",
+          "参数是“字符集合”而不是子串：strip('xyz') 会去掉首尾任意 x、y、z 字符。"
+        ],
+        "output": "sr is xxxyyy hello ahu code,hello python zzxx.\nsr1 is yyy hello ahu code,hello python zz.\nsr2 is  hello ahu code,hello python zz.\nsr3 is  hello ahu code,hello python .\nsr4 is hello ahu code,hello python"
       },
       {
         "name": "test10.py",
-        "code": "sr ='ahu code,hello python'\nprint(sr.ljust(40,'*'))\nprint(sr.rjust(40,'$'))\nprint(sr.center(40,'%'))"
+        "code": "sr ='ahu code,hello python'\nprint(sr.ljust(40,'*'))\nprint(sr.rjust(40,'$'))\nprint(sr.center(40,'%'))",
+        "updated": true,
+        "title": "三种对齐：ljust / rjust / center",
+        "notes": [
+          "ljust(40,'*') 左对齐、右侧补 * 到总宽 40。",
+          "rjust(40,'$') 右对齐、左侧补 $。",
+          "center(40,'%') 居中、两边补 %；长度差为奇数时左边会比右边少一个。"
+        ],
+        "pitfall": "宽度参数是“补到总宽多少列”，不是“补几个字符”，字符串本身已占去一部分宽度。",
+        "output": "ahu code,hello python*******************\n$$$$$$$$$$$$$$$$$$$ahu code,hello python\n%%%%%%%%%ahu code,hello python%%%%%%%%%%"
       },
       {
         "name": "test11.py",
-        "code": "ls1 = [1,3,5,7,9]\nls1.remove(3)\nprint(ls1)\nls1.pop(2)\nprint(ls1)\n\nls1 = [x for x in range(1,5)]\nprint(ls1)\nls2 = [i*2 for i in range(1,10) if i%2==0]\nprint('ls2', ls2)\nls3 = [i+1 if i%2==0 else i*2 for i in (1,2,3,4)]\nprint(ls3)\n\nls1 = [1,2,3]\nls2 = [3,4,5]\nls3 = [x+y for x in ls1 for y in ls2]\nprint(ls3)\n\nls3 = [x+y for (x,y) in zip(ls1,ls2)]\nprint(ls3)\n\nprint(zip(ls1,ls2))\n\nls4 = [x+y for x in ls1 if x%2==0\n           for y in ls2 if y<=4]\nprint(ls4)"
+        "code": "ls1 = [1,3,5,7,9]\nls1.remove(3)\nprint(ls1)\nls1.pop(2)\nprint(ls1)\n\nls1 = [x for x in range(1,5)]\nprint(ls1)\nls2 = [i*2 for i in range(1,10) if i%2==0]\nprint('ls2', ls2)\nls3 = [i+1 if i%2==0 else i*2 for i in (1,2,3,4)]\nprint(ls3)\n\nls1 = [1,2,3]\nls2 = [3,4,5]\nls3 = [x+y for x in ls1 for y in ls2]\nprint(ls3)\n\nls3 = [x+y for (x,y) in zip(ls1,ls2)]\nprint(ls3)\n\nprint(zip(ls1,ls2))\n\nls4 = [x+y for x in ls1 if x%2==0\n           for y in ls2 if y<=4]\nprint(type(ls4))\nprint(ls4)",
+        "updated": true,
+        "title": "列表推导式全解（含嵌套、条件、zip）",
+        "notes": [
+          "remove(3) 按值删除；pop(2) 按下标删除并返回被删元素。",
+          "[x for x in range(1,5)] 得 [1,2,3,4]。",
+          "[i*2 for i in range(1,10) if i%2==0] 先筛偶数再乘 2，得 [4,8,12,16]。",
+          "[i+1 if i%2==0 else i*2 for i in (1,2,3,4)] 是推导式里的三目：偶数 +1、奇数 ×2，得 [2,3,6,5]。",
+          "[x+y for x in ls1 for y in ls2] 是双重 for，相当于嵌套循环，共 9 个元素，顺序 x 优先。",
+          "[x+y for (x,y) in zip(ls1,ls2)] 用 zip 按位置配对，得 [4,6,8]。",
+          "print(zip(...)) 显示 <zip object>，zip 返回迭代器，要用 list() 才能看到内容。",
+          "多重推导式里的 if 归属于离它最近的那层 for。"
+        ],
+        "pitfall": "嵌套 for 推导式中元素顺序是“外层慢、内层快”；zip 则是按位置一一配对，两者结果完全不同。",
+        "output": "[1, 5, 7, 9]\n[1, 5, 9]\n[1, 2, 3, 4]\nls2 [4, 8, 12, 16]\n[2, 3, 6, 5]\n[4, 5, 6, 5, 6, 7, 6, 7, 8]\n[4, 6, 8]\n<zip object at 0x00000213F7BC06C0>\n<class 'list'>\n[5, 6]"
       },
       {
         "name": "test12.py",
-        "code": "ls = [1,2,3]\nls.append(\"5s\")\nprint(ls)\nls.extend([7,8])\nprint(ls)\nls.insert(3,4)\nprint(ls)\n\nls.remove(\"5s\")\nprint(ls)\n\nls = [9,6,3,12,15]\nls.remove(6)\nprint(ls)\nls.pop(1)\nprint(ls)\nls.pop()"
+        "code": "ls = [1,2,3]\nls.append(\"5s\")\nprint(ls)\nls.extend([7,8])\nprint(ls)\nls.insert(3,4)\nprint(ls)\n\nls.remove(\"5s\")\nprint(ls)\n\nls = [9,6,3,12,15]\nprint(\"0 ls: \", ls)\nls.remove(6)\nprint(\"1 ls: \", ls)\nls.pop(1)\nprint(\"2 ls: \", ls)\nls.pop()\nprint(\"3 ls: \", ls)",
+        "updated": true,
+        "title": "列表的增删方法",
+        "notes": [
+          "append 把参数当成一个整体追加到末尾。",
+          "extend 把另一个序列的元素逐个追加进来。",
+          "insert(3,4) 在下标 3 处插入 4，后面的元素依次后移。",
+          "remove('5s') 按值删除第一次出现的元素。",
+          "pop(1) 按下标删除并返回该元素；pop() 不传参时删除最后一个。",
+          "同一列表里混放整数和字符串是允许的，Python 列表不要求元素类型一致。"
+        ],
+        "pitfall": "append([7,8]) 只会把列表整体塞成一个元素；要合并两个列表请用 extend 或 +。",
+        "output": "[1, 2, 3, '5s']\n[1, 2, 3, '5s', 7, 8]\n[1, 2, 3, 4, '5s', 7, 8]\n[1, 2, 3, 4, 7, 8]\n0 ls:  [9, 6, 3, 12, 15]\n1 ls:  [9, 3, 12, 15]\n2 ls:  [9, 12, 15]\n3 ls:  [9, 12]"
       },
       {
         "name": "test13.py",
-        "code": "tp1 = (i*2 for i in range(1,10) if i%2==0)\nprint(tp1)\nprint(tuple(tp1))\ntp2 = (i+1 if i%2==0 else i*2 for i in [1,2,3,4])\nprint(tp2)\n#print(tuple(tp2))\n\nwhile True:\n    try:\n        e=next(tp2)\n        print(f\"e is {e}\")\n    except StopIteration:\n        print(\"This is the end!\")\n        break"
+        "code": "tp1 = (i*2 for i in range(1,10) if i%2==0)\nprint(tp1)\nprint(tuple(tp1))\ntp2 = (i+1 if i%2==0 else i*2 for i in [1,2,3,4])\nprint(tp2)\n#print(tuple(tp2))\n\n\nwhile True:\n    try:\n        e=next(tp2)\n        print(f\"e is {e}\")\n    except StopIteration:\n        print(\"This is the end!\")\n        break\n\n\n#iter1 = iter(tp2)\n\n#print(next(iter1))\nl1 = list(tp2)\nprint(l1)\nfor i in l1:\n    print(i)",
+        "updated": true,
+        "title": "生成器表达式（圆括号）与“只能消费一次”",
+        "notes": [
+          "(i*2 for i in ...) 用圆括号是生成器表达式，返回 generator 对象，需 tuple()/list() 才展开。",
+          "tuple(tp1) 展开得 (4,8,12,16)。",
+          "tp2 被 while True 循环用 next() 逐个取完（e is 2、3、6、5），取完后抛 StopIteration 并打印结束提示。",
+          "关键：生成器耗尽后再 list(tp2) 得到空列表 []——生成器只能遍历一次。"
+        ],
+        "pitfall": "生成器/迭代器是“一次性”的，用过就空；要重复使用必须先 list() 存成列表。",
+        "output": "<generator object <genexpr> at 0x000001C8E94D9A40>\n(4, 8, 12, 16)\n<generator object <genexpr> at 0x000001C8E8E093C0>\ne is 2\ne is 3\ne is 6\ne is 5\nThis is the end!\n[]"
       },
       {
         "name": "test14.py",
-        "code": "st1 = {i*2 for i in range(1,10) if i%2==0}\nprint(st1)\nst2 = {i+1 if i%2==0 else i*2 for i in [1,2,3,4]}\nprint(st2)"
+        "code": "st1 = {i*2 for i in range(1,10) if i%2==0}\nprint(st1)\nst2 = {i+1 if i%2==0 else i*2 for i in [1,2,3,4]}\nprint(st2)",
+        "updated": true,
+        "title": "集合推导式",
+        "notes": [
+          "{i*2 for i in range(1,10) if i%2==0} 得 {4,8,12,16}。",
+          "{i+1 if i%2==0 else i*2 for i in [1,2,3,4]} 得 {2,3,5,6}。",
+          "集合自动去重且无序，打印顺序不保证与生成顺序一致。"
+        ],
+        "output": "{8, 16, 4, 12}\n{2, 3, 5, 6}"
       },
       {
         "name": "test15.py",
-        "code": "st = {1,2,3}\nst.add(4)\nprint(st)\nst.update([5,6])\nprint(st)\na=st.pop()\nprint(a,st)\nst1=st.copy() #st1=st={2, 3, 4, 5, 6}\nprint(st1)\nst1.add(7)\nprint(st)\nprint(st1)"
+        "code": "st = {1,2,3}\nst.add(4)\nprint(st)\nst.update([5,6])\nprint(st)\na=st.pop()\nprint(a,st)\nst1=st.copy() #st1=st={2, 3, 4, 5, 6}\nprint(st1)\nst1.add(7)\nprint(st)\nprint(st1)\n\n#json",
+        "updated": true,
+        "title": "集合增删与 copy 的意义",
+        "notes": [
+          "add 加入单个元素，update 批量加入。",
+          "pop() 随机弹出一个元素并返回（这里弹出 1）。",
+          "st1 = st.copy() 得到独立副本，之后 st1.add(7) 不影响原集合 st。",
+          "注释里那句 st1=st 是反面对照：直接赋值只是起别名，改一个另一个跟着变。"
+        ],
+        "output": "{1, 2, 3, 4}\n{1, 2, 3, 4, 5, 6}\n1 {2, 3, 4, 5, 6}\n{2, 3, 4, 5, 6}\n{2, 3, 4, 5, 6}\n{2, 3, 4, 5, 6, 7}"
       },
       {
         "name": "test16.py",
-        "code": "set1 = {1,2,3,4}\nset2 = {3,4,5,6}\nset3 = set1.intersection(set2)\t# 交集\nprint(set3)\nset4 = set1.union(set2)\nprint(set4)\nset6 = set1.difference(set2)\nprint(set6)\nset1.intersection_update(set2)\nprint(set1)\nset1.symmetric_difference_update(set2)\nprint(set1)\n\nset1 = {1,2,3,4}\nset2 = {3,4,5,6}\nprint(set1.isdisjoint(set2))\nprint(set1.issubset(set2))\nprint(set1.issuperset(set2))\nset3 = {1,2,3,4,5,6}\nprint(set1.issubset(set3))\nprint(set3.issuperset(set2))\n\nst = {1,2,3,4,5}\nst.remove(4)\nprint(st)\nst.discard(2)\nprint(st)\nst.clear()\nprint(st)\n\n\n#tensorflow pytorch"
+        "code": "set1 = {1,2,3,4}\nset2 = {3,4,5,6}\nset3 = set1.intersection(set2)\t# 交集\nprint(\"set3 in line 4:\", set3)\nset4 = set1.union(set2)\nprint(\"set4 in line 6:\", set4)\nset6 = set1.difference(set2)\nprint(set6)\nset1.intersection_update(set2)\nprint(\"set1 in line 10:\", set1)\nset1.symmetric_difference_update(set2)\nprint(set1)\n\nset1 = {1,2,3,4}\nset2 = {3,4,5,6}\nprint(set1.isdisjoint(set2))\nprint(set1.issubset(set2))\nprint(set1.issuperset(set2))\nset3 = {1,2,3,4,5,6}\nprint(set1.issubset(set3))\nprint(set3.issuperset(set2))\n\nst = {1,2,3,4,5}\nst.remove(4)\nprint(st)\nst.discard(2)\nprint(st)\nst.clear()\nprint(st)\n\n\n#tensorflow pytorch",
+        "updated": true,
+        "title": "集合的运算方法与判断方法",
+        "notes": [
+          "intersection 交集、union 并集、difference 差集。",
+          "intersection_update 把交集写回 set1，于是 set1 变成 {3,4}。",
+          "symmetric_difference_update 求对称差并写回，set1 变成 {5,6}。",
+          "isdisjoint 判断是否无交集（False 说明有交集）；issubset 判断子集；issuperset 判断超集。",
+          "remove(4) 删除指定元素，不存在会报错；discard(2) 删除指定元素，不存在不报错。",
+          "clear() 清空集合，结果是 set()。"
+        ],
+        "pitfall": "remove 删不存在的元素会 KeyError，discard 不会——这是两者的唯一实质区别。",
+        "output": "set3 in line 4: {3, 4}\nset4 in line 6: {1, 2, 3, 4, 5, 6}\n{1, 2}\nset1 in line 10: {3, 4}\n{5, 6}\nFalse\nFalse\nFalse\nTrue\nTrue\n{1, 2, 3, 5}\n{1, 3, 5}\nset()"
       },
       {
         "name": "test17.py",
-        "code": "st = {1,2,3}\nst.add(1)\nst.add(3)\nprint(st)\n\nfst = frozenset([5,6])\nst.add(fst)\nprint(f\"1 st is {st}.\")\n\n#fst.add(st)\n\nst1={7,8}\n#li1 = [1,2]\n#st.add(li1)\n\ntp = (1,2,3)\nprint(\"tp hash:\", tp.__hash__())\nst.add(tp)\n\nfst.__hash__()\nprint(\"fst hash: \", fst.__hash__())\nprint(\"st hash: \", st.__hash__)\n\nprint(f\"2 st is {st}.\")\n\nstr1 = 'bjut'\nprint(\"hash: \", str1.__hash__())\n\nstr2= 'bjut'\nprint(\"hash: \", str2.__hash__())\n\nprint(str1==str2)\n\ndc = {}\nprint(\"dc hash:\", dc.__hash__)\n\n#json"
+        "code": "st = {1,2,3}\nst.add(1)\nst.add(3)\nprint(st)\n\nfst = frozenset([5,6])\nst.add(fst)\nprint(f\"1 st is {st}.\")\n\n#fst.add(st)\n\n#st1={7,8}\nli1 = [1,2]\ntp1 = (1,2)\nprint(\"st in line 14\", st)\n#st.add(li1)\n#print(\"st in line 15\",st)\nst.add(tp1)\nprint(\"st in line 19\",st)\n\nprint(\"id(li1) in line 21: \" , id(li1), li1)\nli1.insert(2,5)\nprint(\"id(li1) in line 23: \" , id(li1), li1)\nfor i in li1:\n    print(i)\n\n\nstr = 'bjut'\nprint(type(str),str)\nprint(\"str hash in line 35\", str.__hash__())\nprint(\"id(str) in line 36 :\", id(str))\n\nstr = str.capitalize();\nprint(type(str),str)\nprint(\"str hash  in line 40: \", str.__hash__())\nprint(\"id(str) in line 41: \", id(str))\n\n\ntp = (1,2,3)\nprint(\"tp hash:\", tp.__hash__())\nst.add(tp)\n\nfst.__hash__()\nprint(\"fst hash: \", fst.__hash__())\nprint(\"st hash: \", st.__hash__)\n\ndc = {1:1,2:2}\nprint(dc,type(dc))\nprint(\"dc hash \", dc.__hash__)\n\n\n\n\n\nprint(f\"2 st is {st}.\")\n\nstr1 = 'bjut'\nprint(\"hash: \", str1.__hash__())\n\nstr2= 'bjut'\nprint(\"hash: \", str2.__hash__())\n\nprint(str1==str2)\n\ndc = {}\nprint(\"dc hash:\", dc.__hash__)\n\n#json",
+        "updated": true,
+        "title": "可哈希性：为什么元组能进集合、列表不能",
+        "notes": [
+          "重复 add(1)、add(3) 集合内容不变，说明集合会自动去重。",
+          "frozenset 是不可变的“冻结集合”，可哈希，因此能作为元素放进集合。",
+          "st.add(tp1) 中元组 (1,2) 可哈希能加入；列表 li1 不可哈希，所以那一行被注释掉了。",
+          "li1.insert 前后 id 相同，说明列表是原地修改；原地可变就不能哈希。",
+          "对字符串 str 调用 capitalize 后赋回原名变量，id 变了——字符串不可变，相当于新建对象。",
+          "两个内容相同的字符串哈希值相同，说明 hash 由内容决定。",
+          "dc.__hash__ 打印的是方法对象本身，因为字典不可哈希，不能进集合。"
+        ],
+        "pitfall": "可哈希的前提是不可变；看 id 是否变化就能判断一个操作是原地修改还是产生了新对象。",
+        "output": "{1, 2, 3}\n1 st is {frozenset({5, 6}), 1, 2, 3}.\nst in line 14 {frozenset({5, 6}), 1, 2, 3}\nst in line 19 {1, 2, 3, (1, 2), frozenset({5, 6})}\nid(li1) in line 21:  2816846851264 [1, 2]\nid(li1) in line 23:  2816846851264 [1, 2, 5]\n1\n2\n5\n<class 'str'> bjut\nstr hash in line 35 -1297545297608529462\nid(str) in line 36 : 2816811661232\n<class 'str'> Bjut\nstr hash  in line 40:  3825793460595472327\nid(str) in line 41:  2816811735408\ntp hash: 529344067295497451\nfst hash:  6221592716431983538\nst hash:  None\n{1: 1, 2: 2} <class 'dict'>\ndc hash  None\n2 st is {1, 2, 3, (1, 2), (1, 2, 3), frozenset({5, 6})}.\nhash:  -1297545297608529462\nhash:  -1297545297608529462\nTrue\ndc hash: None"
       },
       {
         "name": "test18.py",
-        "code": "\n\ndc1 = {i:i**2 for i in range(1,10) if i%2==1}\nprint(dc1)\n\nmyIterator=iter(range(1,3))\nprint(next(myIterator))\nprint(next(myIterator))\n#print(next(myIterator))\n#print(next(myIterator))\n\n\ndc2 = {i:i**2 if i%2==1 else i*2 for i in range(1,6)}\nprint(dc2)\n\nl1 = [1,2,3,4,5]\nl2 = [10,20,30,40,50]\n\n\n\niterable = zip(l1,l2)\niterable.__hash__()\n\ndc3 = {k*2:v*2 for k,v in iterable}\nprint(f\"dc3 is {dc3}.\")\ndc4 = {k*2:v*2 for k,v in iterable if k%2==0}\nprint(f\"dc4 is {dc4}.\")\ndc5 = {k*2:v*2 for k,v in zip(l1,l2) if k%2==0}\n# print(f\"dc5 is {dc5}.\")\n\niter(dc5)"
+        "code": "dc1 = {i:i**2 for i in range(1,10) if i%2==1}\nprint(\"dc1\",dc1)\n\n#myIterator=iter(range(1,3))\n#print(next(myIterator))\n#print(next(myIterator))\n#print(next(myIterator))\n#print(next(myIterator))\n\n\ndc2 = {i:i**2 if i%2==1 else i*2 for i in range(1,6)}\nprint(\"dc2\",dc2)\n\nl1 = [1,2,3,4,5]\nl2 = [10,20,30,40,50]\n\n\n\niterable = zip(l1,l2)\n#iterable.__hash__()\n\ndc3 = {k*2:v*2 for k,v in iterable}\nprint(f\"dc3 is {dc3}.\")\ndc4 = {k*2:v*2 for k,v in iterable if k%2==0} #此时iterable已经到了end结束位置；\nprint(f\"dc4 is {dc4}.\")\ndc5 = {k*2:v*2 for k,v in zip(l1,l2) if k%2==0}\nprint(f\"dc5 is {dc5}.\")\n\nprint(dc5)\n\nprint(next(iter(dc5)))\nprint(next(iter(dc5)))\nprint(next(iter(dc5)))\nprint(next(iter(dc5)))\nprint(next(iter(dc5)))\nprint(next(iter(dc5)))",
+        "updated": true,
+        "title": "字典推导式与 zip 迭代器只能消费一次",
+        "notes": [
+          "{i:i**2 for i in range(1,10) if i%2==1} 只取奇数作键，值为其平方。",
+          "{i:i**2 if i%2==1 else i*2 for i in range(1,6)} 是值部分的三目：奇数平方、偶数乘 2。",
+          "zip(l1,l2) 返回迭代器，dc3 遍历完它之后已被耗尽。",
+          "紧接着 dc4 用同一个 iterable 推导，得到空字典 {}。",
+          "dc5 重新写了一次 zip(l1,l2) 才取到数据，筛出偶数键得 {4:40,8:80}。",
+          "对 dict 反复调用 iter(dc5) 每次都从第一个键开始，所以 next 反复打印 4。"
+        ],
+        "pitfall": "zip 对象是一次性迭代器，不能重复遍历；而对字典本身 iter() 每次都能得到新的迭代器。",
+        "output": "dc1 {1: 1, 3: 9, 5: 25, 7: 49, 9: 81}\ndc2 {1: 1, 2: 4, 3: 9, 4: 8, 5: 25}\ndc3 is {2: 20, 4: 40, 6: 60, 8: 80, 10: 100}.\ndc4 is {}.\ndc5 is {4: 40, 8: 80}.\n{4: 40, 8: 80}\n4\n4\n4\n4\n4\n4"
       },
       {
         "name": "test19.py",
-        "code": "strings = \"k1=1/k2=2/k3=3/k4=4/k5=5\"\ndc1 = {string.split(\"=\")[0]:string.split(\"=\")[1] for string in strings.split(\"/\")}\nprint(dc1)\n\nfor string in strings.split(\"/\"):\n    print(string)\n    print(string.split(\"=\")[0])\n    print(string.split(\"=\")[1])"
+        "code": "strings = \"k1=1/k2=2/k3=3/k4=4/k5=5\"\n\nfor string in strings.split(\"/\"):\n    print(string)\n\n\ndc1 = {string.split(\"=\")[0]:string.split(\"=\")[1] for string in strings.split(\"/\")}\nprint(dc1)\n\nfor string in strings.split(\"/\"):\n    print(string)\n    print(string.split(\"=\")[0])\n    print(string.split(\"=\")[1])",
+        "updated": true,
+        "title": "split 拆分 + 字典推导式构造字典",
+        "notes": [
+          "strings.split('/') 按斜杠切成 5 段。",
+          "每段再 split('=') 得到 [键, 值]，用 [0]、[1] 分别取键和值。",
+          "{k:v for ...} 把所有键值对一次性组装成字典。",
+          "注意值是字符串 '1' 而非整数 1，需要时用 int() 转换。"
+        ],
+        "output": "k1=1\nk2=2\nk3=3\nk4=4\nk5=5\n{'k1': '1', 'k2': '2', 'k3': '3', 'k4': '4', 'k5': '5'}\nk1=1\nk1\n1\nk2=2\nk2\n2\nk3=3\nk3\n3\nk4=4\nk4\n4\nk5=5\nk5\n5"
       },
       {
         "name": "test20.py",
-        "code": "course = ['语文', '数学', '英语']\nscores = dict.fromkeys(course, 60)\nprint(scores)\nprint(scores.get(\"语文\"))\nprint(scores.keys())\nprint(scores.values())\nprint(scores.items())\n\ndc={'k1':1,'k2':2,'k3':3,'k4':4}\nprint(dc.get('k2'))\nprint(dc.keys())\nfor key in dc.keys():\n    print(f\"key is {key}.\")\nfor key in dc.keys():\n    print(f\"key is {key}.\")\nprint(dc.values())\nprint(dc.items())\n\nfor k,v in dc.items():\n    print(k,v);"
+        "code": "course = ['语文', '数学', '英语']\nscores = dict.fromkeys(course, 60)\nprint(scores)\nprint(scores.get(\"语文\"))\nprint(scores.keys())\nprint(scores.values())\nprint(scores.items())\n\ndc={'k1':1,'k2':2,'k3':3,'k4':4}\nprint(dc.get('k2'))\nprint(dc.keys())\nfor key in dc.keys():\n    print(f\"key is {key}.\")\nfor key in dc.keys():\n    print(f\"key is {key}.\")\nprint(dc.values())\nprint(dc.items())\n\nfor k,v in dc.items():\n    print(k,v)",
+        "updated": true,
+        "title": "字典的常用视图：keys / values / items",
+        "notes": [
+          "dict.fromkeys(course, 60) 用列表元素作键、统一给同一个默认值，批量建字典。",
+          "get('语文') 按键取值，键不存在时返回 None，比 dc['键'] 安全。",
+          "keys() / values() / items() 返回视图对象，打印形如 dict_keys([...])。",
+          "for key in dc.keys() 遍历键；for k,v in dc.items() 同时遍历键和值。",
+          "视图随字典动态更新；这里没做修改，所以两次遍历结果相同。"
+        ],
+        "pitfall": "dict_keys 不是列表，要 list() 转换；dc['不存在的键'] 会 KeyError，get 只返回 None。",
+        "output": "{'语文': 60, '数学': 60, '英语': 60}\n60\ndict_keys(['语文', '数学', '英语'])\ndict_values([60, 60, 60])\ndict_items([('语文', 60), ('数学', 60), ('英语', 60)])\n2\ndict_keys(['k1', 'k2', 'k3', 'k4'])\nkey is k1.\nkey is k2.\nkey is k3.\nkey is k4.\nkey is k1.\nkey is k2.\nkey is k3.\nkey is k4.\ndict_values([1, 2, 3, 4])\ndict_items([('k1', 1), ('k2', 2), ('k3', 3), ('k4', 4)])\nk1 1\nk2 2\nk3 3\nk4 4"
       },
       {
         "name": "test21.py",
-        "code": "\ndc = {'语文': 60, '数学': 60}\ndc.update({'语文': 90, '数学': 98})\nprint(dc)\ndc.update({'英语':88})\nprint(dc)\ndc1 = dc.setdefault('语文',96)\nprint(\"dc132323:\", dc1)\ndc2 = dc.setdefault('体育',90)\nprint(dc)\ndc1 = dc;\ndc2 = dc.copy();\nprint('1st dc2: ',dc2)\nprint('1st dc1: ',dc1)\ndc.update({'美术':90})\nprint('1st dc: ',dc)\nprint('2nd dc1: ',dc1)\nprint('2nd dc2: ',dc2)\n\ndc3 = dc.pop('语文')\nprint(\"dc3: \",dc3)\ndc4 = dc.popitem();\nprint(\"dc4: \",dc4)\n\ndc={'k1':1,'k2':2,'k3':3,'k4':4}\nprint(dc.get('k2'))\nprint(dc.keys())\nfor key in dc.keys():\n    print(key)\nprint(dc.values())\nprint(dc.items())"
+        "code": "\ndc = {'语文': 60, '数学': 60}\nprint(\"1\", dc)\ndc.update({'语文': 90, '数学': 98})\nprint(\"2\", dc)\ndc.update({'英语':88})\nprint(\"3\",dc)\n\ndc1 = dc.setdefault('语文',96)\nprint(dc1)\nprint(dc)\nprint(\"dc1:\", dc1)\n\ndc2 = dc.setdefault('体育',90)\nprint(\"dc2 in line 15:\", dc2)\ndc1 = dc;\ndc2 = dc.copy();\nprint('1st dc2: ',dc2)\nprint('1st dc1: ',dc1)\ndc.update({'美术':90})\nprint('1st dc: ',dc)\nprint('2nd dc1: ',dc1)\nprint('2nd dc2: ',dc2)\n\ndc3 = dc.pop('语文')\nprint(\"dc3: \",dc3)\ndc4 = dc.popitem();\nprint(\"dc4: \",dc4)\n\ndc={'k1':1,'k2':2,'k3':3,'k4':4}\nprint(dc.get('k2'))\nprint(dc.keys())\nfor key in dc.keys():\n    print(key)\nprint(dc.values())\nprint(dc.items())",
+        "updated": true,
+        "title": "字典的 update / setdefault / copy / pop / popitem",
+        "notes": [
+          "update({'语文':90}) 会覆盖同名键的值，传入新键则相当于新增。",
+          "setdefault('语文',96)：键已存在，返回原值 90，不修改。",
+          "setdefault('体育',90)：键不存在，插入并返回 90。",
+          "dc1 = dc 只是起别名，之后 dc 更新，dc1 跟着变。",
+          "dc2 = dc.copy() 是独立副本，dc 后来加 '美术' 时 dc2 里没有。",
+          "pop('语文') 按键删除并返回值；popitem() 删除并返回最后一个键值对。"
+        ],
+        "pitfall": "dc1 = dc 与 dc2 = dc.copy() 结果完全不同，试卷常把这两行放一起考。",
+        "output": "1 {'语文': 60, '数学': 60}\n2 {'语文': 90, '数学': 98}\n3 {'语文': 90, '数学': 98, '英语': 88}\n90\n{'语文': 90, '数学': 98, '英语': 88}\ndc1: 90\ndc2 in line 15: 90\n1st dc2:  {'语文': 90, '数学': 98, '英语': 88, '体育': 90}\n1st dc1:  {'语文': 90, '数学': 98, '英语': 88, '体育': 90}\n1st dc:  {'语文': 90, '数学': 98, '英语': 88, '体育': 90, '美术': 90}\n2nd dc1:  {'语文': 90, '数学': 98, '英语': 88, '体育': 90, '美术': 90}\n2nd dc2:  {'语文': 90, '数学': 98, '英语': 88, '体育': 90}\ndc3:  90\ndc4:  ('美术', 90)\n2\ndict_keys(['k1', 'k2', 'k3', 'k4'])\nk1\nk2\nk3\nk4\ndict_values([1, 2, 3, 4])\ndict_items([('k1', 1), ('k2', 2), ('k3', 3), ('k4', 4)])"
       }
-    ]
+    ],
+    "updated": true
   },
   {
     "n": 7,
@@ -5112,93 +6398,306 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test1.py",
-        "code": "def add():\n    \"\"\"\n    it is a function!\n    \"\"\"\n    sum = 11 + 22\n    print(sum)\n\nif __name__ == '__main__':\n    add()\n    print(f\"type(add) is {type(add)}\")\n    print(f\"add is {add}\")\n    print(f\"id(add) is {id(add)}\")"
+        "code": "def add():\n    \"\"\"\n    it is a function!\n    \"\"\"\n    sum = 11 + 22\n    print(sum)\n\nif __name__ == '__main__':\n    add()\n    print(f\"type(add) is {type(add)}\")\n    print(f\"add is {add}\")\n    print(f\"id(add) is {id(add)}\")",
+        "updated": true,
+        "title": "函数也是对象：type、id、文档字符串",
+        "notes": [
+          "def 定义函数后，函数名 add 本身是一个对象（type 为 <class 'function'>）。",
+          "三引号写在函数体第一行是文档字符串（docstring），可用 add.__doc__ 取出。",
+          "print(type(add)) 说明函数是一等对象，可以赋值、传参、返回。",
+          "if __name__ == '__main__': 下的代码只在“直接运行本文件”时执行，被 import 时不执行。"
+        ],
+        "output": "33\ntype(add) is <class 'function'>\nadd is <function add at 0x0000024759FD22A0>\nid(add) is 2505475695264"
       },
       {
         "name": "test2.py",
-        "code": "from test1 import add\n\ndef add_return(x,y):\n    sum = x + y\n    return sum\n\n\ndef fun(x,y):\n    return x,y\n\ndef fun(x,y):\n    return 'ok'\n\nprint(fun(2,3))\n\nif __name__ == '__main__':\n    add_object = add_return\n    add()\n    print(f\"add_return(11,22) is {add_return(11,22)}\");\n    print(f\"add_object(11,22) is {add_object(11, 22)}\");\n    print(id(add_object)==id(add_return))\n\nprint(f\"type(fun): {type(fun)}\")\nprint(f\"fun: {fun}\")\nprint(f\" id(fun): { id(fun)}\")"
+        "code": "from test1 import add\n\ndef add_return(x,y):\n    sum = x + y\n    return sum\n\n\ndef fun(x,y):\n    return x,y\n\ndef fun(x,y):\n    return 'ok'\n\nprint(fun(2,3))\n\nif __name__ == '__main__':\n    add_object = add_return\n    add()\n    print(f\"add_return(11,22) is {add_return(11,22)}\");\n    print(f\"add_object(11,22) is {add_object(11, 22)}\");\n    print(id(add_object)==id(add_return))\n\nprint(f\"type(fun): {type(fun)}\")\nprint(f\"fun: {fun}\")\nprint(f\" id(fun): { id(fun)}\")",
+        "updated": true,
+        "title": "函数重名覆盖、函数可赋值给变量",
+        "notes": [
+          "同名函数 fun 定义了两次，后一个覆盖前一个，所以 fun(2,3) 返回 'ok'。",
+          "add_object = add_return 把函数对象赋给另一个变量，两者指向同一个函数，id 相同。",
+          "由 from test1 import add 可见：被导入模块的顶层代码不会因 import 而重复执行（有 __main__ 保护）。"
+        ],
+        "pitfall": "Python 没有函数重载，同名 def 只会保留最后一个；想按参数个数区分必须自己写判断或用默认参数。",
+        "output": "ok\n33\nadd_return(11,22) is 33\nadd_object(11,22) is 33\nTrue\ntype(fun): <class 'function'>\nfun: <function fun at 0x000002B56E415120>\n id(fun): 2978262110496"
       },
       {
         "name": "test3.py",
-        "code": "def test():\n    print(666)\n    return 888\n\n\nprint(test())\t# 先调用test，再打印出返回值"
+        "code": "def test():\n    print(666)\n    return 888\n\n\nprint(test())\t# 先调用test，再打印出返回值",
+        "updated": true,
+        "title": "return 返回值的打印顺序",
+        "notes": [
+          "print(test()) 的执行顺序：先进入函数执行 print(666)，函数 return 888，最后才把 888 打印出来。",
+          "所以输出是 666 在前、888 在后。",
+          "没有写 return 的函数返回 None。"
+        ],
+        "output": "666\n888"
       },
       {
         "name": "test4.py",
-        "code": "def test1():\n    return [1, 2, 3, 4]\n\n#print(test1())\n\ndef test2():\n    a = 0\n    a = a+1\n    print(\"a\", a)\n    return test2\n\nb= test2();\n#print(test2())\n#print(test2()())\n\nfor i in range(5):\n    print(\"b\",b())\n\n\"\"\"\ndef test3():\n    return range(5)\n\nfor item in test3():\n    print(item)\n\"\"\""
+        "code": "def test1():\n    return [1, 2, 3, 4]\n\n#print(test1())\n\ndef test2():\n    a = 0\n    a = a+1\n    print(\"a\", a)\n    return test2\n\nb= test2();\n#print(test2())\n#print(test2()())\n\nfor i in range(5):\n    print(\"b\",b())\n\n\"\"\"\ndef test3():\n    return range(5)\n\nfor item in test3():\n    print(item)\n\"\"\"",
+        "updated": true,
+        "title": "函数返回函数自身",
+        "notes": [
+          "test2 内部先打印 a 1，再把 test2 这个函数对象自己 return 出去。",
+          "b = test2() 时执行一次，b 得到函数对象；之后每次 b() 又会打印一次 a 1 并再返回函数。",
+          "每次调用 a 都重新初始化为 0 再 +1，所以永远打印 a 1（局部变量不跨调用保留）。",
+          "for 循环 5 次，每次都多打印一行 a 1 和一行 b <function ...>。"
+        ],
+        "pitfall": "局部变量 a 在每次调用时都重新创建，所以不会累加；要累加必须用闭包 nonlocal 或全局变量。",
+        "output": "a 1\na 1\nb <function test2 at 0x0000027DB15DA2A0>\na 1\nb <function test2 at 0x0000027DB15DA2A0>\na 1\nb <function test2 at 0x0000027DB15DA2A0>\na 1\nb <function test2 at 0x0000027DB15DA2A0>\na 1\nb <function test2 at 0x0000027DB15DA2A0>"
       },
       {
         "name": "test5.py",
-        "code": "def add(x,y,z):\n    sum=x+y\n    sub=z-y\n    ss = \"python\"\n    return sum,sub,ss\n\nx,y,z = add(10,20,30)\nprint(x)\nprint(y)\nprint(z)"
+        "code": "def add(x,y,z):\n    sum=x+y\n    sub=z-y\n    ss = \"python\"\n    return sum,sub,ss\n\nx,y,z = add(10,20,30)\nprint(x)\nprint(y)\nprint(z)",
+        "updated": true,
+        "title": "return 返回多个值与序列解包",
+        "notes": [
+          "return sum,sub,ss 实际返回的是一个元组 (30,10,'python')。",
+          "x,y,z = add(10,20,30) 用序列解包把元组的三个元素分别赋给三个变量。",
+          "所以 x=30、y=10、z=python。"
+        ],
+        "output": "30\n10\npython"
       },
       {
         "name": "test6.py",
-        "code": "\ndef connect(ip,port):\n    print(f\"网址：端口{ip}:{port}链接设备！\")\n\n\nconnect(ip=\"192.168.0.1\",port=8000)\nconnect(port=8000,ip=\"192.168.0.1\")"
+        "code": "\ndef connect(ip,port):\n    print(f\"网址：端口{ip}:{port}链接设备！\")\n\n\nconnect(ip=\"192.168.0.1\",port=8000)\nconnect(port=8000,ip=\"192.168.0.1\")\n\ndef connect(ip,port=8080):\n    print(f\"网址：端口{ip}:{port}链接设备！\")\n\nconnect(\"192.168.0.1\")",
+        "updated": true,
+        "title": "关键字参数与默认参数",
+        "notes": [
+          "connect(ip=..., port=...) 用关键字参数传参，顺序可以打乱，结果一样。",
+          "文件中 connect 定义了两次，第二个带默认值 port=8080，覆盖了第一个。",
+          "所以 connect('192.168.0.1') 只传了 ip，port 取默认值 8080。"
+        ],
+        "pitfall": "同一文件里重复 def 同名函数，前面的会被后面覆盖——看到两个 connect 别以为都会生效。",
+        "output": "网址：端口192.168.0.1:8000链接设备！\n网址：端口192.168.0.1:8000链接设备！\n网址：端口192.168.0.1:8080链接设备！"
       },
       {
         "name": "test7.py",
-        "code": "def test(*args):\n    print(len(args))\n    for i in range(len(args)):\n        print(args[i])\n\n    #for i in args:\n    #    print(i)\n    #print(sum(args))\n\ntest(10,20,30)\ntest(11,22,33,44,55)"
+        "code": "def test(*args):\n    print(len(args))\n    for i in range(len(args)):\n        print(args[i])\n\n    #for i in args:\n    #    print(i)\n    #print(sum(args))\n\ntest(10,20,30)\ntest(11,22,33,44,55)",
+        "updated": true,
+        "title": "*args 把多余位置实参打包成元组",
+        "notes": [
+          "形参写成 *args，调用时传入的所有位置实参被打包成一个元组。",
+          "test(10,20,30) 时 len(args)=3，用 args[i] 逐个取出打印。",
+          "test(11,22,33,44,55) 时 args 有 5 个元素，全部打印。"
+        ],
+        "output": "3\n10\n20\n30\n5\n11\n22\n33\n44\n55"
       },
       {
         "name": "test8.py",
-        "code": "# arguments;\n# documentation;\n\ndef test(**kwargs):\n    print(type(kwargs))\n    dict = kwargs;\n    for key in dict.keys():\n        print(key)\n        print(dict.get(key))\n    #print(kwargs)\n\ntest(x=10,y=20)\t# 调用test 时，多个绑定关键字的实参以字典形式打包传递给形参\ntest(a=11,b=22,c=33,d=44,e=55)"
+        "code": "# arguments;\n# documentation;\n\ndef test(**kwargs):\n    print(type(kwargs))\n    dict = kwargs;\n    for key in dict.keys():\n        print(key)\n        print(dict.get(key))\n    #print(kwargs)\n\ntest(x=10,y=20)\t# 调用test 时，多个绑定关键字的实参以字典形式打包传递给形参\ntest(a=11,b=22,c=33,d=44,e=55)",
+        "updated": true,
+        "title": "**kwargs 把关键字实参打包成字典",
+        "notes": [
+          "形参写成 **kwargs，所有带键的实参被打包成字典，type(kwargs) 为 dict。",
+          "遍历 dict.keys() 拿到每个键，再用 dict.get(key) 取对应的值。",
+          "调用 test(x=10,y=20) 输出 x/10、y/20；五个键的调用则输出 10 行。"
+        ],
+        "output": "<class 'dict'>\nx\n10\ny\n20\n<class 'dict'>\na\n11\nb\n22\nc\n33\nd\n44\ne\n55"
       },
       {
         "name": "test9.py",
-        "code": "def test(a,b,c,d):\n    print(a,b,c,d)\n\nl1 = (11,22,33,44)\n#test(l1)\ntest(*l1)"
+        "code": "def test(a,b,c,d):\n    print(a,b,c,d)\n\nl1 = (11,22,33,44)\n#test(l1)\ntest(*l1)",
+        "updated": true,
+        "title": "调用时用 * 解包元组",
+        "notes": [
+          "l1 = (11,22,33,44) 是一个元组，直接 test(l1) 只会传一个参数（会报错，已被注释）。",
+          "test(*l1) 在调用时把元组拆成 4 个位置实参，正好对上 a,b,c,d。",
+          "所以输出 11 22 33 44。"
+        ],
+        "pitfall": "* 放在形参前是“打包”，放在实参前是“解包”，位置不同含义相反。",
+        "output": "11 22 33 44"
       },
       {
         "name": "test10.py",
-        "code": "\"\"\"\ndef test(a,b,c,d):\n    print(a,b,c,d)\nd1 = {\"e\":11,\"f\":22,\"g\":33,\"h\":44}\t# 定义一个字典\n#test(d1)\ntest(*d1) #key\ntest(**d1) # 调用test 时，用“**”对字典解包 value\n\"\"\"\n\ndef test1(a,b,c=33,*args,**kwargs):\n    print(a,b,c,args,kwargs)\n\ntest1(1,2)\ntest1(1,2,3)\ntest1(1,2,3,4)\ntest1(1,2,3,4,e=6)\n\ntest1(1,2,3, e=6)\n#test1(1, e=6)\n\"\"\"\nimport test9\ntest9.test(1,2,3,4)\nprint(test9.l1)\n\nfrom test9 import test\ntest(1,2,3,4)\n\"\"\"\ndef test111(l1):\n    print(\"test 10-l1\",l1)\n\nl1 = [1,2,3];\ntest111(l1)"
+        "code": "\"\"\"\ndef test(a,b,c,d):\n    print(a,b,c,d)\nd1 = {\"e\":11,\"f\":22,\"g\":33,\"h\":44}\t# 定义一个字典\n#test(d1)\ntest(*d1) #key\ntest(**d1) # 调用test 时，用“**”对字典解包 value\n\"\"\"\n\ndef test1(a,b,c=33,*args,**kwargs):\n    print(a,b,c,args,kwargs)\n\ntest1(1,2)\ntest1(1,2,3)\ntest1(1,2,3,4)\ntest1(1, 2, 3, 4, 6, 6, 6, 6, e=6,d=5)\n\ntest1(1,2,3, d=3, e=6)\n#test1(1, e=6)\n\"\"\"\nimport test9\ntest9.test(1,2,3,4)\nprint(test9.l1)\n\nfrom test9 import test\ntest(1,2,3,4)\n\"\"\"\ndef test111(l1):\n    print(\"test 10-l1\",l1)\n\nl1 = [1,2,3];\ntest111(l1)",
+        "updated": true,
+        "title": "混合参数传递的分配规则",
+        "notes": [
+          "被三引号包住的第一个示例演示：test(*d1) 解包字典得到的是“键”，test(**d1) 得到的才是键值对。",
+          "def test1(a,b,c=33,*args,**kwargs) 的分配顺序：先按位置填 a、b，再填 c，多余位置实参进 args，关键字实参进 kwargs。",
+          "test1(1,2) → c 取默认值 33，args、kwargs 都为空。",
+          "test1(1,2,3,4) → 4 超出固定形参个数，被 *args 收进元组 (4,)。",
+          "test1(1,2,3,4,6,6,6,6,e=6,d=5) → 中间多余的 6 全进 args，e、d 进 kwargs。",
+          "test1(1,2,3,d=3,e=6) → d、e 是关键字参数直接进 kwargs，不影响位置参数。",
+          "最后的 test111(l1) 传的是列表，函数只打印它，不涉及解包。"
+        ],
+        "pitfall": "位置参数必须写在关键字参数之前；test1(1, e=6) 会报错，因为 b 没有值。",
+        "output": "1 2 33 () {}\n1 2 3 () {}\n1 2 3 (4,) {}\n1 2 3 (4, 6, 6, 6, 6) {'e': 6, 'd': 5}\n1 2 3 () {'d': 3, 'e': 6}\ntest 10-l1 [1, 2, 3]"
       },
       {
         "name": "test11.py",
-        "code": "number=10\n\ndef test():\n    print(\"1\",number)\n\ntest()\nprint(\"2\",number)\n\ndef test1():\n    #global number\n    #number = 5\n    print(\"3\",number)\n    #number+=1\n\ntest1()\nprint(\"4\", number)\nprint(\"5\", number)\n\nimport test10\n\ndef test3():\n    #global l2\n    #l2= test10.l1\n    test10.l1 = [55,66,77,88]\n    print(\"6\",test10.l1)\n\ntest3()\nprint(\"7\",test10.l1)\ntest10.test111(test10.l1)"
+        "code": "number=10\n\ndef test():\n    print(\"1\",number)\n\ntest()\nprint(\"2\",number)\n\ndef test1():\n    #global number\n    #number = 0\n    #number += 5\n\n\n    print(\"3\",number)\n    #number+=1\n\ntest1()\nprint(\"4\", number)\nprint(\"5\", number)\n\nimport test10\n\ndef test3():\n    #global l2\n    #l2= test10.l1\n    test10.l1 = [55,66,77,88]\n    print(\"6\",test10.l1)\n\ntest3()\nprint(\"7\",test10.l1)\ntest10.test111(test10.l1)",
+        "updated": true,
+        "title": "全局变量读取、import 的副作用",
+        "notes": [
+          "函数内只读取 number 时，沿 LEGB 找到全局的 10，所以打印 1 10、3 10。",
+          "被注释掉的 global number / number = 0 说明了：函数内一旦给全局名赋值，就必须先声明 global，否则会变成新的局部变量。",
+          "global 语句被注释掉后，test1 只是读取，全局 number 始终是 10（2、4、5 行都是 10）。",
+          "import test10 会执行 test10 的顶层代码，所以输出里突然多出 test10 那 6 行内容。",
+          "test3 中 test10.l1 = [55,66,77,88] 修改的是模块属性，所以函数外的 test10.l1 也跟着变。"
+        ],
+        "pitfall": "import 一个模块不只是“引入名字”，模块顶层的语句都会被执行一遍——这是输出里多出内容的原因。",
+        "output": "1 10\n2 10\n3 10\n4 10\n5 10\n1 2 33 () {}\n1 2 3 () {}\n1 2 3 (4,) {}\n1 2 3 (4, 6, 6, 6, 6) {'e': 6, 'd': 5}\n1 2 3 () {'d': 3, 'e': 6}\ntest 10-l1 [1, 2, 3]\n6 [55, 66, 77, 88]\n7 [55, 66, 77, 88]\ntest 10-l1 [55, 66, 77, 88]"
       },
       {
         "name": "test12.py",
-        "code": "def test_out():\n    number=10\n    def test_in():\n        #nonlocal number\n        #number = 1\n        print(number+1)\n\n    test_in()\n    print(number)\n\ntest_out()\n\n#import test11\n#import test10\n#print(\"test12: \")\n#test10.test111(test10.l1)"
+        "code": "def test_out():\n    number=10\n    def test_in():\n        #nonlocal number\n        number = 1\n        print(number+1)\n\n    test_in()\n    print(number)\n\ntest_out()\n\n#import test11\n#import test10\n#print(\"test12: \")\n#test10.test111(test10.l1)",
+        "updated": true,
+        "title": "nonlocal 与变量作用域",
+        "notes": [
+          "test_in 里写了 number = 1，这会在内层创建新的局部变量，内层打印 1+1=2。",
+          "nonlocal number 被注释掉，所以内层的 number 与外层的 number=10 是两个变量。",
+          "外层 print(number) 仍是 10——内层的赋值没有影响外层。"
+        ],
+        "pitfall": "想让内层改外层局部变量必须写 nonlocal；想让函数改全局变量必须写 global。",
+        "output": "2\n10"
       },
       {
         "name": "test13.py",
-        "code": "def func(num):\n    if num==1:\n        return 1\n    else:\n        return num*func(num-1)\n\n#num=int(input(\"请输入一个整数：\"))\n#result=func(num)\n#print(\"%d!=%d\"%(num,result))\n\n\nf = lambda a, b, c: a + b * c\nprint(f)\nprint(f(1, 2, 3))"
+        "code": "def func(num):\n    if num==1:\n        return 1\n    else:\n        return num*func(num-1)\n\n# 1 1 2 3 5\n\nnum=int(input(\"请输入一个整数：\"))\nresult=func(num)\nprint(\"%d!=%d\"%(num,result))\n\n\nf = lambda a, b, c: a + b * c\nprint(f)\nprint(f(1, 2, 3))",
+        "updated": true,
+        "title": "递归求阶乘 + lambda 匿名函数",
+        "notes": [
+          "func(num) 用递归实现阶乘：num==1 是终止条件，否则 return num*func(num-1)。",
+          "输入 5 时 5! = 120，按 %d!=%d 的格式输出 5!=120。",
+          "lambda a,b,c: a+b*c 定义了匿名函数，f 保存后可用 f(1,2,3) 调用。",
+          "注意运算优先级：先算 b*c 再加 a，所以 1+2*3 = 7，不是 9。"
+        ],
+        "pitfall": "lambda 的函数体只能是一个表达式，不能写 if 语句块、循环等复杂结构。",
+        "output": "请输入一个整数：5!=120\n<function <lambda> at 0x00000254FC31A2A0>\n7",
+        "stdin": "5\n"
       },
       {
         "name": "test14.py",
-        "code": "def fun1():\n    local_val = 0\n\n    def fun2():\n        nonlocal local_val\n        local_val += 1\n        return local_val\n\n    return fun2\n\ncount = fun1()\n\n#print(fun1.fun2())\n\nprint(count)\nfor i in range(5):\n    print(fun1())\n    #print(\"第%s 次调用计数器，记录值为：%s\" % (i, fun1()()))\n    print(\"第%s 次调用计数器，记录值为：%s\" % (i, count()))\n    #print(\"第%s 次调用计数器，记录值为：%s\" % (i, fun1()))"
+        "code": "def fun1():\n    local_val = 0\n\n    def fun2():\n        nonlocal local_val\n        local_val += 1\n        return local_val\n\n    return fun2\n\ncount = fun1()\n#print(fun1.fun2())\nprint(count)\nfor i in range(5):\n    print(fun1())\n    #print(\"第%s 次调用计数器，记录值为：%s\" % (i, fun1()()))\n    print(\"第%s 次调用计数器，记录值为：%s\" % (i, count()))\n    #print(\"第%s 次调用计数器，记录值为：%s\" % (i, fun1()))",
+        "updated": true,
+        "title": "闭包计数器与 nonlocal",
+        "notes": [
+          "fun1 内部定义 fun2 并返回它，fun2 引用了外层的 local_val，这就是闭包。",
+          "nonlocal local_val 让 fun2 能修改外层变量，每次调用 +1。",
+          "count = fun1() 创建了一个闭包；之后反复 count() 会在同一个 local_val 上累加，得到 1、2、3、4、5。",
+          "而循环里 print(fun1()) 每次都新建一个闭包对象，所以打印的是函数对象地址而不是数值。"
+        ],
+        "pitfall": "闭包的状态保存在“那一次 fun1() 调用”的局部变量里；重新调用 fun1() 会得到全新的计数器，从 0 开始。",
+        "output": "<function fun1.<locals>.fun2 at 0x000001F5D084A340>\n<function fun1.<locals>.fun2 at 0x000001F5D084A2A0>\n第0 次调用计数器，记录值为：1\n<function fun1.<locals>.fun2 at 0x000001F5D084A2A0>\n第1 次调用计数器，记录值为：2\n<function fun1.<locals>.fun2 at 0x000001F5D084A2A0>\n第2 次调用计数器，记录值为：3\n<function fun1.<locals>.fun2 at 0x000001F5D084A2A0>\n第3 次调用计数器，记录值为：4\n<function fun1.<locals>.fun2 at 0x000001F5D084A2A0>\n第4 次调用计数器，记录值为：5",
+        "stdin": "5\n"
       },
       {
         "name": "test15.py",
-        "code": "\nl1 = [x*x for x in range(5)]\n\nprint(l1)\n\ngen = (x*x for x in range(5))\n\nfor n in gen:\n    print(n)\n\n\n\ndef gen(n):\n    index = 0\n    print(\"gen!\")\n    while index < n:\n        yield index\n        index += 1\n\ngenerate = gen(5)\nprint(type(generate))\nfor i in generate:\n    print(i)"
+        "code": "\nl1 = [x*x for x in range(5)]\n\nprint(l1)\n\ngen = (x*x for x in range(5))\n\nfor n in gen:\n    print(n)\n\n\n\ndef gen(n):\n    index = 0\n    print(\"111111, gen!\")\n    while index < n:\n        yield index\n        index += 2\n\ngenerate = gen(5)\n\nprint(type(generate))\nfor i in generate:\n    print(i)",
+        "updated": true,
+        "title": "列表推导、生成器表达式与 yield 生成器的执行时机",
+        "notes": [
+          "[x*x for x in range(5)] 立刻算出完整列表 [0,1,4,9,16]。",
+          "(x*x for x in range(5)) 是生成器表达式，for 遍历时才逐个产出。",
+          "gen(n) 用 yield 定义生成器函数，每次 yield 暂停并交出一个值，index 每次 +2。",
+          "关键：print('111111, gen!') 在 for 循环真正开始迭代时才输出，说明生成器函数体不会在调用时立即运行。",
+          "index 从 0 开始每次加 2，5 以内得到 0、2、4 三个值。"
+        ],
+        "pitfall": "调用生成器函数只是“造出生成器对象”，函数体一行都不执行；第一次 next()/for 才真正开始跑。",
+        "output": "[0, 1, 4, 9, 16]\n0\n1\n4\n9\n16\n<class 'generator'>\n111111, gen!\n0\n2\n4"
       },
       {
         "name": "test16.py",
-        "code": "def gen(n):\n    index = 0\n    while index < n:\n        yield index\n        index += 1\n\ng = gen(3)\n\nprint(next(g))\nprint(next(g))\nprint(next(g))\n#print(next(g))"
+        "code": "def gen(n):\n    index = 0\n    while index < n:\n        yield index\n        index += 1\n\ng = gen(3)\n\nprint(next(g))\nprint(next(g))\nprint(next(g))\nprint(next(g))",
+        "updated": true,
+        "title": "生成器耗尽后抛 StopIteration",
+        "notes": [
+          "gen(3) 依次 yield 0、1、2，共 3 个值。",
+          "第 4 次 next(g) 时生成器已结束，抛 StopIteration——这是文件里的演示错误。",
+          "正确写法是用 for 遍历，或把 next() 包在 try-except 中。"
+        ],
+        "pitfall": "next() 调用次数不能超过元素个数，多调一次就报 StopIteration。",
+        "output": "0\n1\n2",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter7\\chapter7\\test16.py\", line 12, in <module>\n    print(next(g))\n          ^^^^^^^\nStopIteration"
       },
       {
         "name": "test17.py",
-        "code": "def wrapper(fun):\n    print(fun)\n    print(type(fun))\n    print('正在装饰...')\n    def inner():\n        print('正在验证权限')\n        fun()\n    return inner\n\n@wrapper\ndef test():\n    print('test')\n\ntest()"
+        "code": "def wrapper(fun):\n    print(\"1. \", fun)\n    print(type(fun))\n    print('2. 正在装饰...')\n    def inner():\n        print('3. 正在验证权限')\n        fun()\n    return inner\n\n@wrapper\ndef test():\n    print('test')\n\ntest()",
+        "updated": true,
+        "title": "装饰器的基本结构",
+        "notes": [
+          "装饰器本质是“接收函数、返回新函数”的高阶函数。",
+          "@wrapper 等价于 test = wrapper(test)，所以装饰发生在函数定义时，而不是调用时。",
+          "wrapper 内部的 print 在装饰那一刻就执行，因此先输出 1.、<class 'function'>、2.。",
+          "真正调用 test() 时执行的是 inner：先打印验证权限，再调用原函数打印 test。"
+        ],
+        "output": "1.  <function test at 0x000001FD92DBA2A0>\n<class 'function'>\n2. 正在装饰...\n3. 正在验证权限\ntest"
       },
       {
         "name": "test18.py",
-        "code": "from datetime import datetime\nimport time\n\ndef wrapper1(fun1):\n    print(datetime.now())\n    time.sleep(2)\n    print(\"wrapper1: \",fun1)\n    print('正在装饰 1')\n    def inner1():\n        print('正在验证权限 1')\n        fun1() #inner2\n        #fun1() #inner2\n    return inner1\n\ndef wrapper2(fun2):\n    print(datetime.now())\n    time.sleep(5)\n    print(\"warpper2: \", fun2)\n    print('正在装饰 2')\n    def inner2():\n        print('正在验证权限 2')\n        fun2() # test()\n    return inner2\n\n@wrapper1\n@wrapper2\ndef test():\n    print(datetime.now())\n    time.sleep(5)\n    print('test')\n\ntest()"
+        "code": "from datetime import datetime\nimport time\n\ndef wrapper1(fun1):\n    print(\"2, \" + str(datetime.now()))\n    time.sleep(2)\n    print(\"wrapper1: \",fun1)\n    print('正在装饰 1')\n    def inner1():\n        print('正在验证权限 1')\n        fun1() #inner2\n        #fun1() #inner2\n    return inner1\n\ndef wrapper2(fun2):\n    print(\"3, \" + str(datetime.now()))\n    time.sleep(5)\n    print(\"warpper2: \", fun2)\n    print('正在装饰 2')\n    def inner2():\n        print('正在验证权限 2')\n        fun2() # test()\n    return inner2\n\n@wrapper1\n@wrapper2\ndef test():\n    print(\"1, \" + str(datetime.now()))\n    time.sleep(5)\n    print('test')\n\ntest()",
+        "updated": true,
+        "title": "多个装饰器叠加的执行顺序",
+        "notes": [
+          "@wrapper1 在 @wrapper2 之上，装饰顺序由内向外：先用 wrapper2 装饰 test，再用 wrapper1 装饰其结果。",
+          "所以装饰阶段先打印 wrapper2 的 3.、正在装饰 2，再打印 wrapper1 的 2.、正在装饰 1。",
+          "运行时由外向内：inner1 先执行（正在验证权限 1），再调用 inner2（正在验证权限 2），最后才是真正的 test。",
+          "两个 time.sleep 让装饰过程与运行过程有明显时间间隔，便于观察顺序。"
+        ],
+        "pitfall": "离函数越近的装饰器越先装饰（越在内层），但执行时越靠外层的包装器越先运行。",
+        "output": "3, 2026-11-16 13:48:08.889866\nwarpper2:  <function test at 0x0000025CFBF751C0>\n正在装饰 2\n2, 2026-11-16 13:48:13.890564\nwrapper1:  <function wrapper2.<locals>.inner2 at 0x0000025CFBF76160>\n正在装饰 1\n正在验证权限 1\n正在验证权限 2\n1, 2026-11-16 13:48:15.891314\ntest"
       },
       {
         "name": "test19.py",
-        "code": "from functools import wraps\nfrom datetime import datetime\n\n\ndef logit(logfile='out.log'):# 文件名为参数的装饰器\n    def logging_decorator(func):\n        @wraps(func)\n        def wrapped_function(*args, **kwargs):\n            log_string = str(datetime.now()) + \" , \"+func.__name__ \t+ \" was called \" +str(args) + str(kwargs)\n            print(log_string)\n            with open(logfile, 'a') as opened_file:\t# 打开logfile，写入内容 #\n                opened_file.write(log_string + '\\n')\t# 日志写到logfile\n            return func(*args, **kwargs)\n        return wrapped_function\n    return logging_decorator\n\n\n@logit()\ndef myfunc1(a,b,e=1):\n    print(a+b)\n    pass\n\nmyfunc1(3,4)"
+        "code": "from functools import wraps\nfrom datetime import datetime\n\n\ndef logit(logfile='out.log'):# 文件名为参数的装饰器\n    def logging_decorator(func):\n        @wraps(func)\n        def wrapped_function(*args, **kwargs):\n            log_string = str(datetime.now()) + \" , \"+func.__name__ \t+ \" was called \" +str(args) + str(kwargs)\n            print(log_string)\n            with open(logfile, 'a') as opened_file:\t# 打开logfile，写入内容 #\n                opened_file.write(log_string + '\\n')\t# 日志写到logfile\n            return func(*args, **kwargs)\n        return wrapped_function\n    return logging_decorator\n\n\n@logit()\ndef myfunc1(a,b,e=1):\n    print(a+b)\n    pass\n\nmyfunc1(3,4)",
+        "updated": true,
+        "title": "带参数的装饰器 + functools.wraps + 写日志",
+        "notes": [
+          "logit(logfile) 返回 logging_decorator，logging_decorator 再返回 wrapped_function，三层嵌套是“带参数装饰器”的标准写法。",
+          "@logit() 相当于先调用 logit() 得到装饰器，再用它装饰 myfunc1。",
+          "wrapped_function(*args, **kwargs) 先把调用信息拼成字符串打印并追加写入 out.log，再 return func(*args, **kwargs) 执行原函数。",
+          "@wraps(func) 保留原函数的 __name__ 和文档字符串，否则被装饰后函数名会变成 wrapped_function。",
+          "所以输出先是一行调用日志（含时间、函数名、参数），然后是 myfunc1 的结果 7。"
+        ],
+        "pitfall": "装饰器里一定要 return 原函数的调用结果，否则被装饰函数就“没有返回值”了。",
+        "output": "2026-11-16 13:48:21.026379 , myfunc1 was called (3, 4){}\n7"
       },
       {
         "name": "test20.py",
-        "code": "def square(x):\n    return x ** 2\n\nls = [1, 2, 3, 4, 5]\nres = map(square, ls)\nprint(type(res))\nprint(res)\nlm = []\nprint(next(res))\nprint(next(res))\nprint(next(res))\nprint(next(res))\n#print(next(res))\n\nfor i in res:\n    lm.append(i)\n\nprint(lm)"
+        "code": "def square(x):\n    return x ** 2\n\nls = [1, 2, 3, 4, 5]\nres = map(square, ls)\nprint(type(res))\nprint(res)\nlm = []\nprint(next(res))\nprint(next(res))\nprint(next(res))\nprint(next(res))\n#print(next(res))\n\nfor i in res:\n    lm.append(i)\n\nprint(lm)",
+        "updated": true,
+        "title": "map 返回迭代器，只能消费一次",
+        "notes": [
+          "map(square, ls) 返回 map 对象（迭代器），直接 print 显示 <map object>，不是列表。",
+          "4 次 next(res) 分别取出 1、4、9、16。",
+          "之后再 for i in res，只剩下最后一个元素 25，所以 lm 是 [25]。"
+        ],
+        "pitfall": "map/filter/zip 在 Python 3 都返回一次性迭代器，取过的元素不会再有；要保留请先 list()。",
+        "output": "<class 'map'>\n<map object at 0x000001CAA3453E20>\n1\n4\n9\n16\n[25]"
       },
       {
         "name": "test21.py",
-        "code": "\n\"\"\"\nls = [1,2,3]\ntp = (4,5,6)\nzz = zip(ls,tp)\nprint(zz)\n#print(list(zz))\nfor k,v in zz:\n    print(k,v)\n    pass\n\"\"\"\n\n\n\nls = [1,2,3]\ndn = {31:2,32:6,33:8}\nzzn = zip(ls,dn)\n#for k,v in zzn:\n#    print(k,v)\nx,y = zip(*zzn)\nprint(x,y)\n\n\ndc = {\"北京\":1000,\"纽约\":500,\"巴黎\":200}\nzzd = zip(ls,dc)\nfor i,j in zzd:\n    print(i,j)"
+        "code": "\n\"\"\"\nls = [1,2,3]\ntp = (4,5,6)\nzz = zip(ls,tp)\nprint(zz)\n#print(list(zz))\nfor k,v in zz:\n    print(k,v)\n    pass\n\"\"\"\n\n\n\nls = [1,2,3]\ndn = {31:2,32:6,33:8}\nzzn = zip(ls,dn)\nfor k,v in zzn:\n    print(k,v,dn[v])\n\n\n#x = zzn\n\n#x,y = zip(*zzn)\n#print(x,y)\n\n\ndc = {\"北京\":1000,\"纽约\":500,\"巴黎\":200}\nzzd = zip(ls,dc)\nfor i,j in zzd:\n    print(i,j)",
+        "updated": true,
+        "title": "zip 与字典配合：迭代字典得到的是键",
+        "notes": [
+          "被三引号包住的第一段演示 zip 两个序列的情况。",
+          "zip(ls, dn) 把列表元素与字典的“键”配对，得到 (1,31)、(2,32)、(3,33)。",
+          "dn[v] 再用键 v 取出对应的值 2、6、8。",
+          "zip(ls, dc) 同理，配对出的是城市名的键，所以输出 1 北京、2 纽约、3 巴黎。"
+        ],
+        "pitfall": "直接迭代字典（或 zip 里放字典）拿到的是键，不是键值对；需要值请显式用 dc[key]。",
+        "output": "1 31 2\n2 32 6\n3 33 8\n1 北京\n2 纽约\n3 巴黎"
       },
       {
         "name": "test81.py",
-        "code": "def test(*args, **kwargs):\n    tuple = args;\n    for i in range(len(tuple)):\n        print(tuple[i])\n    dict = kwargs;\n    for key in dict.keys():\n        print(key)\n        print(dict.get(key))\n    #print(kwargs)\n\ntest(1,2,3,x=10,y=20)\t# 调用test 时，多个绑定关键字的实参以字典形式打包传递给形参\n#test(a=11,b=22,c=33,d=44,e=55)"
+        "code": "def test(*args, **kwargs):\n    tuple = args;\n    for i in range(len(tuple)):\n        print(tuple[i])\n    dict = kwargs;\n    for key in dict.keys():\n        print(key)\n        print(dict.get(key))\n    #print(kwargs)\n\n#test(1,2,3,x=10,y=20)\t# 调用test 时，多个绑定关键字的实参以字典形式打包传递给形参\n#test(1,6,a=11,b=22,c=33,d=44,e=55)\ntest(1,2,3)",
+        "updated": true,
+        "title": "*args 与 **kwargs 同时使用",
+        "notes": [
+          "def test(*args, **kwargs) 同时接收任意个位置实参和关键字实参。",
+          "args 是元组，用 len() + 下标遍历；kwargs 是字典，用 keys() + get() 遍历。",
+          "调用 test(1,2,3) 时只有位置实参，所以只输出 1、2、3，kwargs 部分没有输出。",
+          "本文件被前面的 test11 等模块 import，注意区分“单独运行”与“被导入”时的输出差异。"
+        ],
+        "output": "1\n2\n3"
       }
-    ]
+    ],
+    "updated": true
   },
   {
     "n": 8,
@@ -5213,109 +6712,364 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test1.py",
-        "code": "class Car:\n    color=\"red\"\n    def drive(self):\n        print(\"行驶\")\n        #print(self.color)\n\ncar = Car()\nprint(car.color)\ncar.drive()"
+        "code": "class Car:\n    color=\"red\"\n    def drive(self):\n        print(\"行驶\")\n        #print(self.color)\n\ncar = Car()\nprint(car.color)\ncar.drive()",
+        "updated": true,
+        "title": "类属性与实例方法的最小示例",
+        "notes": [
+          "color=\"red\" 写在类里、方法外，是类属性，所有实例共享。",
+          "car.color 先在实例上找，找不到就去类里找，所以得到 red。",
+          "car.drive() 调用实例方法，self 自动绑定为 car，所以方法体里能直接用 self。",
+          "输出顺序：先打印 red，再打印 行驶。"
+        ],
+        "output": "red\n行驶"
       },
       {
         "name": "test2.py",
-        "code": "class Car:\n    color=\"red\"\n\ncar=Car()\nprint(f\"1.Car.color is {Car.color}\")\nprint(f\"2.car.color is {car.color}\")\nCar.color='white'\nprint(f\"3.Car.color is {Car.color}\")\nprint(f\"4.car.color is {car.color}\")\ncar.color='black'\nprint(f\"5.Car.color is {Car.color}\")\nprint(f\"6.car.color is {car.color}\")"
+        "code": "class Car:\n    color=\"red\"\n\ncar=Car()\nprint(f\"1.Car.color is {Car.color}\")\nprint(f\"2.car.color is {car.color}\")\nCar.color='white'\nprint(f\"3.Car.color is {Car.color}\")\nprint(f\"4.car.color is {car.color}\")\ncar.color='black'\nprint(f\"5.Car.color is {Car.color}\")\nprint(f\"6.car.color is {car.color}\")",
+        "updated": true,
+        "title": "类属性与实例属性的赋值差异（最常考）",
+        "notes": [
+          "初始时 Car.color 是 red，实例 car.color 读取类属性也是 red。",
+          "Car.color='white' 改的是类属性，所有还没自己定义 color 的实例读到的都变成 white。",
+          "car.color='black' 是给实例新建了一个同名实例属性，从此 car.color 走自己的，与类属性无关。",
+          "所以第 5 行 Car.color 仍是 white，第 6 行 car.color 变成 black。"
+        ],
+        "pitfall": "实例.属性 = 值 只会创建/修改实例属性，不会改动类属性；要改类属性必须写 类名.属性 = 值 或在类方法里用 cls。",
+        "output": "1.Car.color is red\n2.car.color is red\n3.Car.color is white\n4.car.color is white\n5.Car.color is white\n6.car.color is black"
       },
       {
         "name": "test3.py",
-        "code": "class Car:\n    def drive(self):\n        self.color='white'\n\n    def print_color(self):\n        print(self.color)\n\ncar=Car()\ncar.drive()\nprint(car.color)\ncar.print_color()\nprint(Car.color)"
+        "code": "class Car:\n    def drive(self):\n        self.color='white'\n\n    def print_color(self):\n        print(self.color)\n\ncar=Car()\ncar.drive()\nprint(car.color)\ncar.print_color()\nprint(Car.color)",
+        "updated": true,
+        "title": "self.color 只存在于实例上",
+        "notes": [
+          "drive 里 self.color='white' 给实例加了一个属性，不是给类加。",
+          "所以 car.color 和 car.print_color() 都能拿到 white。",
+          "但 Car.color 在类上根本不存在，最后一行抛 AttributeError——这是老师故意留的演示错误。"
+        ],
+        "pitfall": "self.xxx = 值 只影响当前实例；类名.xxx 访问不到实例属性。",
+        "output": "white\nwhite",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter8\\chapter8\\test3.py\", line 12, in <module>\n    print(Car.color)\n          ^^^^^^^^^\nAttributeError: type object 'Car' has no attribute 'color'"
       },
       {
         "name": "test4.py",
-        "code": "class Car:\n    def drive(self):\n        self.color='white'\n        #print(\"drive: \", self.color)\n        #return 1\n\ncar=Car()\ncar.drive()\nprint(car.color)\ncar.color='red'\nprint(car.color)\ncar.drive()\nprint(car.color)\ncar.wheels=4\nprint(car.wheels)\nprint(Car.drive(car))"
+        "code": "class Car:\n    def drive(self):\n        self.color='white'\n        #print(\"drive: \", self.color)\n        #return 1\n\ncar=Car()\ncar.drive()\nprint(car.color)\ncar.color='red'\nprint(car.color)\ncar.drive()\nprint(car.color)\ncar.wheels=4\nprint(car.wheels)\ncar.color = 'blue'\nprint(car.color)\nCar.drive(car)\nprint(car.color)\n\nprint(Car.drive(car))",
+        "updated": true,
+        "title": "实例属性被方法改写、动态添加属性、用类名显式传 self",
+        "notes": [
+          "car.drive() 把 self.color 设为 white；随后 car.color='red' 覆盖为 red；再调 drive 又回到 white。",
+          "car.wheels=4 说明 Python 允许随时给对象动态添加属性，不必在类里预先声明。",
+          "Car.drive(car) 是用“类名.方法名(实例)”的方式调用，等价于 car.drive()，self 由括号里的 car 提供。",
+          "Car.drive(car) 会重新把 color 设为 white，所以倒数第二行又打印 white。",
+          "print(Car.drive(car)) 打印的是方法的返回值；drive 没有 return，所以输出 None。"
+        ],
+        "output": "white\nred\nwhite\n4\nblue\nwhite\nNone"
       },
       {
         "name": "test5.py",
-        "code": "\nclass Car:\n    __color='white'\n    _wheels = 4;\n\n    \"\"\"\n    This is a car!\n    \"\"\"\n    def testColor(self):\n        print(f\"车的颜色是{self.__color}\")\n        self.size = 100\n\ncar=Car()\ncar.testColor()\nCar.testColor(car)\nprint(car.testColor())\nprint(car._wheels)\nprint(car.__dict__)\nprint(car.__doc__)"
+        "code": "\nclass Car:\n    __color='white'\n    _wheels = 4;\n\n    \"\"\"\n    This is a car!\n    \"\"\"\n    def testColor(self):\n        print(f\"车的颜色是{self.__color}\")\n        self.size = 100\n\ncar=Car()\ncar.testColor()\nCar.testColor(car)\nprint(car.testColor())\nprint(car._wheels)\nprint(car.__dict__)\nprint(car.__doc__)",
+        "updated": true,
+        "title": "私有属性、单下划线约定、__dict__ 与 __doc__",
+        "notes": [
+          "__color 双下划线开头是私有属性，名字被改写为 _Car__color，类外不能直接用 car.__color 访问。",
+          "_wheels 单下划线开头只是“约定为内部使用”，语法上仍可从外部访问，所以 car._wheels 得 4。",
+          "car.testColor() 与 Car.testColor(car) 等价，都是把实例作为 self 传入。",
+          "print(car.testColor()) 打印返回值，方法没有 return，输出 None。",
+          "car.__dict__ 只包含实例属性，这里是 {'size': 100}——__color 和 _wheels 都是类属性，不在其中。",
+          "car.__doc__ 是 None：三引号写在了类属性之后，不是类的第一行，所以不算类的文档字符串。"
+        ],
+        "pitfall": "双下划线是“名称改写”而非真正的私有，用 _Car__color 仍可访问；单下划线纯属约定。",
+        "output": "车的颜色是white\n车的颜色是white\n车的颜色是white\nNone\n4\n{'size': 100}\nNone"
       },
       {
         "name": "test6.py",
-        "code": "class Car:\n    color='black'\n    @classmethod\n    def stop1(cls): #class method\n        print(cls.color) #black\n        cls.color='red'\n        print(cls.color) #red\n\n    def stop2(self): #object method\n        print(self.color) #class.color\n        self.color = 'green'\n        print(self.color)\n\nprint(\"car1===================================\")\ncar1=Car()\n#Car.stop1()\ncar1.stop1()\ncar1.stop2()\nprint(\"car2===================================\")\n#Car.stop1()\ncar2=Car()\n#car2.stop1()\ncar2.stop2()\nprint(\"car3===================================\")\ncar3=Car()\n#car2.stop1()\ncar3.stop2()"
+        "code": "class Car:\n    color='black'\n\n    @classmethod\n    def stop1(cls): #class method\n        print(cls.color) #black\n        cls.color='red'\n        print(cls.color) #red\n\n    def stop2(self): #object method\n        print(self.color) #class.color\n        self.color = 'green'\n        print(self.color)\n\nprint(\"car1===================================\")\ncar1=Car()\n#Car.stop1()\ncar1.stop1()\ncar1.stop2()\nprint(\"car2===================================\")\n#Car.stop1()\ncar2=Car()\n#car2.stop1()\ncar2.stop2()\nprint(\"car3===================================\")\ncar3=Car()\n#car2.stop1()\ncar3.stop2()",
+        "updated": true,
+        "title": "类方法改类属性，影响所有实例",
+        "notes": [
+          "@classmethod 修饰的 stop1 第一个参数是 cls（代表类本身），里面 cls.color='red' 改的是类属性。",
+          "改完之后，所有还没有自己 color 实例属性的对象读到的都是 red。",
+          "stop2 是普通实例方法，self.color='green' 只给 car1 建了实例属性，不影响类。",
+          "car2、car3 没有经过 stop2 前读到 red（类属性），执行 stop2 后各自变成 green。",
+          "所以每个分支都是先打印当前颜色，再打印修改后的颜色。"
+        ],
+        "pitfall": "cls.color = 改的是类属性（全局生效），self.color = 改的是实例属性（只影响自己）。",
+        "output": "car1===================================\nblack\nred\nred\ngreen\ncar2===================================\nred\ngreen\ncar3===================================\nred\ngreen"
       },
       {
         "name": "test7.py",
-        "code": "class Car:\n    @staticmethod\n    def test(s=\"sss\"):\n        print(\"这是静态方法\"+s)\n\ncar=Car()\ncar.test()\ncar.test(\"bjut\")\nCar.test(\"bjut\")"
+        "code": "class Car:\n    color = \"black\"\n\n    @staticmethod\n    def test(s=\"sss\"):\n        print(\"这是静态方法\"+s)\n        print(\"Car: \", Car.color)\n\n\n    def drive(self):\n        self.color = \"red\"\n        print(\"drive: \", self.color)\n\ncar=Car()\ncar.test()\ncar.drive()\ncar.test(\"bjut\")\nCar.test(\"bjut\")",
+        "updated": true,
+        "title": "静态方法既没有 self 也没有 cls",
+        "notes": [
+          "@staticmethod 修饰的 test 没有 self/cls，就是一个写在类里的普通函数。",
+          "它访问颜色时只能写 Car.color（硬编码类名），不能写 self.color。",
+          "静态方法用 对象.方法() 或 类.方法() 都能调用，效果一样。",
+          "drive 是实例方法，self.color='red' 只影响 car 这个实例。",
+          "所以三次调用 test 打印的 Car.color 始终是 black，不会因 drive 而改变。"
+        ],
+        "pitfall": "静态方法拿不到实例，无法访问实例属性；想访问实例属性必须定义成实例方法。",
+        "output": "这是静态方法sss\nCar:  black\ndrive:  red\n这是静态方法bjut\nCar:  black\n这是静态方法bjut\nCar:  black"
       },
       {
         "name": "test8.py",
-        "code": "class Person:\n    __age = 10;\n\n    def __init__(self):\n        self.__age = 18\n\n    @property\n    def age1(self, x=1):\n        return self.__age +x\n\nperson = Person()\nprint(person.age1)\n#print(person.age1)\n#person.age1=25\n#print(person.age1)"
+        "code": "class Person:\n    __age = 10;\n\n    def __init__(self):\n        self.__age = 18\n\n    @property\n    def age1(self, x=1):\n        return self.__age +x\n\nperson = Person()\nprint(person.age1)\n#print(person.age1)\n#person.age1=25\n#print(person.age1)",
+        "updated": true,
+        "title": "@property 把方法变成只读属性",
+        "notes": [
+          "__age 先作为类属性定义为 10，__init__ 里又给实例设了私有属性 __age=18。",
+          "@property 把 age1 变成“读取属性”，访问时写 person.age1，不加括号。",
+          "age1 有一个带默认值的参数 x=1，返回 self.__age + x，所以结果是 18+1 = 19。",
+          "被注释的三行说明：只定义了 getter 时，给属性赋值会报 AttributeError（只读）。"
+        ],
+        "pitfall": "加了 @property 后必须用 person.age1 访问，写 person.age1() 会报 'int' object is not callable。",
+        "output": "19"
       },
       {
         "name": "test9.py",
-        "code": "class Person:\n    #age = 10;\n    def __init__(self):\n        self.__age = 18\n    @property\n    def age(self):\n        return self.__age\n    @age.setter\n    def age(self,age):\n        self.__age = age+1\n\nperson = Person()\nprint(person.age)\nperson.age = 25\nprint(person.age)"
+        "code": "class Person:\n    #age = 10;\n    def __init__(self):\n        self.__age = 18\n\n    @property\n    def age(self):\n        return self.__age\n\n    @age.setter\n    def age(self,age):\n        self.__age = age+1\n\nperson = Person()\nprint(person.age)\nperson.age = 25\nprint(person.age)\n#person.__age",
+        "updated": true,
+        "title": "@property + @setter 实现可读可写的受控属性",
+        "notes": [
+          "@property 定义 getter，返回私有属性 __age。",
+          "@age.setter 定义 setter，注意装饰器名要与属性名一致，且方法名也叫 age。",
+          "setter 里写 self.__age = age+1，所以 person.age = 25 实际存进去的是 26。",
+          "因此第一次打印 18，赋值后再打印 26。"
+        ],
+        "pitfall": "setter 里不要写成 self.age = age，那会递归调用 setter 导致无限递归。",
+        "output": "18\n26"
       },
       {
         "name": "test10.py",
-        "code": "class Car:\n    #def __init__(self):\n    #    pass\n\n    def __init__(self, color):\n        self.color = color\n\n    def __drive(self):\n        print(\"行驶\")\n    def test(self):\n        self.__drive()\n\ncar = Car(\"red\")\n#car = Car()\ncar.test()"
+        "code": "class Car:\n    #def __init__(self):\n    #    pass\n\n    def __init__(self, color):\n        self.color = color\n\n    def __drive(self):\n        print(\"行驶\")\n    def test(self):\n        self.__drive()\n\ncar = Car(\"red\")\n#car = Car()\ncar.test()",
+        "updated": true,
+        "title": "私有方法只能通过类内部调用",
+        "notes": [
+          "__drive 双下划线开头是私有方法，类外 car.__drive() 会报 AttributeError。",
+          "公有方法 test 内部写 self.__drive()，在类内部可以正常调用私有方法。",
+          "所以外部只调 car.test() 就能间接执行私有方法，输出 行驶。",
+          "构造方法接收 color 参数，所以实例化时必须传 'red'。"
+        ],
+        "output": "行驶"
       },
       {
         "name": "test11.py",
-        "code": "class Car:\n    def __init__(self):\n        self.color=\"blue\"\n        print(\"对象被创建\")\n\n    def __del__(self):\n        print(\"对象被销毁\")\n\ncar=Car()\nprint(car.color)\nprint(type(car))\n#print(type(type))\n#print(type(object))\n#del car\n#print(car.color)\ndel car\nprint(car.color)"
+        "code": "class Car:\n    def __init__(self):\n        self.color=\"blue\"\n        print(\"对象被创建\")\n\n    def __del__(self):\n        print(\"对象被销毁\")\n\ncar=Car()\nprint(car.color)\nprint(type(car))\n#print(type(type))\n#print(type(object))\n#del car\n#print(car.color)\ndel car\nprint(car.color)",
+        "updated": true,
+        "title": "构造方法与析构方法的调用时机",
+        "notes": [
+          "创建对象时自动执行 __init__，打印“对象被创建”并设置 color。",
+          "type(car) 显示 <class '__main__.Car'>，说明对象属于当前模块的 Car 类。",
+          "del car 删除引用后，对象被回收，自动执行 __del__，打印“对象被销毁”。",
+          "del 之后再 print(car.color) 会 NameError——car 这个名字已经不存在了。"
+        ],
+        "pitfall": "del 删的是“变量名（引用）”而不是对象本身；对象在没有任何引用时才被回收并触发 __del__。",
+        "output": "对象被创建\nblue\n<class '__main__.Car'>\n对象被销毁",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter8\\chapter8\\test11.py\", line 17, in <module>\n    print(car.color)\n          ^^^\nNameError: name 'car' is not defined. Did you mean: 'Car'?"
       },
       {
         "name": "test12.py",
-        "code": "class Demo(object):\n    def __init__(self):\n        print(\"此处是 __init__()方法的执行...\")\n\n    def __new__(cls, *args, **kwargs):\n        print(\"此处是 __new__()方法的执行...\")\n        print(args)\n        print(kwargs)\n        return super().__new__(cls, *args, **kwargs)\n        #print(super().__new__(cls, *args, **kwargs))\nDemo()"
+        "code": "class Demo(object):\n    def __init__(self):\n        print(\"此处是 __init__()方法的执行...\")\n\n    def __new__(cls, *args, **kwargs):\n        print(\"此处是 __new__()方法的执行...\")\n        print(args)\n        print(kwargs)\n        return super().__new__(cls, *args, **kwargs)\n        #print(super().__new__(cls, *args, **kwargs))\nDemo()",
+        "updated": true,
+        "title": "__new__ 与 __init__ 的先后顺序",
+        "notes": [
+          "实例化 Demo() 时先调用 __new__ 创建对象，再调用 __init__ 初始化。",
+          "所以先打印“此处是 __new__()方法的执行...”，再打印“此处是 __init__()方法的执行...”。",
+          "__new__ 收到的 args、kwargs 是空元组和空字典，因为实例化时没传参。",
+          "__new__ 必须 return super().__new__(cls) 把对象交出去，否则 __init__ 不会执行。"
+        ],
+        "output": "此处是 __new__()方法的执行...\n()\n{}\n此处是 __init__()方法的执行..."
       },
       {
         "name": "test13.py",
-        "code": "class Rectangle(object):\n    #length =0;\n    #width = 0;\n    \"\"\"\n        def area(self, width=None, length=None):\n        #return self.length * self.width\n        return length * width\n\n    \"\"\"\n    def area(self):\n        #return self.length * self.width\n        return self.length * self.width\n\n    def area(self):\n        return self.length * self.width\n\nr = Rectangle()\nr.length, r.width = 13, 8\nprint(r.area())"
+        "code": "class Rectangle(object):\n    #length =0;\n    #width = 0;\n    \"\"\"\n        def area(self, width=None, length=None):\n        #return self.length * self.width\n        return length * width\n\n    \"\"\"\n    def area(self):\n        #return self.length * self.width\n        return self.length * self.width\n\n    def area(self):\n        return self.length * self.width\n\nr = Rectangle()\nr.length, r.width = 13, 8\nprint(r.area())",
+        "updated": true,
+        "title": "方法重定义与动态加属性",
+        "notes": [
+          "类里 area 定义了两次，后一个覆盖前一个（Python 不支持方法重载）。",
+          "length、width 在类里被注释掉了，通过 r.length, r.width = 13, 8 动态加到实例上。",
+          "area() 返回 self.length * self.width = 13*8 = 104。"
+        ],
+        "pitfall": "同一个类里重复定义同名方法，只有最后一个有效——和函数重名覆盖是同一回事。",
+        "output": "104"
       },
       {
         "name": "test14.py",
-        "code": "class MusicPlayer(object):\n    instance = None\n    init_flag = False\n    def __new__(cls, *args, **kwargs):\n        if cls.instance is None:\n            cls.instance = super().__new__(cls)\n        return cls.instance\n\n    def __init__(self):\n        if not self.init_flag:\n            print(\"初始化音乐播放器\")\n            self.init_flag = True\n\nplayer1 = MusicPlayer()\nprint(player1)\nplayer2 = MusicPlayer()\nprint(player2)"
+        "code": "from time import sleep\n\n\nclass MusicPlayer(object):\n    instance = None\n    init_flag = False\n    def __new__(cls, *args, **kwargs):\n        if cls.instance is None:\n            cls.instance = super().__new__(cls)\n        return cls.instance\n\n    def __init__(self):\n        if not self.init_flag:\n            print(\"初始化音乐播放器\")\n            self.init_flag = True\n\n    def __del__(self):\n        print(\"销毁\")\nplayer1 = MusicPlayer()\nprint(player1)\ndel player1\nsleep(5)\n\nplayer2 = MusicPlayer()\nprint(player2)",
+        "updated": true,
+        "title": "单例模式：用 __new__ 保证只创建一个实例",
+        "notes": [
+          "__new__ 里判断 cls.instance 是否为空，为空才创建，否则直接返回已有实例——这就是单例。",
+          "两次 MusicPlayer() 打印的对象地址完全相同，说明拿到的是同一个对象。",
+          "init_flag 保证“初始化音乐播放器”只打印一次，即使重复实例化也不会重复初始化。",
+          "del player1 后对象仍有 player2 引用所以不销毁；“销毁”在程序结束时才打印。"
+        ],
+        "pitfall": "单例要在 __new__ 里控制对象创建；__init__ 每次实例化都会执行，需要额外标志位防止重复初始化。",
+        "output": "初始化音乐播放器\n<__main__.MusicPlayer object at 0x0000023E967EFC10>\n<__main__.MusicPlayer object at 0x0000023E967EFC10>\n销毁"
       },
       {
         "name": "test15.py",
-        "code": "def say(self):\n    print(\"我爱Python！\")\n\ndef say1(self):\n    print(\"我爱bjut！\")\n\nMyClass1 = type(\"MyClass0\",(object,),dict(say = say, say2 = say1, name = \"Python 官方文档\", color = \"red\"))\nmyobj = MyClass1()\nmyobj.say()\nmyobj.say2()\nprint(myobj.name)\nprint(myobj.color)\nprint(type(myobj))\n\n#print(type({}))"
+        "code": "def say(self):\n    print(\"我爱Python！\")\n\ndef say1(self):\n    print(\"我爱bjut！\")\n\nMyClass1 = type(\"MyClass0\",(object,),dict(say = say, say2 = say1, name = \"Python 官方文档\", color = \"red\"))\nmyobj = MyClass1()\nmyobj.say()\nmyobj.say2()\nprint(myobj.name)\nprint(myobj.color)\nprint(type(myobj))\n\n#print(type({}))",
+        "updated": true,
+        "title": "用 type() 动态创建类",
+        "notes": [
+          "type(类名, 父类元组, 属性字典) 是动态创建类的标准写法。",
+          "这里类名写成 MyClass0，父类是 (object,)，属性字典把 say、say2、name、color 一次性塞进去。",
+          "创建出的类可以正常实例化并调用方法、读取属性。",
+          "type(myobj) 显示 <class '__main__.MyClass0'>，说明类的名字是字典第一个参数决定的。"
+        ],
+        "output": "我爱Python！\n我爱bjut！\nPython 官方文档\nred\n<class '__main__.MyClass0'>"
       },
       {
         "name": "test16.py",
-        "code": "def say(self):\n    print(\"我爱Python！\")\n\n#动态组装类；\nclass MyMetaclass(type):\n    def\t__new__(cls,name,bases,attrs):\n        attrs['name']=\"李红\"\n        #attrs['say']=lambda self:print('元类的say()方法')\n        attrs['say'] = say\n        return super().__new__(cls,name,bases,attrs)\n\nclass MyClass(object,metaclass=MyMetaclass):\n    #pass\n    def __init__(self):\n        self.age = 13\n\n    def say1(self):\n        print(\"hello\")\n\nmyobj=MyClass()\nprint(myobj.name)\nprint(myobj.age)\nmyobj.say1()\nmyobj.say()"
+        "code": "def say(self):\n    print(\"我爱Python！\")\n\n#动态组装类；\nclass MyMetaclass(type):\n    def\t__new__(cls,name,bases,attrs):\n        attrs['name']=\"李红\"\n        #attrs['say']=lambda self:print('元类的say()方法')\n        attrs['say'] = say\n        return super().__new__(cls,name,bases,attrs)\n\nclass MyClass(object,metaclass=MyMetaclass):\n    #pass\n    def __init__(self):\n        self.age = 13\n\n    def say1(self):\n        print(\"hello\")\n\nmyobj=MyClass()\nprint(myobj.name)\nprint(myobj.age)\nmyobj.say1()\nmyobj.say()",
+        "updated": true,
+        "title": "自定义元类，在类创建时动态改属性",
+        "notes": [
+          "继承 type 定义元类，重写 __new__ 即可在“类被创建”的那一刻修改它的属性。",
+          "attrs['name']='李红' 把类属性 name 强制改成李红；attrs['say']=say 给类动态添加方法。",
+          "class MyClass(object, metaclass=MyMetaclass) 指定用这个元类来创建 MyClass。",
+          "所以 myobj.name 得李红，say1 是类里自己定义的 hello，say 是元类塞进来的我爱Python。"
+        ],
+        "pitfall": "元类改的是“类”的创建过程，影响所有用它的类；日常开发极少用到，多用于框架。",
+        "output": "李红\n13\nhello\n我爱Python！"
       },
       {
         "name": "test17.py",
-        "code": "class A(object):\n    def show(self):\n        print (\"A.show()\")\nclass B(A): pass\nclass C(A):\n    def show(self):\n        print( \"C.show()\")\nclass D(B, C): pass\n#class D(A, C): pass\nprint(D.__mro__)\nprint(D.mro())\nx=D()\nx.show()"
+        "code": "class A(object):\n    def show(self):\n        print (\"A.show()\")\nclass B(A): pass\nclass C(A):\n    def show(self):\n        print( \"C.show()\")\nclass D(B, C): pass\n#class D(A, C): pass\nprint(\"1: \" , D.__mro__)\nprint(\"2: \",  D.mro())\nx=D()\nx.show()",
+        "updated": true,
+        "title": "多继承的 MRO（方法解析顺序）",
+        "notes": [
+          "class D(B, C) 同时继承 B 和 C，B、C 都继承 A。",
+          "D.__mro__ 与 D.mro() 展示查找顺序：D → B → C → A → object（C3 线性化）。",
+          "调用 x.show() 时按 MRO 顺序找，B 里没有 show，C 里有，所以执行 C.show()。",
+          "这正是“菱形继承”问题的解决方式：Python 用 MRO 保证每个类只出现一次且顺序确定。"
+        ],
+        "pitfall": "多继承同签名方法时，取 MRO 中靠前的那个类的方法，而不是“父类里定义的那个”。",
+        "output": "1:  (<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>)\n2:  [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]\nC.show()"
       },
       {
         "name": "test18.py",
-        "code": "\nclass MyMetaclass(type):\n    def __instancecheck__(cls, instance):\n        print(\"__instancecheck__call\")\n        #return hasattr(instance, \"__len__\")\n        return isinstance(instance ,cls)\n\nclass Demo(metaclass=MyMetaclass):\n#class Demo(MyMetaclass):\n#class Demo:\n    pass\ndemo = Demo()\nprint(isinstance(demo ,Demo))\nprint(Demo.__instancecheck__(demo))\nprint(MyMetaclass.__instancecheck__(Demo, demo))"
+        "code": "\nclass MyMetaclass(type):\n    def __instancecheck__(cls, instance):\n        print(\"__instancecheck__call\")\n        #return hasattr(instance, \"__len__\")\n        return isinstance(instance ,cls)\n\nclass Demo(metaclass=MyMetaclass):\n#class Demo(MyMetaclass):\n#class Demo:\n    pass\ndemo = Demo()\nprint(isinstance(demo ,Demo))\nprint(isinstance(Demo ,MyMetaclass))\nprint(Demo.__instancecheck__(demo))\nprint(MyMetaclass.__instancecheck__(Demo, demo))",
+        "updated": true,
+        "title": "元类重写 __instancecheck__ 定制 isinstance 行为",
+        "notes": [
+          "元类里定义 __instancecheck__，会改变 isinstance 对这个类实例的判断逻辑。",
+          "isinstance(demo, Demo) 走的是元类的 __instancecheck__，里面又调用了真正的 isinstance。",
+          "isinstance(Demo, MyMetaclass) 为 True，说明 Demo 这个类本身是 MyMetaclass 的实例。",
+          "后两行手动调用 __instancecheck__，所以会额外打印 __instancecheck__call。"
+        ],
+        "output": "True\nTrue\n__instancecheck__call\nTrue\n__instancecheck__call\nTrue"
       },
       {
         "name": "test19.py",
-        "code": "from abc import ABC, abstractmethod, abstractproperty\n\n# 定义抽象基类\nclass AbstractBaseClass(ABC):\n    @abstractmethod\n    def abstract_method(self):\n        \"\"\"抽象方法，子类必须实现\"\"\"\n        pass\n\n    @abstractproperty\n    def abstract_property(self):\n        \"\"\"抽象属性，子类必须实现\"\"\"\n        pass\n\n# 子类完全实现抽象基类的抽象内容\nclass ConcreteClass(AbstractBaseClass):\n    def abstract_method(self):\n        print(\"实现了抽象方法\")\n\n    @property\n    def abstract_property(self):\n        return \"实现了抽象属性\"\n\n# 测试\nobj = ConcreteClass()  # 正常实例化\nobj.abstract_method()  # 输出：实现了抽象方法\nprint(obj.abstract_property)  # 输出：实现了抽象属性\n\n\n#class IncompleteClass(AbstractBaseClass):\n#    pass\n\n#obj = IncompleteClass()"
+        "code": "from abc import ABC, abstractmethod, abstractproperty\n\n# 定义抽象基类\nclass AbstractBaseClass(ABC):\n    @abstractmethod\n    def abstract_method(self):\n        \"\"\"抽象方法，子类必须实现\"\"\"\n        pass\n\n    @abstractproperty\n    def abstract_property(self):\n        \"\"\"抽象属性，子类必须实现\"\"\"\n        pass\n\n# 子类完全实现抽象基类的抽象内容\nclass ConcreteClass(AbstractBaseClass):\n    def abstract_method(self):\n        print(\"实现了抽象方法\")\n\n    @property\n    def abstract_property(self):\n        return \"实现了抽象属性\"\n\n# 测试\nobj = ConcreteClass()  # 正常实例化\nobj.abstract_method()  # 输出：实现了抽象方法\nprint(obj.abstract_property)  # 输出：实现了抽象属性\n\n\n#class IncompleteClass(AbstractBaseClass):\n#    pass\n\n#obj = IncompleteClass()",
+        "updated": true,
+        "title": "抽象基类 ABC 与 @abstractmethod",
+        "notes": [
+          "继承 ABC 的类就是抽象基类，用 @abstractmethod 标记的方法必须由子类实现。",
+          "抽象基类本身不能实例化，否则报 TypeError。",
+          "ConcreteClass 实现了 abstract_method 和 abstract_property，可以正常实例化并调用。",
+          "被注释的 IncompleteClass 没有实现抽象方法，实例化时会报错——这是抽象类的约束作用。"
+        ],
+        "output": "实现了抽象方法\n实现了抽象属性"
       },
       {
         "name": "test20.py",
-        "code": "from abc import ABC, abstractmethod\n\n# 定义抽象基类\nclass AbstractBaseClass(ABC):\n    @abstractmethod\n    def abstract_method(self):\n        pass\n\n# 定义一个普通类\nclass VirtualSubclass:\n    def abstract_method(self):\n        print(\"虚拟子类实现了抽象方法\")\n\n# 将普通类注册为抽象基类的虚拟子类\nAbstractBaseClass.register(VirtualSubclass)\n\n# 测试\nprint(issubclass(VirtualSubclass, AbstractBaseClass))  # 输出：True\nprint(isinstance(VirtualSubclass(), AbstractBaseClass))  # 输出：True\n\n# 调用抽象方法\nobj = VirtualSubclass()\nobj.abstract_method()  # 输出：虚拟子类实现了抽象方法"
+        "code": "from abc import ABC, abstractmethod\n\n# 定义抽象基类\nclass AbstractBaseClass(ABC):\n    @abstractmethod\n    def abstract_method(self):\n        pass\n\n# 定义一个普通类\nclass VirtualSubclass:\n    def abstract_method(self):\n        print(\"虚拟子类实现了抽象方法\")\n\n# 将普通类注册为抽象基类的虚拟子类\nAbstractBaseClass.register(VirtualSubclass)\n\n# 测试\nprint(issubclass(VirtualSubclass, AbstractBaseClass))  # 输出：True\nprint(isinstance(VirtualSubclass(), AbstractBaseClass))  # 输出：True\n\n# 调用抽象方法\nobj = VirtualSubclass()\nobj.abstract_method()  # 输出：虚拟子类实现了抽象方法",
+        "updated": true,
+        "title": "用 register() 注册虚拟子类",
+        "notes": [
+          "VirtualSubclass 并没有继承 AbstractBaseClass，但通过 .register() 注册成了虚拟子类。",
+          "注册后 issubclass 和 isinstance 都返回 True。",
+          "这只是“声明式”的关联，不会真的继承父类的方法，抽象方法仍需自己实现。",
+          "虚拟子类常用于“这个类已经存在、不方便改继承关系”的场景。"
+        ],
+        "output": "True\nTrue\n虚拟子类实现了抽象方法"
       },
       {
         "name": "test21.py",
-        "code": "class Person:\n    def  __init__(self,name):\n        self.name=name\n        self.age=18\n    def set_age(self,new_age):\n        if 0<new_age<=150:\n            self.age=new_age\n    def get_age(self):\n        return self. age\n\nperson =Person(\"小李\")\nprint(person.get_age())\nperson.set_age(25)\nprint(person.get_age())"
+        "code": "class Person:\n    def  __init__(self,name):\n        self.name=name\n        self.__age=18\n    def set_age(self,new_age):\n        if 0<new_age<=150:\n            self.age=new_age\n    def get_age(self):\n        return self. age\n\nperson =Person(\"小李\")\nprint(person.get_age())\nperson.set_age(25)\nprint(person.get_age())\n#print(\"1, \" + person.age)",
+        "updated": true,
+        "title": "属性名不一致导致的 AttributeError",
+        "notes": [
+          "__init__ 里设的是私有属性 self.__age=18，实际名字被改写成 _Person__age。",
+          "而 get_age 读的是 self.age（不是 __age），两者根本不是同一个属性。",
+          "第一次 print(person.get_age()) 时 age 还没被创建，于是抛 AttributeError。",
+          "set_age 里写的是 self.age=new_age，所以要先调用 set_age 才会有 age 这个属性。"
+        ],
+        "pitfall": "__age 与 age 是两个完全不同的属性；getter/setter 里必须用同一个名字，否则就会出现这种“读不到”的错误。",
+        "output": "",
+        "err": "y\", line 12, in <module>\n    print(person.get_age())\n          ^^^^^^^^^^^^^^^^\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter8\\chapter8\\test21.py\", line 9, in get_age\n    return self. age\n           ^^^^^^^^^\nAttributeError: 'Person' object has no attribute 'age'"
       },
       {
         "name": "test22.py",
-        "code": "#从以上结果可以看出，程序使用子类的对象成功地访问了父类的属性和方 法，说明子类继承父类后会自动拥有父类的公有成员。\nclass Dog(object):\n    def __init__(self,color):\n        self.color=color\n    def walk(self):\n        print(\"狗跳\")\n\nclass WolfDog(Dog):\n    pass\n\nwolfdog=WolfDog(\"gray\")\nprint(wolfdog.color)\nwolfdog.walk()"
+        "code": "#从以上结果可以看出，程序使用子类的对象成功地访问了父类的属性和方 法，说明子类继承父类后会自动拥有父类的公有成员。\nclass Dog(object):\n    def __init__(self,color):\n        self.color=color\n    def walk(self):\n        print(\"狗跳\")\n\nclass WolfDog(Dog):\n    pass\n\nwolfdog=WolfDog(\"gray\")\nprint(wolfdog.color)\nwolfdog.walk()",
+        "updated": true,
+        "title": "子类自动继承父类的公有成员",
+        "notes": [
+          "WolfDog(Dog) 只写了 pass，但因为继承，自动拥有父类的 __init__ 和 walk。",
+          "实例化时 WolfDog(\"gray\") 调用的是父类的 __init__，把 color 设为 gray。",
+          "wolfdog.color 能读到 gray，wolfdog.walk() 能执行“狗跳”。"
+        ],
+        "output": "gray\n狗跳"
       },
       {
         "name": "test23.py",
-        "code": "#子类不会拥有父类的私有成员\nclass Dog(object):\n    def __init__(self,color):\n        self.color=color\n        self.__age=18\n    def walk(self):\n        print(\"狗跳\")\n    def __test(self):\n        print(\"私有方法\")\n\nclass WolfDog(Dog):\n    pass\n\nwolfdog=WolfDog(\"gray\")\nprint(wolfdog.__age)\nwolfdog.__test()"
+        "code": "#子类不会拥有父类的私有成员\nclass Dog(object):\n    def __init__(self,color):\n        self.color=color\n        self.__age=18\n    def walk(self):\n        print(\"狗跳\")\n    def __test(self):\n        print(\"私有方法\")\n\nclass WolfDog(Dog):\n    pass\n\nwolfdog=WolfDog(\"gray\")\nprint(wolfdog.__age)\nwolfdog.__test()",
+        "updated": true,
+        "title": "子类不会继承父类的私有成员",
+        "notes": [
+          "父类里 __age、__test 是私有成员，名字被改写为 _Dog__age、_Dog__test。",
+          "子类 WolfDog 的实例上不存在 __age（改写后是 _WolfDog__age，根本没创建过）。",
+          "所以 print(wolfdog.__age) 直接抛 AttributeError——这就是本文件注释说的“子类不会拥有父类的私有成员”。",
+          "若要在子类使用，应通过父类的公有方法间接访问，或改成单下划线 _age。"
+        ],
+        "pitfall": "私有成员的名称改写带类名，父类的 __x 变成 _Dog__x，子类里的 __x 会变成 _WolfDog__x，二者不通。",
+        "output": "",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter8\\chapter8\\test23.py\", line 15, in <module>\n    print(wolfdog.__age)\n          ^^^^^^^^^^^^^\nAttributeError: 'WolfDog' object has no attribute '__age'"
       },
       {
         "name": "test24.py",
-        "code": "#类的多继承\n\nclass House(object):\n    def live(self):\n        print(\"供人居住\")\n    def play(self):\n        print(\"House play!\")\n\nclass Car(object):\n    def drive(self):\n        print(\"行驶\")\n    def play(self):\n        print(\"Car play!\")\n\nclass TouringCar(House, Car):\n    pass\n\ntour_car = TouringCar()\ntour_car.live()\ntour_car.drive()\ntour_car.play()"
+        "code": "#类的多继承\n\nclass House(object):\n    def live(self):\n        print(\"供人居住\")\n    def play(self):\n        print(\"House play!\")\n\nclass Car(object):\n    def drive(self):\n        print(\"行驶\")\n    def play(self):\n        print(\"Car play!\")\n\nclass TouringCar(House, Car):\n    pass\n\ntour_car = TouringCar()\ntour_car.live()\ntour_car.drive()\ntour_car.play()",
+        "updated": true,
+        "title": "多继承时同名方法取哪一个",
+        "notes": [
+          "TouringCar(House, Car) 同时继承 House 和 Car。",
+          "live 只在 House 里有，drive 只在 Car 里有，都可以正常调用。",
+          "play 在两个父类里都有：按 MRO 顺序，House 在前，所以执行 House.play()。",
+          "输出“House play!”而不是“Car play!”，这就是多继承同名成员的解析规则。"
+        ],
+        "pitfall": "父类列表里写在前面的优先，这是 MRO 的直接体现，考卷常把两个父类顺序调换来设陷阱。",
+        "output": "供人居住\n行驶\nHouse play!"
       },
       {
         "name": "test25.py",
-        "code": "#子类方法的重写\n\nclass Person:\n    def say_hello(self):\n        print(\"打招呼\")\nclass Chinese(Person): #pass\n    def say_hello(self):\n        print(\"吃了吗\")\n\nchinese = Chinese()\nchinese.say_hello()"
+        "code": "#子类方法的重写\n\nclass Person:\n    def say_hello(self):\n        print(\"打招呼\")\nclass Chinese(Person): #pass\n    def say_hello(self):\n        print(\"吃了吗\")\n\nchinese = Chinese()\nchinese.say_hello()",
+        "updated": true,
+        "title": "子类方法重写（override）",
+        "notes": [
+          "子类 Chinese 重新定义了 say_hello，覆盖父类 Person 的同名方法。",
+          "调用 chinese.say_hello() 时优先用子类自己的版本，输出“吃了吗”。",
+          "若子类没有重写，则沿用父类的“打招呼”。"
+        ],
+        "output": "吃了吗"
       },
       {
         "name": "test26.py",
-        "code": "#多态\n\nclass Cat():\n    def shout(self):\n        print(\"喵喵喵...\")\n\nclass Dog():\n    def shout(self):\n        print(\"汪汪汪...\")\n\ndef shout(obj):\n    obj.shout()\n\ncat = Cat()\ndog = Dog()\nshout(cat)\nshout(dog)"
+        "code": "#多态\n\nclass Cat():\n    def shout(self):\n        print(\"喵喵喵...\")\n\nclass Dog():\n    def shout(self):\n        print(\"汪汪汪...\")\n\ndef shout(obj):\n    obj.shout()\n\ncat = Cat()\ndog = Dog()\nshout(cat)\nshout(dog)",
+        "updated": true,
+        "title": "多态的经典写法：同一接口不同实现",
+        "notes": [
+          "Cat 和 Dog 各自实现 shout，二者没有继承关系。",
+          "函数 shout(obj) 只关心“传进来的对象有 shout 方法”，不关心它是什么类型。",
+          "传 cat 就“喵喵喵”，传 dog 就“汪汪汪”，这就是多态（鸭子类型）。",
+          "Python 的多态靠“方法名一致”实现，不要求继承同一个父类。"
+        ],
+        "output": "喵喵喵...\n汪汪汪..."
       }
-    ]
+    ],
+    "updated": true
   },
   {
     "n": 9,
@@ -5380,7 +7134,8 @@ window.CODE_LAB = [
         "name": "test13.py",
         "code": "def div():\n    try:\n        print(\"div() 开 始 执 行 \")\n        num1=int(input(\"请输入被除数：\"))\n        num2=int(input(\"请输入除数：\"))\n        res1=num1/num2\n        return res1\n    except Exception as error:\n        #print(f\"div--捕获到异常信息{error}\")\n        raise error\ndef mul():\n    print(\"mul() 开 始 执 行 \")\n    num3=int(input(\"请输入乘数：\"))\n    res2=num3*div()\n    return res2\n\ndef test():\n    try:\n        res3=mul()\n        print(res3)\n    except Exception as error:\n        print(f\"test--捕获到异常信息{error}\")\n        raise error\n\n\ntest()"
       }
-    ]
+    ],
+    "updated": false
   },
   {
     "n": 10,
@@ -5437,7 +7192,8 @@ window.CODE_LAB = [
         "name": "test11.py",
         "code": "\"\"\"\nf = open(\"demo.csv\",\"w\")\nls = [\n    ['1','2','3','4'],\n    ['5','6','7','8'],\n    ['9','10','11','12']\n]\nfor row in ls:\n    f.write(\",\".join(row)+\"\\n\")\nf.close()\n\"\"\"\nf = open(\"demo.csv\",\"r\")\nls = []\nfor line in f:\n    ls.append(line.strip('\\n').split(','))\n\nf.close()\nprint(ls)\nprint(ls[2][3])\nprint(ls[3][3])\nprint(int(ls[2][3])+int(ls[3][3]))"
       }
-    ]
+    ],
+    "updated": false
   },
   {
     "n": 11,
@@ -5502,7 +7258,8 @@ window.CODE_LAB = [
         "name": "test13.py",
         "code": "import asyncio\nimport time\n\nasync def firstCorouctine(n): # 定义协程\n    for i in range(2):\n        await asyncio.sleep(2)\n        print(f'{time.ctime(time.time())}: 协程{n}执行……')\n        await asyncio.sleep(2)\n\ncoroutine1 = firstCorouctine(1)\ncoroutine2 = firstCorouctine(2)\n\nloop = asyncio.get_event_loop()\n\ntask1 = loop.create_task(coroutine1)\ntask2 = loop.create_task(coroutine2)\n\nloop.run_until_complete(task1)\nloop.run_until_complete(task2)"
       }
-    ]
+    ],
+    "updated": false
   },
   {
     "n": 12,
@@ -5543,6 +7300,7 @@ window.CODE_LAB = [
         "name": "test8.py",
         "code": "a=int(input('input a number:\\n'))\nprint(\"a\",bin(a))\nb=a>>4\n\nprint(\"b\",bin(b))\nc=~(~0<<4)\nprint(\"c\",bin(c))\nd=b&c\nprint(f\"{bin(a)},{bin(d)}\")"
       }
-    ]
+    ],
+    "updated": false
   }
 ];
