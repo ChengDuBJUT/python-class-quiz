@@ -334,9 +334,10 @@
         return;
       }
       if (built.autoFill) {
-        toast('已打开「' + t.name + '」：代码和运行结果都填好了，直接按 Enter 发送。'
-          + (built.clipped ? '（输出太长做了截断，剪贴板里是完整版，可以 Ctrl/⌘ + V 覆盖）'
-            : '（输入框是空的就 Ctrl/⌘ + V 粘贴）'));
+        toast('已打开「' + t.name + '」：代码和运行结果都复制好了。'
+          + (built.clipped
+            ? '（输出太长，自动填入的是压缩版；按 Ctrl/⌘ + V 可换成完整版）'
+            : '自动填进去了就直接按 Enter，没填进去就 Ctrl/⌘ + V 粘贴。'));
       } else {
         toast('这段代码比较长，全文已复制：在「' + t.name + '」输入框里按 Ctrl/⌘ + V 粘贴再发送。');
       }

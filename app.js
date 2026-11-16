@@ -895,12 +895,12 @@
       if (!built.autoFill) {
         showAiHint('这题内容比较长，已复制到剪贴板：在「' + t.name + '」里粘贴（Ctrl/⌘ + V）发送即可。');
       } else if (answered) {
-        showAiHint('已打开「' + t.name + '」：题目、你的答案、参考答案都带过去了，直接按 Enter 发送。'
-          + (built.compressed ? '（题太长，答案做了截断）' : '')
-          + '（输入框是空的就 Ctrl/⌘ + V 粘贴）');
+        showAiHint('已打开「' + t.name + '」：题目、你的答案、参考答案都复制好了。'
+          + '自动填进去了就直接按 Enter，没填进去就 Ctrl/⌘ + V 粘贴。'
+          + (built.compressed ? '（题太长，答案做了截断）' : ''));
       } else {
         showAiHint('已打开「' + t.name + '」：这题你还没作答，所以只让它给思路。做完再点一次，它就会针对你的答案讲。'
-          + '（输入框是空的就 Ctrl/⌘ + V 粘贴）');
+          + '（内容已复制：没自动填入就 Ctrl/⌘ + V 粘贴）');
       }
     });
     if (!win) {
