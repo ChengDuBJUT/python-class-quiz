@@ -691,9 +691,10 @@
 
   /* —— 问 AI（DeepSeek / 千问）：把「题目 + 我的作答 + 参考答案」打包成讲解请求 —— */
   // 两家都支持把内容塞进 ?q= 自动填进输入框；DeepSeek 额度用完可以换千问接着问
+  // autoSend：带 ?q= 打开后，这家是「填进输入框等你按 Enter」还是「直接发送并开始回答」
   var AI_TARGETS = [
-    { key: 'deepseek', name: 'DeepSeek', bare: 'https://chat.deepseek.com/' },
-    { key: 'qwen', name: '千问', bare: 'https://www.qianwen.com/' }
+    { key: 'deepseek', name: 'DeepSeek', bare: 'https://chat.deepseek.com/', autoSend: false },
+    { key: 'qwen', name: '千问', bare: 'https://www.qianwen.com/', autoSend: true }
   ];
 
   function aiTarget(key) {
@@ -894,13 +895,19 @@
       }
       if (!built.autoFill) {
         showAiHint('这题内容比较长，已复制到剪贴板：在「' + t.name + '」里粘贴（Ctrl/⌘ + V）发送即可。');
+      } else if (t.autoSend) {
+        // 千问：?q= 会直接发送并开始回答，不需要按 Enter
+        showAiHint('已打开「' + t.name + '」：'
+          + (answered ? '问题已经直接发过去了，等它回答就行。'
+            : '这题你还没作答，问题已直接发出去、只让它给思路。')
+          + '（如果停在空白输入框，说明没登录，按 Ctrl/⌘ + V 粘贴再发送）');
       } else if (answered) {
-        showAiHint('已打开「' + t.name + '」：题目、你的答案、参考答案都复制好了。'
-          + '自动填进去了就直接按 Enter，没填进去就 Ctrl/⌘ + V 粘贴。'
+        showAiHint('已打开「' + t.name + '」：题目、你的答案、参考答案都填进输入框了，按 Enter 发送。'
+          + '（没填入就 Ctrl/⌘ + V 粘贴）'
           + (built.compressed ? '（题太长，答案做了截断）' : ''));
       } else {
         showAiHint('已打开「' + t.name + '」：这题你还没作答，所以只让它给思路。做完再点一次，它就会针对你的答案讲。'
-          + '（内容已复制：没自动填入就 Ctrl/⌘ + V 粘贴）');
+          + '（填进输入框后按 Enter；没填入就 Ctrl/⌘ + V 粘贴）');
       }
     });
     if (!win) {

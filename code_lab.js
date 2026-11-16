@@ -218,9 +218,10 @@
 
   /* ---------- 问 AI：只把「代码 + 真实运行结果」发过去，问一句大白话 ---------- */
   // 两家都支持 ?q= 自动填入；DeepSeek 限额了就换千问
+  // autoSend：带 ?q= 打开后，这家是「填进输入框等按 Enter」还是「直接发送并开始回答」
   var AI_TARGETS = [
-    { key: 'deepseek', name: 'DeepSeek', bare: 'https://chat.deepseek.com/' },
-    { key: 'qwen', name: '千问', bare: 'https://www.qianwen.com/' }
+    { key: 'deepseek', name: 'DeepSeek', bare: 'https://chat.deepseek.com/', autoSend: false },
+    { key: 'qwen', name: '千问', bare: 'https://www.qianwen.com/', autoSend: true }
   ];
   // 官网 ?q= 只能稳定吃下约 1.7KB，所以预算压到 2000：
   // 超了就退回「复制全文 + 裸链接」，保证带过去的内容一定是完整的（粘贴即可）
@@ -333,11 +334,15 @@
         toast('自动复制被拦住了：在「' + t.name + '」里粘贴不出来时，手动复制页面上的代码即可。', true);
         return;
       }
-      if (built.autoFill) {
-        toast('已打开「' + t.name + '」：代码和运行结果都复制好了。'
+      if (built.autoFill && t.autoSend) {
+        toast('已打开「' + t.name + '」：问题已经直接发出去了，等它回答就行。'
+          + (built.clipped ? '（输出太长，发过去的是压缩版；剪贴板里是完整版）' : '')
+          + '（如果停在空白输入框，说明没登录，按 Ctrl/⌘ + V 粘贴再发送）');
+      } else if (built.autoFill) {
+        toast('已打开「' + t.name + '」：代码和运行结果都填进输入框了，按 Enter 发送。'
           + (built.clipped
-            ? '（输出太长，自动填入的是压缩版；按 Ctrl/⌘ + V 可换成完整版）'
-            : '自动填进去了就直接按 Enter，没填进去就 Ctrl/⌘ + V 粘贴。'));
+            ? '（输出太长，填入的是压缩版；按 Ctrl/⌘ + V 可换成完整版）'
+            : '（没填入就 Ctrl/⌘ + V 粘贴）'));
       } else {
         toast('这段代码比较长，全文已复制：在「' + t.name + '」输入框里按 Ctrl/⌘ + V 粘贴再发送。');
       }
