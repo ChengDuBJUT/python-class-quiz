@@ -19,7 +19,7 @@ SRC = os.path.join(BASE, 'tools', 'source')
 NOTES_JSON = os.path.join(SRC, 'code_notes.json')
 RUNS_JSON = os.path.join(SRC, 'newcode_runs.json')
 
-# 第 4-8 章老师发过更新版代码，优先使用
+# 老师发过两批更新代码（先 4-8 章，后 9-11 章），这些章节优先用「更新后的chapter」
 UPDATED_DIR = None
 if os.path.isdir(PROJ):
     for _n in os.listdir(PROJ):
@@ -27,7 +27,7 @@ if os.path.isdir(PROJ):
         if os.path.isdir(_p) and _n.startswith('\u66f4') and 'chapter' in _n.lower():
             UPDATED_DIR = _p
             break
-UPDATED_CHAPS = {4, 5, 6, 7, 8}
+UPDATED_CHAPS = {4, 5, 6, 7, 8, 9, 10, 11}
 
 CHAPTER_TITLES = {
     1: '绪论', 2: 'Python基础', 3: '数据类型', 4: '运算符',
@@ -242,7 +242,7 @@ def load_json(path):
 
 
 def chapter_dir(n):
-    """第 4-8 章优先用「更新后的chapter」里的新版代码。"""
+    """第 4-11 章优先用「更新后的chapter」里的新版代码。"""
     if UPDATED_DIR and n in UPDATED_CHAPS:
         cand = os.path.join(UPDATED_DIR, 'chapter%d' % n, 'chapter%d' % n)
         if os.path.isdir(cand):
@@ -286,6 +286,8 @@ def collect_files():
                     item['err'] = run['err']
                 if run.get('stdin'):
                     item['stdin'] = run['stdin']
+                if run.get('patched'):
+                    item['patched'] = run['patched']
             files.append(item)
         chapters.append({'n': n, 'title': CHAPTER_TITLES[n],
                          'points': POINTS[n], 'files': files,

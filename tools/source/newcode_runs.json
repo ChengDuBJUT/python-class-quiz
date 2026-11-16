@@ -196,7 +196,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch3/test14.py": {
-  "out": "欢迎来到猜拳游戏！\n请输入你的选择：0-剪刀，1-石头，2-布\n请输入 0、1 或 2：\n你选择了：石头\n计算机选择了：剪刀\n\n你赢了！",
+  "out": "欢迎来到猜拳游戏！\n请输入你的选择：0-剪刀，1-石头，2-布\n请输入 0、1 或 2：\n你选择了：石头\n计算机选择了：石头\n\n平局！",
   "err": "",
   "warn": "",
   "stdin": "1\n",
@@ -217,7 +217,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch4/test3.py": {
-  "out": "id x:  1992863431040\nid y:  1990718515008\nid z:  1992863431040\nx is y:  False\nx is not y:  True\nz is x:  True\nx == y:  True\nz == x:  True\n1\nA&B {1, 3, 5}\nA|B {1, 2, 3, 4, 5, 7, 9, 11}\nA-B {2, 4}\nA^B {2, 4, 7, 9, 11}",
+  "out": "id x:  2534389496192\nid y:  2534391408448\nid z:  2534389496192\nx is y:  False\nx is not y:  True\nz is x:  True\nx == y:  True\nz == x:  True\n1\nA&B {1, 3, 5}\nA|B {1, 2, 3, 4, 5, 7, 9, 11}\nA-B {2, 4}\nA^B {2, 4, 7, 9, 11}",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -301,7 +301,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch6/test1.py": {
-  "out": "32 8 91 5\nsorted(tp):  [8, 10, 16, 25, 32]\n<reversed object at 0x0000027DB4467FD0>\n<class 'reversed'>\nlist(temp1) is [32, 8, 16, 25, 10].\ntemp2:  <enumerate object at 0x0000027DB4445440>\n[(0, 10), (1, 25), (2, 16), (3, 8), (4, 32)]\nIndex 0: 10\nIndex 1: 25\nIndex 2: 16\nIndex 3: 8\nIndex 4: 32\n1. set1:  {3, 4}\n2. set1:  {3, 4}\n1 l1:  [3, 5]\n2 l1:  [3, 5]",
+  "out": "32 8 91 5\nsorted(tp):  [8, 10, 16, 25, 32]\n<reversed object at 0x00000297A19D7FD0>\n<class 'reversed'>\nlist(temp1) is [32, 8, 16, 25, 10].\ntemp2:  <enumerate object at 0x00000297A19BC810>\n[(0, 10), (1, 25), (2, 16), (3, 8), (4, 32)]\nIndex 0: 10\nIndex 1: 25\nIndex 2: 16\nIndex 3: 8\nIndex 4: 32\n1. set1:  {3, 4}\n2. set1:  {3, 4}\n1 l1:  [3, 5]\n2 l1:  [3, 5]",
   "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter6\\chapter6\\test1.py\", line 36, in <module>\n    set2=set1.add(l1)\n         ^^^^^^^^^^^^\nTypeError: unhashable type: 'list'",
   "warn": "",
   "stdin": "",
@@ -364,7 +364,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch6/test11.py": {
-  "out": "[1, 5, 7, 9]\n[1, 5, 9]\n[1, 2, 3, 4]\nls2 [4, 8, 12, 16]\n[2, 3, 6, 5]\n[4, 5, 6, 5, 6, 7, 6, 7, 8]\n[4, 6, 8]\n<zip object at 0x0000013A9731BFC0>\n<class 'list'>\n[5, 6]",
+  "out": "[1, 5, 7, 9]\n[1, 5, 9]\n[1, 2, 3, 4]\nls2 [4, 8, 12, 16]\n[2, 3, 6, 5]\n[4, 5, 6, 5, 6, 7, 6, 7, 8]\n[4, 6, 8]\n<zip object at 0x000002A1822DBFC0>\n<class 'list'>\n[5, 6]",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -378,7 +378,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch6/test13.py": {
-  "out": "<generator object <genexpr> at 0x000001E4E9B31A40>\n(4, 8, 12, 16)\n<generator object <genexpr> at 0x000001E4E9B30380>\ne is 2\ne is 3\ne is 6\ne is 5\nThis is the end!\n[]",
+  "out": "<generator object <genexpr> at 0x000002537D671A40>\n(4, 8, 12, 16)\n<generator object <genexpr> at 0x000002537D670380>\ne is 2\ne is 3\ne is 6\ne is 5\nThis is the end!\n[]",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -406,7 +406,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch6/test17.py": {
-  "out": "{1, 2, 3}\n1 st is {frozenset({5, 6}), 1, 2, 3}.\nst in line 14 {frozenset({5, 6}), 1, 2, 3}\nst in line 19 {1, 2, 3, (1, 2), frozenset({5, 6})}\nid(li1) in line 21:  1916174970368 [1, 2]\nid(li1) in line 23:  1916174970368 [1, 2, 5]\n1\n2\n5\n<class 'str'> bjut\nstr hash in line 35 -897773758776236167\nid(str) in line 36 : 1916174970032\n<class 'str'> Bjut\nstr hash  in line 40:  1841287005456037840\nid(str) in line 41:  1916174973808\ntp hash: 529344067295497451\nfst hash:  6221592716431983538\nst hash:  None\n{1: 1, 2: 2} <class 'dict'>\ndc hash  None\n2 st is {1, 2, 3, (1, 2), (1, 2, 3), frozenset({5, 6})}.\nhash:  -897773758776236167\nhash:  -897773758776236167\nTrue\ndc hash: None",
+  "out": "{1, 2, 3}\n1 st is {frozenset({5, 6}), 1, 2, 3}.\nst in line 14 {frozenset({5, 6}), 1, 2, 3}\nst in line 19 {1, 2, 3, (1, 2), frozenset({5, 6})}\nid(li1) in line 21:  1502869696000 [1, 2]\nid(li1) in line 23:  1502869696000 [1, 2, 5]\n1\n2\n5\n<class 'str'> bjut\nstr hash in line 35 5680213173420177096\nid(str) in line 36 : 1502869695664\n<class 'str'> Bjut\nstr hash  in line 40:  -4953832585114197421\nid(str) in line 41:  1502869699440\ntp hash: 529344067295497451\nfst hash:  6221592716431983538\nst hash:  None\n{1: 1, 2: 2} <class 'dict'>\ndc hash  None\n2 st is {1, 2, 3, (1, 2), (1, 2, 3), frozenset({5, 6})}.\nhash:  5680213173420177096\nhash:  5680213173420177096\nTrue\ndc hash: None",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -441,14 +441,14 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch7/test1.py": {
-  "out": "33\ntype(add) is <class 'function'>\nadd is <function add at 0x0000027382B322A0>\nid(add) is 2695137272480",
+  "out": "33\ntype(add) is <class 'function'>\nadd is <function add at 0x000002E7015222A0>\nid(add) is 3191182860960",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch7/test2.py": {
-  "out": "ok\n33\nadd_return(11,22) is 33\nadd_object(11,22) is 33\nTrue\ntype(fun): <class 'function'>\nfun: <function fun at 0x000002A33C99A2A0>\n id(fun): 2900119626400",
+  "out": "ok\n33\nadd_return(11,22) is 33\nadd_object(11,22) is 33\nTrue\ntype(fun): <class 'function'>\nfun: <function fun at 0x000002047D0FA2A0>\n id(fun): 2218301301408",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -462,7 +462,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch7/test4.py": {
-  "out": "a 1\na 1\nb <function test2 at 0x000001F66A5A8F40>\na 1\nb <function test2 at 0x000001F66A5A8F40>\na 1\nb <function test2 at 0x000001F66A5A8F40>\na 1\nb <function test2 at 0x000001F66A5A8F40>\na 1\nb <function test2 at 0x000001F66A5A8F40>",
+  "out": "a 1\na 1\nb <function test2 at 0x000002D5E5168F40>\na 1\nb <function test2 at 0x000002D5E5168F40>\na 1\nb <function test2 at 0x000002D5E5168F40>\na 1\nb <function test2 at 0x000002D5E5168F40>\na 1\nb <function test2 at 0x000002D5E5168F40>",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -525,14 +525,14 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch7/test13.py": {
-  "out": "请输入一个整数：5!=120\n<function <lambda> at 0x00000184C7648F40>\n7",
+  "out": "请输入一个整数：5!=120\n<function <lambda> at 0x00000151EF108F40>\n7",
   "err": "",
   "warn": "",
   "stdin": "5\n",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch7/test14.py": {
-  "out": "<function fun1.<locals>.fun2 at 0x00000219B38D9D00>\n<function fun1.<locals>.fun2 at 0x00000219B38D8F40>\n第0 次调用计数器，记录值为：1\n<function fun1.<locals>.fun2 at 0x00000219B38D8F40>\n第1 次调用计数器，记录值为：2\n<function fun1.<locals>.fun2 at 0x00000219B38D8F40>\n第2 次调用计数器，记录值为：3\n<function fun1.<locals>.fun2 at 0x00000219B38D8F40>\n第3 次调用计数器，记录值为：4\n<function fun1.<locals>.fun2 at 0x00000219B38D8F40>\n第4 次调用计数器，记录值为：5",
+  "out": "<function fun1.<locals>.fun2 at 0x0000029892E19D00>\n<function fun1.<locals>.fun2 at 0x0000029892E18F40>\n第0 次调用计数器，记录值为：1\n<function fun1.<locals>.fun2 at 0x0000029892E18F40>\n第1 次调用计数器，记录值为：2\n<function fun1.<locals>.fun2 at 0x0000029892E18F40>\n第2 次调用计数器，记录值为：3\n<function fun1.<locals>.fun2 at 0x0000029892E18F40>\n第3 次调用计数器，记录值为：4\n<function fun1.<locals>.fun2 at 0x0000029892E18F40>\n第4 次调用计数器，记录值为：5",
   "err": "",
   "warn": "",
   "stdin": "5\n",
@@ -553,28 +553,28 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch7/test17.py": {
-  "out": "1.  <function test at 0x00000202370C8F40>\n<class 'function'>\n2. 正在装饰...\n3. 正在验证权限\ntest",
+  "out": "1.  <function test at 0x000002AB9D5C8F40>\n<class 'function'>\n2. 正在装饰...\n3. 正在验证权限\ntest",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch7/test18.py": {
-  "out": "3, 2026-11-16 14:59:48.755416\nwarpper2:  <function test at 0x0000016911378B80>\n正在装饰 2\n2, 2026-11-16 14:59:53.755988\nwrapper1:  <function wrapper2.<locals>.inner2 at 0x000001691137BC40>\n正在装饰 1\n正在验证权限 1\n正在验证权限 2\n1, 2026-11-16 14:59:55.756690\ntest",
+  "out": "3, 2026-11-16 16:25:38.003862\nwarpper2:  <function test at 0x000001BCFBF08B80>\n正在装饰 2\n2, 2026-11-16 16:25:43.004348\nwrapper1:  <function wrapper2.<locals>.inner2 at 0x000001BCFBF0BC40>\n正在装饰 1\n正在验证权限 1\n正在验证权限 2\n1, 2026-11-16 16:25:45.004843\ntest",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch7/test19.py": {
-  "out": "2026-11-16 15:00:00.842660 , myfunc1 was called (3, 4){}\n7",
+  "out": "2026-11-16 16:25:50.081867 , myfunc1 was called (3, 4){}\n7",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch7/test20.py": {
-  "out": "<class 'map'>\n<map object at 0x000001897BCC3A30>\n1\n4\n9\n16\n[25]",
+  "out": "<class 'map'>\n<map object at 0x000001A3827B3A30>\n1\n4\n9\n16\n[25]",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -686,7 +686,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch8/test14.py": {
-  "out": "初始化音乐播放器\n<__main__.MusicPlayer object at 0x0000024819E5BF10>\n<__main__.MusicPlayer object at 0x0000024819E5BF10>\n销毁",
+  "out": "初始化音乐播放器\n<__main__.MusicPlayer object at 0x0000027FB6FEBED0>\n<__main__.MusicPlayer object at 0x0000027FB6FEBED0>\n销毁",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -785,13 +785,13 @@
  },
  "ch9/test2.py": {
   "out": "red",
-  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test2.py\", line 7, in <module>\n    print(car.logo)\n          ^^^^^^^^\nAttributeError: 'Car' object has no attribute 'logo'",
+  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test2.py\", line 7, in <module>\n    print(car.logo)\n          ^^^^^^^^\nAttributeError: 'Car' object has no attribute 'logo'",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch9/test3.py": {
-  "out": "2026-11-16 15:00:07.511159 , myfunc1 was called (3, 4){}\n7\n2026-11-16 15:00:07.511159 , test31 was called (){}\n请输入被除数：请输入除数：结果为 5.0",
+  "out": "2026-11-16 16:25:56.752290 , myfunc1 was called (3, 4){}\n7\n2026-11-16 16:25:56.752290 , test31 was called (){}\n请输入被除数：请输入除数：结果为 5.0",
   "err": "",
   "warn": "",
   "stdin": "10\n2\n",
@@ -812,7 +812,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch9/test6.py": {
-  "out": "请输入被除数：请输入除数：结果为 5.0\n今天天气不错！",
+  "out": "请输入被除数：请输入除数：5.0\n今天天气不错！",
   "err": "",
   "warn": "",
   "stdin": "10\n2\n",
@@ -834,21 +834,21 @@
  },
  "ch9/test9.py": {
   "out": "",
-  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test9.py\", line 2, in <module>\n    raise IndexError()\nIndexError",
+  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test9.py\", line 2, in <module>\n    raise IndexError()\nIndexError",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch9/test10.py": {
   "out": "",
-  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test10.py\", line 2, in <module>\n    raise IndexError('索引超出范围')\nIndexError: 索引超出范围",
+  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test10.py\", line 2, in <module>\n    raise IndexError('索引超出范围')\nIndexError: 索引超出范围",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch9/test11.py": {
   "out": "请输入被除数：请输入除数：",
-  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test11.py\", line 6, in <module>\n    assert num2!=0,'除数不能为 0'\n           ^^^^^^^\nAssertionError: 除数不能为 0",
+  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test11.py\", line 6, in <module>\n    assert num2!=0,'除数不能为 0'\n           ^^^^^^^\nAssertionError: 除数不能为 0",
   "warn": "",
   "stdin": "10\n0\n",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
@@ -862,7 +862,7 @@
  },
  "ch9/test13.py": {
   "out": "mul() 开 始 执 行 \n请输入乘数：div() 开 始 执 行 \n请输入被除数：请输入除数：test--捕获到异常信息division by zero",
-  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 26, in <module>\n    test()\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 23, in test\n    raise error\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 19, in test\n    res3=mul()\n         ^^^^^\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 14, in mul\n    res2=num3*div()\n              ^^^^^\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 10, in div\n    raise error\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 6, in div\n    res1=num1/num2\n         ~~~~^~~~~\nZeroDivisionError: division by zero",
+  "err": "code project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 26, in <module>\n    test()\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 23, in test\n    raise error\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 19, in test\n    res3=mul()\n         ^^^^^\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 14, in mul\n    res2=num3*div()\n              ^^^^^\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 10, in div\n    raise error\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 6, in div\n    res1=num1/num2\n         ~~~~^~~~~\nZeroDivisionError: division by zero",
   "warn": "",
   "stdin": "3\n10\n0\n",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
@@ -875,8 +875,8 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch10/test2.py": {
-  "out": "f.name: test.txt\nw\nFalse\n1: True",
-  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test2.py\", line 9, in <module>\n    f.write( \"Python is a great language.\")\nValueError: I/O operation on closed file.",
+  "out": "f.name: test.txt\na\nFalse\n1: True",
+  "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
@@ -889,8 +889,8 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch10/test4.py": {
-  "out": "__enter__() called\nmy name is MyContestManager\na is called\n__exit__() called\ne_t: <class 'ValueError'>\ne_v: bjut error\nt_b: <traceback object at 0x00000225A61BB940>",
-  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test4.py\", line 18, in <module>\n    raise ValueError(\"bjut error\")\nValueError: bjut error",
+  "out": "__enter__() called\nmy name is MyContextManager\na is called\n__exit__() called\ne_t: <class 'ValueError'>\ne_v: bjut error\nt_b: <traceback object at 0x0000019B2F79B900>",
+  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter10\\chapter10\\test4.py\", line 18, in <module>\n    raise ValueError(\"bjut error\")\nValueError: bjut error",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
@@ -910,49 +910,57 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch10/test7.py": {
-  "out": "0:, Python is a great language.\n\n1:, Bjut is a good university.",
+  "out": "0:, Python is a great language.\n\n1:, Yeah its great!!\n\n2:, ",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch10/test8.py": {
-  "out": "0\nPytho\n5",
+  "out": "0\nPy\n2",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch10/test9.py": {
-  "out": "8\n8\nb's a great language.\\r\\nBjut is a good university.'",
+  "out": "8\n8\nb's a'",
+  "err": "",
+  "warn": "",
+  "stdin": "",
+  "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
+ },
+ "ch10/test10-1.py": {
+  "out": "",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch10/test10.py": {
-  "out": "小米&华为&苹果\n['1', '2', '3', '4\\n5', '6', '7', '8\\n9', '10', '11', '12\\n13', '14', '15', '16\\n17', '18', '19', '20']",
+  "out": "小米&华为&苹果\n[['1', '2', '3', '4'], ['5', '6', '7', '8'], ['9', '10', '11', '12'], ['13', '14', '15', '16']]",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch10/test11.py": {
-  "out": "[['1', '2', '3', '4'], ['5', '6', '7', '8'], ['9', '10', '11', '12'], ['13', '14', '15', '16'], ['17', '18', '19', '20']]\n12\n16\n28",
+  "out": "[['1', '2', '3', '4'], ['5', '6', '7', '8'], ['9', '10', '11', '12'], ['13', '14', '15', '16']]\n12\n16\n28",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch11/test1.py": {
-  "out": "C:\\Users\\djej\\AppData\\Local\\Temp\\run_11_ekr48697",
-  "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\\test1.py\", line 5, in <module>\n    print(os.listdir(path))\n          ^^^^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'd:\\\\test'",
+  "out": "C:\\Users\\djej\\AppData\\Local\\Temp\\run_ch11_gd9zm14n\n[]\n['example3']",
+  "err": "",
   "warn": "",
   "stdin": "",
-  "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
+  "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe",
+  "patched": "d:\\test -> <临时目录>\\dtest"
  },
  "ch11/test2.py": {
-  "out": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]\nwin32\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\n['E:\\\\cd_E\\\\vscode project\\\\Python_class\\\\pythonProject-2025\\\\chapter11\\\\test2.py']\n<_io.TextIOWrapper name='<stdin>' mode='r' encoding='utf-8'>\nE:\\anaconda\\envs\\leaf_gcn\\python.exe",
+  "out": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]\nwin32\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter11\\chapter11\n['E:\\\\cd_E\\\\vscode project\\\\Python_class\\\\pythonProject-2025\\\\更新后的chapter\\\\chapter11\\\\chapter11\\\\test2.py']\n<_io.TextIOWrapper name='<stdin>' mode='r' encoding='utf-8'>\nE:\\anaconda\\envs\\leaf_gcn\\python.exe",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -966,7 +974,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch11/test4.py": {
-  "out": "t1: 1794812408.7558014\ntime.ctime(t1): Mon Nov 16 15:00:08 2026\nt2: time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=15, tm_min=0, tm_sec=8, tm_wday=0, tm_yday=320, tm_isdst=0)\ntime.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=7, tm_min=0, tm_sec=8, tm_wday=0, tm_yday=320, tm_isdst=0)\nt3: 2026-11-16 15:00:08\nt4: time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=15, tm_min=0, tm_sec=8, tm_wday=0, tm_yday=320, tm_isdst=-1)\n1.0184973000032187",
+  "out": "t1: 1794817557.7694576\ntime.ctime(t1): Mon Nov 16 16:25:57 2026\nt2: time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=16, tm_min=25, tm_sec=57, tm_wday=0, tm_yday=320, tm_isdst=0)\ntime.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=8, tm_min=25, tm_sec=57, tm_wday=0, tm_yday=320, tm_isdst=0)\nt3: 2026-11-16 16:25:57\nt4: time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=16, tm_min=25, tm_sec=57, tm_wday=0, tm_yday=320, tm_isdst=-1)\n1.0161807000004046",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -980,7 +988,14 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch11/test6.py": {
-  "out": "0\n0\nFalse\n      May 2026\nMo Tu We Th Fr Sa Su\n             1  2  3\n 4  5  6  7  8  9 10\n11 12 13 14 15 16 17\n18 19 20 21 22 23 24\n25 26 27 28 29 30 31",
+  "out": "0\n6\nFalse\n   November 2026\nSu Mo Tu We Th Fr Sa\n 1  2  3  4  5  6  7\n 8  9 10 11 12 13 14\n15 16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30",
+  "err": "",
+  "warn": "",
+  "stdin": "",
+  "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
+ },
+ "ch11/test7-1.py": {
+  "out": "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"month\">\n<tr><th colspan=\"7\" class=\"month\">November 2026</th></tr>\n<tr><th class=\"mon\">Mon</th><th class=\"tue\">Tue</th><th class=\"wed\">Wed</th><th class=\"thu\">Thu</th><th class=\"fri\">Fri</th><th class=\"sat\">Sat</th><th class=\"sun\">Sun</th></tr>\n<tr><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"sun\">1</td></tr>\n<tr><td class=\"mon\">2</td><td class=\"tue\">3</td><td class=\"wed\">4</td><td class=\"thu\">5</td><td class=\"fri\">6</td><td class=\"sat\">7</td><td class=\"sun\">8</td></tr>\n<tr><td class=\"mon\">9</td><td class=\"tue\">10</td><td class=\"wed\">11</td><td class=\"thu\">12</td><td class=\"fri\">13</td><td class=\"sat\">14</td><td class=\"sun\">15</td></tr>\n<tr><td class=\"mon\">16</td><td class=\"tue\">17</td><td class=\"wed\">18</td><td class=\"thu\">19</td><td class=\"fri\">20</td><td class=\"sat\">21</td><td class=\"sun\">22</td></tr>\n<tr><td class=\"mon\">23</td><td class=\"tue\">24</td><td class=\"wed\">25</td><td class=\"thu\">26</td><td class=\"fri\">27</td><td class=\"sat\">28</td><td class=\"sun\">29</td></tr>\n<tr><td class=\"mon\">30</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td></tr>\n</table>",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -994,42 +1009,42 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch11/test8.py": {
-  "out": "random:  0.1456692551041303\nrandint:  8\nrandom uniform:  5.19238612215497\nrandom choice:  剪刀\nrandom randrange:  91\nrandom sample:  ['n', 'c', 'o', 'm', 'j']\n[5, 3, 6, 7, 1]",
+  "out": "random:  0.5714025946899135\nrandint:  7\nrandom uniform:  3.1750152005686805\nrandom choice:  剪刀\nrandom randrange:  27\nrandom sample:  ['l', 'k', 'r', 'f', 'a']\n[6, 7, 5, 1, 3]",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch11/test9.py": {
-  "out": "Mon Nov 16 15:00:10 2026: 子进程pid 为 30304,执行\nMon Nov 16 15:00:10 2026: 子进程pid 为 30304,执行\nMon Nov 16 15:00:10 2026: 子进程pid 为 30304,执行\nMon Nov 16 15:00:10 2026: 子进程pid 为 30304,执行\nMon Nov 16 15:00:10 2026: 子进程pid 为 30304,执行\nMon Nov 16 15:00:12 2026: 父进程pid 为 3464, 执行\nMon Nov 16 15:00:14 2026: 父进程pid 为 3464, 执行\nMon Nov 16 15:00:16 2026: 父进程pid 为 3464, 执行",
+  "out": "Mon Nov 16 16:26:01 2026: 父进程pid 为 30244, 执行\nMon Nov 16 16:26:03 2026: 父进程pid 为 30244, 执行\nMon Nov 16 16:26:05 2026: 父进程pid 为 30244, 执行\nMon Nov 16 16:26:01 2026: 子进程pid 为 15780,执行\nMon Nov 16 16:26:03 2026: 子进程pid 为 15780,执行\nMon Nov 16 16:26:05 2026: 子进程pid 为 15780,执行\nMon Nov 16 16:26:07 2026: 子进程pid 为 15780,执行\nMon Nov 16 16:26:09 2026: 子进程pid 为 15780,执行",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch11/test10.py": {
-  "out": "父进程pid 为 26736,执行\n父进程pid 为 26736,执行\n父进程pid 为 26736,执行\n子进程pid 为 11796,执行\n子进程pid 为 11796,执行\n子进程pid 为 11796,执行",
+  "out": "父进程pid 为 2184,执行\n父进程pid 为 2184,执行\n父进程pid 为 2184,执行\n子进程pid 为 24820,执行\n子进程pid 为 24820,执行\n子进程pid 为 24820,执行",
   "err": "",
   "warn": "",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch11/test11.py": {
-  "out": "Mon Nov 16 15:00:20 2026: 子线程为 Thread-1 (task_thread), i =0\nMon Nov 16 15:00:20 2026: 父线程为 MainThread, i=0\nMon Nov 16 15:00:21 2026: 父线程为 MainThread, i=1\nMon Nov 16 15:00:21 2026: 子线程为 Thread-1 (task_thread), i =1",
+  "out": "Mon Nov 16 16:26:13 2026: 父线程为 MainThread, i=0\nMon Nov 16 16:26:13 2026: 子线程为 Thread-1 (task_thread), j =0\nMon Nov 16 16:26:14 2026: 父线程为 MainThread, i=1\nMon Nov 16 16:26:14 2026: 子线程为 Thread-1 (task_thread), j =1",
   "err": "",
-  "warn": "time())}: 子线程为 {threading.currentThread().name}, i ={i}\")\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\\test11.py:15: DeprecationWarning: currentThread() is deprecated, use current_thread() instead\n  print(f\"{time.ctime(time.time())}: 父线程为 {threading.currentThread().name}, i={i}\")",
+  "warn": "ding.currentThread().name}, i={i}\")\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter11\\chapter11\\test11.py:8: DeprecationWarning: currentThread() is deprecated, use current_thread() instead\n  print(f\"{time.ctime(time.time())}: 子线程为 {threading.currentThread().name}, j ={j}\")",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch11/test12.py": {
-  "out": "父线程 MainThread, i = 0\n子线程 Thread-1, i = 0\n父线程 MainThread, i = 1\n子线程 Thread-1, i = 1",
+  "out": "子线程 Thread-1, i = 0\n父线程 MainThread, i = 0\n子线程 Thread-1, i = 1\n父线程 MainThread, i = 1",
   "err": "",
-  "warn": " current_thread() instead\n  print(f\"父线程 {threading.currentThread().name}, i = {i}\")\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\\test12.py:11: DeprecationWarning: currentThread() is deprecated, use current_thread() instead\n  print(f\"子线程 {threading.currentThread().name}, i = {i}\")",
+  "warn": "ead\n  print(f\"子线程 {threading.currentThread().name}, i = {i}\")\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter11\\chapter11\\test12.py:18: DeprecationWarning: currentThread() is deprecated, use current_thread() instead\n  print(f\"父线程 {threading.currentThread().name}, i = {i}\")",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch11/test13.py": {
-  "out": "Mon Nov 16 15:00:25 2026: 协程1执行……\nMon Nov 16 15:00:25 2026: 协程2执行……\nMon Nov 16 15:00:29 2026: 协程1执行……\nMon Nov 16 15:00:29 2026: 协程2执行……",
+  "out": "Mon Nov 16 16:26:18 2026: 协程1执行……\nMon Nov 16 16:26:18 2026: 协程2执行……\nMon Nov 16 16:26:22 2026: 协程1执行……\nMon Nov 16 16:26:22 2026: 协程2执行……",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -1043,7 +1058,7 @@
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch12/test2.py": {
-  "out": "0   -0.349515\n1    0.136058\n2    0.615168\n3    0.376520\n4   -0.498576\n5   -0.068724\n6    0.306374\n7    0.992502\n8    0.788099\n9   -0.229436\ndtype: float64\n0.13605844060247652\n          0         1         2         3\n0 -0.244928  0.891473  0.842883 -0.346417\n1 -0.419721  0.421949 -0.173725 -0.364333\n2  0.455450 -0.253401  0.359983 -0.051328\n3  0.582970 -0.264874 -0.447268  0.568612\n[RangeIndex(start=0, stop=10, step=1)]\n[RangeIndex(start=0, stop=4, step=1), RangeIndex(start=0, stop=4, step=1)]\n1\n2\n(10,)\n(4, 4)\n0   -0.349515\n1    0.136058\n2    0.615168\n3    0.376520\n4   -0.498576\n5   -0.068724\n6    0.306374\n7    0.992502\n8    0.788099\n9   -0.229436\ndtype: float64\n          0         1         2         3\n0 -0.244928  0.891473  0.842883 -0.346417\n1 -0.419721  0.421949 -0.173725 -0.364333\n2  0.455450 -0.253401  0.359983 -0.051328\n3  0.582970 -0.264874 -0.447268  0.568612\n0   -0.349515\n1    0.136058\ndtype: float64\n          0         1         2         3\n0 -0.244928  0.891473  0.842883 -0.346417\n1 -0.419721  0.421949 -0.173725 -0.364333\n0    False\n1    False\n2    False\n3    False\n4    False\n5    False\n6    False\n7    False\n8    False\n9    False\ndtype: bool\n      0     1     2     3\n0  True  True  True  True\n1  True  True  True  True\n2  True  True  True  True\n3  True  True  True  True\n2.068470233090275\n0.20684702330902752",
+  "out": "0    0.035029\n1    0.007738\n2    0.848301\n3    0.315468\n4   -0.421591\n5    0.028337\n6   -0.150785\n7   -0.419490\n8    0.028176\n9    0.118337\ndtype: float64\n0.007737678431596562\n          0         1         2         3\n0 -0.146923 -0.393613 -0.174678 -0.249353\n1 -0.187799  0.962058 -0.430417  0.471196\n2  0.155405  0.877528  0.703564 -0.238037\n3  0.103901  0.089167  0.959814  0.816821\n[RangeIndex(start=0, stop=10, step=1)]\n[RangeIndex(start=0, stop=4, step=1), RangeIndex(start=0, stop=4, step=1)]\n1\n2\n(10,)\n(4, 4)\n0    0.035029\n1    0.007738\n2    0.848301\n3    0.315468\n4   -0.421591\n5    0.028337\n6   -0.150785\n7   -0.419490\n8    0.028176\n9    0.118337\ndtype: float64\n          0         1         2         3\n0 -0.146923 -0.393613 -0.174678 -0.249353\n1 -0.187799  0.962058 -0.430417  0.471196\n2  0.155405  0.877528  0.703564 -0.238037\n3  0.103901  0.089167  0.959814  0.816821\n0    0.035029\n1    0.007738\ndtype: float64\n          0         1         2         3\n0 -0.146923 -0.393613 -0.174678 -0.249353\n1 -0.187799  0.962058 -0.430417  0.471196\n0    False\n1    False\n2    False\n3    False\n4    False\n5    False\n6    False\n7    False\n8    False\n9    False\ndtype: bool\n      0     1     2     3\n0  True  True  True  True\n1  True  True  True  True\n2  True  True  True  True\n3  True  True  True  True\n0.38952030557071704\n0.03895203055707171",
   "err": "",
   "warn": "",
   "stdin": "",
@@ -1059,19 +1074,19 @@
  "ch12/test4.py": {
   "out": "精准模式: 小红，打算，到，中国科学院，研究生院，图书馆，学习\n全模式: 小/ 红/ 打算/ 算到/ 中国/ 中国科学院/ 科学/ 科学院/ 学院/ 研究/ 研究生/ 研究生院/ 图书/ 图书馆/ 图书馆学/ 书馆/ 学习\n搜索引擎模式:小红，打算，到，中国，科学，学院，科学院，中国科学院，研究，研究生，研究生院，图书，书馆，图书馆，学习",
   "err": "",
-  "warn": "s early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\nBuilding prefix dict from the default dictionary ...\nLoading model from cache C:\\Users\\djej\\AppData\\Local\\Temp\\jieba.cache\nLoading model cost 0.352 seconds.\nPrefix dict has been built successfully.",
+  "warn": "s early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\nBuilding prefix dict from the default dictionary ...\nLoading model from cache C:\\Users\\djej\\AppData\\Local\\Temp\\jieba.cache\nLoading model cost 0.403 seconds.\nPrefix dict has been built successfully.",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch12/test5.py": {
   "out": "我 r\n爱 v\n北京 ns\n天安门 ns",
   "err": "",
-  "warn": "s early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\nBuilding prefix dict from the default dictionary ...\nLoading model from cache C:\\Users\\djej\\AppData\\Local\\Temp\\jieba.cache\nLoading model cost 0.342 seconds.\nPrefix dict has been built successfully.",
+  "warn": "s early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\nBuilding prefix dict from the default dictionary ...\nLoading model from cache C:\\Users\\djej\\AppData\\Local\\Temp\\jieba.cache\nLoading model cost 0.374 seconds.\nPrefix dict has been built successfully.",
   "stdin": "",
   "py": "E:\\anaconda\\envs\\leaf_gcn\\python.exe"
  },
  "ch12/test7.py": {
-  "out": "False\n1794812434.6691294\ntime.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=15, tm_min=0, tm_sec=34, tm_wday=0, tm_yday=320, tm_isdst=0)\n<built-in function ctime>",
+  "out": "False\n1794817590.6722968\ntime.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=16, tm_min=26, tm_sec=30, tm_wday=0, tm_yday=320, tm_isdst=0)\n<built-in function ctime>",
   "err": "",
   "warn": "",
   "stdin": "",

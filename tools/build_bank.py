@@ -235,6 +235,9 @@ def parse_options(raw):
         txt = '\n'.join(x.rstrip() for x in txt.split('\n')).strip()
         opts.append(txt)
     # 教材偶有重复字母（如第6章(2)出现两个 B），按出现顺序强制 A/B/C/D
+    # 抽空的片段一律丢掉：docx 里有些选项会被行内分隔符（", " / "and "）切碎，
+    # 留下只有标点的空串（第8章选择题(5) 曾经因此多出 B、F 两个空选项，答案字母也错位）。
+    opts = [t for t in opts if re.sub(r'[\s\.．、:：]', '', t)]
     opts = [chr(ord('A') + i) + '. ' + t for i, t in enumerate(opts)]
     return join_stem(stem.split('\n')), opts
 

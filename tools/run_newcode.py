@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """跑全部 12 章的示例代码，收集真实输出，用于生成代码学习卡。
 
-第 4-8 章取「更新后的chapter」，其余章取原目录；每章兼容
-`chapterN/chapterN/*.py` 与 `chapterN/*.py` 两种结构。
+第 4-11 章取「更新后的chapter」（老师陆续发过 4-8 与 9-11 两批更新），
+其余章取原目录；每章兼容 `chapterN/chapterN/*.py` 与 `chapterN/*.py` 两种结构。
 
 几个必要的处理：
 - turtle 程序没有控制台输出，用临时 stub（记录绘图指令）跑，得到"绘图轨迹"
@@ -10,6 +10,7 @@
 - 需要键盘输入的按 STDIN 表喂输入
 - 每个文件在独立临时目录里跑，避免 polluting 课程目录（如 chapter10 会写 demo.csv）
 - PYTHONPATH 带上 PROJ，让 `import chapter7.xxx` 这类跨章导入能解析
+- 少数代码会往绝对路径写东西（如 ch11/test1 的 d:\\test），按 PATCH 表改写到临时目录
 """
 import glob
 import json
@@ -36,7 +37,14 @@ for name in os.listdir(BASE):
 print("PY =", PY)
 print("UP =", UP)
 
-UPDATED = {4, 5, 6, 7, 8}
+UPDATED = {4, 5, 6, 7, 8, 9, 10, 11}
+
+# 少量代码直接操作绝对路径，跑一遍会在用户机器上留下目录（甚至泄露目录内容）。
+# 这里把它们改写到各自的临时工作目录，语义完全一样，输出里的路径也本来就是临时的。
+#   key -> [(原文, 替换成什么)]，占位符 {work} = 该文件的临时工作目录
+PATCH = {
+    ("ch11", "test1.py"): [(r"d:\test", "{work}\\dtest")],
+}
 
 STDIN = {
     ("ch4", "test4.py"): "8\n3\n",
@@ -105,9 +113,21 @@ for ch in range(1, 13):
                 shutil.copy2(data, os.path.join(work, os.path.basename(data)))
             except OSError:
                 pass
+        # 绝对路径改写：在 work 目录里放一份改过的副本再跑，原始课件文件不动
+        run_path, patched = p, ""
+        for old, new in PATCH.get((key.split("/")[0], name), []):
+            if patched:
+                break
+            if old in src:
+                dst = os.path.join(work, "_patched_" + name)
+                with open(dst, "w", encoding="utf-8") as fh:
+                    fh.write(src.replace(old, new.replace("{work}", work)))
+                run_path = dst
+                patched = old + " -> " + new.replace("{work}", "<临时目录>")
+                print("   PATCH %s: %s" % (key, patched))
         try:
             r = subprocess.run(
-                [PY, p], capture_output=True, text=True, encoding="utf-8",
+                [PY, run_path], capture_output=True, text=True, encoding="utf-8",
                 errors="replace", env=env, timeout=40, input=stdin_text, cwd=work,
             )
             out = r.stdout.rstrip("\n")
@@ -123,6 +143,8 @@ for ch in range(1, 13):
             shutil.rmtree(work, ignore_errors=True)
 
         res[key] = {"out": out, "err": err, "warn": warn, "stdin": stdin_text, "py": PY}
+        if patched:
+            res[key]["patched"] = patched
         flag = "ERR" if err else "OK "
         tail = err.splitlines()[-1][:70] if err else ""
         print("[%s] ch%-2d %-12s out=%-4d %s" % (flag, ch, name, len(out), tail))

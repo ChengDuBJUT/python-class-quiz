@@ -185,7 +185,7 @@
     if (!f.title && !f.output && !f.notes) {
       if (titleBox) titleBox.innerHTML = '';
       if (extraBox) extraBox.innerHTML =
-        '<div class="ce-empty">该文件暂未整理学习卡（目前第 4-8 章更新版代码已全部覆盖）。</div>';
+        '<div class="ce-empty">该文件暂未整理学习卡（目前第 4-11 章更新版代码已全部覆盖）。</div>';
       return '';
     }
     // 考点导读放在代码上方，输出/注释放在代码下方
@@ -202,6 +202,11 @@
     if (f.err) {
       h += '<div class="ce-label ce-label-err">运行时异常（多为故意演示）</div>' +
         '<pre class="ce-out ce-err">' + esc(f.err) + '</pre>';
+    }
+    // 少数代码会往绝对路径写东西（如 ch11/test1 的 d:\test），采集时改到了临时目录
+    if (f.patched) {
+      h += '<div class="ce-label">采集说明</div><pre class="ce-out">本站运行时把 ' +
+        esc(f.patched) + '，避免在你的磁盘上真的建目录</pre>';
     }
     h += '</div>';
     if (f.notes && f.notes.length) {

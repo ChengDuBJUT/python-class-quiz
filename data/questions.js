@@ -2741,7 +2741,7 @@ window.QUESTION_BANK = [
       "D. class C A and B:"
     ],
     "answer": "C",
-    "explanation": "Python 的类继承写成 class 子类(父类1, 父类2): —— 父类列表放在圆括号里、用逗号隔开，整行以冒号结尾。A 和 D 用空格 / and 连接父类，语法错误；B 少了行尾的冒号，也是语法错误，所以只有 C 正确。注意区分 C 与 B：只差一个冒号。"
+    "explanation": "Python 的类继承写成 class 子类(父类1, 父类2):  —— 父类列表放在圆括号里、用逗号隔开，整行以冒号结尾。A 和 D 用空格/and 连接父类，语法错误；B 少了行尾的冒号，也是语法错误，所以只有 C 正确。注意区别：C 有冒号、B 没有。"
   },
   {
     "id": "ch8-judge-01",
@@ -4536,132 +4536,6 @@ window.QUESTION_BANK = [
     "verified": true
   },
   {
-    "id": "lab9-read-01",
-    "chapter": 9,
-    "chapterTitle": "异常、调试与测试",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter9/test10.py",
-    "sourceLocator": "第9章 代码自测 1",
-    "stem": "主动抛出 ValueError 并捕获，输出？",
-    "code": "try:\n    raise ValueError('x')\nexcept Exception as e:\n    print(type(e).__name__)\nfinally:\n    print('done')",
-    "options": [
-      "A. Exception / done",
-      "B. done / ValueError",
-      "C. ValueError / done",
-      "D. x / done"
-    ],
-    "answer": "C",
-    "explanation": "except 先打印异常类型名，finally 无论是否异常都会执行。",
-    "verified": true
-  },
-  {
-    "id": "lab9-read-02",
-    "chapter": 9,
-    "chapterTitle": "异常、调试与测试",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter9/test11.py",
-    "sourceLocator": "第9章 代码自测 2",
-    "stem": "除零被捕获后的输出？",
-    "code": "try:\n    print(1 / 0)\nexcept ZeroDivisionError:\n    print('zero')",
-    "options": [
-      "A. ZeroDivisionError",
-      "B. 0",
-      "C. 程序崩溃无输出",
-      "D. zero"
-    ],
-    "answer": "D",
-    "explanation": "1/0 触发 ZeroDivisionError，被配套 except 捕获后打印 zero。",
-    "verified": true
-  },
-  {
-    "id": "lab10-read-01",
-    "chapter": 10,
-    "chapterTitle": "文件与数据格式化",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter10/test10.py",
-    "sourceLocator": "第10章 代码自测 1",
-    "stem": "使用 join 拼接列表，输出？",
-    "code": "ls = ['小米', '华为', '苹果']\nprint('&'.join(ls))",
-    "options": [
-      "A. ['小米', '华为', '苹果']",
-      "B. 小米,华为,苹果",
-      "C. TypeError",
-      "D. 小米&华为&苹果"
-    ],
-    "answer": "D",
-    "explanation": "str.join() 用分隔符把序列中的字符串连成一个字符串。",
-    "verified": true
-  },
-  {
-    "id": "lab10-read-02",
-    "chapter": 10,
-    "chapterTitle": "文件与数据格式化",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter10/test11.py",
-    "sourceLocator": "第10章 代码自测 2",
-    "stem": "split(\",\") 的结果是？",
-    "code": "line = '1,2,3,4'\nprint(line.split(','))",
-    "options": [
-      "A. ['1', '2', '3', '4']",
-      "B. [1, 2, 3, 4]",
-      "C. '1','2','3','4'",
-      "D. 1 2 3 4"
-    ],
-    "answer": "A",
-    "explanation": "split 返回字符串列表，元素仍是 str，不会自动转整数。",
-    "verified": true
-  },
-  {
-    "id": "lab11-read-01",
-    "chapter": 11,
-    "chapterTitle": "标准库应用编程",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter11/test1.py",
-    "sourceLocator": "第11章 代码自测 1",
-    "stem": "os.path.splitext(\"demo.csv\")[1] 返回？",
-    "code": "import os\nprint(os.path.splitext('demo.csv')[1])",
-    "options": [
-      "A. .csv",
-      "B. demo",
-      "C. demo.csv",
-      "D. csv"
-    ],
-    "answer": "A",
-    "explanation": "splitext 拆成 (根, 扩展名)，扩展名包含点号。",
-    "verified": true
-  },
-  {
-    "id": "lab11-read-02",
-    "chapter": 11,
-    "chapterTitle": "标准库应用编程",
-    "type": "coderead",
-    "exam": false,
-    "sourceKind": "代码复习",
-    "sourceFile": "pythonProject-2025/chapter11/test11.py",
-    "sourceLocator": "第11章 代码自测 2",
-    "stem": "主线程中 current_thread().name 通常是？",
-    "code": "import threading\nprint(threading.current_thread().name)",
-    "options": [
-      "A. None",
-      "B. MainThread",
-      "C. Thread-1",
-      "D. main"
-    ],
-    "answer": "B",
-    "explanation": "主线程默认名为 MainThread；子线程默认为 Thread-N。",
-    "verified": true
-  },
-  {
     "id": "lab12-read-01",
     "chapter": 12,
     "chapterTitle": "第三方库应用编程",
@@ -5692,6 +5566,204 @@ window.QUESTION_BANK = [
     "explanation": "私有属性 __color 被改写成 _Car__color，类外用原名访问会失败；单下划线 _wheels 只是“别乱用”的约定。",
     "verified": true,
     "kind": "concept"
+  },
+  {
+    "id": "lab9-read-01",
+    "chapter": 9,
+    "chapterTitle": "异常、调试与测试",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter9/test6.py",
+    "sourceLocator": "第9章 代码自测 1",
+    "stem": "【读结果】老师这版把计算挪到 try、打印挪进 else，这段代码的输出是？",
+    "code": "try:\n    result = 10 / 2\nexcept Exception as error:\n    print(\"出错了,原因是：\", error)\nelse:\n    print(result)\nfinally:\n    print(\"今天天气不错！\")",
+    "options": [
+      "A. 出错了,原因是： 5.0 换行 今天天气不错！",
+      "B. 今天天气不错！",
+      "C. 5.0 换行 今天天气不错！",
+      "D. 结果为 5.0 换行 今天天气不错！"
+    ],
+    "answer": "C",
+    "explanation": "10/2 正常完成，跳进 else 打印 result（5.0），finally 随后无条件执行。注意输出的 5.0 前面没有「结果为」三个字 —— 那是旧版 print 里的字符串。",
+    "verified": false,
+    "kind": "output"
+  },
+  {
+    "id": "lab9-read-02",
+    "chapter": 9,
+    "chapterTitle": "异常、调试与测试",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter9/test10.py",
+    "sourceLocator": "第9章 代码自测 2",
+    "stem": "【判行为】except 里先把 #pass 注释掉、只留 raise，运行结果是？",
+    "code": "try:\n    raise IndexError('索引超出范围')\n#except Exception as error:\nexcept:\n    #pass\n    raise",
+    "options": [
+      "A. 打印「索引超出范围」后正常结束",
+      "B. 什么都不发生，程序正常结束",
+      "C. SyntaxError，raise 不能单独使用",
+      "D. 抛出 IndexError: 索引超出范围，程序终止"
+    ],
+    "answer": "D",
+    "explanation": "不带参数的 raise 表示「把当前正在处理的异常原样再抛」，所以接住之后程序仍然崩。老师把 #pass 留成注释，就是在提示：如果它是真的 pass，就会静默通过。",
+    "verified": false,
+    "kind": "error"
+  },
+  {
+    "id": "lab10-read-01",
+    "chapter": 10,
+    "chapterTitle": "文件与数据格式化",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter10/test10.py",
+    "sourceLocator": "第10章 代码自测 1",
+    "stem": "【读结果】readlines 拿到的每一行再逐行 strip + split，输出是？（lines 就相当于 readlines() 的返回值）",
+    "code": "lines = [\"1,2,3,4\\n\", \"5,6,7,8\\n\"]\nls = []\nfor l in lines:\n    ls.append(l.strip('\\n').split(','))\nprint(ls)",
+    "options": [
+      "A. ['1', '2', '3', '4', '5', '6', '7', '8']",
+      "B. [['1,2,3,4'], ['5,6,7,8']]",
+      "C. ['1,2,3,4\\n', '5,6,7,8\\n']",
+      "D. [['1', '2', '3', '4'], ['5', '6', '7', '8']]"
+    ],
+    "answer": "D",
+    "explanation": "每次循环先 strip 掉行尾换行，再按逗号切成 4 个字段，append 进 ls 后就是「列表的列表」。这正是老师把旧版 read().split(\",\") 改掉的原因 —— 旧写法分不清行边界。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab10-read-02",
+    "chapter": 10,
+    "chapterTitle": "文件与数据格式化",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter10/test2.py",
+    "sourceLocator": "第10章 代码自测 2",
+    "stem": "【机制】test.txt 里原来已有两行内容，执行这段代码后文件变成？",
+    "code": "f = open(\"test.txt\", \"a\")\nf.write(\"Python is a great language 11161338.\\n\")\nf.close()",
+    "options": [
+      "A. 原来的两行保留，末尾多出一行",
+      "B. 内容被清空，只剩这一行",
+      "C. 报错 FileExistsError，因为文件已存在",
+      "D. 内容被清空，且不写入任何东西"
+    ],
+    "answer": "A",
+    "explanation": "模式 \"a\" 是 append：不清空、指针落在文件末尾，所以老内容保留、新内容追加在后。老师这版特意把旧版的 \"w\" 改成 \"a\"，就是在演示两者的区别。",
+    "verified": false,
+    "kind": "mech"
+  },
+  {
+    "id": "lab10-read-03",
+    "chapter": 10,
+    "chapterTitle": "文件与数据格式化",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter10/test8.py",
+    "sourceLocator": "第10章 代码自测 3",
+    "stem": "【读结果】刚打开 → 读 2 个字符 → 再看位置，三次输出依次是？",
+    "code": "from io import StringIO\nf = StringIO(\"Python is a great language.\")\nprint(f.tell())\nprint(f.read(2))\nprint(f.tell())",
+    "options": [
+      "A. 1 / Py / 2",
+      "B. 0 / Py / 2",
+      "C. 0 / Py / 3（含换行）",
+      "D. 2 / Py / 2"
+    ],
+    "answer": "B",
+    "explanation": "打开时指针在 0；read(2) 读走 P、y 两个字符，指针移到 2。StringIO 的行为和 open 的文本模式完全一致，老师新版正是把 read(5) 改成了 read(2) 好让位置变化一眼可见。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab11-read-01",
+    "chapter": 11,
+    "chapterTitle": "标准库应用编程",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter11/test1.py",
+    "sourceLocator": "第11章 代码自测 1",
+    "stem": "【找错】假设 d:\\test 这个目录还不存在，只执行这一句会怎样？",
+    "code": "import os\nos.mkdir(r'd:\\test\\example3')",
+    "options": [
+      "A. 抛 FileNotFoundError，因为 mkdir 只能建一级、父目录必须已存在",
+      "B. 自动把 d:\\test 和 example3 一起建出来",
+      "C. 什么都不做，路径已存在时不报错",
+      "D. 抛 IsADirectoryError，因为 \\t 被当成制表符"
+    ],
+    "answer": "A",
+    "explanation": "os.mkdir 只建最后一级，父目录缺一个就 FileNotFoundError；要连父目录一起建得用 os.makedirs(..., exist_ok=True)。老师新版在它前面先 os.mkdir(path) 建了 d:\\test，才让这句能成功。",
+    "verified": false,
+    "kind": "error"
+  },
+  {
+    "id": "lab11-read-02",
+    "chapter": 11,
+    "chapterTitle": "标准库应用编程",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter11/test6.py",
+    "sourceLocator": "第11章 代码自测 2",
+    "stem": "【读结果】老师这版把 setfirstweekday(0) 改成了 6，三行输出是？",
+    "code": "import calendar\nprint(calendar.firstweekday())\ncalendar.setfirstweekday(6)\nprint(calendar.firstweekday())\nprint(calendar.isleap(2022))",
+    "options": [
+      "A. 6 / 0 / False",
+      "B. 0 / 6 / False",
+      "C. 1 / 6 / False",
+      "D. 0 / 5 / True"
+    ],
+    "answer": "B",
+    "explanation": "firstweekday 默认 0（周一），set 成 6 就是周日，读回来自然是 6；2022 不是闰年所以 isleap 返回 False。副作用是后面 calendar.month 的表头会变成 Su Mo Tu We Th Fr Sa。",
+    "verified": true,
+    "kind": "output"
+  },
+  {
+    "id": "lab11-read-03",
+    "chapter": 11,
+    "chapterTitle": "标准库应用编程",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter11/test7-1.py",
+    "sourceLocator": "第11章 代码自测 3",
+    "stem": "【机制】新增的 test7-1.py 里，formatmonth() 返回的是什么？",
+    "code": "from calendar import HTMLCalendar\nhc = HTMLCalendar()\nprint(type(hc.formatmonth(2026, 11)).__name__)",
+    "options": [
+      "A. None（直接画到屏幕）",
+      "B. bytes（二进制）",
+      "C. str（一整段 HTML 表格源码）",
+      "D. list（每天一个元素）"
+    ],
+    "answer": "C",
+    "explanation": "formatmonth 返回字符串，内容是 <table> … </table> 的 HTML 片段，可以直接写进 .html 文件；想打印出字符画月历要用 calendar.month()。",
+    "verified": false,
+    "kind": "mech"
+  },
+  {
+    "id": "lab11-read-04",
+    "chapter": 11,
+    "chapterTitle": "标准库应用编程",
+    "type": "coderead",
+    "exam": false,
+    "sourceKind": "代码复习",
+    "sourceFile": "pythonProject-2025/chapter11/test8.py",
+    "sourceLocator": "第11章 代码自测 4",
+    "stem": "【读结果】老师把 seed(100) 改成 seed(10)，random.random() 的输出变成？",
+    "code": "import random\nrandom.seed(10)\nprint(random.random())",
+    "options": [
+      "A. 0.1456692551041303（旧 seed(100) 的值）",
+      "B. 每次都不同，无法确定",
+      "C. 10",
+      "D. 0.5714025946899135"
+    ],
+    "answer": "D",
+    "explanation": "种子固定后序列就固定。seed(10) 的第一个随机数是 0.5714025946899135；换回 seed(100) 才是旧笔记里的 0.1456692551041303。",
+    "verified": true,
+    "kind": "output"
   }
 ];
 
@@ -6113,7 +6185,7 @@ window.CODE_LAB = [
           "random.randint(0,2) 让电脑随机出拳，所以每次运行结果可能不同（本次输入 1 出石头，电脑出布，判你输了）。"
         ],
         "pitfall": "结果随机，别背死输出；要能说清 random.randint(0,2) 取的是 0、1、2 三个整数（含两端）。",
-        "output": "欢迎来到猜拳游戏！\n请输入你的选择：0-剪刀，1-石头，2-布\n请输入 0、1 或 2：\n你选择了：石头\n计算机选择了：剪刀\n\n你赢了！",
+        "output": "欢迎来到猜拳游戏！\n请输入你的选择：0-剪刀，1-石头，2-布\n请输入 0、1 或 2：\n你选择了：石头\n计算机选择了：石头\n\n平局！",
         "stdin": "1\n"
       }
     ],
@@ -6171,7 +6243,7 @@ window.CODE_LAB = [
           "A&B 交集、A|B 并集、A-B 差集（在 A 不在 B）、A^B 对称差（只属于其中一个集合）。"
         ],
         "pitfall": "id 的具体数字每次运行都不一样，考试只会问 is / == 的 True/False，不会让你背地址。",
-        "output": "id x:  1992863431040\nid y:  1990718515008\nid z:  1992863431040\nx is y:  False\nx is not y:  True\nz is x:  True\nx == y:  True\nz == x:  True\n1\nA&B {1, 3, 5}\nA|B {1, 2, 3, 4, 5, 7, 9, 11}\nA-B {2, 4}\nA^B {2, 4, 7, 9, 11}"
+        "output": "id x:  2534389496192\nid y:  2534391408448\nid z:  2534389496192\nx is y:  False\nx is not y:  True\nz is x:  True\nx == y:  True\nz == x:  True\n1\nA&B {1, 3, 5}\nA|B {1, 2, 3, 4, 5, 7, 9, 11}\nA-B {2, 4}\nA^B {2, 4, 7, 9, 11}"
       },
       {
         "name": "test4.py",
@@ -6368,7 +6440,7 @@ window.CODE_LAB = [
           "set1.add(l1) 抛 TypeError: unhashable type: 'list'——列表是可变类型、不可哈希，不能放进集合（也不能当字典键）。"
         ],
         "pitfall": "集合/字典的键必须是可哈希（不可变）的对象；列表、字典、集合都放不进去，元组可以（只要其元素也都可哈希）。",
-        "output": "32 8 91 5\nsorted(tp):  [8, 10, 16, 25, 32]\n<reversed object at 0x0000027DB4467FD0>\n<class 'reversed'>\nlist(temp1) is [32, 8, 16, 25, 10].\ntemp2:  <enumerate object at 0x0000027DB4445440>\n[(0, 10), (1, 25), (2, 16), (3, 8), (4, 32)]\nIndex 0: 10\nIndex 1: 25\nIndex 2: 16\nIndex 3: 8\nIndex 4: 32\n1. set1:  {3, 4}\n2. set1:  {3, 4}\n1 l1:  [3, 5]\n2 l1:  [3, 5]",
+        "output": "32 8 91 5\nsorted(tp):  [8, 10, 16, 25, 32]\n<reversed object at 0x00000297A19D7FD0>\n<class 'reversed'>\nlist(temp1) is [32, 8, 16, 25, 10].\ntemp2:  <enumerate object at 0x00000297A19BC810>\n[(0, 10), (1, 25), (2, 16), (3, 8), (4, 32)]\nIndex 0: 10\nIndex 1: 25\nIndex 2: 16\nIndex 3: 8\nIndex 4: 32\n1. set1:  {3, 4}\n2. set1:  {3, 4}\n1 l1:  [3, 5]\n2 l1:  [3, 5]",
         "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter6\\chapter6\\test1.py\", line 36, in <module>\n    set2=set1.add(l1)\n         ^^^^^^^^^^^^\nTypeError: unhashable type: 'list'"
       },
       {
@@ -6496,7 +6568,7 @@ window.CODE_LAB = [
           "多重推导式里的 if 归属于离它最近的那层 for。"
         ],
         "pitfall": "嵌套 for 推导式中元素顺序是“外层慢、内层快”；zip 则是按位置一一配对，两者结果完全不同。",
-        "output": "[1, 5, 7, 9]\n[1, 5, 9]\n[1, 2, 3, 4]\nls2 [4, 8, 12, 16]\n[2, 3, 6, 5]\n[4, 5, 6, 5, 6, 7, 6, 7, 8]\n[4, 6, 8]\n<zip object at 0x0000013A9731BFC0>\n<class 'list'>\n[5, 6]"
+        "output": "[1, 5, 7, 9]\n[1, 5, 9]\n[1, 2, 3, 4]\nls2 [4, 8, 12, 16]\n[2, 3, 6, 5]\n[4, 5, 6, 5, 6, 7, 6, 7, 8]\n[4, 6, 8]\n<zip object at 0x000002A1822DBFC0>\n<class 'list'>\n[5, 6]"
       },
       {
         "name": "test12.py",
@@ -6526,7 +6598,7 @@ window.CODE_LAB = [
           "关键：生成器耗尽后再 list(tp2) 得到空列表 []——生成器只能遍历一次。"
         ],
         "pitfall": "生成器/迭代器是“一次性”的，用过就空；要重复使用必须先 list() 存成列表。",
-        "output": "<generator object <genexpr> at 0x000001E4E9B31A40>\n(4, 8, 12, 16)\n<generator object <genexpr> at 0x000001E4E9B30380>\ne is 2\ne is 3\ne is 6\ne is 5\nThis is the end!\n[]"
+        "output": "<generator object <genexpr> at 0x000002537D671A40>\n(4, 8, 12, 16)\n<generator object <genexpr> at 0x000002537D670380>\ne is 2\ne is 3\ne is 6\ne is 5\nThis is the end!\n[]"
       },
       {
         "name": "test14.py",
@@ -6584,7 +6656,7 @@ window.CODE_LAB = [
           "dc.__hash__ 打印的是方法对象本身，因为字典不可哈希，不能进集合。"
         ],
         "pitfall": "可哈希的前提是不可变；看 id 是否变化就能判断一个操作是原地修改还是产生了新对象。",
-        "output": "{1, 2, 3}\n1 st is {frozenset({5, 6}), 1, 2, 3}.\nst in line 14 {frozenset({5, 6}), 1, 2, 3}\nst in line 19 {1, 2, 3, (1, 2), frozenset({5, 6})}\nid(li1) in line 21:  1916174970368 [1, 2]\nid(li1) in line 23:  1916174970368 [1, 2, 5]\n1\n2\n5\n<class 'str'> bjut\nstr hash in line 35 -897773758776236167\nid(str) in line 36 : 1916174970032\n<class 'str'> Bjut\nstr hash  in line 40:  1841287005456037840\nid(str) in line 41:  1916174973808\ntp hash: 529344067295497451\nfst hash:  6221592716431983538\nst hash:  None\n{1: 1, 2: 2} <class 'dict'>\ndc hash  None\n2 st is {1, 2, 3, (1, 2), (1, 2, 3), frozenset({5, 6})}.\nhash:  -897773758776236167\nhash:  -897773758776236167\nTrue\ndc hash: None"
+        "output": "{1, 2, 3}\n1 st is {frozenset({5, 6}), 1, 2, 3}.\nst in line 14 {frozenset({5, 6}), 1, 2, 3}\nst in line 19 {1, 2, 3, (1, 2), frozenset({5, 6})}\nid(li1) in line 21:  1502869696000 [1, 2]\nid(li1) in line 23:  1502869696000 [1, 2, 5]\n1\n2\n5\n<class 'str'> bjut\nstr hash in line 35 5680213173420177096\nid(str) in line 36 : 1502869695664\n<class 'str'> Bjut\nstr hash  in line 40:  -4953832585114197421\nid(str) in line 41:  1502869699440\ntp hash: 529344067295497451\nfst hash:  6221592716431983538\nst hash:  None\n{1: 1, 2: 2} <class 'dict'>\ndc hash  None\n2 st is {1, 2, 3, (1, 2), (1, 2, 3), frozenset({5, 6})}.\nhash:  5680213173420177096\nhash:  5680213173420177096\nTrue\ndc hash: None"
       },
       {
         "name": "test18.py",
@@ -6671,7 +6743,7 @@ window.CODE_LAB = [
           "print(type(add)) 说明函数是一等对象，可以赋值、传参、返回。",
           "if __name__ == '__main__': 下的代码只在“直接运行本文件”时执行，被 import 时不执行。"
         ],
-        "output": "33\ntype(add) is <class 'function'>\nadd is <function add at 0x0000027382B322A0>\nid(add) is 2695137272480"
+        "output": "33\ntype(add) is <class 'function'>\nadd is <function add at 0x000002E7015222A0>\nid(add) is 3191182860960"
       },
       {
         "name": "test2.py",
@@ -6684,7 +6756,7 @@ window.CODE_LAB = [
           "由 from test1 import add 可见：被导入模块的顶层代码不会因 import 而重复执行（有 __main__ 保护）。"
         ],
         "pitfall": "Python 没有函数重载，同名 def 只会保留最后一个；想按参数个数区分必须自己写判断或用默认参数。",
-        "output": "ok\n33\nadd_return(11,22) is 33\nadd_object(11,22) is 33\nTrue\ntype(fun): <class 'function'>\nfun: <function fun at 0x000002A33C99A2A0>\n id(fun): 2900119626400"
+        "output": "ok\n33\nadd_return(11,22) is 33\nadd_object(11,22) is 33\nTrue\ntype(fun): <class 'function'>\nfun: <function fun at 0x000002047D0FA2A0>\n id(fun): 2218301301408"
       },
       {
         "name": "test3.py",
@@ -6710,7 +6782,7 @@ window.CODE_LAB = [
           "for 循环 5 次，每次都多打印一行 a 1 和一行 b <function ...>。"
         ],
         "pitfall": "局部变量 a 在每次调用时都重新创建，所以不会累加；要累加必须用闭包 nonlocal 或全局变量。",
-        "output": "a 1\na 1\nb <function test2 at 0x000001F66A5A8F40>\na 1\nb <function test2 at 0x000001F66A5A8F40>\na 1\nb <function test2 at 0x000001F66A5A8F40>\na 1\nb <function test2 at 0x000001F66A5A8F40>\na 1\nb <function test2 at 0x000001F66A5A8F40>"
+        "output": "a 1\na 1\nb <function test2 at 0x000002D5E5168F40>\na 1\nb <function test2 at 0x000002D5E5168F40>\na 1\nb <function test2 at 0x000002D5E5168F40>\na 1\nb <function test2 at 0x000002D5E5168F40>\na 1\nb <function test2 at 0x000002D5E5168F40>"
       },
       {
         "name": "test5.py",
@@ -6831,7 +6903,7 @@ window.CODE_LAB = [
           "注意运算优先级：先算 b*c 再加 a，所以 1+2*3 = 7，不是 9。"
         ],
         "pitfall": "lambda 的函数体只能是一个表达式，不能写 if 语句块、循环等复杂结构。",
-        "output": "请输入一个整数：5!=120\n<function <lambda> at 0x00000184C7648F40>\n7",
+        "output": "请输入一个整数：5!=120\n<function <lambda> at 0x00000151EF108F40>\n7",
         "stdin": "5\n"
       },
       {
@@ -6846,7 +6918,7 @@ window.CODE_LAB = [
           "而循环里 print(fun1()) 每次都新建一个闭包对象，所以打印的是函数对象地址而不是数值。"
         ],
         "pitfall": "闭包的状态保存在“那一次 fun1() 调用”的局部变量里；重新调用 fun1() 会得到全新的计数器，从 0 开始。",
-        "output": "<function fun1.<locals>.fun2 at 0x00000219B38D9D00>\n<function fun1.<locals>.fun2 at 0x00000219B38D8F40>\n第0 次调用计数器，记录值为：1\n<function fun1.<locals>.fun2 at 0x00000219B38D8F40>\n第1 次调用计数器，记录值为：2\n<function fun1.<locals>.fun2 at 0x00000219B38D8F40>\n第2 次调用计数器，记录值为：3\n<function fun1.<locals>.fun2 at 0x00000219B38D8F40>\n第3 次调用计数器，记录值为：4\n<function fun1.<locals>.fun2 at 0x00000219B38D8F40>\n第4 次调用计数器，记录值为：5",
+        "output": "<function fun1.<locals>.fun2 at 0x0000029892E19D00>\n<function fun1.<locals>.fun2 at 0x0000029892E18F40>\n第0 次调用计数器，记录值为：1\n<function fun1.<locals>.fun2 at 0x0000029892E18F40>\n第1 次调用计数器，记录值为：2\n<function fun1.<locals>.fun2 at 0x0000029892E18F40>\n第2 次调用计数器，记录值为：3\n<function fun1.<locals>.fun2 at 0x0000029892E18F40>\n第3 次调用计数器，记录值为：4\n<function fun1.<locals>.fun2 at 0x0000029892E18F40>\n第4 次调用计数器，记录值为：5",
         "stdin": "5\n"
       },
       {
@@ -6889,7 +6961,7 @@ window.CODE_LAB = [
           "wrapper 内部的 print 在装饰那一刻就执行，因此先输出 1.、<class 'function'>、2.。",
           "真正调用 test() 时执行的是 inner：先打印验证权限，再调用原函数打印 test。"
         ],
-        "output": "1.  <function test at 0x00000202370C8F40>\n<class 'function'>\n2. 正在装饰...\n3. 正在验证权限\ntest"
+        "output": "1.  <function test at 0x000002AB9D5C8F40>\n<class 'function'>\n2. 正在装饰...\n3. 正在验证权限\ntest"
       },
       {
         "name": "test18.py",
@@ -6903,7 +6975,7 @@ window.CODE_LAB = [
           "两个 time.sleep 让装饰过程与运行过程有明显时间间隔，便于观察顺序。"
         ],
         "pitfall": "离函数越近的装饰器越先装饰（越在内层），但执行时越靠外层的包装器越先运行。",
-        "output": "3, 2026-11-16 14:59:48.755416\nwarpper2:  <function test at 0x0000016911378B80>\n正在装饰 2\n2, 2026-11-16 14:59:53.755988\nwrapper1:  <function wrapper2.<locals>.inner2 at 0x000001691137BC40>\n正在装饰 1\n正在验证权限 1\n正在验证权限 2\n1, 2026-11-16 14:59:55.756690\ntest"
+        "output": "3, 2026-11-16 16:25:38.003862\nwarpper2:  <function test at 0x000001BCFBF08B80>\n正在装饰 2\n2, 2026-11-16 16:25:43.004348\nwrapper1:  <function wrapper2.<locals>.inner2 at 0x000001BCFBF0BC40>\n正在装饰 1\n正在验证权限 1\n正在验证权限 2\n1, 2026-11-16 16:25:45.004843\ntest"
       },
       {
         "name": "test19.py",
@@ -6918,7 +6990,7 @@ window.CODE_LAB = [
           "所以输出先是一行调用日志（含时间、函数名、参数），然后是 myfunc1 的结果 7。"
         ],
         "pitfall": "装饰器里一定要 return 原函数的调用结果，否则被装饰函数就“没有返回值”了。",
-        "output": "2026-11-16 15:00:00.842660 , myfunc1 was called (3, 4){}\n7"
+        "output": "2026-11-16 16:25:50.081867 , myfunc1 was called (3, 4){}\n7"
       },
       {
         "name": "test20.py",
@@ -6931,7 +7003,7 @@ window.CODE_LAB = [
           "之后再 for i in res，只剩下最后一个元素 25，所以 lm 是 [25]。"
         ],
         "pitfall": "map/filter/zip 在 Python 3 都返回一次性迭代器，取过的元素不会再有；要保留请先 list()。",
-        "output": "<class 'map'>\n<map object at 0x000001897BCC3A30>\n1\n4\n9\n16\n[25]"
+        "output": "<class 'map'>\n<map object at 0x000001A3827B3A30>\n1\n4\n9\n16\n[25]"
       },
       {
         "name": "test21.py",
@@ -7169,7 +7241,7 @@ window.CODE_LAB = [
           "del player1 后对象仍有 player2 引用所以不销毁；“销毁”在程序结束时才打印。"
         ],
         "pitfall": "单例要在 __new__ 里控制对象创建；__init__ 每次实例化都会执行，需要额外标志位防止重复初始化。",
-        "output": "初始化音乐播放器\n<__main__.MusicPlayer object at 0x0000024819E5BF10>\n<__main__.MusicPlayer object at 0x0000024819E5BF10>\n销毁"
+        "output": "初始化音乐播放器\n<__main__.MusicPlayer object at 0x0000027FB6FEBED0>\n<__main__.MusicPlayer object at 0x0000027FB6FEBED0>\n销毁"
       },
       {
         "name": "test15.py",
@@ -7349,6 +7421,7 @@ window.CODE_LAB = [
       {
         "name": "test1.py",
         "code": "#print(name)\nls=[1,2,3]\nprint(ls[2])\n\n# indexoutofbound\n\n\nprint('y'<'x'==False)\n\n#print(6**2/3)",
+        "updated": true,
         "title": "列表下标越界 + 链式比较的坑",
         "notes": [
           "ls[2] 取的是第 3 个元素，下标从 0 开始；写 ls[3] 就是 IndexError，注释掉的 print(name) 同理是 NameError。",
@@ -7362,6 +7435,7 @@ window.CODE_LAB = [
       {
         "name": "test2.py",
         "code": "\nclass Car:\n    color='red'\n\ncar=Car()\nprint(car.color)\nprint(car.logo)",
+        "updated": true,
         "title": "访问不存在的属性 → AttributeError",
         "notes": [
           "class Car 里只定义了类属性 color='red'，car 实例自己没有 color，读 car.color 时向上到类里找，拿到 red。",
@@ -7370,11 +7444,12 @@ window.CODE_LAB = [
         ],
         "pitfall": "以为「取不到就是 None」—— 只有 dict.get() 才会给默认值，属性访问不会。",
         "output": "red",
-        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test2.py\", line 7, in <module>\n    print(car.logo)\n          ^^^^^^^^\nAttributeError: 'Car' object has no attribute 'logo'"
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test2.py\", line 7, in <module>\n    print(car.logo)\n          ^^^^^^^^\nAttributeError: 'Car' object has no attribute 'logo'"
       },
       {
         "name": "test3.py",
         "code": "from chapter7.test19 import logit\n\n@logit()\ndef test31():\n    num1=int(input(\"请输入被除数：\"))\n    num2=int(input(\"请输入除数：\"))\n    try:\n        print(\"结果为\",num1/num2)\n    except ZeroDivisionError as error:\n        print(f\"错误是: {error}\")\n        print(\"出错了\")\n\ntest31()",
+        "updated": true,
         "title": "try 包住 input，连输入错误一起接住",
         "notes": [
           "开头 `from chapter7.test19 import logit` 是跨章导入，运行时要让 pythonProject-2025 在 sys.path 里（脚本里已配好 PYTHONPATH）。",
@@ -7382,12 +7457,13 @@ window.CODE_LAB = [
           "input 写在 try 里面，所以输入非数字抛的 ValueError 和除零的 ZeroDivisionError 都会被同一个 except 接住。",
           "本例输入 10 和 2，输出「结果为 5.0」—— 除法 / 永远返回 float，不是 5。"
         ],
-        "output": "2026-11-16 15:00:07.511159 , myfunc1 was called (3, 4){}\n7\n2026-11-16 15:00:07.511159 , test31 was called (){}\n请输入被除数：请输入除数：结果为 5.0",
+        "output": "2026-11-16 16:25:56.752290 , myfunc1 was called (3, 4){}\n7\n2026-11-16 16:25:56.752290 , test31 was called (){}\n请输入被除数：请输入除数：结果为 5.0",
         "stdin": "10\n2\n"
       },
       {
         "name": "test4.py",
         "code": "num1=int(input(\"请输入被除数：\"))\nnum2=int(input(\"请输入除数：\"))\ntry:\n    print(\"结果为\",num1/num2)\nexcept ZeroDivisionError as error:\n    print(\"出错了,原因是：\",error)",
+        "updated": true,
         "title": "try 的范围只包住 print，input 在保护圈外",
         "notes": [
           "num1、num2 的 int(input(...)) 写在 try 之前，这两行真出错（比如输入中文）没有任何保护。",
@@ -7402,6 +7478,7 @@ window.CODE_LAB = [
       {
         "name": "test5.py",
         "code": "try:\n    num1 = int(input(\"请输入被除数：\"))\n    num2 = int(input(\"请输入除数：\"))\n    print(\"结果为\",num1/num2)\nexcept (ZeroDivisionError,ValueError) as error:\n    print(\"出错了,原因是：\",error)",
+        "updated": true,
         "title": "一个 except 同时接住多种异常（元组写法）",
         "notes": [
           "`except (ZeroDivisionError, ValueError) as error:` 括号里列出多个异常类型，命中任意一个都进这个分支。",
@@ -7414,20 +7491,24 @@ window.CODE_LAB = [
       },
       {
         "name": "test6.py",
-        "code": "try:\n    num1=int(input(\"请输入被除数：\"))\n    num2=int(input(\"请输入除数：\"))\n    print(\"结果为\",num1/num2)\nexcept Exception as error:\n    print(\"出错了,原因是：\",error)\nfinally:\n    print(\"今天天气不错！\")",
-        "title": "finally：不管出不出错都执行",
+        "code": "try:\n    num1=int(input(\"请输入被除数：\"))\n    num2=int(input(\"请输入除数：\"))\n    result = num1/num2\nexcept Exception as error:\n    print(\"出错了,原因是：\",error)\nelse:\n    print(result)\nfinally:\n    print(\"今天天气不错！\")",
+        "updated": true,
+        "title": "try / except / else / finally：老师这版加上了 else 分支",
         "notes": [
-          "输入 10 和 2，没异常，输出「结果为 5.0」，然后 finally 照样打印「今天天气不错！」。",
-          "finally 的语义是「无论如何」，正常结束、异常被接住、甚至 try 里有 return，它都会跑。",
-          "常用来收尾：关文件、断开连接、释放锁。",
-          "except Exception 能接住几乎所有业务异常（KeyboardInterrupt、SystemExit 这类 BaseException 除外）。"
+          "新版把 `print(\"结果为\",num1/num2)` 拆成「先算 result，再在 else 里 print(result)」，所以成功路径的输出从「结果为 5.0」变成了光秃秃的 `5.0`。",
+          "输入 10 和 2：try 正常算完 → 跳过 except → 进 else 打印 result → 最后 finally 无条件打印「今天天气不错！」。",
+          "else 的语义是「try 里没出错才执行」，不是「否则」；它和 except 互斥，两个最多只走一个。",
+          "顺序固定：try → except（出错时）/ else（没出错时）→ finally（无论如何）。",
+          "把 print 放 else 里还有个好处：try 块只装可能出错的代码，出错边界更清楚。"
         ],
-        "output": "请输入被除数：请输入除数：结果为 5.0\n今天天气不错！",
+        "pitfall": "else 里打印的是 result；一旦 try 中途抛异常，result 压根没被赋值，但 else 会被整个跳过，所以不会 NameError。反过来，把 print(result) 挪回 try 里再让它出错，就抓不住这个错了。",
+        "output": "请输入被除数：请输入除数：5.0\n今天天气不错！",
         "stdin": "10\n2\n"
       },
       {
         "name": "test7.py",
         "code": "num1=int(input(\"请输入被除数：\"))\nnum2=int(input(\"请输入除数：\"))\ntry:\n    result=num1/num2\nexcept Exception as error:\n    print(\"出错了,原因是：\",error)\nelse:\n    print(result)",
+        "updated": true,
         "title": "else：只有 try 里没出错才走这里",
         "notes": [
           "结构是 try → except → else，本例 10/2 没异常，所以跳过 except，走 else 打印 5.0。",
@@ -7441,6 +7522,7 @@ window.CODE_LAB = [
       {
         "name": "test8.py",
         "code": "\n\ntry:\n    num1 = int(input(\"请输入被除数：\"))\n    num2 = int(input(\"请输入除数：\"))\n    result=num1/num2\nexcept Exception as error:\n    print(\"出错了,原因是：\",error)\nelse:\n    print(result)\nfinally:\n    print(\"这是一定要执行的代码\")",
+        "updated": true,
         "title": "try / except / else / finally 四件套全用上",
         "notes": [
           "本例输入 10 和 0，走 except 打印「出错了,原因是： division by zero」，然后 finally 打印「这是一定要执行的代码」。",
@@ -7455,6 +7537,7 @@ window.CODE_LAB = [
       {
         "name": "test9.py",
         "code": "#raise IndexError\nraise IndexError()\n#raise IndexError(\"索引超出范围\")",
+        "updated": true,
         "title": "raise 主动抛异常",
         "notes": [
           "`raise IndexError()` 是代码自己抛异常，没有真实的下标越界，所以没有任何 traceback 的业务原因，只有一行 IndexError。",
@@ -7463,25 +7546,28 @@ window.CODE_LAB = [
           "主动抛异常常用于参数校验：不满足条件就立刻中止，而不是带着脏数据往下跑。"
         ],
         "output": "",
-        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test9.py\", line 2, in <module>\n    raise IndexError()\nIndexError"
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test9.py\", line 2, in <module>\n    raise IndexError()\nIndexError"
       },
       {
         "name": "test10.py",
-        "code": "try:\n    raise IndexError('索引超出范围')\n#except Exception as error:\nexcept:\n    raise",
-        "title": "except 里再 raise：接住了又重新抛出",
+        "code": "try:\n    raise IndexError('索引超出范围')\n#except Exception as error:\nexcept:\n    #pass\n    raise",
+        "updated": true,
+        "title": "except 里再 raise：接住了又重新抛出去（新版只多了行 #pass 注释）",
         "notes": [
-          "try 里 `raise IndexError('索引超出范围')` 抛出异常。",
-          "`except:` 不带类型，接住所有异常（相当于 except BaseException），比 except Exception 更宽。",
-          "关键在 `raise` 这一行：不带参数的 raise 表示「把当前正在处理的异常原样再抛出去」。",
-          "所以程序最终还是崩了，报 IndexError: 索引超出范围 —— 接住不等于吞掉。"
+          "新版唯一改动是 except 块里加了一行 `#pass`，它是注释，代码行为一点没变。",
+          "`raise IndexError('索引超出范围')` 抛异常 → `except:` 接住 → 下一行 `raise` 不带参数，表示「把当前正在处理的异常原样再抛」。",
+          "所以程序最终还是崩了：IndexError: 索引超出范围。接住不等于吞掉。",
+          "老师把 `#pass` 摆在这儿是在暗示：如果这行不是注释而是真的 `pass`，程序就会静默通过、正常结束 —— 这是本段唯一会改变输出的开关。",
+          "`except:` 不带类型等价于 `except BaseException`，连 Ctrl+C 都接；正常写代码应该用 `except Exception`。"
         ],
-        "pitfall": "在 except 里写 raise 却没意识到程序仍会终止；它的用途是「记录日志后交给上层处理」，不是「忽略这个错」。",
+        "pitfall": "考试常考「把 pass 换成 raise（或反过来）输出怎么变」：有 raise 会崩，只有 pass 则程序正常结束、什么都不打印。",
         "output": "",
-        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test10.py\", line 2, in <module>\n    raise IndexError('索引超出范围')\nIndexError: 索引超出范围"
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test10.py\", line 2, in <module>\n    raise IndexError('索引超出范围')\nIndexError: 索引超出范围"
       },
       {
         "name": "test11.py",
         "code": "\nnum1=int(input(\"请输入被除数：\"))\nnum2=int(input(\"请输入除数：\"))\n#if num2==0:\n#    print('除数不能为 0')\nassert num2!=0,'除数不能为 0'\nprint(num1/num2)",
+        "updated": true,
         "title": "assert 断言：条件不成立就抛 AssertionError",
         "notes": [
           "`assert num2 != 0, '除数不能为 0'` 等价于 `if not (num2 != 0): raise AssertionError('除数不能为 0')`。",
@@ -7490,12 +7576,13 @@ window.CODE_LAB = [
           "assert 会被 python -O 优化掉，所以别用它做必须执行的业务校验，只用于「调试期自检」。"
         ],
         "output": "请输入被除数：请输入除数：",
-        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test11.py\", line 6, in <module>\n    assert num2!=0,'除数不能为 0'\n           ^^^^^^^\nAssertionError: 除数不能为 0",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test11.py\", line 6, in <module>\n    assert num2!=0,'除数不能为 0'\n           ^^^^^^^\nAssertionError: 除数不能为 0",
         "stdin": "10\n0\n"
       },
       {
         "name": "test12.py",
         "code": "class ShortInputError(Exception):\n    def __init__(self,length,atleast):\n        self.length=length\n        self.atleast=atleast\n\ntry:\n    text=input(\"请输入密码：\")\n    if len(text)<6:\n        raise ShortInputError(len(text),6)\nexcept Exception as error:\n    print(f\"ShortInputError:输入密码的长度是{error.length},密码长度至少应该是{error.atleast}\")",
+        "updated": true,
         "title": "自定义异常类：带 length / atleast 两个属性",
         "notes": [
           "class ShortInputError(Exception) 继承 Exception，就成为一个能被 raise / except 的异常类型。",
@@ -7511,6 +7598,7 @@ window.CODE_LAB = [
       {
         "name": "test13.py",
         "code": "def div():\n    try:\n        print(\"div() 开 始 执 行 \")\n        num1=int(input(\"请输入被除数：\"))\n        num2=int(input(\"请输入除数：\"))\n        res1=num1/num2\n        return res1\n    except Exception as error:\n        #print(f\"div--捕获到异常信息{error}\")\n        raise error\ndef mul():\n    print(\"mul() 开 始 执 行 \")\n    num3=int(input(\"请输入乘数：\"))\n    res2=num3*div()\n    return res2\n\ndef test():\n    try:\n        res3=mul()\n        print(res3)\n    except Exception as error:\n        print(f\"test--捕获到异常信息{error}\")\n        raise error\n\n\ntest()",
+        "updated": true,
         "title": "异常沿调用链层层上传：div → mul → test",
         "notes": [
           "执行顺序看输出：mul() 先启动并要乘数，然后才调 div() 要两个输入。本例输入 3、10、0。",
@@ -7521,11 +7609,11 @@ window.CODE_LAB = [
         ],
         "pitfall": "以为在内层 except 里处理过就不再往上抛；只要写了 raise（或根本不写 try），异常都会继续上传到顶层。",
         "output": "mul() 开 始 执 行 \n请输入乘数：div() 开 始 执 行 \n请输入被除数：请输入除数：test--捕获到异常信息division by zero",
-        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 26, in <module>\n    test()\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 23, in test\n    raise error\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 19, in test\n    res3=mul()\n         ^^^^^\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 14, in mul\n    res2=num3*div()\n              ^^^^^\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 10, in div\n    raise error\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 6, in div\n    res1=num1/num2\n         ~~~~^~~~~\nZeroDivisionError: division by zero",
+        "err": "code project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 26, in <module>\n    test()\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 23, in test\n    raise error\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 19, in test\n    res3=mul()\n         ^^^^^\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 14, in mul\n    res2=num3*div()\n              ^^^^^\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 10, in div\n    raise error\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter9\\chapter9\\test13.py\", line 6, in div\n    res1=num1/num2\n         ~~~~^~~~~\nZeroDivisionError: division by zero",
         "stdin": "3\n10\n0\n"
       }
     ],
-    "updated": false
+    "updated": true
   },
   {
     "n": 10,
@@ -7541,6 +7629,7 @@ window.CODE_LAB = [
       {
         "name": "test1.py",
         "code": "m=ord('A') #ord 获取字符的unicode 十进制编码\nprint(m)\nprint(bin(m))\nn=ord('中') #ord 获取字符的unicode 十进制编码\nprint(n)\nprint(f\"bin(n): {bin(n)}\")\nprint(chr(65))\nprint(chr(20013))\nprint((3.5*4.6)==True)",
+        "updated": true,
         "title": "ord / chr 与字符编码",
         "notes": [
           "ord('A') 得到 65，bin(65) 得到 0b1000001 —— bin() 返回带 0b 前缀的二进制字符串。",
@@ -7552,21 +7641,23 @@ window.CODE_LAB = [
       },
       {
         "name": "test2.py",
-        "code": "f = open(\"test.txt\", \"w\")\nf.write( \"Python is a great language.\\n\")\nf.write( \"Python is a great language.\")\nprint(f\"f.name: {f.name}\")\nprint(f.mode)\nprint(f.closed)\nf.close()\nprint(\"1: \" + str(f.closed))\nf.write( \"Python is a great language.\")",
-        "title": "open('w') 的模式、closed 状态与关闭后写入",
+        "code": "f = open(\"test.txt\", \"a\")\nf.write( \"Python is a great language 11161338.\\n\")\nf.write( \"Python is a great language 11161338.\\n\")\nprint(f\"f.name: {f.name}\")\nprint(f.mode)\nprint(f.closed)\nf.close()\nprint(\"1: \" + str(f.closed))\n#f.write( \"Python is a great language.\")",
+        "updated": true,
+        "title": "open 的模式从 w 改成 a：追加而不是清空",
         "notes": [
-          "open(..., 'w') 是只写模式：文件不存在就新建，已存在就清空重写。",
-          "f.name 是 'test.txt'，f.mode 是 'w'，f.closed 是 False —— 三个都是文件对象的属性，不是方法，不用加括号。",
-          "f.write() 返回写入的字符数，这里没接收返回值，所以看不到。",
-          "f.close() 之后 `print(\"1: \" + str(f.closed))` 输出 1: True；紧接着再 f.write(...) 就抛 ValueError: I/O operation on closed file. —— 这是故意演示。"
+          "老师这版把模式从 `w` 改成 `a`：w 是清空重写，a 是追加到文件末尾；文件不存在时两者都会新建。",
+          "写入的两行内容换成了带学号的 `Python is a great language 11161338.`，而且两行都带换行（旧版第二行故意不带）。",
+          "输出四行：`f.name: test.txt`、`a`、`False`（关闭前 closed 为 False）、`1: True`（关闭后为 True）。",
+          "旧版最后那行 `f.write(...)` 写在 close 之后，会抛 ValueError: I/O operation on closed file；新版把它注释掉了，所以这段代码不再报错。",
+          "a 模式指针自动落在文件末尾，所以同一段代码跑 N 次，文件就长 N 倍（本站每个文件在独立临时目录跑，不会污染课件目录）。"
         ],
-        "pitfall": "忘了 close 就想继续读写；用 with 语句可以避免这个错误（见 test3）。",
-        "output": "f.name: test.txt\nw\nFalse\n1: True",
-        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test2.py\", line 9, in <module>\n    f.write( \"Python is a great language.\")\nValueError: I/O operation on closed file."
+        "pitfall": "w 会清空文件、a 不会；close 之后再 write/read 一律 ValueError。给「同一文件被打开两次」的题判最终内容时，先看模式，再看有没有 close。",
+        "output": "f.name: test.txt\na\nFalse\n1: True"
       },
       {
         "name": "test3.py",
         "code": "with open(\"test.txt\", \"w\") as f:\n    f.write( \"Python is a great language.\")\n    print(f.name)\n    print(f.mode)\n    print(f.closed)\nprint(f.closed)",
+        "updated": true,
         "title": "with 语句：出块就自动关闭",
         "notes": [
           "with open(...) as f 在块的末尾自动调 f.close()，不用手写。",
@@ -7578,22 +7669,24 @@ window.CODE_LAB = [
       },
       {
         "name": "test4.py",
-        "code": "class MyContext(object):\n    def __enter__(self):\n        print('__enter__() called')\n        return self\n\n    def description(self):\n        print('my name is MyContestManager')\n\n    def __exit__(self ,e_t ,e_v ,t_b):\n        print('__exit__() called')\n        print(f\"e_t: {str(e_t)}\")\n        print(f\"e_v: {str(e_v)}\")\n        print(f\"t_b: {str(t_b)}\")\n\nwith MyContext() as a:\n    a.description()\n    print('a is called')\n    raise ValueError(\"bjut error\")",
-        "title": "自己写上下文管理器：__enter__ / __exit__",
+        "code": "class MyContext(object):\n    def __enter__(self):\n        print('__enter__() called')\n        return self\n\n    def description(self):\n        print('my name is MyContextManager')\n\n    def __exit__(self ,e_t ,e_v ,t_b):\n        print('__exit__() called')\n        print(f\"e_t: {str(e_t)}\")\n        print(f\"e_v: {str(e_v)}\")\n        print(f\"t_b: {str(t_b)}\")\n\nwith MyContext() as a:\n    a.description()\n    print('a is called')\n    raise ValueError(\"bjut error\")",
+        "updated": true,
+        "title": "上下文管理器 __enter__ / __exit__ 的调用时机（顺手修了个拼写）",
         "notes": [
-          "进入 with 块时自动调 __enter__()，它返回的对象绑定给 as 后面的 a，所以 a 就是 MyContext 实例。",
-          "__exit__(e_t, e_v, t_b) 接三个参数：异常类型、异常值、traceback 对象。块内正常结束时它们全是 None。",
-          "本例块内 raise ValueError('bjut error')，所以 e_t 打印 <class 'ValueError'>，e_v 打印 bjut error，t_b 打印一个 traceback 对象。",
-          "__exit__ 的返回值决定异常是否被吞掉：这里没有 return，等价返回 None（假值），异常继续抛出，所以程序最后报 ValueError: bjut error。",
-          "想让 with 块里的异常不往外传播，就在 __exit__ 里 return True。"
+          "新版只把 `MyContestManager` 改成了 `MyContextManager`，是一处拼写笔误的修正，逻辑完全没动。",
+          "`with MyContext() as a:` 的执行顺序：先调 `__enter__()`（打印并 return self，所以 a 就是这个对象），再执行 with 块，最后退出时调 `__exit__()`。",
+          "这段代码的输出顺序：__enter__() called → my name is MyContextManager → a is called → __exit__() called → e_t / e_v / t_b 三行。",
+          "`__exit__(self, e_t, e_v, t_b)` 的三个参数是异常类型、异常值、traceback；with 块里 `raise ValueError(\"bjut error\")` 之后它们都有值。",
+          "`__exit__` 没有 return（等于返回 None/False）→ 异常不会被吞，继续往上抛，所以最后还能看到 ValueError: bjut error。"
         ],
-        "pitfall": "以为 __exit__ 会自动吃掉异常 —— 默认不会，必须显式 return True。",
-        "output": "__enter__() called\nmy name is MyContestManager\na is called\n__exit__() called\ne_t: <class 'ValueError'>\ne_v: bjut error\nt_b: <traceback object at 0x00000225A61BB940>",
-        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test4.py\", line 18, in <module>\n    raise ValueError(\"bjut error\")\nValueError: bjut error"
+        "pitfall": "__exit__ 返回 True 才是「吞掉异常」，返回 None/False 会继续抛。这就是为什么这道题的输出里既有 __exit__ 的打印、结尾又有 traceback。",
+        "output": "__enter__() called\nmy name is MyContextManager\na is called\n__exit__() called\ne_t: <class 'ValueError'>\ne_v: bjut error\nt_b: <traceback object at 0x0000019B2F79B900>",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter10\\chapter10\\test4.py\", line 18, in <module>\n    raise ValueError(\"bjut error\")\nValueError: bjut error"
       },
       {
         "name": "test5.py",
         "code": "string= \"Python is a great language.\\nYeah its great!!\\n\"\n\nwith open(\"test.txt\", \"w\") as f:\n    size=f.write(string)\n    print(size)",
+        "updated": true,
         "title": "f.write() 的返回值是写入的字符数",
         "notes": [
           "string 共 45 个字符（含两个换行符 \\n），f.write(string) 返回 45，所以输出 45。",
@@ -7605,6 +7698,7 @@ window.CODE_LAB = [
       {
         "name": "test6.py",
         "code": "string= \"Python is a great language.\\nYeah its great!!\\n\"\nwith open(\"test.txt\", \"w\") as f:\n    size=f.writelines(string)\n    print(size)",
+        "updated": true,
         "title": "f.writelines() 与 write() 的区别",
         "notes": [
           "本例传的是字符串而不是列表，writelines 会把字符串当成字符序列，逐个字符写出去，效果上等于 write。",
@@ -7617,6 +7711,7 @@ window.CODE_LAB = [
       {
         "name": "test7.py",
         "code": "\nwith open('test.txt',mode='r') as f:\n    #print(f.read(2))\n    #print(f.readline())\n    a = f.readlines();\n    for b in range(len(a)):\n        print(f\"{b}:, {a[b]}\")\n    #print(f.readlines())",
+        "updated": true,
         "title": "readlines() 保留行尾换行符",
         "notes": [
           "readlines() 返回列表，每个元素是一行，而且行尾的 \\r\\n 原样保留。",
@@ -7625,50 +7720,71 @@ window.CODE_LAB = [
           "本例读到的 test.txt 是章节目录里那份：第 1 行 Python is a great language.，第 2 行 Bjut is a good university.。",
           "f 后面那个分号 `a = f.readlines();` 是 Python 允许但不推荐的写法。"
         ],
-        "output": "0:, Python is a great language.\n\n1:, Bjut is a good university."
+        "output": "0:, Python is a great language.\n\n1:, Yeah its great!!\n\n2:, "
       },
       {
         "name": "test8.py",
-        "code": "with open('test.txt') as f:\n    print(f.tell())\n    print(f.read(5))\n    print(f.tell())",
-        "title": "tell() 记录当前读到的位置（字符数）",
+        "code": "with open('test.txt',encoding='utf-8') as f:\n    print(f.tell())\n    print(f.read(2))\n    print(f.tell())",
+        "updated": true,
+        "title": "tell() 看指针位置：新版加了 encoding，read(5) 改成 read(2)",
         "notes": [
-          "刚打开时 tell() 是 0。",
-          "read(5) 读 5 个字符，得到 Pytho。",
-          "再 tell() 得到 5 —— 文本模式下位置按字符算，一个中文也算 1。",
-          "打开的 test.txt 第一行是 Python is a great language.，所以前 5 个字符正好是 Pytho。"
+          "`open('test.txt', encoding='utf-8')` 显式指定编码。文本模式不写 encoding 会按系统默认（中文 Windows 上是 GBK），读带中文的文件容易乱码或 UnicodeDecodeError。",
+          "刚打开时 tell() 是 0；`read(2)` 读走两个字符 'Py'；再 tell() 得到 2。",
+          "文本模式下 tell() 返回的是「字符位置」，二进制模式（'rb'）才是字节位置 —— 对比 test9 输出的 8 就明白了。",
+          "老师把 read(5) 改成 read(2)，是为了让打印短、一眼能数清读了几个字符。"
         ],
-        "output": "0\nPytho\n5"
+        "pitfall": "文本模式 tell 的数值不能拿去当字节偏移用；要精确控制字节就开 'rb'。",
+        "output": "0\nPy\n2"
       },
       {
         "name": "test9.py",
-        "code": "#with open('test.txt') as f:\n    #f.seek(5,0)\n    #f.seek(3,1)\n\n\nwith open('test.txt','rb') as f:\n    f.seek(5,0)\n    local = f.seek(3,1)\n    print(local)\n    print(f.tell())\n    print(f.read())",
-        "title": "seek 的三种 whence：0 开头 / 1 当前 / 2 末尾",
+        "code": "#with open('test.txt') as f:\n    #f.seek(5,0)\n    #f.seek(3,1)\n\n\nwith open('test.txt','rb') as f:\n    f.seek(5,0)\n    local = f.seek(3,1)\n    print(local)\n    print(f.tell())\n    print(f.read(3))",
+        "updated": true,
+        "title": "二进制模式 seek + tell：read(3) 出来的是 bytes",
         "notes": [
-          "`f.seek(5, 0)` 从文件开头往后移 5 个字节；`f.seek(3, 1)` 从当前位置再往后 3 个字节。",
-          "seek 的返回值是新的绝对位置：先到 5，再 +3 得 8，所以打印 8，接着 tell() 也是 8。",
-          "注意这个例子用的是 'rb' 二进制模式，二进制下位置按字节算，所以能看到 b's a great language.\\r\\n...' 这样的原始字节串。",
-          "文本模式做相对 seek 有限制（只能 seek(0, 2) 或回到 0），带 whence=1 的相对偏移要配合 'rb' 用。",
-          "从第 8 个字节开始读，得到 s a great language. 加 CRLF 和下一行 —— 说明之前跳过了 Pytho 和 n 后的第 8 个字符。"
+          "`open('test.txt','rb')` 是二进制模式，读出的是 bytes，所以打印成 `b's a'` 而不是 `s a`。",
+          "`f.seek(5,0)` 从文件开头前进 5 → 位置 5；`local = f.seek(3,1)` 从当前位置再前进 3 → 位置 8，并且 seek 会把新位置作为返回值给你。",
+          "所以输出三行：`8`（seek 的返回值）、`8`（tell 确认）、`b's a'`（第 8 个字节起读 3 个）。",
+          "test.txt 开头是 `Python is a great language.`：P0 y1 t2 h3 o4 n5 空格6 i7 s8 → 从 8 开始三个字节正好是 s、空格、a。",
+          "seek 第二个参数：0 文件开头、1 当前位置、2 文件末尾；文本模式下只允许 0，用 1/2 会报 io.UnsupportedOperation。"
         ],
-        "output": "8\n8\nb's a great language.\\r\\nBjut is a good university.'"
+        "pitfall": "`f.seek(3,1)` 的返回值是「新位置」不是「移动了几个字节」；文本文件里用 1/2 相对定位会直接报错，老师这版特意保留 rb 就为这个。",
+        "output": "8\n8\nb's a'"
+      },
+      {
+        "name": "test10-1.py",
+        "code": "f = open(\"demo.csv\",\"w\")\n\nls = [\n['1','2','3','4'],\n['5','6','7','8'],\n['9','10','11','12'],\n['13','14','15','16']\n]\n\nfor row in ls:\n    f.write(\",\".join(row)+\"\\n\")\n\nf.close()",
+        "updated": true,
+        "title": "新增文件：用 join 生成 demo.csv，给 test10 准备数据",
+        "notes": [
+          "这是老师新加的文件，专门负责写 demo.csv：4 行 4 列的数字字符串。",
+          "核心写法 `f.write(\",\".join(row) + \"\\n\")`：join 把一行里的 4 个字段用逗号连成一个字符串，再补换行，一次写一行 —— 最朴素的 CSV 写文件方式。",
+          "`open(\"demo.csv\",\"w\")` 没指定 encoding，中文 Windows 下按 GBK 写；这次内容全是 ASCII 数字所以没事，一旦写中文就会踩编码坑（对比 test10 里注释掉的 GB2312 那行）。",
+          "表里的 '1' 是字符串不是数字：join 只能拼字符串，写 1 会 TypeError。",
+          "本文件没有任何 print，所以「运行输出」是空的 —— 它的产物是 demo.csv 文件本身。"
+        ],
+        "pitfall": "join 的参数必须是「字符串的序列」，混了 int 会报 TypeError: sequence item 0: expected str instance, int found；写 CSV 时要么保证全 str，要么 map(str, row)。",
+        "output": ""
       },
       {
         "name": "test10.py",
-        "code": "#f = open(\"demo.csv\",\"w\",encoding=\"GB2312\")\nls = [\"小米\",\"华为\",\"苹果\"]\n#f.write(','.join(ls)+'\\n')\t#\t只能写入字符串\n#f.close()\n\nprint('&'.join(ls))\n\nf = open(\"demo.csv\",\"r\")\nls = f.read().strip('\\n').split(',')\nf.close()\nprint(ls)",
-        "title": "一次读完再按逗号切分 —— 行尾 \\r\\n 会把两行粘在一起",
+        "code": "#f = open(\"demo.csv\",\"w\",encoding=\"GB2312\")\nls = [\"小米\",\"华为\",\"苹果\"]\n#f.write(','.join(ls)+'\\n')\t#\t只能写入字符串\n#f.close()\n\nprint('&'.join(ls))\n\nf = open(\"demo.csv\",\"r\")\n\nlines = f.readlines()\n\nls = []\nfor l in lines:\n    ls.append(l.strip('\\n').split(','))\nf.close()\nprint(ls)",
+        "updated": true,
+        "title": "老师把 read().split(',') 改成 readlines 逐行切分 —— 这才是正确的二维读法",
         "notes": [
-          "`'&'.join(ls)` 把列表用 & 连成一个字符串，输出 小米&华为&苹果 —— join 是「用分隔符连接列表」，不是 split 的逆操作那么直观。",
-          "读文件用的是 `f.read().strip('\\n').split(',')`：strip 只去掉首尾的换行，文件中间的 \\r\\n 原样保留。",
-          "所以 split(',') 之后，每行最后一个字段会和下一行第一个字段粘成 '4\\n5' 这种 —— 输出里的列表就能看到 '4\\n5'、'8\\n9'、'12\\n13'、'16\\n17'。",
-          "这段代码本意是按行切成二维结构，用 read 一次读完是错的；正确做法是按行遍历（见 test11）。",
-          "文件里的 demo.csv 每行是逗号分隔的 4 个数字，共 5 行。"
+          "旧版 `f.read().strip('\\n').split(',')` 把整份文件拍成一维，行尾的 \\r\\n 还留在元素里，会出现 '4\\n5' 这种脏数据。",
+          "新版先用 `f.readlines()` 拿到「每行一个字符串」，再对每行 `strip('\\n').split(',')`，得到干净的二维列表。",
+          "输出第二行就是结果：`[['1','2','3','4'], ['5','6','7','8'], ['9','10','11','12'], ['13','14','15','16']]`，4 行 4 列。",
+          "第一行 `小米&华为&苹果` 是上面那段 join 的演示，和读文件无关。",
+          "demo.csv 里的数字都是字符串，所以列表元素带引号，要当数字用还得 int() 一下。"
         ],
-        "pitfall": "strip('\\n') 只清首尾，不管中间。想按行切就得 splitlines() 或按行遍历，别指望 strip 能救。",
-        "output": "小米&华为&苹果\n['1', '2', '3', '4\\n5', '6', '7', '8\\n9', '10', '11', '12\\n13', '14', '15', '16\\n17', '18', '19', '20']"
+        "pitfall": "读 CSV 别用 read() + split(',')：它分不清行边界，会把 '4\\r\\n5' 这种跨行内容粘成一个元素。要么 splitlines() 再逐行 split，要么直接用 csv 模块。",
+        "output": "小米&华为&苹果\n[['1', '2', '3', '4'], ['5', '6', '7', '8'], ['9', '10', '11', '12'], ['13', '14', '15', '16']]"
       },
       {
         "name": "test11.py",
         "code": "\"\"\"\nf = open(\"demo.csv\",\"w\")\nls = [\n    ['1','2','3','4'],\n    ['5','6','7','8'],\n    ['9','10','11','12']\n]\nfor row in ls:\n    f.write(\",\".join(row)+\"\\n\")\nf.close()\n\"\"\"\nf = open(\"demo.csv\",\"r\")\nls = []\nfor line in f:\n    ls.append(line.strip('\\n').split(','))\n\nf.close()\nprint(ls)\nprint(ls[2][3])\nprint(ls[3][3])\nprint(int(ls[2][3])+int(ls[3][3]))",
+        "updated": true,
         "title": "逐行读 CSV：唯一正确的切分方式",
         "notes": [
           "for line in f 每次拿到一行（含行尾 \\r\\n），`line.strip('\\n').split(',')` 把它切成 4 个字段的列表。",
@@ -7677,10 +7793,10 @@ window.CODE_LAB = [
           "开头三引号那段注释是写文件的代码（生成 demo.csv 的内容），被注释掉了，只留读取部分。"
         ],
         "pitfall": "直接 '12' + '16' 会得到 '1216'（字符串拼接），必须 int() 转成数字再算。",
-        "output": "[['1', '2', '3', '4'], ['5', '6', '7', '8'], ['9', '10', '11', '12'], ['13', '14', '15', '16'], ['17', '18', '19', '20']]\n12\n16\n28"
+        "output": "[['1', '2', '3', '4'], ['5', '6', '7', '8'], ['9', '10', '11', '12'], ['13', '14', '15', '16']]\n12\n16\n28"
       }
     ],
-    "updated": false
+    "updated": true
   },
   {
     "n": 11,
@@ -7695,22 +7811,24 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test1.py",
-        "code": "import os\n\nprint(os.getcwd())\npath=r'd:\\test'\nprint(os.listdir(path))\npath2=r'd:\\test\\example3'\nos.mkdir(path2)\nprint(os.listdir(path))\n#path1=r'd:\\test\\1'\n#os.remove(path1)\n#print(os.listdir(path))",
-        "title": "os 模块：getcwd / listdir / mkdir",
+        "code": "import os\n\nprint(os.getcwd())\npath=r'd:\\test'\nos.mkdir(path)\nprint(os.listdir(path))\npath2=r'd:\\test\\example3'\nos.mkdir(path2)\nprint(os.listdir(path))\n#path1=r'd:\\test\\1'\n#os.remove(path1)\n#print(os.listdir(path))",
+        "updated": true,
+        "title": "os 模块：mkdir 建目录 + listdir 列内容（新版补上了 mkdir）",
         "notes": [
-          "os.getcwd() 打印当前工作目录。这里显示的是一个临时目录，因为示例脚本是在独立临时目录里跑的，不是章节目录。",
-          "`path=r'd:\\test'` 这个路径是老师本机的目录，本机没有 d 盘这个路径，所以 os.listdir 抛 FileNotFoundError: 系统找不到指定的路径。",
-          "r'...' 表示原始字符串，反斜杠不转义 —— Windows 路径必须这么写，否则 \\t 会被当成制表符。",
-          "os.mkdir(path2) 建目录，只能建一级，父目录不存在会报错；要多级用 os.makedirs。",
-          "注释掉的 os.remove 是删除文件（不是目录，删目录用 os.rmdir / shutil.rmtree）。"
+          "新版在 `path=r'd:\\test'` 后面加了一行 `os.mkdir(path)`，先建目录再 listdir，才不会一上来就报「路径不存在」。",
+          "三次输出依次是：当前工作目录、`[]`（刚建好的空目录）、`['example3']`（又建了 example3 之后）。",
+          "本站跑这段时把 `d:\\test` 换成了临时目录里的 dtest（跑完即删），否则会在你的 D 盘根目录真的建出两个文件夹 —— 代码逻辑和输出形态不变。",
+          "`os.mkdir` 只能建一级目录，父目录不存在抛 FileNotFoundError；要连父目录一起建用 `os.makedirs(path, exist_ok=True)`。",
+          "目录已存在时 mkdir 抛 FileExistsError —— 这也是它比 makedirs 更容易踩坑的地方。"
         ],
-        "pitfall": "路径写死成自己机器上的 d:\\test，换台电脑就崩。考试里如果考「这段为什么报错」，答案就是路径不存在。",
-        "output": "C:\\Users\\djej\\AppData\\Local\\Temp\\run_11_ekr48697",
-        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\\test1.py\", line 5, in <module>\n    print(os.listdir(path))\n          ^^^^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'd:\\\\test'"
+        "pitfall": "mkdir 建一级、makedirs 建多级；已存在都会报错（makedirs 加 exist_ok=True 可忽略）。删空目录用 os.rmdir，删非空目录得 shutil.rmtree。",
+        "output": "C:\\Users\\djej\\AppData\\Local\\Temp\\run_ch11_gd9zm14n\n[]\n['example3']",
+        "patched": "d:\\test -> <临时目录>\\dtest"
       },
       {
         "name": "test2.py",
         "code": "import sys\n\nprint(sys.version)\nprint(sys.platform)\nprint(sys.path[0])\nprint(sys.argv)\nprint(sys.stdin)\nprint(sys.executable)",
+        "updated": true,
         "title": "sys 模块：解释器与运行环境信息",
         "notes": [
           "sys.version 是解释器版本串，sys.platform 在 Windows 上是 win32。",
@@ -7719,11 +7837,12 @@ window.CODE_LAB = [
           "sys.stdin 打印出来是 <_io.TextIOWrapper name='<stdin>' mode='r'>，说明标准输入也是个文件对象，可以用 read/readline。",
           "sys.executable 是当前 python 解释器的绝对路径 —— 这些值每台机器都不同，别背输出，要记「各代表什么」。"
         ],
-        "output": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]\nwin32\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\n['E:\\\\cd_E\\\\vscode project\\\\Python_class\\\\pythonProject-2025\\\\chapter11\\\\test2.py']\n<_io.TextIOWrapper name='<stdin>' mode='r' encoding='utf-8'>\nE:\\anaconda\\envs\\leaf_gcn\\python.exe"
+        "output": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]\nwin32\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter11\\chapter11\n['E:\\\\cd_E\\\\vscode project\\\\Python_class\\\\pythonProject-2025\\\\更新后的chapter\\\\chapter11\\\\chapter11\\\\test2.py']\n<_io.TextIOWrapper name='<stdin>' mode='r' encoding='utf-8'>\nE:\\anaconda\\envs\\leaf_gcn\\python.exe"
       },
       {
         "name": "test3.py",
         "code": "import sys\nprint(sys.getdefaultencoding())\ni = 0\nwhile i<2:\n    x = sys.stdin.readline()\t# 读入一行，无提示字符串，输入数据多一个'\\n'\n    print(len(x))\n    sys.stdout.write(str(len(x)) + '\\n')\n    y = input('请输入：')\n    print(len(y))\n    i += 1\nsys.exit(8)",
+        "updated": true,
         "title": "sys.stdin.readline 与 input 的长度差一位",
         "notes": [
           "sys.getdefaultencoding() 输出 utf-8，说明源码里的中文按 UTF-8 编码。",
@@ -7739,6 +7858,7 @@ window.CODE_LAB = [
       {
         "name": "test4.py",
         "code": "import time\n\nstartTime=time.perf_counter()\nt1=time.time()\nprint(f\"t1: {t1}\")\nprint(f\"time.ctime(t1): {time.ctime(t1)}\")\n\nt2=time.localtime(t1)\nprint(f\"t2: {t2}\")\nprint(time.gmtime(t1))\n\nt3=time.strftime(\"%Y-%m-%d %H:%M:%S\",t2)\nprint(f\"t3: {t3}\")\n\nt4=time.strptime(t3,\"%Y-%m-%d %H:%M:%S\")\nprint(f\"t4: {t4}\")\ntime.sleep(1)\n\nendTime=time.perf_counter()\nt5=endTime-startTime\nprint(t5)",
+        "updated": true,
         "title": "time 模块：时间戳 → 结构体 → 字符串 → 再解析回来",
         "notes": [
           "time.time() 返回从 1970-01-01 起的秒数（浮点），本例 t1 是一个大数；time.ctime(t1) 把它转成可读串。",
@@ -7747,11 +7867,12 @@ window.CODE_LAB = [
           "time.perf_counter() 是高精度计时器，本例前后差 1.018 秒 —— 因为中间有 time.sleep(1)。",
           "所有具体时间数值每次都变，学习时只看「谁转成谁」，别记数字。"
         ],
-        "output": "t1: 1794812408.7558014\ntime.ctime(t1): Mon Nov 16 15:00:08 2026\nt2: time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=15, tm_min=0, tm_sec=8, tm_wday=0, tm_yday=320, tm_isdst=0)\ntime.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=7, tm_min=0, tm_sec=8, tm_wday=0, tm_yday=320, tm_isdst=0)\nt3: 2026-11-16 15:00:08\nt4: time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=15, tm_min=0, tm_sec=8, tm_wday=0, tm_yday=320, tm_isdst=-1)\n1.0184973000032187"
+        "output": "t1: 1794817557.7694576\ntime.ctime(t1): Mon Nov 16 16:25:57 2026\nt2: time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=16, tm_min=25, tm_sec=57, tm_wday=0, tm_yday=320, tm_isdst=0)\ntime.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=8, tm_min=25, tm_sec=57, tm_wday=0, tm_yday=320, tm_isdst=0)\nt3: 2026-11-16 16:25:57\nt4: time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=16, tm_min=25, tm_sec=57, tm_wday=0, tm_yday=320, tm_isdst=-1)\n1.0161807000004046"
       },
       {
         "name": "test5.py",
         "code": "\nimport time\nt0=time.time()\n\nimport datetime\nfrom datetime import date\nd1 = datetime.date(2023, 4, 13)\nprint(d1)\n\nd2 = date.today()\nprint(\"当前日期:\", d2)\ntimestamp = date.fromtimestamp(t0)\n\nprint(\"日期:\", timestamp)\nd3 = date.timetuple(d2)\nprint(\"d3\", d3)\nd4 = date.toordinal(d2)\nprint(\"d4\", d4)\n\nw1= date.isoweekday(d2)\nprint(\"w1:\", w1)\nprint(\"date.isocalendar(d2)\", date.isocalendar(d2))\nprint(\"date.isoformat(d2)\", date.isoformat(d2))",
+        "updated": true,
         "title": "datetime.date 的构造与各种转换",
         "notes": [
           "datetime.date(2023, 4, 13) 手工造一个日期；date.today() 取今天。",
@@ -7764,20 +7885,39 @@ window.CODE_LAB = [
       },
       {
         "name": "test6.py",
-        "code": "import calendar\nc0 = calendar.firstweekday()\nprint(c0)\ncalendar.setfirstweekday(0)\nc1 = calendar.firstweekday()\nprint(c1)\nprint(calendar.isleap(2022))\nprint(calendar.month(2026, 5, w=2, l=1))\t# 输出某年某月日历",
-        "title": "calendar 模块：首周日、闰年判断、打印月历",
+        "code": "import calendar\nc0 = calendar.firstweekday()\nprint(c0)\ncalendar.setfirstweekday(6)\nc1 = calendar.firstweekday()\nprint(c1)\nprint(calendar.isleap(2022))\nprint(calendar.month(2026, 11, w=2, l=1))\t# 输出某年某月日历",
+        "updated": true,
+        "title": "calendar：setfirstweekday(6) 让一周从周日开始",
         "notes": [
-          "calendar.firstweekday() 返回本周第一天，默认 0 表示周一。",
-          "calendar.setfirstweekday(0) 显式设成周一，再读还是 0 —— 本例只是演示读写同一属性。",
-          "calendar.isleap(2022) 返回 False，2022 不是闰年。",
-          "calendar.month(2026, 5, w=2, l=1) 直接打印 2026 年 5 月的月历：w 是列宽，l 是每周的行数。",
-          "月历输出是分多行的字符串，前面两个空格表示 5 月 1 日是周五。"
+          "`calendar.firstweekday()` 默认返回 0（周一），所以第一行打印 0。",
+          "`setfirstweekday(6)` 把「每周第一天」改成周日（0=周一 … 6=周日），再读回来就打印 6。",
+          "`calendar.isleap(2022)` 是 False —— 2022 不是闰年。",
+          "`calendar.month(2026, 11, w=2, l=1)` 打印 2026 年 11 月的月历文本：w=2 是日期列宽，l=1 是每周占的行数。",
+          "因为前面把周首日改成了周日，表头变成 `Su Mo Tu We Th Fr Sa`，11 月 1 日落在周日那一列（第一行最右）。",
+          "老师这版把 setfirstweekday(0) 改成 6、月份从 2026-05 换成 2026-11，正好让「周首日影响排版」一眼可见。"
         ],
-        "output": "0\n0\nFalse\n      May 2026\nMo Tu We Th Fr Sa Su\n             1  2  3\n 4  5  6  7  8  9 10\n11 12 13 14 15 16 17\n18 19 20 21 22 23 24\n25 26 27 28 29 30 31"
+        "pitfall": "setfirstweekday 改的是全局状态，会影响后面所有 calendar 调用；想恢复就再 setfirstweekday(0)。month() 返回字符串，print 出来才有图形。",
+        "output": "0\n6\nFalse\n   November 2026\nSu Mo Tu We Th Fr Sa\n 1  2  3  4  5  6  7\n 8  9 10 11 12 13 14\n15 16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30"
+      },
+      {
+        "name": "test7-1.py",
+        "code": "from calendar import HTMLCalendar\nhc = HTMLCalendar()\nprint(hc.formatmonth(2026, 11))",
+        "updated": true,
+        "title": "新增文件：HTMLCalendar 生成 HTML 版月历",
+        "notes": [
+          "老师新加的文件：`HTMLCalendar().formatmonth(2026, 11)` 返回一段 HTML 表格字符串，不是终端里的字符画月历。",
+          "输出开头 `<tr><th colspan=\"7\" class=\"month\">November 2026</th></tr>` 是标题行，后面每天一个 `<td>`，class 用星期缩写（mon/tue/…/sun）。",
+          "没日期的格子写成 `class=\"noday\"`，所以每行都是整齐 7 列 —— 这正是 HTML 表格比字符画好用的地方。",
+          "它的周首日是默认的周一（Mon…Sun），和 test6 里 setfirstweekday(6) 之后的效果正好相反，两个对比着看很直观。",
+          "这段输出可以直接粘进 .html 文件当网页月历，浏览器打开就能看。"
+        ],
+        "pitfall": "formatmonth 返回的是字符串不是打印；想要周日起排得先 calendar.setfirstweekday(calendar.SUNDAY)，这个全局设置同样会影响 test6 的输出。",
+        "output": "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"month\">\n<tr><th colspan=\"7\" class=\"month\">November 2026</th></tr>\n<tr><th class=\"mon\">Mon</th><th class=\"tue\">Tue</th><th class=\"wed\">Wed</th><th class=\"thu\">Thu</th><th class=\"fri\">Fri</th><th class=\"sat\">Sat</th><th class=\"sun\">Sun</th></tr>\n<tr><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"sun\">1</td></tr>\n<tr><td class=\"mon\">2</td><td class=\"tue\">3</td><td class=\"wed\">4</td><td class=\"thu\">5</td><td class=\"fri\">6</td><td class=\"sat\">7</td><td class=\"sun\">8</td></tr>\n<tr><td class=\"mon\">9</td><td class=\"tue\">10</td><td class=\"wed\">11</td><td class=\"thu\">12</td><td class=\"fri\">13</td><td class=\"sat\">14</td><td class=\"sun\">15</td></tr>\n<tr><td class=\"mon\">16</td><td class=\"tue\">17</td><td class=\"wed\">18</td><td class=\"thu\">19</td><td class=\"fri\">20</td><td class=\"sat\">21</td><td class=\"sun\">22</td></tr>\n<tr><td class=\"mon\">23</td><td class=\"tue\">24</td><td class=\"wed\">25</td><td class=\"thu\">26</td><td class=\"fri\">27</td><td class=\"sat\">28</td><td class=\"sun\">29</td></tr>\n<tr><td class=\"mon\">30</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td><td class=\"noday\">&nbsp;</td></tr>\n</table>"
       },
       {
         "name": "test7.py",
         "code": "import math\n\nprint(math.nan)\nprint(math.fabs(-10))\nprint(math.log2(5))\nx = math.radians(60)\nprint(x)\nprint(math.sin(x))",
+        "updated": true,
         "title": "math 模块：nan / fabs / log2 / 弧度与三角函数",
         "notes": [
           "math.nan 是「非数字」，打印出来就是 nan；判断它要用 math.isnan(x)，不能用 == nan（永远 False）。",
@@ -7791,35 +7931,37 @@ window.CODE_LAB = [
       },
       {
         "name": "test8.py",
-        "code": "import random\nrandom.seed(100)\nprint(\"random: \", random.random())\nprint(\"randint: \", random.randint(1,10) )\nprint(\"random uniform: \", random.uniform(1.1,5.4))\nprint(\"random choice: \", random.choice(['剪刀', '石头', '布']))\nprint(\"random randrange: \", random.randrange(1,100,2) )\nprint(\"random sample: \", random.sample('zyxwvutsrqponmlkjihgfedcba',5)) # 从多个字符中生成指定数量的随机字符\nr=[1,3,5,6,7]\nrandom.shuffle(r)\nprint(r)",
-        "title": "random.seed(100)：种子固定，结果可复现",
+        "code": "import random\nrandom.seed(10)\nprint(\"random: \", random.random())\nprint(\"randint: \", random.randint(1,10) )\nprint(\"random uniform: \", random.uniform(1.1,5.4))\nprint(\"random choice: \", random.choice(['剪刀', '石头', '布']))\nprint(\"random randrange: \", random.randrange(1,100,2) )\nprint(\"random sample: \", random.sample('zyxwvutsrqponmlkjihgfedcba',5)) # 从多个字符中生成指定数量的随机字符\nr=[1,3,5,6,7]\nrandom.shuffle(r)\nprint(r)",
+        "updated": true,
+        "title": "random.seed(10)：种子一变，整串随机结果全变",
         "notes": [
-          "random.seed(100) 之后，整串随机结果就固定了：random() 得 0.1457…、randint(1,10) 得 8、uniform(1.1,5.4) 得 5.19…。",
-          "换台机器、换个 Python 版本，同一个种子也基本能复现同一串 —— 这是随机实验可重复的关键。",
-          "random.choice 从序列里挑一个，本例挑到 剪刀；random.randrange(1,100,2) 在 1-99 的奇数里挑，得到 91。",
-          "random.sample(字符串, 5) 不重复抽 5 个字符；random.shuffle(r) 原地打乱列表并返回 None（所以不能写 print(random.shuffle(r))）。",
-          "不调 seed 时，种子取自系统时间，每次结果都不同。"
+          "`random.seed(10)` 固定种子后，每次运行得到的序列完全相同：0.5714025946899135、7、3.1750152005686805、剪刀、27、['l','k','r','f','a']、[6,7,5,1,3]。",
+          "老师这版把 seed(100) 改成 seed(10)，所以这些值和你旧笔记里的不一样 —— 种子一换，后面每一项都跟着变。",
+          "不写 seed 时用系统时间当种子，每次运行结果都不同（也就是不可复现）。",
+          "同一个种子 + 同样的调用顺序 = 完全可复现，这就是机器学习里「固定随机性」的标准做法。"
         ],
-        "pitfall": "randint(a, b) 是闭区间（两端都可能取到），而 randrange(a, b) 是左闭右开 —— 差一个数的经典坑。",
-        "output": "random:  0.1456692551041303\nrandint:  8\nrandom uniform:  5.19238612215497\nrandom choice:  剪刀\nrandom randrange:  91\nrandom sample:  ['n', 'c', 'o', 'm', 'j']\n[5, 3, 6, 7, 1]"
+        "pitfall": "只要中间多插一句 random 调用，后面所有值都会整体错位。复现实验时除了固定种子，调用顺序也得固定。",
+        "output": "random:  0.5714025946899135\nrandint:  7\nrandom uniform:  3.1750152005686805\nrandom choice:  剪刀\nrandom randrange:  27\nrandom sample:  ['l', 'k', 'r', 'f', 'a']\n[6, 7, 5, 1, 3]"
       },
       {
         "name": "test9.py",
-        "code": "import subprocess\nfrom multiprocessing import Process\nimport os\nimport time\n\ndef task_process():\n    for i in range(5):\n        #time.sleep(2)\n        print(f\"{time.ctime(time.time())}: 子进程pid 为 {os.getpid()},执行\")\n\nif \t__name__== '__main__':\n    process = Process(target=task_process)  # 创建子进程\n    process.start()\n    for i in range(3):  # 主程序执行两次\n        time.sleep(2)\n        print(f'{time.ctime(time.time())}: 父进程pid 为 {os.getpid()}, 执行')",
-        "title": "multiprocessing.Process：父子进程各跑各的",
+        "code": "import subprocess\nfrom multiprocessing import Process\nimport os\nimport time\n\ndef task_process():\n    for i in range(5):\n        time.sleep(2)\n        print(f\"{time.ctime(time.time())}: 子进程pid 为 {os.getpid()},执行\")\n\nif \t__name__== '__main__':\n    process = Process(target=task_process)  # 创建子进程\n    process.start()\n    for i in range(3):  # 主程序执行两次\n        time.sleep(2)\n        print(f'{time.ctime(time.time())}: 父进程pid 为 {os.getpid()}, 执行')",
+        "updated": true,
+        "title": "多进程：老师把 time.sleep(2) 的注释去掉了，父子进程交替打印",
         "notes": [
-          "Process(target=task_process) 创建子进程，start() 之后子进程和父进程并发执行。",
-          "输出里子进程 pid 是一个值，父进程 pid 是另一个值；pid 每次运行都不同，别记数字。",
-          "子进程里 for i in range(5) 连着打印 5 次，中间那句 time.sleep(2) 被注释掉了，所以 5 次几乎是同时出来的。",
-          "父进程循环 3 次、每次 sleep(2)，所以父进程的三行大约在第 0、2、4 秒出现。",
-          "`if __name__ == '__main__':` 在 Windows 上必须写，否则会无限递归创建子进程 —— Windows 用 spawn 方式启动新进程，会重新 import 这个文件。"
+          "新版唯一的改动是把 `#time.sleep(2)` 的 # 去掉，于是子进程每轮真的停 2 秒 —— 这才看得出父子交替。",
+          "主进程循环 3 次、子进程循环 5 次，都 sleep(2)，所以时间戳两秒一跳，父进程 3 行、子进程 5 行，pid 明显是两个不同的值。",
+          "父进程 3 次打印完就结束，子进程还在后台把剩下的 2 次跑完（输出里子进程的行比父进程多，时间戳也更靠后）。",
+          "`if __name__ == '__main__'` 守卫在 Windows 上是必须的：子进程启动时会重新 import 主模块，没有守卫会无限创建进程。",
+          "输出顺序由系统调度决定，所以父/子两组交错顺序每次可能不同，但各行数是确定的。"
         ],
-        "pitfall": "Windows 下漏掉 if __name__ == '__main__' 保护，程序会疯狂自我复制直到崩溃（RuntimeError: already started）。",
-        "output": "Mon Nov 16 15:00:10 2026: 子进程pid 为 30304,执行\nMon Nov 16 15:00:10 2026: 子进程pid 为 30304,执行\nMon Nov 16 15:00:10 2026: 子进程pid 为 30304,执行\nMon Nov 16 15:00:10 2026: 子进程pid 为 30304,执行\nMon Nov 16 15:00:10 2026: 子进程pid 为 30304,执行\nMon Nov 16 15:00:12 2026: 父进程pid 为 3464, 执行\nMon Nov 16 15:00:14 2026: 父进程pid 为 3464, 执行\nMon Nov 16 15:00:16 2026: 父进程pid 为 3464, 执行"
+        "pitfall": "多进程输出顺序不确定，别当固定顺序背；能确定的是 pid 有两个、父进程 3 行、子进程 5 行、时间戳间隔 2 秒。",
+        "output": "Mon Nov 16 16:26:01 2026: 父进程pid 为 30244, 执行\nMon Nov 16 16:26:03 2026: 父进程pid 为 30244, 执行\nMon Nov 16 16:26:05 2026: 父进程pid 为 30244, 执行\nMon Nov 16 16:26:01 2026: 子进程pid 为 15780,执行\nMon Nov 16 16:26:03 2026: 子进程pid 为 15780,执行\nMon Nov 16 16:26:05 2026: 子进程pid 为 15780,执行\nMon Nov 16 16:26:07 2026: 子进程pid 为 15780,执行\nMon Nov 16 16:26:09 2026: 子进程pid 为 15780,执行"
       },
       {
         "name": "test10.py",
         "code": "from multiprocessing import Process\nimport os\nimport time\nclass MyProcess(Process):\n    def __init__(self):\n        super().__init__()\n    def run(self):\t# 重写run()方法\n        for i in range(3):\t# 任务执行两次\n            time.sleep(1)\n            print(f\"子进程pid 为 {os.getpid()},执行\")\n\nif __name__ == \"__main__\":\n    process = MyProcess()\t# 创建子进程\n    process.start()\n    for i in range(3):\t# 主程序执行两次\n        time.sleep(1)\n        print(f\"父进程pid 为 {os.getpid()},执行\")",
+        "updated": true,
         "title": "继承 Process 并重写 run()",
         "notes": [
           "class MyProcess(Process) 里重写 run()，进程启动时执行的就是 run() 里的代码，不用再传 target。",
@@ -7828,24 +7970,27 @@ window.CODE_LAB = [
           "本例输出的顺序是父进程 3 行在前、子进程 3 行在后 —— 实际顺序不保证，取决于操作系统调度。",
           "继承方式和 target 方式只是写法不同，本质都是「另起一个进程跑一段函数」。"
         ],
-        "output": "父进程pid 为 26736,执行\n父进程pid 为 26736,执行\n父进程pid 为 26736,执行\n子进程pid 为 11796,执行\n子进程pid 为 11796,执行\n子进程pid 为 11796,执行"
+        "output": "父进程pid 为 2184,执行\n父进程pid 为 2184,执行\n父进程pid 为 2184,执行\n子进程pid 为 24820,执行\n子进程pid 为 24820,执行\n子进程pid 为 24820,执行"
       },
       {
         "name": "test11.py",
-        "code": "import threading\nfrom threading import Thread\nimport time\n\ndef task_thread():\n    for i in range(2):\n        time.sleep(1)\n        print(f\"{time.ctime(time.time())}: 子线程为 {threading.currentThread().name}, i ={i}\")\n\nif __name__ == \"__main__\":\n    thread = Thread(target=task_thread)\n    thread.start()\n    for i in range(2):\n        time.sleep(1)\n        print(f\"{time.ctime(time.time())}: 父线程为 {threading.currentThread().name}, i={i}\")",
-        "title": "threading.Thread(target=...)：线程共享进程",
+        "code": "import threading\nfrom threading import Thread\nimport time\n\ndef task_thread():\n    for j in range(2):\n        time.sleep(1)\n        print(f\"{time.ctime(time.time())}: 子线程为 {threading.currentThread().name}, j ={j}\")\n\nif __name__ == \"__main__\":\n    thread = Thread(target=task_thread)\n    thread.start()\n    for i in range(2):\n        time.sleep(1)\n        print(f\"{time.ctime(time.time())}: 父线程为 {threading.currentThread().name}, i={i}\")",
+        "updated": true,
+        "title": "多线程：子线程的循环变量从 i 改成 j，避开和主线程重名",
         "notes": [
-          "Thread(target=task_thread) 创建线程，start() 启动；主线程 continue 往下跑，两者交替输出。",
-          "输出里的时间戳和交错顺序每次都不一样：本例先子后父、再父后子，换个时间跑可能正好相反。",
-          "threading.currentThread().name 拿当前线程名：主线程叫 MainThread，新建的线程叫 Thread-1（新版 Python 显示成 Thread-1 (task_thread)）。",
-          "currentThread() 在新版 Python 已弃用，正确写法是 current_thread()（运行时会打 DeprecationWarning，不影响结果）。",
-          "线程和进程的区别：线程共享内存，改同一个变量会互相影响；进程各自独立，要通过队列/管道通信。"
+          "老师这版把子线程的循环变量从 i 改成 j，所以输出里能看到 `j =0`、`j =1` —— 提示父子线程各用各的变量，别同名。",
+          "主线程 MainThread 循环 2 次、子线程 Thread-1 循环 2 次，都 sleep(1)，四行时间戳两两一组。",
+          "`threading.currentThread()` 在新版 Python 里已弃用（运行时给 DeprecationWarning），等价写法是 `threading.current_thread()`。",
+          "子线程名打印成 `Thread-1 (task_thread)`：Python 3.10+ 会带上 target 函数名，排错时更好认。",
+          "这里是两个线程各自 sleep + print，没有共享变量写入，所以不存在竞争；真要改全局变量得上 Lock。"
         ],
-        "output": "Mon Nov 16 15:00:20 2026: 子线程为 Thread-1 (task_thread), i =0\nMon Nov 16 15:00:20 2026: 父线程为 MainThread, i=0\nMon Nov 16 15:00:21 2026: 父线程为 MainThread, i=1\nMon Nov 16 15:00:21 2026: 子线程为 Thread-1 (task_thread), i =1"
+        "pitfall": "currentThread() 还能用但已过时；线程结束顺序不等于启动顺序，别用 print 的先后判断谁先跑完。",
+        "output": "Mon Nov 16 16:26:13 2026: 父线程为 MainThread, i=0\nMon Nov 16 16:26:13 2026: 子线程为 Thread-1 (task_thread), j =0\nMon Nov 16 16:26:14 2026: 父线程为 MainThread, i=1\nMon Nov 16 16:26:14 2026: 子线程为 Thread-1 (task_thread), j =1"
       },
       {
         "name": "test12.py",
         "code": "from threading import Thread\nimport threading\nimport time\n\nclass MyThread(Thread):\t# 定义线程类\n    def __init__(self):\n        super().__init__()\n    def run(self):\n        for i in range(2):\n            time.sleep(1)\n            print(f\"子线程 {threading.currentThread().name}, i = {i}\")\n\nif __name__ == \"__main__\":\n    thread = MyThread()\n    thread.start()\n    for i in range(2):\n        time.sleep(1)\n        print(f\"父线程 {threading.currentThread().name}, i = {i}\")",
+        "updated": true,
         "title": "继承 Thread 并重写 run()",
         "notes": [
           "class MyThread(Thread) 重写 run()，start() 之后执行的就是 run()。",
@@ -7854,11 +7999,12 @@ window.CODE_LAB = [
           "如果想等子线程跑完再继续，调 thread.join()；本例没调，主线程跑完就直接退出。",
           "currentThread() 同样已弃用，用 current_thread()。"
         ],
-        "output": "父线程 MainThread, i = 0\n子线程 Thread-1, i = 0\n父线程 MainThread, i = 1\n子线程 Thread-1, i = 1"
+        "output": "子线程 Thread-1, i = 0\n父线程 MainThread, i = 0\n子线程 Thread-1, i = 1\n父线程 MainThread, i = 1"
       },
       {
         "name": "test13.py",
         "code": "import asyncio\nimport time\n\nasync def firstCorouctine(n): # 定义协程\n    for i in range(2):\n        await asyncio.sleep(2)\n        print(f'{time.ctime(time.time())}: 协程{n}执行……')\n        await asyncio.sleep(2)\n\ncoroutine1 = firstCorouctine(1)\ncoroutine2 = firstCorouctine(2)\n\nloop = asyncio.get_event_loop()\n\ntask1 = loop.create_task(coroutine1)\ntask2 = loop.create_task(coroutine2)\n\nloop.run_until_complete(task1)\nloop.run_until_complete(task2)",
+        "updated": true,
         "title": "asyncio 协程：两个任务交替 await",
         "notes": [
           "async def 定义协程函数，调用它不会立刻执行，只得到一个协程对象。",
@@ -7869,10 +8015,10 @@ window.CODE_LAB = [
           "新版 Python 推荐用 asyncio.run(main()) 代替手动 get_event_loop。"
         ],
         "pitfall": "以为 async def 里不写 await 也会并发；没有 await 的话协程就是普通函数，整段同步执行完才交还控制权。",
-        "output": "Mon Nov 16 15:00:25 2026: 协程1执行……\nMon Nov 16 15:00:25 2026: 协程2执行……\nMon Nov 16 15:00:29 2026: 协程1执行……\nMon Nov 16 15:00:29 2026: 协程2执行……"
+        "output": "Mon Nov 16 16:26:18 2026: 协程1执行……\nMon Nov 16 16:26:18 2026: 协程2执行……\nMon Nov 16 16:26:22 2026: 协程1执行……\nMon Nov 16 16:26:22 2026: 协程2执行……"
       }
     ],
-    "updated": false
+    "updated": true
   },
   {
     "n": 12,
@@ -7912,7 +8058,7 @@ window.CODE_LAB = [
           "head(2) 只取前 2 行；isnull() / notnull() 返回同形状的布尔表（本例没有缺失值，所以全 False / 全 True）。",
           "dser.sum() 是全部元素求和，dser.mean() 是平均值 —— 这两个值每次运行都不同，因为数据是随机生成的。"
         ],
-        "output": "0   -0.349515\n1    0.136058\n2    0.615168\n3    0.376520\n4   -0.498576\n5   -0.068724\n6    0.306374\n7    0.992502\n8    0.788099\n9   -0.229436\ndtype: float64\n0.13605844060247652\n          0         1         2         3\n0 -0.244928  0.891473  0.842883 -0.346417\n1 -0.419721  0.421949 -0.173725 -0.364333\n2  0.455450 -0.253401  0.359983 -0.051328\n3  0.582970 -0.264874 -0.447268  0.568612\n[RangeIndex(start=0, stop=10, step=1)]\n[RangeIndex(start=0, stop=4, step=1), RangeIndex(start=0, stop=4, step=1)]\n1\n2\n(10,)\n(4, 4)\n0   -0.349515\n1    0.136058\n2    0.615168\n3    0.376520\n4   -0.498576\n5   -0.068724\n6    0.306374\n7    0.992502\n8    0.788099\n9   -0.229436\ndtype: float64\n          0         1         2         3\n0 -0.244928  0.891473  0.842883 -0.346417\n1 -0.419721  0.421949 -0.173725 -0.364333\n2  0.455450 -0.253401  0.359983 -0.051328\n3  0.582970 -0.264874 -0.447268  0.568612\n0   -0.349515\n1    0.136058\ndtype: float64\n          0         1         2         3\n0 -0.244928  0.891473  0.842883 -0.346417\n1 -0.419721  0.421949 -0.173725 -0.364333\n0    False\n1    False\n2    False\n3    False\n4    False\n5    False\n6    False\n7    False\n8    False\n9    False\ndtype: bool\n      0     1     2     3\n0  True  True  True  True\n1  True  True  True  True\n2  True  True  True  True\n3  True  True  True  True\n2.068470233090275\n0.20684702330902752"
+        "output": "0    0.035029\n1    0.007738\n2    0.848301\n3    0.315468\n4   -0.421591\n5    0.028337\n6   -0.150785\n7   -0.419490\n8    0.028176\n9    0.118337\ndtype: float64\n0.007737678431596562\n          0         1         2         3\n0 -0.146923 -0.393613 -0.174678 -0.249353\n1 -0.187799  0.962058 -0.430417  0.471196\n2  0.155405  0.877528  0.703564 -0.238037\n3  0.103901  0.089167  0.959814  0.816821\n[RangeIndex(start=0, stop=10, step=1)]\n[RangeIndex(start=0, stop=4, step=1), RangeIndex(start=0, stop=4, step=1)]\n1\n2\n(10,)\n(4, 4)\n0    0.035029\n1    0.007738\n2    0.848301\n3    0.315468\n4   -0.421591\n5    0.028337\n6   -0.150785\n7   -0.419490\n8    0.028176\n9    0.118337\ndtype: float64\n          0         1         2         3\n0 -0.146923 -0.393613 -0.174678 -0.249353\n1 -0.187799  0.962058 -0.430417  0.471196\n2  0.155405  0.877528  0.703564 -0.238037\n3  0.103901  0.089167  0.959814  0.816821\n0    0.035029\n1    0.007738\ndtype: float64\n          0         1         2         3\n0 -0.146923 -0.393613 -0.174678 -0.249353\n1 -0.187799  0.962058 -0.430417  0.471196\n0    False\n1    False\n2    False\n3    False\n4    False\n5    False\n6    False\n7    False\n8    False\n9    False\ndtype: bool\n      0     1     2     3\n0  True  True  True  True\n1  True  True  True  True\n2  True  True  True  True\n3  True  True  True  True\n0.38952030557071704\n0.03895203055707171"
       },
       {
         "name": "test3.py",
@@ -7964,7 +8110,7 @@ window.CODE_LAB = [
           "这三行凑在一起就是典型的「看起来都会，实际全是坑」的复习题。"
         ],
         "pitfall": "print 函数名忘了加括号，输出 <built-in function ...>；print 结构体忘了格式化，输出一串 tm_year=...。",
-        "output": "False\n1794812434.6691294\ntime.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=15, tm_min=0, tm_sec=34, tm_wday=0, tm_yday=320, tm_isdst=0)\n<built-in function ctime>"
+        "output": "False\n1794817590.6722968\ntime.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=16, tm_min=26, tm_sec=30, tm_wday=0, tm_yday=320, tm_isdst=0)\n<built-in function ctime>"
       },
       {
         "name": "test8.py",
