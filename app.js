@@ -459,7 +459,10 @@
   }
 
   function normBlank(s) {
-    return String(s || '').replace(/\s+/g, '').toLowerCase();
+    // 多空填空题允许「j，j」「j,j」「j/j」「j j」等写法，统一去掉分隔符再比
+    return String(s || '')
+      .replace(/[\s，,、；;/｜|]/g, '')
+      .toLowerCase();
   }
 
   function grade(q, response) {

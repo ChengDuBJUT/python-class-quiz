@@ -513,7 +513,8 @@ window.QUESTION_BANK = [
       "C. 直接执行",
       "D. 编译执行"
     ],
-    "answer": "B"
+    "answer": "A",
+    "explanation": "Python 先把源程序编译成字节码，再由 Python 虚拟机解释执行，所以「包含了提前编译的解释执行」是正确描述。原答案序列印作 B 并标红，同页红字批注给出 A 并说明理由，本题按批注采用 A；建议考前与老师确认。"
   },
   {
     "id": "ch2-single-05",
@@ -796,10 +797,14 @@ window.QUESTION_BANK = [
     "sourceLocator": "第3章 习题 填空题 (5)",
     "stem": "Python中复数的虚部必须后缀____________，且____________不区分大小写。",
     "answer": [
-      "j"
+      "j / j",
+      "j/j",
+      "j j",
+      "j,j",
+      "j；j"
     ],
-    "answerText": "j",
-    "explanation": "本题共 2 个空，请按题目顺序把各空答案写在同一行，用空格、逗号或分号分隔。"
+    "answerText": "j / j",
+    "explanation": "本题共 2 个空，请按题目顺序把各空答案写在同一行，用空格、逗号或分号分隔。\n题干有两个空（虚部后缀、且该后缀不区分大小写），两个空都填 j，可写成「j / j」或「j，j」。原答案只印了 1 个 j，0429 勘误版补成 j—j。"
   },
   {
     "id": "ch3-single-01",
@@ -1128,10 +1133,11 @@ window.QUESTION_BANK = [
     "sourceLocator": "第4章 习题 填空题 (4)",
     "stem": "Python表达式 'y'<'x' == False的结果是____________。",
     "answer": [
-      "True",
-      "true"
+      "False",
+      "false"
     ],
-    "answerText": "True"
+    "answerText": "False",
+    "explanation": "Python 的比较运算符支持链式写法：'y'<'x' == False 等价于 ('y'<'x') and ('x'==False)，即 False and False，结果是 False。原版答案印作 True，0429 勘误版已改为 False。"
   },
   {
     "id": "ch4-blank-05",
@@ -1547,7 +1553,8 @@ window.QUESTION_BANK = [
       "C. 1,2,3,4,5,",
       "D. 1,2,3,4,5,"
     ],
-    "answer": "D"
+    "answer": "D",
+    "explanation": "勘误版批注：本题 C、D 两个选项的文字完全相同（都是 1,2,3,4,5,），教材也注明 CD 答案一样、CD 均正确。"
   },
   {
     "id": "ch5-single-04",
@@ -1565,7 +1572,8 @@ window.QUESTION_BANK = [
       "C. 3",
       "D. 不能运行"
     ],
-    "answer": "C"
+    "answer": "C",
+    "explanation": "勘误版批注：本题题干可能漏印了 print(c)。按现有代码，条件 a>b 不成立，走 else 分支执行 print(a+b)，输出 3。"
   },
   {
     "id": "ch5-single-05",
@@ -2293,7 +2301,8 @@ window.QUESTION_BANK = [
       "C. func(a=b=1)",
       "D. func(,2)"
     ],
-    "answer": "C"
+    "answer": "B",
+    "explanation": "关键字参数按「形参=实参」传递，即 func(a=1, b=2)。C 的 func(a=b=1) 是非法写法，原版答案印作 C，0429 勘误版已改为 B。"
   },
   {
     "id": "ch7-single-05",
@@ -2323,8 +2332,8 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第7章 习题 判断题 (1)",
     "stem": "函数在定义完成后会立刻执行。",
-    "answer": true,
-    "explanation": "教材答案判「对」，但 Python 的 def 只是把函数对象绑定到名字，函数体要等到调用时才执行，按语言事实这句应是「错」。考试请以任课教师口径为准。"
+    "answer": false,
+    "explanation": "def 只是把函数对象绑定到名字，函数体要等到调用时才执行，这句应为「错」。原版答案印作「对」，0429 勘误版已改正为「错」。"
   },
   {
     "id": "ch7-judge-02",
@@ -2642,7 +2651,8 @@ window.QUESTION_BANK = [
       "C. 静态方法",
       "D. 析构方法"
     ],
-    "answer": "D"
+    "answer": "B",
+    "explanation": "只能由对象调用的是对象方法（实例方法）。类方法、静态方法都能用类名调用；析构方法由系统在对象销毁时自动调用。原版答案印作 D，0429 勘误版已改为 B。"
   },
   {
     "id": "ch8-single-05",
@@ -2674,8 +2684,8 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 判断题 (1)",
     "stem": "子类中不能重新实现从父类继承的方法。",
-    "answer": true,
-    "explanation": "教材答案判「对」，但 Python 允许子类重写（override）继承来的方法，这正是多态的基础，按语言事实这句应是「错」。考试请以任课教师口径为准。"
+    "answer": false,
+    "explanation": "Python 允许子类重写（override）从父类继承的方法，这正是多态的基础，这句应为「错」。原版答案印作「对」，0429 勘误版已改正为「错」。"
   },
   {
     "id": "ch8-judge-02",
@@ -2723,8 +2733,8 @@ window.QUESTION_BANK = [
     "sourceFile": "Python编程基础与应用习题及答案.docx",
     "sourceLocator": "第8章 习题 判断题 (5)",
     "stem": "对象方法可以由类和对象调用。",
-    "answer": true,
-    "explanation": "教材答案判「对」：Class.method(obj) 这种写法确实能调到实例方法；只是惯例上实例方法用对象调用，类方法 / 静态方法才直接挂类名。"
+    "answer": false,
+    "explanation": "教材口径：实例方法由对象调用，类方法 / 静态方法才可由类名直接调用。Class.method(obj) 技术上能跑通，但按教材表述这句判「错」（0429 勘误版亦判错）。"
   },
   {
     "id": "ch8-short-01",
@@ -2939,7 +2949,8 @@ window.QUESTION_BANK = [
       "B. raise类名",
       "C. raise方法名"
     ],
-    "answer": "A"
+    "answer": "C",
+    "explanation": "raise 的三种写法是：raise 异常类名、raise 异常对象、raise（不带参数），没有「raise 方法名」这种用法。原版答案印作 A，0429 勘误版已改为 C。"
   },
   {
     "id": "ch9-single-02",
@@ -2974,7 +2985,8 @@ window.QUESTION_BANK = [
       "C. try语句用于捕获异常",
       "D. 如果except子句没指明异常，则可以捕获处理所有的异常。"
     ],
-    "answer": "C"
+    "answer": "D",
+    "explanation": "except 子句不写异常类型时才捕获所有异常（D 正确）；try 只是划定受监控的语句，真正捕获异常的是 except。原版答案印作 C，0429 勘误版已改为 D。"
   },
   {
     "id": "ch9-single-04",
@@ -4034,7 +4046,8 @@ window.QUESTION_BANK = [
       "C. RGB色彩模式",
       "D. CMYK色彩模式"
     ],
-    "answer": "A"
+    "answer": "B",
+    "explanation": "Matplotlib 的常用色彩模式是 RGB / RGBA、灰度（gray）等，「全真模式」不是它的色彩模式（CMYK 主要用于印刷）。原版答案印作 A，0429 勘误版已改为 B。"
   },
   {
     "id": "ch12-single-04",

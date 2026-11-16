@@ -16,6 +16,7 @@ SRC = os.path.join(BASE, 'tools', 'source', 'quiz_lines.txt')
 if not os.path.exists(SRC):
     SRC = os.path.join(os.path.dirname(BASE), 'trial', 'quiz_lines.txt')
 JUDGE_TRUTH = os.path.join(BASE, 'tools', 'source', 'judge_answers.json')
+ANSWERS_0429 = os.path.join(BASE, 'tools', 'source', 'answers_0429.json')
 OUT = os.path.join(BASE, 'data', 'questions.json')
 DIAG = os.path.join(BASE, 'tools', 'diagnostics.txt')
 
@@ -46,18 +47,70 @@ def load_judge_truth():
 
 JUDGE_TRUTH_MAP = load_judge_truth()
 
+
+def load_answers_0429():
+    """教师 0429 勘误版（1-12 章）的权威客观题答案。
+
+    原版里有 2 处填空、6 处选择、3 处判断印错，勘误版已改正；
+    勘误版只有 1-12 章，且不含简答/编程题，故只覆盖客观题。
+    """
+    if not os.path.exists(ANSWERS_0429):
+        return {}
+    with open(ANSWERS_0429, encoding='utf-8') as f:
+        raw = json.load(f)
+    return {int(k): v for k, v in raw.items()}
+
+
+AUTH_0429 = load_answers_0429()
+
 # 口径容易有分歧、或教材答案与 Python 语义不一致的判断题，给出解析说明
 JUDGE_NOTE = {
     'ch2-judge-01': '.pyc 字节码与平台无关，由 Python 虚拟机解释执行；教材按此口径判「对」。',
-    'ch7-judge-01': '教材答案判「对」，但 Python 的 def 只是把函数对象绑定到名字，函数体要等到调用时才执行，'
-                    '按语言事实这句应是「错」。考试请以任课教师口径为准。',
+    'ch7-judge-01': 'def 只是把函数对象绑定到名字，函数体要等到调用时才执行，这句应为「错」。'
+                    '原版答案印作「对」，0429 勘误版已改正为「错」。',
     'ch7-judge-02': 'nonlocal 只能引用外层（非全局）作用域的变量；在函数内修改全局变量应使用 global。',
-    'ch8-judge-01': '教材答案判「对」，但 Python 允许子类重写（override）继承来的方法，这正是多态的基础，'
-                    '按语言事实这句应是「错」。考试请以任课教师口径为准。',
-    'ch8-judge-05': '教材答案判「对」：Class.method(obj) 这种写法确实能调到实例方法；'
-                    '只是惯例上实例方法用对象调用，类方法 / 静态方法才直接挂类名。',
+    'ch8-judge-01': 'Python 允许子类重写（override）从父类继承的方法，这正是多态的基础，这句应为「错」。'
+                    '原版答案印作「对」，0429 勘误版已改正为「错」。',
+    'ch8-judge-05': '教材口径：实例方法由对象调用，类方法 / 静态方法才可由类名直接调用。'
+                    'Class.method(obj) 技术上能跑通，但按教材表述这句判「错」（0429 勘误版亦判错）。',
     'ch12-judge-03': '教材答案判「对」：jieba 主要做中文分词，但对英文串也能切分（效果一般）；'
                      '英文分词通常还是用 nltk / spaCy。',
+}
+
+# 0429 勘误版改动过的题目，逐题写清「原来印什么、为什么改」
+ERRATA_NOTE = {
+    'ch3-blank-05': '题干有两个空（虚部后缀、且该后缀不区分大小写），两个空都填 j，'
+                    '可写成「j / j」或「j，j」。原答案只印了 1 个 j，0429 勘误版补成 j—j。',
+    'ch4-blank-04': "Python 的比较运算符支持链式写法：'y'<'x' == False 等价于 "
+                    "('y'<'x') and ('x'==False)，即 False and False，结果是 False。"
+                    '原版答案印作 True，0429 勘误版已改为 False。',
+    'ch2-single-04': 'Python 先把源程序编译成字节码，再由 Python 虚拟机解释执行，'
+                     '所以「包含了提前编译的解释执行」是正确描述。原答案序列印作 B 并标红，'
+                     '同页红字批注给出 A 并说明理由，本题按批注采用 A；建议考前与老师确认。',
+    'ch5-single-03': '勘误版批注：本题 C、D 两个选项的文字完全相同（都是 1,2,3,4,5,），'
+                     '教材也注明 CD 答案一样、CD 均正确。',
+    'ch5-single-04': '勘误版批注：本题题干可能漏印了 print(c)。按现有代码，'
+                     '条件 a>b 不成立，走 else 分支执行 print(a+b)，输出 3。',
+    'ch7-single-04': '关键字参数按「形参=实参」传递，即 func(a=1, b=2)。'
+                     'C 的 func(a=b=1) 是非法写法，原版答案印作 C，0429 勘误版已改为 B。',
+    'ch8-single-04': '只能由对象调用的是对象方法（实例方法）。'
+                     '类方法、静态方法都能用类名调用；析构方法由系统在对象销毁时自动调用。'
+                     '原版答案印作 D，0429 勘误版已改为 B。',
+    'ch9-single-01': 'raise 的三种写法是：raise 异常类名、raise 异常对象、raise（不带参数），'
+                     '没有「raise 方法名」这种用法。原版答案印作 A，0429 勘误版已改为 C。',
+    'ch9-single-03': 'except 子句不写异常类型时才捕获所有异常（D 正确）；'
+                     'try 只是划定受监控的语句，真正捕获异常的是 except。'
+                     '原版答案印作 C，0429 勘误版已改为 D。',
+    'ch12-single-03': 'Matplotlib 的常用色彩模式是 RGB / RGBA、灰度（gray）等，'
+                      '「全真模式」不是它的色彩模式（CMYK 主要用于印刷）。'
+                      '原版答案印作 A，0429 勘误版已改为 B。',
+}
+
+# 0429 勘误版里答案序列与红字批注互相矛盾的一题：序列仍印 B（并标红），
+# 同页批注写「4.python源程序的执行方式——A 包含了提前编译解释执行」。
+# 按批注采用 A，解析里注明分歧。
+CHOICE_OVERRIDE = {
+    'ch2-single-04': 'A',
 }
 
 # 教材答案明显与题面对不上时的人工校正（题号 -> 参考答案）
@@ -277,6 +330,7 @@ def main():
         for tcn, blk in qs[ch].items():
             qlist = split_questions(blk)
             ablk = ans.get(ch, {}).get(tcn, [])
+            letters = judges = numans = codeans = None
             if tcn == '选择题':
                 letters = parse_answer_letters(ablk, len(qlist))
             elif tcn == '判断题':
@@ -298,6 +352,35 @@ def main():
                 codeans = parse_code_answers(ablk)
             else:
                 numans = parse_numbered_answers(ablk)
+
+            # —— 教师 0429 勘误版优先（1-12 章客观题）——
+            auth = AUTH_0429.get(ch, {})
+            if tcn == '选择题' and auth.get('choice'):
+                auth_letters = auth['choice']
+                if letters and letters != auth_letters:
+                    diag.append('   !! 第%d章 选择题：原版 %s → 勘误版 %s'
+                                % (ch, ''.join(letters), ''.join(auth_letters)))
+                letters = auth_letters
+            elif tcn == '判断题' and auth.get('judge'):
+                auth_judges = ['对' if c == '√' else '错' for c in auth['judge']]
+                if judges and judges != auth_judges:
+                    diag.append('   !! 第%d章 判断题：原版 %s → 勘误版 %s'
+                                % (ch, ''.join(judges), auth['judge']))
+                judges = auth_judges
+            elif tcn == '填空题' and auth.get('fill'):
+                # 第 2、11 章的填空答案在原文里就缺了 (3)-(5) 的编号，解析出来只有 2 段，
+                # 这种情况下无法逐题对齐，跳过覆盖（否则会把 (3)(4)(5) 的答案并进 (2)）。
+                if len(auth['fill']) >= len(qlist):
+                    for k in sorted(auth['fill'], key=int):
+                        n = int(k)
+                        old = (numans or {}).get(n, '').strip()
+                        new = auth['fill'][k].strip()
+                        if old != new:
+                            diag.append('   !! 第%d章 填空(%d)：原版 %r → 勘误版 %r' % (ch, n, old, new))
+                            numans[n] = new
+                else:
+                    diag.append('   !! 第%d章 填空题：勘误版只解析出 %d 段（题 %d 道），无法逐题对齐，保持原解析'
+                                % (ch, len(auth['fill']), len(qlist)))
 
             diag.append('第%d章 %s: 题数=%d' % (ch, tcn, len(qlist)))
             if tcn == '选择题':
@@ -328,7 +411,9 @@ def main():
                     stem, opts = parse_options(raw)
                     item['stem'] = stem
                     item['options'] = opts
-                    item['answer'] = letters[num - 1] if letters and num <= len(letters) else None
+                    item['answer'] = CHOICE_OVERRIDE.get(
+                        qid,
+                        letters[num - 1] if letters and num <= len(letters) else None)
                     if not opts:
                         diag.append('   !! %s 未解析出选项' % qid)
                 elif tcn == '判断题':
@@ -357,6 +442,10 @@ def main():
                     item['answer'] = CODE_ANSWER_OVERRIDE.get(qid, codeans.get(num, ''))
                     if not item['answer']:
                         item['answer'] = '（教材未给出本题参考程序）'
+                note = ERRATA_NOTE.get(qid)
+                if note:
+                    item['explanation'] = ('%s\n%s' % (item['explanation'], note)
+                                           if item.get('explanation') else note)
                 bank.append(item)
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

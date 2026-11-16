@@ -1,0 +1,280 @@
+{
+  "1": {
+    "fill": {
+      "1": ".py",
+      "2": "对象",
+      "3": "python",
+      "4": "import",
+      "5": "跨平台"
+    },
+    "choice": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "C"
+    ],
+    "judge": "√√×√√"
+  },
+  "2": {
+    "fill": {
+      "1": "# ，”””或’’’",
+      "2": "4\n内置命名空间，全局命名空间，局部命名空间\n属性，方法\n实例对象，类型对象，元类对象"
+    },
+    "choice": [
+      "C",
+      "D",
+      "A",
+      "B",
+      "D"
+    ],
+    "judge": "√√×√√",
+    "red": [
+      {
+        "section": "选择题",
+        "text": "（1）-（5） CDABD   4.python源程序的执行方式——A 包含了提前编译解释执行",
+        "red": "B4.python源程序的执行方式——A 包含了提前编译解释执行"
+      }
+    ]
+  },
+  "3": {
+    "notes": [
+      {
+        "no": 5,
+        "answer": "j / j",
+        "note": "原答案只写了 1 个 j；题干有 2 个空（虚部后缀 j，且 j 不区分大小写），两空都填 j。"
+      }
+    ],
+    "fill": {
+      "1": "None",
+      "2": "换行",
+      "3": "整数类型、浮点数、布尔型、复数",
+      "4": "字符串、列表、元组、集合、字典",
+      "5": "j / j"
+    },
+    "choice": [
+      "A",
+      "D",
+      "D",
+      "C",
+      "D"
+    ],
+    "judge": "√√√√×",
+    "red": [
+      {
+        "section": "填空题",
+        "text": "（5）j—j",
+        "red": "（5）—j"
+      }
+    ]
+  },
+  "4": {
+    "notes": [
+      {
+        "no": 4,
+        "answer": "False",
+        "note": "勘误版原文：「False y'< 'x' ==False会被解析为('y' < 'x') and ('x' == False)」，其中后半句是批注，答案只有 False。"
+      }
+    ],
+    "fill": {
+      "1": "80",
+      "2": "False",
+      "3": "0",
+      "4": "False",
+      "5": "True"
+    },
+    "choice": [
+      "C",
+      "B",
+      "B",
+      "D",
+      "A"
+    ],
+    "judge": "√√√√×",
+    "red": [
+      {
+        "section": "填空题",
+        "text": "（1）80\t（2）False\t（3）0 （4）False y’< ‘x’ ==False会被解析为('y' < 'x') and ('x' == False)（5）True",
+        "red": "（4）False y’< ‘x’ ==False会被解析为('y' < 'x') and ('x' == False)"
+      }
+    ]
+  },
+  "5": {
+    "fill": {
+      "1": "elif",
+      "2": "break",
+      "3": "continue",
+      "4": "True",
+      "5": "6"
+    },
+    "choice": [
+      "C",
+      "D",
+      "D",
+      "C",
+      "D"
+    ],
+    "judge": "×√√√√",
+    "red": [
+      {
+        "section": "选择题",
+        "text": "C、D、D( 书上CD答案一样，CD均正确)、C 题干少个print（c）、D",
+        "red": "D( 书上CD答案一样，CD均正确)C题干少个print（c）"
+      }
+    ]
+  },
+  "6": {
+    "fill": {
+      "1": "list",
+      "2": "list[::-1]",
+      "3": "not",
+      "4": "索引 切片",
+      "5": "sort"
+    },
+    "choice": [
+      "A",
+      "D",
+      "B",
+      "C",
+      "C"
+    ],
+    "judge": "××√××"
+  },
+  "7": {
+    "fill": {
+      "1": "逗号",
+      "2": "函数",
+      "3": "return",
+      "4": "不定长",
+      "5": "函数名"
+    },
+    "choice": [
+      "C",
+      "A",
+      "D",
+      "B",
+      "B"
+    ],
+    "judge": "×××√√",
+    "red": [
+      {
+        "section": "选择题",
+        "text": "（1）-（5）CADBB",
+        "red": "B"
+      },
+      {
+        "section": "判断题",
+        "text": "（1）-（5）×××√√",
+        "red": "×"
+      }
+    ]
+  },
+  "8": {
+    "fill": {
+      "1": "self",
+      "2": "class",
+      "3": "对象名",
+      "4": "类方法 类属性",
+      "5": "私有"
+    },
+    "choice": [
+      "C",
+      "D",
+      "B",
+      "B",
+      "C"
+    ],
+    "judge": "×××√×",
+    "red": [
+      {
+        "section": "选择题",
+        "text": "（1）-（5）CDBBC",
+        "red": "BB"
+      },
+      {
+        "section": "判断题",
+        "text": "（1）-（5）×××√×",
+        "red": "××"
+      }
+    ]
+  },
+  "9": {
+    "fill": {
+      "1": "BaseException",
+      "2": "raise",
+      "3": "finally",
+      "4": "Exception",
+      "5": "NameError"
+    },
+    "choice": [
+      "C",
+      "A",
+      "D",
+      "B",
+      "D"
+    ],
+    "judge": "×√√√×",
+    "red": [
+      {
+        "section": "选择题",
+        "text": "C、A、D、B、D",
+        "red": "CD"
+      }
+    ]
+  },
+  "10": {
+    "fill": {
+      "1": "readlines()",
+      "2": "tell()",
+      "3": "close()",
+      "4": "seek(),offset",
+      "5": "一维、二维和多维"
+    },
+    "choice": [
+      "B",
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "judge": "√×√√×"
+  },
+  "11": {
+    "fill": {
+      "1": "getcwd()",
+      "2": "os\n标准库\nHypertext Transfer Protocol\nTransmission Control Protocol"
+    },
+    "choice": [
+      "B",
+      "C",
+      "B",
+      "B",
+      "D"
+    ],
+    "judge": "√√×√√"
+  },
+  "12": {
+    "fill": {
+      "1": "numpy",
+      "2": "第三方库",
+      "3": "发送http请求,获取响应数据。",
+      "4": "Scikit-learn",
+      "5": "Pytorch、tensorflow"
+    },
+    "choice": [
+      "B",
+      "D",
+      "B",
+      "B",
+      "D"
+    ],
+    "judge": "××√√×",
+    "red": [
+      {
+        "section": "选择题",
+        "text": "（1）-（5） B D B B D",
+        "red": "B"
+      }
+    ]
+  }
+}

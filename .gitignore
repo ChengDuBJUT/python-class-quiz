@@ -1,7 +1,8 @@
 # 本地构建 / 验证产物（含教材原文导出文本、本机浏览器路径）
 tools/source/*
-# 但判断题答案表要入库：它是构建输入，且只含 14 行勾叉答案
+# 但答案表要入库：它们是构建输入，且只含答案字母 / 勾叉 / 填空词
 !tools/source/judge_answers.json
+!tools/source/answers_0429.json
 tools/diagnostics.txt
 tools/smoke_test*.js
 shot-*.png
