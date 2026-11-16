@@ -34,16 +34,24 @@
     var lab = document.getElementById('code-lab');
     var home = document.getElementById('home');
     var practice = document.getElementById('practice');
+    var sy = document.getElementById('syllabus');
     navBtns.forEach(function (b) {
       b.classList.toggle('active', b.getAttribute('data-view') === view);
     });
     var wrap = document.querySelector('.wrap');
     if (wrap) wrap.classList.toggle('wide', view === 'lab');
+    if (sy) sy.classList.add('hidden');
     if (view === 'lab') {
       home.classList.add('hidden');
       practice.classList.add('hidden');
       lab.classList.remove('hidden');
       renderAll();
+    } else if (view === 'syllabus') {
+      home.classList.add('hidden');
+      practice.classList.add('hidden');
+      lab.classList.add('hidden');
+      if (sy) sy.classList.remove('hidden');
+      if (window.SyllabusView) window.SyllabusView.renderAll();
     } else {
       lab.classList.add('hidden');
       if (window.QuizApp) window.QuizApp.showHome();
@@ -56,15 +64,17 @@
   });
   var goLab = document.getElementById('btn-go-lab');
   if (goLab) goLab.addEventListener('click', function () { setView('lab'); });
+  var goSy = document.getElementById('btn-go-syllabus');
+  if (goSy) goSy.addEventListener('click', function () { setView('syllabus'); });
 
   /* ---------- 章节列表 ---------- */
   function renderChapterList() {
     var box = document.getElementById('lab-chapter-list');
     var html = chapters.map(function (c) {
       var done = c.points.filter(function (_, i) { return checked[key(c.n, i)]; }).length;
-      var examTag = c.n <= 8
+      var examTag = (c.n <= 8 || c.n === 10)
         ? '<span class="lab-mini exam">考代码</span>'
-        : '<span class="lab-mini">复习</span>';
+        : '<span class="lab-mini">编程不考</span>';
       return '<button type="button" class="lab-ch' + (c.n === current ? ' active' : '') +
         '" data-ch="' + c.n + '">' +
         '<span class="lab-ch-n">第' + c.n + '章</span>' +

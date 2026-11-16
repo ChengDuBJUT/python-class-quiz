@@ -29,6 +29,9 @@ if os.path.isdir(PROJ):
             break
 UPDATED_CHAPS = {4, 5, 6, 7, 8, 9, 10, 11}
 
+# 编程题的考试范围（2026-11 新考纲：第 1-8 章 + 第 10 章文件，第 9/11/12 章编程不考）
+EXAM_CODE_CHAPS = {1, 2, 3, 4, 5, 6, 7, 8, 10}
+
 CHAPTER_TITLES = {
     1: '绪论', 2: 'Python基础', 3: '数据类型', 4: '运算符',
     5: '流程控制', 6: '组合数据类型', 7: '函数', 8: '类与对象',
@@ -394,6 +397,18 @@ def js(obj):
 
 def main():
     bank = json.load(open(BANK_JSON, encoding='utf-8'))
+    # 按 2026-11 新考纲补充的题（数制转换/递归/文件读写/类方法/作用域/命名空间…），
+    # 单独放一份源文件，避免重跑 build_bank.py 时被覆盖。
+    exam_extra_path = os.path.join(SRC, 'exam_extra.json')
+    if os.path.exists(exam_extra_path):
+        bank = bank + load_json(exam_extra_path)
+    # 按 2026-11 新考纲重算考试范围：判断并入选择、简答并入填空 → 四种客观题型全考；
+    # 编程只考前 8 章 + 第 10 章文件（第 9/11/12 章编程不考）。
+    for q in bank:
+        if q['type'] in ('single', 'blank', 'judge', 'short'):
+            q['exam'] = True
+        elif q['type'] == 'code':
+            q['exam'] = q['chapter'] in EXAM_CODE_CHAPS
     for q in bank:
         if q['type'] == 'judge':
             q['answer'] = (q['answer'] == '对')

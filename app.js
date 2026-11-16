@@ -351,6 +351,12 @@
       '</span> ' + (favOn ? '已收藏' : '收藏') + '</button>';
     html += '</div>';
     html += '<div class="stem">' + escapeHtml(q.stem) + '</div>';
+    // 2026-11 新考纲：判断并入选择、简答并入填空，提醒一下出题形式
+    if (q.type === 'judge') {
+      html += '<p class="form-note">📌 考试里判断题不单独出，<b>按选择题考</b>——把这条判断当"4 选 1 选正确说法"来想。</p>';
+    } else if (q.type === 'short') {
+      html += '<p class="form-note">📌 考试里简答题不单独出，<b>按填空题考</b>——重点记关键术语和要点顺序。</p>';
+    }
     if (q.code) {
       html += '<pre class="code-block">' + escapeHtml(q.code) + '</pre>';
     }
@@ -514,6 +520,11 @@
           ? '<pre class="code-block small">' + escapeHtml(String(q.answer || '')) + '</pre>'
           : '<div class="answer-body">' + escapeHtml(typeof q.answer === 'string' ? q.answer : JSON.stringify(q.answer)) + '</div>') + '</div>';
       html += '</div>';
+      if (q.type === 'code' && q.output) {
+        html += '<div class="box"><strong>参考程序的运行结果</strong>' +
+          (q.stdin ? '<span class="hint">（输入：' + escapeHtml(q.stdin) + '）</span>' : '') +
+          '<pre class="ce-out">' + escapeHtml(q.output) + '</pre></div>';
+      }
       if (q.type === 'short' && q.basis) {
         var tag = q.answerOrigin === 'official' ? '教材答案' : '据课件整理';
         html += '<div class="answer-basis">📖 出处：' + escapeHtml(q.basis) +

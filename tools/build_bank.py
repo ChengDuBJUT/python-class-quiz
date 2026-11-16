@@ -35,6 +35,10 @@ TYPE_NAME = {
     '简答题': 'short', '编程题': 'code',
 }
 
+# 编程题的考试范围：第 1-8 章 + 第 10 章（文件读写必考一道）。
+# 第 9 章（异常）、第 11 章（标准库）、第 12 章（第三方库）编程题按考纲不考。
+EXAM_CODE_CHAPS = {1, 2, 3, 4, 5, 6, 7, 8, 10}
+
 # 判断题答案：教材用两种印法（Wingdings 符号串 / 对、对、……），符号串经
 # docx→HTML→文本转换会整段丢失，所以答案一律以 extract_judge_truth.py 从
 # document.xml 直接提取的权威表为准，文本解析结果只用来交叉校验。
@@ -217,7 +221,20 @@ def join_stem(ls, strip_placeholder=False):
     return txt.strip()
 
 
+# docx 原文里的印误，抽取时统一纠正（原书第9章 选择题(4) 的选项 B 印成了 excepy）
+TYPO_FIX = {
+    'excepy': 'except',
+}
+
+
+def fix_typo(txt):
+    for bad_s, good_s in TYPO_FIX.items():
+        txt = re.sub(r'(?<![A-Za-z_])' + bad_s + r'(?![A-Za-z_])', good_s, txt)
+    return txt
+
+
 def parse_options(raw):
+    raw = fix_typo(raw)
     matches = list(OPT_RE.finditer(raw))
     start = None
     for i, m in enumerate(matches):
@@ -414,8 +431,12 @@ def main():
             for num, ls in qlist:
                 qid = 'ch%d-%s-%02d' % (ch, TYPE_NAME[tcn], num)
                 raw = join_stem(ls, strip_placeholder=(tcn == '判断题'))
-                exam = (tcn in ('选择题', '填空题') and ch <= 12) or \
-                       (tcn == '编程题' and ch <= 8)
+                # 2026-11 老师公布的新考纲：范围 1-12 章；
+                # 简答题并入填空题、判断题并入选择题 → 四类都是考试题型；
+                # 编程题只考第 1-8 章 + 第 10 章（明确"必考一道文件"），
+                # 第 9/11/12 章编程不考（这 22 道留作复习拓展）。
+                exam = tcn in ('选择题', '判断题', '填空题', '简答题') or \
+                       (tcn == '编程题' and ch in EXAM_CODE_CHAPS)
                 item = {
                     'id': qid,
                     'chapter': ch,

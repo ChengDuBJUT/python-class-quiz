@@ -9,6 +9,7 @@ tools/source/*
 !tools/source/official_short_raw.json
 !tools/source/code_notes.json
 !tools/source/quiz_extra.json
+!tools/source/exam_extra.json
 !tools/source/newcode_runs.json
 # 课件全文（6MB，版权与体积原因不入库；locate.py 可本地重新生成）
 tools/source/ppt_txt/

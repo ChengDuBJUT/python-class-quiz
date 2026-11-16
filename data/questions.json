@@ -3078,7 +3078,7 @@
     "stem": "当try子句中的代码没有错误时，一定不会执行(　　)子句。",
     "options": [
       "A. try",
-      "B. excepy",
+      "B. except",
       "C. else",
       "D. finally"
     ],
