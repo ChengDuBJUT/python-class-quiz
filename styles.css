@@ -340,6 +340,19 @@ textarea { min-height: 110px; resize: vertical; }
   width: 100%;
 }
 
+/* 行内提示：点「问 DeepSeek」后的反馈，不遮挡按钮 */
+.ai-hint {
+  margin: 0.9rem 0 0;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #faf7f1;
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.ai-hint.bad { background: #fdf2f0; border-color: #e6b8b0; color: #8f3a30; }
+
 .hidden { display: none !important; }
 
 footer.note {

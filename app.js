@@ -310,6 +310,8 @@
 
     currentAnswered = false;
     setAnswerControls(true);
+    var aiHint = document.getElementById('ai-hint');
+    if (aiHint) { aiHint.classList.add('hidden'); aiHint.textContent = ''; }
     document.getElementById('btn-prev').disabled = state.index <= 0;
     document.getElementById('btn-next').disabled = !filtered.length || state.index >= filtered.length - 1;
 
@@ -679,6 +681,108 @@
     updateProgress();
   }
 
+  /* —— 问 DeepSeek：按固定格式打包题目 —— */
+  function buildAiPrompt(q) {
+    var L = [];
+    L.push('你是一名 Python 课程助教。请独立解答下面这道题，并严格按要求的格式输出。');
+    L.push('');
+    L.push('【题目信息】');
+    L.push('- 章节：第' + q.chapter + '章 ' + String(q.chapterTitle || '').trim());
+    L.push('- 题型：' + (TYPE_LABEL[q.type] || q.type));
+    L.push('');
+    L.push('【题干】');
+    L.push(String(q.stem || '').trim());
+    if (q.code) {
+      L.push('');
+      L.push('【代码】');
+      L.push('```python');
+      L.push(String(q.code).replace(/\s+$/, ''));
+      L.push('```');
+    }
+    if (q.options && q.options.length) {
+      L.push('');
+      L.push('【选项】');
+      q.options.forEach(function (o) { L.push(String(o)); });
+    }
+    L.push('');
+    L.push('【输出格式】');
+    if (q.type === 'single' || q.type === 'coderead' || q.type === 'judge') {
+      L.push('1. 第一行只写「答案：」加选项字母（判断题写「正确」或「错误」），不要附加解释；');
+      L.push('2. 然后分点说明为什么选它、其他选项错在哪里；');
+    } else if (q.type === 'blank') {
+      L.push('1. 第一行只写「答案：」加标准答案，有多种等价写法就用 / 分隔；');
+      L.push('2. 再用一两句话说明依据；');
+    } else {
+      L.push('1. 先写「答案：」加一句解题思路；');
+      L.push('2. 再给可直接运行的完整代码，用 ```python 代码块，关键步骤写中文注释；');
+      L.push('3. 最后列出 2–3 个易错点，每行以「易错点：」开头；');
+    }
+    L.push('另外：全部用中文回答；不要输出 Markdown 表格；不要重复抄写题目原文。');
+    return L.join('\n');
+  }
+
+  function legacyCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', 'readonly');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(
+        function () { return true; },
+        function () { return legacyCopy(text); }
+      );
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function showAiHint(msg, kind) {
+    var el = document.getElementById('ai-hint');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.remove('hidden', 'bad');
+    if (kind === 'bad') el.classList.add('bad');
+  }
+
+  function askDeepSeek() {
+    var q = currentQ();
+    if (!q) return;
+    var prompt = buildAiPrompt(q);
+    var bare = 'https://chat.deepseek.com/';
+    var url = bare;
+    // 官方网页不支持 URL 预填，但装了自动发送脚本的用户可直接生效；过长则退回裸链接
+    var withPrompt = bare + '?q=' + encodeURIComponent(prompt);
+    if (withPrompt.length <= 6000) url = withPrompt;
+    var win = window.open(url, '_blank');
+    if (win) {
+      try { win.opener = null; } catch (e) {}
+    }
+    copyText(prompt).then(function (ok) {
+      if (ok) {
+        showAiHint('题目已复制。切到 DeepSeek 标签页，粘贴（Ctrl/⌘ + V）发送即可。');
+      } else {
+        window.prompt('自动复制被浏览器拦截，请手动复制下面的题目（Ctrl/⌘ + C）：', prompt);
+        showAiHint('自动复制被拦截，已弹出题目供手动复制。', 'bad');
+      }
+    });
+    if (!win) {
+      showAiHint('浏览器拦截了新标签页，请允许本站弹窗后重试。', 'bad');
+    }
+  }
+
   function go(delta) {
     if (!filtered.length) return;
     state.index = Math.max(0, Math.min(filtered.length - 1, state.index + delta));
@@ -986,6 +1090,7 @@
   document.getElementById('btn-summary-home').addEventListener('click', showHome);
   document.getElementById('btn-submit').addEventListener('click', onSubmit);
   document.getElementById('btn-peek').addEventListener('click', onPeek);
+  document.getElementById('btn-ai').addEventListener('click', askDeepSeek);
   document.getElementById('btn-next').addEventListener('click', function () { go(1); });
   document.getElementById('btn-prev').addEventListener('click', function () { go(-1); });
   document.getElementById('btn-restart').addEventListener('click', function () {
@@ -1195,6 +1300,8 @@
       showPractice();
     },
     peekAnswer: onPeek,
+    buildAiPrompt: buildAiPrompt,
+    askDeepSeek: askDeepSeek,
     getState: function () { return state; }
   };
 
