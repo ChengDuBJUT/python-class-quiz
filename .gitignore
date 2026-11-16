@@ -21,3 +21,6 @@ shot-*.png
 .DS_Store
 Thumbs.db
 *.log
+tools/theme_check.js
+tools/theme_probe.js
+tools/theme_refactor.py

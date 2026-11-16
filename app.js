@@ -1419,3 +1419,45 @@
   renderHomeStats();
   syncModeChips();
 })();
+
+/* ===== 深色 / 浅色主题切换 ===== */
+(function () {
+  var KEY = 'pq-theme';
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+
+  function isDark() { return root.getAttribute('data-theme') === 'dark'; }
+
+  function reflect() {
+    if (!btn) return;
+    var dark = isDark();
+    btn.textContent = dark ? '☀️' : '🌙';
+    btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    btn.setAttribute('aria-label', dark ? '切换到浅色模式' : '切换到深色模式');
+    btn.setAttribute('title', dark ? '切换到浅色模式' : '切换到深色模式');
+  }
+
+  function apply(mode) {
+    if (mode === 'dark') root.setAttribute('data-theme', 'dark');
+    else root.removeAttribute('data-theme');
+    try { localStorage.setItem(KEY, mode); } catch (e) {}
+    reflect();
+  }
+
+  if (btn) {
+    reflect();
+    btn.addEventListener('click', function () { apply(isDark() ? 'light' : 'dark'); });
+  }
+
+  /* 没手动选过就跟随系统偏好 */
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var onChange = function (e) {
+      var saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (err) {}
+      if (!saved) apply(e.matches ? 'dark' : 'light');
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
+})();
