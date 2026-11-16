@@ -50,7 +50,7 @@ git add -A && git commit -m "更新题库" && git push
 | 代码自测 | 59 | 自动 |
 | **合计** | **364** | 其中考试范围 **163** 题 |
 
-代码复习模块收录 `pythonProject-2025/chapter1`–`chapter12` 共 **155 个 .py 示例文件**，逐章配 5 条知识点清单（勾选进度存本机），支持按文件查看带行号与语法着色的源码、按章跳转到对应的编程题 / 代码自测题。其中**第 4–8 章共 82 个文件已换成教师后续发布的「更新后的chapter」版本**，并附真实运行输出、关键注释、易错点。
+代码复习模块收录 `pythonProject-2025/chapter1`–`chapter12` 共 **155 个 .py 示例文件**，逐章配 5 条知识点清单（勾选进度存本机），支持按文件查看带行号与语法着色的源码、按章跳转到对应的编程题 / 代码自测题。其中**第 4–8 章共 82 个文件已换成教师后续发布的「更新后的chapter」版本**。**155 个文件全部**附有真实运行输出、关键注释与易错点学习卡（第 9–12 章的异常、文件、标准库、numpy/pandas 示例也在内）。
 
 ## 功能
 
@@ -62,6 +62,7 @@ git add -A && git commit -m "更新题库" && git push
 - 交卷小结：正确率、答错 / 看答案 / 未答清单、「只练错题」
 - **简答题给答案 + 出处**：答案区保留换行排版，下方标「📖 出处：第 4 章 习题答案 简答(1)」，并用 `教材答案` / `据课件整理` 区分来源，方便回查课件原文
 - **代码复习学习卡**：选中文件即在代码上方显示「🎯 这段考什么」，代码下方显示真实运行输出（含运行输入）、关键注释清单与易错点；第 4–8 章更新版文件带「更新版」角标
+- **代码页的「🤖 问 DeepSeek」**：不像练习页那样带「我的答案 / 参考答案 / 请按以下顺序讲」的长模板，只有一句大白话——**「这段代码是什么意思？运行结果为什么是这样？帮我讲讲怎么理解。」**——后面直接跟代码块和真实 stdout。长文件按 `4000 → 1500 → 600 → 200` 逐级压缩输出以保住自动填入，但**剪贴板里永远是没截断的全文**，官网填进去的内容被截断时按 Ctrl/⌘+V 覆盖即可
 - **深色模式**：右上角 🌙 / ☀️ 一键切换。首次访问跟随系统 `prefers-color-scheme`，手动选过之后就按选择记住（localStorage）；`<head>` 里有一段极早执行的脚本先把 `data-theme` 打上，避免深色下先闪一帧白底；`color-scheme` 同步切换，所以下拉框、滚动条也是深色的
 - 快捷键 `1`–`5` 选题、`Enter` 提交、`0` 不会看答案、`←`/`→` 翻题
 - 进度、收藏、错题、知识点勾选全部存在浏览器 localStorage，不上传；只有你主动点「问 DeepSeek」时，当前题目才会被复制并带进你自己的 DeepSeek 会话
@@ -159,8 +160,11 @@ python-class-quiz/
 │   ├── extract_answers_0429.py  从勘误版 docx 提取权威客观题答案 -> source/answers_0429.json
 │   ├── extract_judge_truth.py   从原版 docx 提取判断题符号答案 -> source/judge_answers.json
 │   ├── locate.py           简答题题干 -> 相关课件页定位（CJK n-gram 打分，可 --dump/--pages 回看原文）
-│   ├── run_newcode.py      真实执行更新版 82 个 .py，捕获 stdout/stderr -> source/newcode_runs.json
+│   ├── run_newcode.py      真实执行全部 155 个 .py（第 4-8 章取更新版），捕获 stdout/stderr -> source/newcode_runs.json
 │   ├── quiz_extra.py       生成三种考法的代码自测题 -> source/quiz_extra.json
+│   ├── notes_ch123.py      第 1-3 章学习卡（一次性合并）
+│   ├── notes_ch6.py / notes_ch7.py / notes_ch8.py  第 6-8 章学习卡（一次性合并）
+│   ├── notes_ch912.py      第 9-12 章学习卡（一次性合并）
 │   └── patch_app.py        （一次性）从参考站 app.js 生成本站 app.js
 ├── .nojekyll           跳过 Jekyll 构建
 ├── robots.txt          不收录进搜索引擎
@@ -188,11 +192,13 @@ python3 locate.py --dump ch5 12 --window 2     # 展开 ch5 第 12 页 ± 2 页�
 python3 locate.py --pages 1:48-52              # 直接读 1 号 PDF 的 48–52 页
 ```
 
-`patch_app.py`、`notes_ch6.py`、`notes_ch7.py`、`notes_ch8.py`、`short_ch10.py`、`short_ch1112.py` 都是一次性辅助脚本：前四个用于把学习卡/简答题答案分批合并进 `source/*.json`（因为中文长文本直接写 heredoc 会被 shell 转义破坏），合完即止，重构时不必再跑。
+`patch_app.py`、`notes_ch123.py`、`notes_ch6.py`、`notes_ch7.py`、`notes_ch8.py`、`notes_ch912.py`、`short_ch10.py`、`short_ch1112.py` 都是一次性辅助脚本：用于把学习卡/简答题答案分批合并进 `source/*.json`（因为中文长文本直接写 heredoc 会被 shell 转义破坏），合完即止，重构时不必再跑。
 
 ## 浏览器验证
 
 用 puppeteer 跑了真实 Chrome 冒烟测试：六种题型的提交与判分、考试范围筛选、代码题代码块渲染、组卷、收藏、错题本、刷新后进度持久化、代码复习三栏与跳转练习，「不会 · 看答案」的客观题 / 主观题、快捷键 `0`、刷新后答案保留、移出错题、交卷标记，以及「问 DeepSeek」的三种状态（未作答不泄题 / 答错带两个答案 / 答对仍附带答案）、编程题长代码截断、剪贴板内容、跳转 URL（`?q=` 解码后与 prompt 完全一致），全部通过，控制台无报错；`file://` 直接双击打开也已验证。GitHub Pages 线上地址另跑了一次真实浏览器验收。
+
+代码页的「🤖 问 DeepSeek」单独验过（`check_ch912.js` / `check_ask_dark.js`）：155 个文件的学习卡覆盖率、第 9–12 章学习卡与运行输出渲染、按钮在深浅两套主题下的对比度，以及点击后 `window.open` 的 URL 与剪贴板内容——短文件（ch9/test1）URL 解码后与 prompt 完全一致（165 字）；长文件（ch12/test2）URL 里是 713 字的压缩版、剪贴板里是 1831 字的完整版，URL 总长 1410 仍在预算内。全部通过，控制台无报错。
 
 针对本轮的简答题与更新版代码，另跑了一次专项验收（`tools/smoke_test5.js`，结果 `errors: []`）：
 

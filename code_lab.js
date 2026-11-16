@@ -161,9 +161,13 @@
       return;
     }
     if (meta) {
-      meta.innerHTML = 'pythonProject-2025/chapter' + c.n + '/' + f.name +
+      meta.innerHTML = '<span class="meta-text">pythonProject-2025/chapter' + c.n + '/' + f.name +
         ' · ' + f.code.split('\n').length + ' 行' +
-        (f.updated ? ' <span class="badge-new">更新版</span>' : '');
+        (f.updated ? ' <span class="badge-new">更新版</span>' : '') +
+        '</span><button type="button" class="ask-ai" id="lab-ask-ai"' +
+        ' title="把这段代码和它的真实运行结果一起发给 DeepSeek，让它讲讲怎么理解">🤖 问 DeepSeek</button>';
+      var aiBtn = document.getElementById('lab-ask-ai');
+      if (aiBtn) aiBtn.addEventListener('click', function () { askAbout(f); });
     }
     if (view) view.innerHTML = highlight(f.code || '# 空文件');
     if (extra) extra.innerHTML = renderExtra(f);
@@ -205,6 +209,120 @@
     }
     h += '</div>';
     return h;
+  }
+
+  /* ---------- 问 DeepSeek：只把「代码 + 真实运行结果」发过去，问一句大白话 ---------- */
+  var AI_URL = 'https://chat.deepseek.com/';
+  // 官网 ?q= 只能稳定吃下约 1.7KB，所以预算压到 2000：
+  // 超了就退回「复制全文 + 裸链接」，保证带过去的内容一定是完整的（粘贴即可）
+  var AI_BUDGET = 2000;
+
+  function clip(s, max) {
+    s = String(s == null ? '' : s);
+    if (max <= 0 || s.length <= max) return s;
+    return s.slice(0, max) + '\n…（后面还有 ' + (s.length - max) + ' 个字符，已省略）';
+  }
+
+  // 刻意不写长模板：一句人话 + 代码 + 输出，就是学生自己会问的话
+  function askPrompt(f, capOut) {
+    var L = [];
+    L.push('这段代码是什么意思？运行结果为什么是这样？帮我讲讲怎么理解。');
+    L.push('');
+    L.push('```python');
+    L.push(String(f.code || '').replace(/\s+$/, ''));
+    L.push('```');
+    if (f.output || f.err) {
+      L.push('');
+      if (f.stdin) L.push('（我运行时输入的是：' + f.stdin.replace(/\n/g, ' ↵ ').replace(/ ↵ $/, '') + '）');
+      L.push('运行结果是：');
+      L.push('```');
+      L.push(clip(f.output || '（没有输出）', capOut));
+      if (f.err) {
+        L.push('');
+        L.push('# 另外报了错：');
+        L.push(clip(f.err, Math.min(capOut, 500)));
+      }
+      L.push('```');
+    }
+    return L.join('\n');
+  }
+
+  // 逐级压缩输出：先保代码完整，实在超长才退回「复制 + 裸链接」
+  function pickAsk(f) {
+    var caps = [4000, 1500, 600, 200];
+    var last = '';
+    for (var i = 0; i < caps.length; i++) {
+      last = askPrompt(f, caps[i]);
+      if (encodeURIComponent(last).length + 28 <= AI_BUDGET) {
+        return { prompt: last, autoFill: true, clipped: caps[i] < 4000 };
+      }
+    }
+    return { prompt: last, autoFill: false, clipped: true };
+  }
+
+  function legacyCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', 'readonly');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(
+        function () { return true; }, function () { return legacyCopy(text); });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function toast(msg, bad) {
+    var el = document.getElementById('lab-ai-hint');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'lab-ai-hint';
+      el.className = 'lab-ai-hint';
+      el.setAttribute('role', 'status');
+      document.body.appendChild(el);
+    }
+    el.textContent = msg;
+    el.classList.toggle('bad', !!bad);
+    el.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { el.classList.remove('show'); }, 7000);
+  }
+
+  function askAbout(f) {
+    if (!f) return;
+    var built = pickAsk(f);
+    // 剪贴板里永远放不截断的全文，URL 里才可能是压缩版
+    var full = askPrompt(f, 0);
+    var url = AI_URL + (built.autoFill ? '?q=' + encodeURIComponent(built.prompt) : '');
+    var win = window.open(url, '_blank');
+    if (win) { try { win.opener = null; } catch (e) {} }
+    copyText(full).then(function (ok) {
+      if (!win) { toast('浏览器拦截了新标签页，请允许本站弹窗后重试。', true); return; }
+      if (!ok) {
+        toast('自动复制被拦住了：在 DeepSeek 里粘贴不出来时，手动复制页面上的代码即可。', true);
+        return;
+      }
+      if (built.autoFill) {
+        toast('已打开 DeepSeek：代码和运行结果都填好了，直接按 Enter 发送。'
+          + (built.clipped ? '（输出太长做了截断，剪贴板里是完整版，可以 Ctrl/⌘ + V 覆盖）' : ''));
+      } else {
+        toast('这段代码比较长，全文已复制：在 DeepSeek 输入框里按 Ctrl/⌘ + V 粘贴再发送。');
+      }
+    });
   }
 
   function renderAll() {
