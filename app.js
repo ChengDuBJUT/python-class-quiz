@@ -723,7 +723,8 @@
     var record = state.answers[q.id];
     var answered = !!(record && record.submitted);
     var mine = answered ? myAnswerText(q, record) : '';
-    var isWrite = (q.type === 'code' || q.type === 'short');
+    // 只有编程题是代码；简答题答案是中文段落，不要套代码块
+    var isCode = (q.type === 'code');
     var L = [];
 
     L.push(answered
@@ -745,11 +746,16 @@
       q.options.forEach(function (o) { L.push(String(o)); });
     }
 
+    // 教材里有些题没给答案（写「略」或占位说明），不能当参考答案喂给 AI
+    var ref = answered ? String(answerTextOf(q) || '').trim() : '';
+    ref = ref.replace(/^参考?答案[：:]\s*/, '');   // 题库原文常自带「参考答案：」前缀
+    var hasRef = !!ref && ref !== '略' && ref.indexOf('未给出参考答案') < 0;
+
     if (answered) {
       L.push('');
       if (mine) {
         L.push('我的答案：');
-        if (isWrite) {
+        if (isCode) {
           L.push('```python');
           L.push(clipText(mine, cap.mine, true));
           L.push('```');
@@ -757,30 +763,38 @@
           L.push(clipText(mine, cap.mine));
         }
       } else {
-        L.push('我的答案：这题我没作答，直接看了参考答案。');
+        L.push(hasRef ? '我的答案：这题我没作答，直接看了参考答案。' : '我的答案：这题我没作答，也没看到答案。');
       }
-      L.push('');
-      L.push('参考答案：');
-      var ref = answerTextOf(q);
-      if (isWrite) {
-        L.push('```python');
-        L.push(clipText(ref, cap.ref, true));
-        L.push('```');
+      if (hasRef) {
+        L.push('');
+        L.push('参考答案：');
+        if (isCode) {
+          L.push('```python');
+          L.push(clipText(ref, cap.ref, true));
+          L.push('```');
+        } else {
+          L.push(clipText(ref, cap.ref));
+        }
       } else {
-        L.push(clipText(ref, cap.ref));
+        L.push('');
+        L.push('（这题教材没给标准答案，不用找标准答案来对。）');
       }
     }
 
     L.push('');
     if (!answered) {
-      L.push('只讲思路和关键提示，不要写出最终答案或完整代码；中文口语，两三句话说清就够了。');
-    } else if (mine) {
+      L.push('只讲思路和关键提示，不要写出最终答案或完整代码；中文口语，讲几句给我方向就行。');
+    } else if (mine && hasRef) {
       L.push('请先自己对比我的答案和参考答案，再按下面的顺序讲：');
       L.push('- 两个答案对不上：指出我错在哪，我大概是把哪个概念弄混了，那个概念本来的意思是什么；');
       L.push('- 两个答案对得上（或者我是蒙对的）：讲清这题背后真正的道理，以及最容易栽跟头的地方。');
-      L.push(isWrite
+      L.push(isCode
         ? '如果要指我的代码，直接说第几行、哪一句有问题。'
         : '不要抄题目原文，也别套「答案：」「分点说明」这类模板。');
+      L.push('像坐在旁边讲题那样，中文口语，三四段话就够。');
+    } else if (mine) {
+      L.push('这题教材没给标准答案，请你直接看我的答案：说清哪里对、哪里不到位或者漏了什么，再补上我没想到的点。');
+      L.push(isCode ? '要指我的代码就说第几行。' : '不要抄题目原文。');
       L.push('像坐在旁边讲题那样，中文口语，三四段话就够。');
     } else {
       L.push('这题我没做出来，直接看的答案，所以别讲「你错在哪」，讲清这题该从哪儿想起、为什么会走到参考答案这条路，再点一下最容易想岔的地方。中文口语，三四段话。');
