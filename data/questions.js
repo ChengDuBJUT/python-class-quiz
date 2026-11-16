@@ -5710,31 +5710,93 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test0.py",
-        "code": "\nhello =  \"hello, python!\"\n\nprint(\"hello, python!\")"
+        "code": "\nhello =  \"hello, python!\"\n\nprint(\"hello, python!\")",
+        "title": "赋值语句不产生输出，只有 print 才有",
+        "notes": [
+          "hello = \"hello, python!\" 只是把字符串绑定到名字 hello，整个程序不会有任何输出。",
+          "真正打印的是下一行 print(\"hello, python!\")——它打的是字面量，不是变量 hello。",
+          "变量定义了却没用，Python 不报错也不提示；只有 pylint/flake8 这类静态检查才会警告 unused variable。"
+        ],
+        "pitfall": "最容易答成「输出两行」——赋值不算输出。",
+        "output": "hello, python!"
       },
       {
         "name": "test1.py",
-        "code": "import numpy as np\n\nprint(np.pi)\nx=np.array([1,2,3])\nprint(x[0])\nprint(x)\n\n#from test0 import hello\n#import test0 as test\n#print(test.hello)\n\"\"\"\nddddd\nddddd\ndddd\n\"\"\"\n\nimport math\nprint(math.pi)\nprint(math.sqrt(9))\n\nfrom test0 import hello as hhh\n\nprint(hhh)\n\nprint(abs(-20))"
+        "code": "import numpy as np\n\nprint(np.pi)\nx=np.array([1,2,3])\nprint(x[0])\nprint(x)\n\n#from test0 import hello\n#import test0 as test\n#print(test.hello)\n\"\"\"\nddddd\nddddd\ndddd\n\"\"\"\n\nimport math\nprint(math.pi)\nprint(math.sqrt(9))\n\nfrom test0 import hello as hhh\n\nprint(hhh)\n\nprint(abs(-20))",
+        "title": "import 的三种写法、math 与 numpy 的 pi，以及被导入模块的顶层代码会执行",
+        "notes": [
+          "import numpy as np 起别名，之后用 np.pi；import math 直接用 math.pi，两者都是 3.141592653589793。",
+          "x = np.array([1,2,3]) 后 x[0] 是 1；print(x) 打印成 [1 2 3]（没有逗号），这是 numpy 数组的显示格式，和列表不同。",
+          "from test0 import hello as hhh 把 test0 里的变量 hello 直接绑成 hhh；导入的一瞬间 test0 的顶层代码也会执行，所以 hello, python! 又多打印一次。",
+          "abs(-20) 是内置函数，不用导入就能用。"
+        ],
+        "pitfall": "数 hello, python! 出现几次：本文件 print 一次 + import test0 时执行它自己的 print 一次 = 2 次（不是 3 次）。",
+        "output": "3.141592653589793\n1\n[1 2 3]\n3.141592653589793\n3.0\nhello, python!\nhello, python!\n20"
       },
       {
         "name": "test2.py",
-        "code": "class 海龟:\n    颜色 = \"黑色\"\n    腿数= 4\n    def 前进(self):\n        print(\"前进 10 米\")\n    def 后退(self):\n        print(\"后退 8 米\")\n    def 左转(self):\n        print(\"左转 5 度\")\n    def 右转(self):\n        print(\"右转 3 度\")\n    def 变色(self):\n        self.颜色 = \"白色\"\n        #print(self.颜色)\n    def 显色(self):\n        print(self.颜色)\n\n小海 = 海龟()\nprint(小海.颜色)\n小海.显色()\nprint(小海.腿数)\n小海.前进()\n小海.后退()\n小海.左转()\n小海.右转()\n小海.变色()\n小海.显色()"
+        "code": "class 海龟:\n    颜色 = \"黑色\"\n    腿数= 4\n    def 前进(self):\n        print(\"前进 10 米\")\n    def 后退(self):\n        print(\"后退 8 米\")\n    def 左转(self):\n        print(\"左转 5 度\")\n    def 右转(self):\n        print(\"右转 3 度\")\n    def 变色(self):\n        self.颜色 = \"白色\"\n        #print(self.颜色)\n    def 显色(self):\n        print(self.颜色)\n\n小海 = 海龟()\nprint(小海.颜色)\n小海.显色()\nprint(小海.腿数)\n小海.前进()\n小海.后退()\n小海.左转()\n小海.右转()\n小海.变色()\n小海.显色()",
+        "title": "中文标识符、类属性与实例属性（self.颜色 = 白色 之后到底变了什么）",
+        "notes": [
+          "类体里 颜色 = \"黑色\"、腿数 = 4 是类属性，所有实例共享；小海 = 海龟() 之后 print(小海.颜色) 输出 黑色。",
+          "变色() 里 self.颜色 = \"白色\" 不是修改类属性，而是给这个实例新建一个同名实例属性；所以后面 显色() 输出 白色。",
+          "方法定义在类里要带 self 形参，调用时不用传（小海.前进()）。",
+          "海龟.颜色 仍然是 黑色——实例属性只影响那一个对象，不会回写类属性。"
+        ],
+        "pitfall": "问「类属性 海龟.颜色 现在是什么」，答案是 黑色，别被最后打印的 白色 带跑。",
+        "output": "黑色\n黑色\n4\n前进 10 米\n后退 8 米\n左转 5 度\n右转 3 度\n白色"
       },
       {
         "name": "test3.py",
-        "code": "import turtle\nshengzhang = \"green\"\nturtle.title(\"Test3\")\nturtle.setup(200,100,100,100)\nturtle.screensize(400,200,shengzhang)\nturtle.done()"
+        "code": "import turtle\nshengzhang = \"green\"\nturtle.title(\"Test3\")\nturtle.setup(200,100,100,100)\nturtle.screensize(400,200,shengzhang)\nturtle.done()",
+        "title": "turtle 窗口：setup 设窗口大小，screensize 设画布大小",
+        "notes": [
+          "turtle.setup(200,100,100,100) 四个参数是 宽、高、左上角 x、左上角 y（后两个可省略）。",
+          "turtle.screensize(400,200,\"green\") 设的是画布（可滚动区域）大小和底色，和窗口大小是两件事。",
+          "turtle.done() 让窗口保持不关闭，程序停在这里等用户关窗口。",
+          "这个文件没有 print，所以运行结果是一块 200×100、底色 green 的窗口，控制台没有任何输出。"
+        ],
+        "pitfall": "setup 的第三、四个参数是窗口位置的 x/y，不是画布宽高，别和 screensize 混。",
+        "output": "title('Test3')\nsetup(200, 100, 100, 100)\nscreensize(400, 200, 'green')\ndone()\n[本程序只用 turtle 绘图，没有控制台数值输出；上面是按执行顺序记录的绘图指令]"
       },
       {
         "name": "test4.py",
-        "code": "import turtle as pen\n\npen.setup(800,600,100,100)\npen.screensize(800,600,'white')\npen.shape(\"turtle\")\npen.width(10)\npen.color('green')\npen.speed(5)\npen.forward(100)\npen.done()"
+        "code": "import turtle as pen\n\npen.setup(800,600,100,100)\npen.screensize(800,600,'white')\npen.shape(\"turtle\")\npen.width(10)\npen.color('green')\npen.speed(5)\npen.forward(100)\npen.done()",
+        "title": "import turtle as pen：绘图前先把画笔设好（形状/粗细/颜色/速度）",
+        "notes": [
+          "as pen 只是别名，等价于 import turtle 之后写 turtle.xxx。",
+          "顺序很关键：先 width(10)/color(\"green\")/speed(5) 再 forward(100)，否则画出来是默认的黑色细线。",
+          "shape(\"turtle\") 改的是画笔图标（显示成海龟），不影响线条本身。",
+          "forward(100) 沿当前朝向（默认朝右，即 0 度）前进 100 像素。"
+        ],
+        "pitfall": "speed(5) 既不是画 5 条线也不是速度 5 像素每秒，只是动画快慢（0 最快、1 最慢）。",
+        "output": "setup(800, 600, 100, 100)\nscreensize(800, 600, 'white')\nshape('turtle')\nwidth(10)\ncolor('green')\nspeed(5)\nforward(100)\ndone()\n[本程序只用 turtle 绘图，没有控制台数值输出；上面是按执行顺序记录的绘图指令]"
       },
       {
         "name": "test5.py",
-        "code": "import turtle\n\nturtle.goto(-100, -100)\nturtle.forward(100)\nturtle.left(45)\nturtle.forward(100)\nturtle.right(45)\nturtle.backward(50)\nturtle.left(90)\nturtle.forward(100)\nturtle.setheading(45)\nturtle.forward(20)\nturtle.done()"
+        "code": "import turtle\n\nturtle.goto(-100, -100)\nturtle.forward(100)\nturtle.left(45)\nturtle.forward(100)\nturtle.right(45)\nturtle.backward(50)\nturtle.left(90)\nturtle.forward(100)\nturtle.setheading(45)\nturtle.forward(20)\nturtle.done()",
+        "title": "相对运动 forward/backward/left/right 与绝对转向 setheading",
+        "notes": [
+          "left(45)/right(45) 是相对当前朝向转；setheading(45) 是直接把朝向设成 45 度，不管之前朝哪。",
+          "backward(50) 是倒退，方向与当前朝向相反。",
+          "goto(-100,-100) 是绝对移动，会从当前位置画一条线过去（除非先 penup）。",
+          "同样一串指令，把 setheading(45) 换成 left(45)，画出的折线形状完全不同——这是最爱考的对比点。"
+        ],
+        "pitfall": "right(45) 后再 left(45) 等于回到原朝向；但 setheading(45) 永远指向 45 度。",
+        "output": "goto(-100, -100)\nforward(100)\nleft(45)\nforward(100)\nright(45)\nbackward(50)\nleft(90)\nforward(100)\nsetheading(45)\nforward(20)\ndone()\n[本程序只用 turtle 绘图，没有控制台数值输出；上面是按执行顺序记录的绘图指令]"
       },
       {
         "name": "test6.py",
-        "code": "import turtle\nturtle.circle(90,60)\nturtle.home()\nturtle.circle(90,-60)\nturtle.home()\nturtle.circle(-90,60)\nturtle.home()\nturtle.circle(-90, -60)\nturtle.home()\nturtle.goto(0,50)\nturtle.fillcolor('red')\nturtle.begin_fill()\nturtle.circle(50)\nturtle.end_fill()\nturtle.goto(0, -120)\nturtle.circle(50,steps=6)\nturtle.done()"
+        "code": "import turtle\nturtle.circle(90,60)\nturtle.home()\nturtle.circle(90,-60)\nturtle.home()\nturtle.circle(-90,60)\nturtle.home()\nturtle.circle(-90, -60)\nturtle.home()\nturtle.goto(0,50)\nturtle.fillcolor('red')\nturtle.begin_fill()\nturtle.circle(50)\nturtle.end_fill()\nturtle.goto(0, -120)\nturtle.circle(50,steps=6)\nturtle.done()",
+        "title": "circle 的半径/角度、steps 画正多边形、begin_fill 与 end_fill 填充",
+        "notes": [
+          "circle(90,60) 画半径 90、圆心在左侧的 60 度圆弧；半径取负 circle(-90,60) 圆心在右侧（弧往另一边弯）；角度取负表示顺时针画。",
+          "home() 回到原点 (0,0) 并把朝向恢复成 0 度。",
+          "circle(50, steps=6) 画的不是圆弧，而是外接圆半径 50 的正 6 边形。",
+          "填充要 begin_fill() 和 end_fill() 成对出现，且 fillcolor(\"red\") 必须在 begin_fill 之前设。"
+        ],
+        "pitfall": "circle(50) 只给一个参数时画的是整圆（360 度）；只有传了 steps 才变成多边形。",
+        "output": "circle(90, 60)\nhome()\ncircle(90, -60)\nhome()\ncircle(-90, 60)\nhome()\ncircle(-90, -60)\nhome()\ngoto(0, 50)\nfillcolor('red')\nbegin_fill()\ncircle(50)\nend_fill()\ngoto(0, -120)\ncircle(50, steps=6)\ndone()\n[本程序只用 turtle 绘图，没有控制台数值输出；上面是按执行顺序记录的绘图指令]"
       }
     ],
     "updated": false
@@ -5752,39 +5814,118 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test.py",
-        "code": "import test3\n\nprint(test3.add(2,3))\n\nprint(hex(10))\n\nimport numpy as np\nprint(np.pi)"
+        "code": "import test3\n\nprint(test3.add(2,3))\n\nprint(hex(10))\n\nimport numpy as np\nprint(np.pi)",
+        "title": "导入自定义模块、hex() 进制转换，以及函数里 print 与 return 的先后",
+        "notes": [
+          "import test3 会执行 test3.py 的顶层代码；test3 里只有函数定义，所以这一刻什么都不打印。",
+          "test3.add(2,3) 内部先执行 print(locals())，此时 z 已算出 5，所以打印 {x:2, y:3, z:5}，然后 return 5 交给外层 print。",
+          "所以输出顺序是 locals() 在前、5 在后——return 的值要等外层 print 才显示。",
+          "hex(10) 把十进制转成十六进制字符串，输出 0xa（带 0x 前缀、小写）。"
+        ],
+        "pitfall": "locals() 在函数内部调用返回的是当前函数的局部变量表，在模块顶层调用返回的才是全局名字表。",
+        "output": "locals(): {'x': 2, 'y': 3, 'z': 5}\n5\n0xa\n3.141592653589793"
       },
       {
         "name": "test1.py",
-        "code": "\"\"\"\nif False:\n    print(\"True\")\nelse:\n    print(\"False\")\n\"\"\"\n\nprint(['a', 'b',\n       'c',\n       'd',\n       'e'])"
+        "code": "\"\"\"\nif False:\n    print(\"True\")\nelse:\n    print(\"False\")\n\"\"\"\n\nprint(['a', 'b',\n       'c',\n       'd',\n       'e'])",
+        "title": "三引号是字符串不是注释；列表可以跨行书写",
+        "notes": [
+          "开头三引号里那一整段 if/else 是字符串字面量，不会执行，所以没有任何 True/False 输出。",
+          "列表的方括号里允许换行，Python 会自动接续，打印结果合并成一行 ['a', 'b', 'c', 'd', 'e']。",
+          "列表打印带引号和逗号；如果是 numpy 数组则不带（对比第 1 章 test1.py）。"
+        ],
+        "pitfall": "三引号只是没被赋值的字符串（docstring），技术上不是注释；真正不执行的是 # 注释。",
+        "output": "['a', 'b', 'c', 'd', 'e']"
       },
       {
         "name": "test2.py",
-        "code": "import keyword\nprint(keyword.kwlist)\nprint(len(keyword.kwlist))\na=56\nprint(a)"
+        "code": "import keyword\nprint(keyword.kwlist)\nprint(len(keyword.kwlist))\na=56\nprint(a)",
+        "title": "keyword.kwlist：关键字清单与数量，不能拿来当变量名",
+        "notes": [
+          "keyword.kwlist 是当前 Python 版本的全部关键字列表，这里输出 35 个。",
+          "True / False / None 首字母大写，也是关键字，所以写 true、false、null 会 NameError。",
+          "len() 取元素个数，输出 35——换 Python 版本数量可能不同，答题以本机实测为准。",
+          "关键字不能作标识符，但可以出现在字符串和字典键里。"
+        ],
+        "pitfall": "and / or / not / is / in 都在列表里；print、input 这类内置函数不在——它们是内置函数不是关键字。",
+        "output": "['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']\n35\n56"
       },
       {
         "name": "test3.py",
-        "code": "def\tadd(x,y): # 定义加法函数，函数名为add，参数名为x 和y\n    z=x+y\t# 函数体，执行加法运算\n    print(f\"locals(): {locals()}\")\n    return z # 返回语句，返回加法运算结果\n\n\n#print(add(10,20)) # 传递参数值 10 和 20 调用函数，输出计算结果"
+        "code": "def\tadd(x,y): # 定义加法函数，函数名为add，参数名为x 和y\n    z=x+y\t# 函数体，执行加法运算\n    print(f\"locals(): {locals()}\")\n    return z # 返回语句，返回加法运算结果\n\n\n#print(add(10,20)) # 传递参数值 10 和 20 调用函数，输出计算结果",
+        "title": "函数定义本身不执行；locals() 只有被调用时才看得到局部变量",
+        "notes": [
+          "这个文件只有 def add(x,y) 的定义和一行被注释掉的调用，直接运行没有任何输出。",
+          "函数体里的 print(locals()) 要等 add 被调用才执行（在 ch2/test.py 里就能看到效果）。",
+          "return z 把结果交回调用者，函数自己不会打印结果。"
+        ],
+        "pitfall": "问「运行这个文件输出什么」，答案是什么都没有——别把函数体里的 print 当成会执行。",
+        "output": ""
       },
       {
         "name": "test4.py",
-        "code": "sr = 'ahu learning python'\n\nsr1 = sr.capitalize() # 第一个字母\nprint(f\"sr1: \" + sr1)\nsr2 = sr.title() # 每一个单词的第一个字母\nprint(f\"sr2: \"+ sr2)\nsr3 = sr.upper() # 全部大写\nprint(f\"sr3: \"+ sr3)"
+        "code": "sr = 'ahu learning python'\n\nsr1 = sr.capitalize() # 第一个字母\nprint(f\"sr1: \" + sr1)\nsr2 = sr.title() # 每一个单词的第一个字母\nprint(f\"sr2: \"+ sr2)\nsr3 = sr.upper() # 全部大写\nprint(f\"sr3: \"+ sr3)",
+        "title": "capitalize / title / upper 三个大小写方法的区别",
+        "notes": [
+          "capitalize() 只把第一个字符变大写、其余全部变小写：Ahu learning python。",
+          "title() 每个单词首字母大写：Ahu Learning Python。",
+          "upper() 全部变大写：AHU LEARNING PYTHON。",
+          "三个方法都返回新字符串，原变量 sr 不变（字符串不可变）。"
+        ],
+        "pitfall": "capitalize 会把其余字母都变小写，不只是把首字母变大写；给 AHU 开头的串要特别注意。",
+        "output": "sr1: Ahu learning python\nsr2: Ahu Learning Python\nsr3: AHU LEARNING PYTHON"
       },
       {
         "name": "test5.py",
-        "code": "class Dog:\n    color = 'White'\n    def say(self):\n        print('wang,wang,wang....')\n        return 'Hello'\n\n\ndog = Dog()\nprint(dog.color)\nres=dog.say()\nprint(res)\n#print(dir(dog))\n\nclass BigDog(Dog):\n    size = \"big\"\n\nbDog = BigDog()\n\n#print(bDog.say())\n#print(bDog.size)\n#str2 = bDog.size\nprint(f\"bDog.say(): {bDog.say()}\")\nprint(f\"bDog.size: {bDog.size}\")\nprint(f\"bDog.color: {bDog.color}\")"
+        "code": "class Dog:\n    color = 'White'\n    def say(self):\n        print('wang,wang,wang....')\n        return 'Hello'\n\n\ndog = Dog()\nprint(dog.color)\nres=dog.say()\nprint(res)\n#print(dir(dog))\n\nclass BigDog(Dog):\n    size = \"big\"\n\nbDog = BigDog()\n\n#print(bDog.say())\n#print(bDog.size)\n#str2 = bDog.size\nprint(f\"bDog.say(): {bDog.say()}\")\nprint(f\"bDog.size: {bDog.size}\")\nprint(f\"bDog.color: {bDog.color}\")",
+        "title": "继承：子类自动拥有父类的属性和方法",
+        "notes": [
+          "class BigDog(Dog) 继承 Dog；bDog.say() 用的是父类方法，bDog.color 拿到父类类属性 White。",
+          "bDog.size 是子类自己加的类属性 big。",
+          "dog.say() 内部先 print 再 return，所以 wang,wang,wang.... 会出现两次：一次在 res=dog.say()，一次在 f-string 里调用 bDog.say()。",
+          "f-string 里的 {bDog.say()} 会真的调用方法，它打印的内容先出现，返回值 Hello 再被拼进字符串。"
+        ],
+        "pitfall": "f-string 里写函数调用会执行函数——这是数输出行数最容易漏的地方。",
+        "output": "White\nwang,wang,wang....\nHello\nwang,wang,wang....\nbDog.say(): Hello\nbDog.size: big\nbDog.color: White"
       },
       {
         "name": "test6.py",
-        "code": "\"\"\"\nThis file is used to test class in Python.\n\"\"\"\n#import this\n\n#import test7\n\nprint(__name__)\ndef say(self):\n    print(\"wang,wang,wang...\")\n    return 'Hello'\n\ndef bark(self):\n    print(\"bark!\")\n    return 'bark'\n\nDog = type(\"Dog\",(object,),dict(say=say, bark=bark, color=\"white\", size=\"small\"))\n\ndog = Dog()\nres1 = dog.say()\nres2 = dog.bark()\nprint(dog.color)\nprint(res1)\nprint(res2)\nprint(dog.size)"
+        "code": "\"\"\"\nThis file is used to test class in Python.\n\"\"\"\n#import this\n\n#import test7\n\nprint(__name__)\ndef say(self):\n    print(\"wang,wang,wang...\")\n    return 'Hello'\n\ndef bark(self):\n    print(\"bark!\")\n    return 'bark'\n\nDog = type(\"Dog\",(object,),dict(say=say, bark=bark, color=\"white\", size=\"small\"))\n\ndog = Dog()\nres1 = dog.say()\nres2 = dog.bark()\nprint(dog.color)\nprint(res1)\nprint(res2)\nprint(dog.size)",
+        "title": "type() 动态建类，以及 __name__ 的取值",
+        "notes": [
+          "type(\"Dog\", (object,), dict(...)) 三个参数是 类名、父类元组、属性字典，等价于用 class 语句定义。",
+          "dict 里放的是函数对象，挂到类上就成为方法，第一个参数仍然是 self。",
+          "print(__name__)：直接运行输出 __main__；被别的模块 import 时输出的是模块名（ch2/test7.py 里能看到 test.__name__ 是 test）。",
+          "输出顺序：__main__ → say 的 print → bark 的 print → white → Hello → bark → small。"
+        ],
+        "pitfall": "res1 = dog.say() 里 say 先打印再返回，所以 wang,wang,wang 出现在 white 之前，不是之后。",
+        "output": "__main__\nwang,wang,wang...\nbark!\nwhite\nHello\nbark\nsmall"
       },
       {
         "name": "test7.py",
-        "code": "\nprint(\"hello from test7.py\")\n\nif __name__ == '__main__':\n    print(\"demo.py 是主模块执行。\")\n\nimport test\nprint(f\"test.__name__: {test.__name__}\")\nprint(f\"__name__: {__name__}\")"
+        "code": "\nprint(\"hello from test7.py\")\n\nif __name__ == '__main__':\n    print(\"demo.py 是主模块执行。\")\n\nimport test\nprint(f\"test.__name__: {test.__name__}\")\nprint(f\"__name__: {__name__}\")",
+        "title": "if __name__ == '__main__'：被 import 时不会执行的那一段",
+        "notes": [
+          "直接运行 test7.py 时 __name__ 是 __main__，所以打印 demo.py 是主模块执行。",
+          "import test 会执行 test.py 的顶层代码，于是 test.py 里 import test3、print(hex(10))、numpy 那几行全部执行，输出混进来。",
+          "test.__name__ 是 test（模块名），当前文件自己的 __name__ 仍是 __main__。",
+          "这就是库里为什么要包 if __name__ == '__main__':——被导入时那段不执行。"
+        ],
+        "pitfall": "本文件自己的「主模块执行」那句话，在 import 场景下不会出现；直接运行时才出现。",
+        "output": "hello from test7.py\ndemo.py 是主模块执行。\nlocals(): {'x': 2, 'y': 3, 'z': 5}\n5\n0xa\n3.141592653589793\ntest.__name__: test\n__name__: __main__"
       },
       {
         "name": "test8.py",
-        "code": "f = open(\"test.txt\", 'w')\nf.write(\"Python is a great language.\\n\")\nf.write(\"Python is a great language.\\n\")\nf.write(\"Python is a great language.\\n\")\nf.close()"
+        "code": "f = open(\"test.txt\", 'w')\nf.write(\"Python is a great language.\\n\")\nf.write(\"Python is a great language.\\n\")\nf.write(\"Python is a great language.\\n\")\nf.close()",
+        "title": "文件写入三步：open('w') → write → close",
+        "notes": [
+          "open(test.txt, 'w') 以写模式打开：文件不存在就创建，已存在会清空。",
+          "write() 不会自动换行，所以每句都手写了 \\n。",
+          "不 close() 可能内容还在缓冲区没落盘；更安全的写法是 with open(...) as f:。",
+          "该程序没有任何控制台输出，结果体现在 test.txt 里有三行——题目若问输出什么，要答「无输出」。"
+        ],
+        "pitfall": "'w' 是覆盖不是追加，追加要用 'a'；常考的变体是第二次运行后文件里有几行。",
+        "output": ""
       }
     ],
     "updated": false
@@ -5802,55 +5943,179 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test0.py",
-        "code": "num_int = 123\nnum_flo = 1.23\n#print(int(num_flo))\n#print(float(num_int))\n#print(complex(num_int))\n#print(bool(num_int))\n\naList = [\"python\", 1, [2,3,4] , 3.0,\"计算机\"]\n\nprint(aList)\nprint(aList[0:3])\nprint(aList[2][0])\n\nprint(type([\"python\", 1, [2,3,4] , 3.0,\"计算机\"] ))"
+        "code": "num_int = 123\nnum_flo = 1.23\n#print(int(num_flo))\n#print(float(num_int))\n#print(complex(num_int))\n#print(bool(num_int))\n\naList = [\"python\", 1, [2,3,4] , 3.0,\"计算机\"]\n\nprint(aList)\nprint(aList[0:3])\nprint(aList[2][0])\n\nprint(type([\"python\", 1, [2,3,4] , 3.0,\"计算机\"] ))",
+        "title": "混合类型列表的索引、切片与 type()",
+        "notes": [
+          "aList = [\"python\", 1, [2,3,4], 3.0, \"计算机\"]：一个列表里可以混放不同类型。",
+          "aList[0:3] 取下标 0、1、2（切片左闭右开）：['python', 1, [2, 3, 4]]。",
+          "aList[2][0] 先取第 3 个元素（内层列表），再取它的第 1 个，结果是 2。",
+          "type([...]) 输出 <class 'list'>。"
+        ],
+        "pitfall": "aList[2] 是整个 [2, 3, 4]；aList[2][0] 才是 2，别把两者看成一回事。",
+        "output": "['python', 1, [2, 3, 4], 3.0, '计算机']\n['python', 1, [2, 3, 4]]\n2\n<class 'list'>"
       },
       {
         "name": "test1.py",
-        "code": "s1=\"包含单引号'的字符串用双引号定义\"\ns2='包含双引号\"的字符串用单引号定义'\nprint(f\"1: \" + s1)\nprint(f\"2: \" + s2)\n\ns1='let\\'s learn python'\ns2=\"转义反斜杠\\\\的字符串定义\"\ns3=\"转义双引号\\\"的字符串定义\"\nprint(f\"3: \" + s1)\nprint(f\"4: \" + s2)\nprint(f\"5: \" + s3)\n\ns1=\"转义中：\\n 表示换行\"\ns2=\"转义中：\\r 表示回车\"\nprint(f\"6: \" + s1)\nprint(f\"7: \" + s2)\n\ns1=r\"转义中：\\n 表示换行\"\ns2=R\"转义中：\\r 表示回车\" # 代表把\\n和\\r当作普通字符处理 \nprint(f\"8: \" + s1)\nprint(f\"9: \" + s2)\n\n\n\"\"\"\nf\nr\n\"\"\"\nname = \"Peter\"\n\nprint(f\"My name is {name}\")\n\nprint(\"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\r\")\n\nprint(r\"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\r\")"
+        "code": "s1=\"包含单引号'的字符串用双引号定义\"\ns2='包含双引号\"的字符串用单引号定义'\nprint(f\"1: \" + s1)\nprint(f\"2: \" + s2)\n\ns1='let\\'s learn python'\ns2=\"转义反斜杠\\\\的字符串定义\"\ns3=\"转义双引号\\\"的字符串定义\"\nprint(f\"3: \" + s1)\nprint(f\"4: \" + s2)\nprint(f\"5: \" + s3)\n\ns1=\"转义中：\\n 表示换行\"\ns2=\"转义中：\\r 表示回车\"\nprint(f\"6: \" + s1)\nprint(f\"7: \" + s2)\n\ns1=r\"转义中：\\n 表示换行\"\ns2=R\"转义中：\\r 表示回车\" # 代表把\\n和\\r当作普通字符处理 \nprint(f\"8: \" + s1)\nprint(f\"9: \" + s2)\n\n\n\"\"\"\nf\nr\n\"\"\"\nname = \"Peter\"\n\nprint(f\"My name is {name}\")\n\nprint(\"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\r\")\n\nprint(r\"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\r\")",
+        "title": "引号嵌套、转义字符与原始字符串 r''",
+        "notes": [
+          "字符串里有单引号就用双引号包，有双引号就用单引号包，可以省掉转义。",
+          "单引号、双引号、反斜杠、\\n（换行）、\\r（回车）都是转义序列，print 时才生效。",
+          "r\"...\" 或 R\"...\" 是原始字符串，里面的 \\n \\r 按两个普通字符处理，不再转义。",
+          "最后两行对比：print 一串 \\n 会打出一堆空行，而 print(r...) 原样打出 \\n\\n...\\r。",
+          "f-string：f\"My name is {name}\" 把变量值填进去。"
+        ],
+        "pitfall": "r 只影响转义，不改变引号规则；原始字符串也不能以单个反斜杠结尾。",
+        "output": "1: 包含单引号'的字符串用双引号定义\n2: 包含双引号\"的字符串用单引号定义\n3: let's learn python\n4: 转义反斜杠\\的字符串定义\n5: 转义双引号\"的字符串定义\n6: 转义中：\n 表示换行\n7: 转义中：\n 表示回车\n8: 转义中：\\n 表示换行\n9: 转义中：\\r 表示回车\nMy name is Peter\n\n\n\n\n\n\n\n\n\n\n\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\r"
       },
       {
         "name": "test2.py",
-        "code": "s1=\"0从字符串前面开始的位置.\"\ns2=\"-1从字符串后面开始的位置.\"\nprint(s1[2])\nprint(s1[2:5])\nprint(s2[-2])\nprint(s2[-3: -1])"
+        "code": "s1=\"0从字符串前面开始的位置.\"\ns2=\"-1从字符串后面开始的位置.\"\nprint(s1[2])\nprint(s1[2:5])\nprint(s2[-2])\nprint(s2[-3: -1])",
+        "title": "字符串索引（正/负）与切片",
+        "notes": [
+          "s1[2] 取第 3 个字符（下标从 0 开始）。",
+          "s1[2:5] 取下标 2、3、4 三个字符，不含 5。",
+          "负索引从末尾数：s2[-2] 是倒数第 2 个字符。",
+          "s2[-3:-1] 从倒数第 3 个取到倒数第 2 个（不含 -1 那个位置本身）。"
+        ],
+        "pitfall": "切片终点永远不含；写 s2[-3:-1] 会漏掉最后一个字符，要到末尾就用 s2[-3:]。",
+        "output": "字\n字符串\n置\n位置"
       },
       {
         "name": "test3.py",
-        "code": "name = input(\"请输入姓名：\")\nage = int(input(\"请输入年龄：\"))\nscore = float(input(\"请输入分数：\"))\nprint(name,age,score)"
+        "code": "name = input(\"请输入姓名：\")\nage = int(input(\"请输入年龄：\"))\nscore = float(input(\"请输入分数：\"))\nprint(name,age,score)",
+        "title": "input() 一律返回字符串，要算数必须先转换",
+        "notes": [
+          "input(\"提示\") 的返回值永远是 str，括号里只是提示语，不会自动换行。",
+          "int(input(...)) 把输入字符串转整数，float(...) 转浮点。",
+          "喂入 张三 / 18 / 90 时输出：张三 18 90.0（最后一个被 float 转成浮点）。",
+          "若直接拿 input() 的返回值加 1，会 TypeError：字符串和整数不能相加。"
+        ],
+        "pitfall": "输出里三个提示连成一行，是因为管道输入时没有回车回显——不是程序写错了。",
+        "output": "请输入姓名：请输入年龄：请输入分数：张三 18 90.0",
+        "stdin": "张三\n18\n90\n"
       },
       {
         "name": "test4.py",
-        "code": "\"\"\"name = \"李红\"\nage = 25\nscore = 85.5\n\nprint(\"姓名：%s,年龄：%d,成绩：%f\" % (name,age,score))\n\nprint(\"姓名：%s\\n 年龄：%d\\n 成绩：%.2f\" % (name,age,score))\n\"\"\"\nfrom ipywidgets import Datetime\n\nname = \"李红\"\nage = 25\nscore = 85.5\n\n\n#print(\"姓名：{},年龄：{},成绩：{}\".format(name,age,score))\n\n#print(\"姓名：{}\\n 年龄：{}\\n 成绩：{}\".format(name,age,score))\n\n\n\n#print(\"姓名：{0},年龄：{1},成绩：{2}\".format(name,age,score))\n#print(\"姓名：{name1}\\n 成绩：{score1}\".format(name1=name,score1=score))\n#print(\"成绩：{:.2f}\".format(score))\nf = open(\"1.txt\", 'w')\nprint(f\"姓名：----{name},年龄: {age},成绩: {score}\",file=f)\nprint(F\"姓名：{name}\\n  成绩：{score}\",file=f)\nprint()"
+        "code": "\"\"\"name = \"李红\"\nage = 25\nscore = 85.5\n\nprint(\"姓名：%s,年龄：%d,成绩：%f\" % (name,age,score))\n\nprint(\"姓名：%s\\n 年龄：%d\\n 成绩：%.2f\" % (name,age,score))\n\"\"\"\nfrom ipywidgets import Datetime\n\nname = \"李红\"\nage = 25\nscore = 85.5\n\n\n#print(\"姓名：{},年龄：{},成绩：{}\".format(name,age,score))\n\n#print(\"姓名：{}\\n 年龄：{}\\n 成绩：{}\".format(name,age,score))\n\n\n\n#print(\"姓名：{0},年龄：{1},成绩：{2}\".format(name,age,score))\n#print(\"姓名：{name1}\\n 成绩：{score1}\".format(name1=name,score1=score))\n#print(\"成绩：{:.2f}\".format(score))\nf = open(\"1.txt\", 'w')\nprint(f\"姓名：----{name},年龄: {age},成绩: {score}\",file=f)\nprint(F\"姓名：{name}\\n  成绩：{score}\",file=f)\nprint()",
+        "title": "% 格式化、format() 与 f-string 三种写法（以及 print 到文件）",
+        "notes": [
+          "\"%s %d %f\" % 元组 是旧式格式化，%.2f 表示保留两位小数。",
+          "\"{}\".format(...) 按位置填，{0}{1} 指定序号，{name1} 按关键字填。",
+          "f-string（f\"...\"）最简洁，{score:.2f} 可以带格式说明符。",
+          "该文件的 print 都写了 file=f，所以屏幕上没有任何输出，内容写进了 1.txt。",
+          "顶部的 from ipywidgets import Datetime 只是被 import 了却没用到；没装这个库会直接 ModuleNotFoundError（考试不考这个）。"
+        ],
+        "pitfall": "print(..., file=f) 不打印到屏幕；题目问屏幕输出时答案是空。",
+        "output": ""
       },
       {
         "name": "test5.py",
-        "code": "\"\"\"\nby1 = bytes(2)\nby2 = bytes(\"hi\",encoding='ascii')\nby3 = bytes(\"好\",encoding='utf-8')\nby4 = bytes([1,2,3])\nprint(by1,by2,by3,by4,type(by2))\n\"\"\"\n\nby1 = b'Hello,python!' # 这里的b表示这是一个bytes类型的对象\nby2 = bytes(\"跟着阿虎学编程。\",encoding='utf-8')\nprint(\"by1[1]: {}, by1[0:5]: {}\".format(by1[1],by1[0:5]))\nprint(\"by2[3]: {}, by2[3:5]: {}\".format(by2[3],by2[3:5]))"
+        "code": "\"\"\"\nby1 = bytes(2)\nby2 = bytes(\"hi\",encoding='ascii')\nby3 = bytes(\"好\",encoding='utf-8')\nby4 = bytes([1,2,3])\nprint(by1,by2,by3,by4,type(by2))\n\"\"\"\n\nby1 = b'Hello,python!' # 这里的b表示这是一个bytes类型的对象\nby2 = bytes(\"跟着阿虎学编程。\",encoding='utf-8')\nprint(\"by1[1]: {}, by1[0:5]: {}\".format(by1[1],by1[0:5]))\nprint(\"by2[3]: {}, by2[3:5]: {}\".format(by2[3],by2[3:5]))",
+        "title": "bytes 对象：索引得到整数、切片仍是 bytes",
+        "notes": [
+          "b'Hello,python!' 是 bytes 字面量，每个元素是 0-255 的整数。",
+          "by1[1] 得到 101（字符 e 的 ASCII），是 int；by1[0:5] 仍是 bytes，显示为 b'Hello'。",
+          "bytes(中国字, encoding='utf-8') 用指定编码把字符串编码成字节，一个汉字通常 3 字节。",
+          "by2 是「跟着阿虎学编程。」的 UTF-8 字节：by2[3] 是 231（第二个汉字的起始字节 0xE7），by2[3:5] 得到 b'\\xe7\\x9d'。"
+        ],
+        "pitfall": "bytes 索引返回 int，不是长度为 1 的 bytes——这是和 str 最大的区别。",
+        "output": "by1[1]: 101, by1[0:5]: b'Hello'\nby2[3]: 231, by2[3:5]: b'\\xe7\\x9d'"
       },
       {
         "name": "test6.py",
-        "code": "by = bytes(\"北京工业大学\",encoding='utf-8') # 创建字节组\nprint(by)\nst = by.decode('utf-8') # 字节组utf-8 解码，变换为字符串\nprint(st)\nby1 = st.encode('gbk') # 字符串gbk 编码，变换为字节组\nprint(by1)"
+        "code": "by = bytes(\"北京工业大学\",encoding='utf-8') # 创建字节组\nprint(by)\nst = by.decode('utf-8') # 字节组utf-8 解码，变换为字符串\nprint(st)\nby1 = st.encode('gbk') # 字符串gbk 编码，变换为字节组\nprint(by1)",
+        "title": "encode / decode：编码和解码必须用同一种字符集",
+        "notes": [
+          "bytes(北京工业大学, encoding='utf-8') 得到 UTF-8 字节串，print 出来是 b'\\xe5\\x8c\\x97...' 这种形式。",
+          "by.decode('utf-8') 把字节还原成字符串。",
+          "st.encode('gbk') 用 GBK 重新编码：同一个汉字 GBK 占 2 字节、UTF-8 占 3 字节，所以 GBK 字节串明显更短。",
+          "用 utf-8 编码却用 gbk 解码，会得到乱码或抛 UnicodeDecodeError。"
+        ],
+        "pitfall": "问哪种编码字节数更多——UTF-8 中文 3 字节一字，GBK 2 字节一字。",
+        "output": "b'\\xe5\\x8c\\x97\\xe4\\xba\\xac\\xe5\\xb7\\xa5\\xe4\\xb8\\x9a\\xe5\\xa4\\xa7\\xe5\\xad\\xa6'\n北京工业大学\nb'\\xb1\\xb1\\xbe\\xa9\\xb9\\xa4\\xd2\\xb5\\xb4\\xf3\\xd1\\xa7'"
       },
       {
         "name": "test7.py",
-        "code": "list1 = list(\"hello\")\t# 将字符串转换成列表\nprint(list1)\n\ntuple_1 = ('Python', 'Java', 'C++', 'JavaScript')\nprint(f\"tuple1: {tuple_1[1]}\")\n# tuple_1[1] = \"R\" # 这个地方会报错，元组不能改\nprint(f\"tuple1: {tuple_1}\")\n\na = 3;\n\nlist2 = list(tuple_1)\nprint(list2) # 将元组转换成列表\ndict1 = {'a':100, 'b':42, 'c':9}\nlist3 = list(dict1) # 将字典转换成列表，默认是取字典的key\nprint(\"list3: {}\".format(list3))\nprint(\"list3: {}\".format(list(dict1.values()))) # 取字典的值\nrange1 = range(1, 6)\nlist4 = list(range1)\nprint(\"list4: {}\".format(list4))\nprint(list())\nfor i in range(1,6):\n    print(i)"
+        "code": "list1 = list(\"hello\")\t# 将字符串转换成列表\nprint(list1)\n\ntuple_1 = ('Python', 'Java', 'C++', 'JavaScript')\nprint(f\"tuple1: {tuple_1[1]}\")\n# tuple_1[1] = \"R\" # 这个地方会报错，元组不能改\nprint(f\"tuple1: {tuple_1}\")\n\na = 3;\n\nlist2 = list(tuple_1)\nprint(list2) # 将元组转换成列表\ndict1 = {'a':100, 'b':42, 'c':9}\nlist3 = list(dict1) # 将字典转换成列表，默认是取字典的key\nprint(\"list3: {}\".format(list3))\nprint(\"list3: {}\".format(list(dict1.values()))) # 取字典的值\nrange1 = range(1, 6)\nlist4 = list(range1)\nprint(\"list4: {}\".format(list4))\nprint(list())\nfor i in range(1,6):\n    print(i)",
+        "title": "list() 类型转换：字符串按字符拆，字典只取键",
+        "notes": [
+          "list(hello) 把字符串按字符拆成 ['h','e','l','l','o']。",
+          "元组不可修改（tuple_1[1] = R 会 TypeError），但可以 list(tuple_1) 转成列表再改。",
+          "list(dict1) 只拿键；要值用 dict1.values()，要键值对用 dict1.items()。",
+          "range(1,6) 左闭右开，list() 后是 [1,2,3,4,5]；list() 无参是空列表 []。"
+        ],
+        "pitfall": "list(字典) 拿到的是键列表，不是键值对列表。",
+        "output": "['h', 'e', 'l', 'l', 'o']\ntuple1: Java\ntuple1: ('Python', 'Java', 'C++', 'JavaScript')\n['Python', 'Java', 'C++', 'JavaScript']\nlist3: ['a', 'b', 'c']\nlist3: [100, 42, 9]\nlist4: [1, 2, 3, 4, 5]\n[]\n1\n2\n3\n4\n5"
       },
       {
         "name": "test8.py",
-        "code": "url = list(\"阿虎编程，虎虎生风。\")\nprint(url[3]) # 使用正数索引\nprint(url[-4])# 使用负数索引\nprint(url[3: 9])\t# 使用正数切片\nprint(f\"1:9:2 {url[1: 9: 2]}\")\t# 指定步长\nprint(url[-6: -1])# 使用负数切片 \nurl[1]='龙'\t# 通过索引修改 print(url)\nurl[2:4]='练武' # 通过切片修改\nprint(url)\n\n# del url\nprint(url)"
+        "code": "url = list(\"阿虎编程，虎虎生风。\")\nprint(url[3]) # 使用正数索引\nprint(url[-4])# 使用负数索引\nprint(url[3: 9])\t# 使用正数切片\nprint(f\"1:9:2 {url[1: 9: 2]}\")\t# 指定步长\nprint(url[-6: -1])# 使用负数切片 \nurl[1]='龙'\t# 通过索引修改 print(url)\nurl[2:4]='练武' # 通过切片修改\nprint(url)\n\n# del url\nprint(url)",
+        "title": "列表的索引、带步长切片与切片赋值",
+        "notes": [
+          "url = list(阿虎编程，虎虎生风。) 把字符串拆成单字列表：['阿','虎','编','程','，','虎','虎','生','风','。']。",
+          "url[1:9:2] 从下标 1 开始每 2 个取一个，到 9（不含）：['虎','程','虎','生']。",
+          "url[-6:-1] 用负索引切片，取不到最后一个字符。",
+          "url[1]=龙 按下标改一个元素；url[2:4]=练武 用切片一次替换两个元素（长度可以不等，列表会伸缩）。",
+          "注释掉的 del url 若执行，后面再 print 就会 NameError。"
+        ],
+        "pitfall": "切片赋值的右边是字符串时会被当成字符序列逐个填入，容易和替换成一个元素搞混。",
+        "output": "程\n虎\n['程', '，', '虎', '虎', '生', '风']\n1:9:2 ['虎', '程', '虎', '生']\n['，', '虎', '虎', '生', '风']\n['阿', '龙', '练', '武', '，', '虎', '虎', '生', '风', '。']\n['阿', '龙', '练', '武', '，', '虎', '虎', '生', '风', '。']"
       },
       {
         "name": "test9.py",
-        "code": "set_name = {1,'c',1,(1,2,3),'c'}\n#set_name = {set_name,set_name}\nprint(f\"set_name:{set_name}\")\na = {}\nprint(f\"type(a): {type(a)}\")\n\nalist = [1,'c',1,(1,2,3),'c']\nprint(alist)\n\nfor i in alist:\n    print(i)\n\nset1 = {1,'c',1,(1,2,3),'c'}\nprint(set1)\nfor i in set1:\n    print(i)\n\n#set2 = {1,[1,2,3],[1,2]}\nset2 = {1,(1,2,3),(1,2)}\n\nprint(f\"1. set2 :{set2}\")\n#set2[1] = 3;\nset2.add(3)\nprint(f\"2. set2:{set2}\")\nset2.discard(3)\nprint(f\"3. set2:{set2}\")\n\nds = {}\nprint(type(ds)) #dict\nds = {3}\nprint(ds) #set"
+        "code": "set_name = {1,'c',1,(1,2,3),'c'}\n#set_name = {set_name,set_name}\nprint(f\"set_name:{set_name}\")\na = {}\nprint(f\"type(a): {type(a)}\")\n\nalist = [1,'c',1,(1,2,3),'c']\nprint(alist)\n\nfor i in alist:\n    print(i)\n\nset1 = {1,'c',1,(1,2,3),'c'}\nprint(set1)\nfor i in set1:\n    print(i)\n\n#set2 = {1,[1,2,3],[1,2]}\nset2 = {1,(1,2,3),(1,2)}\n\nprint(f\"1. set2 :{set2}\")\n#set2[1] = 3;\nset2.add(3)\nprint(f\"2. set2:{set2}\")\nset2.discard(3)\nprint(f\"3. set2:{set2}\")\n\nds = {}\nprint(type(ds)) #dict\nds = {3}\nprint(ds) #set",
+        "title": "集合去重与无序，以及 {} 到底是字典还是集合",
+        "notes": [
+          "{1,'c',1,(1,2,3),'c'} 会自动去重，只剩 3 个元素，且打印顺序不保证。",
+          "a = {} 是空字典不是空集合，type(a) 是 dict；空集合只能写 set()。",
+          "{3} 有一个元素，是集合；{1,[1,2]} 会 TypeError，因为列表不可哈希。",
+          "add() 加元素、discard() 删元素（不存在也不报错），remove() 删不存在的元素会报 KeyError。"
+        ],
+        "pitfall": "{} 是空字典——这是最高频的陷阱；集合元素的打印顺序也不能背。",
+        "output": "set_name:{1, (1, 2, 3), 'c'}\ntype(a): <class 'dict'>\n[1, 'c', 1, (1, 2, 3), 'c']\n1\nc\n1\n(1, 2, 3)\nc\n{1, (1, 2, 3), 'c'}\n1\n(1, 2, 3)\nc\n1. set2 :{1, (1, 2), (1, 2, 3)}\n2. set2:{3, 1, (1, 2), (1, 2, 3)}\n3. set2:{1, (1, 2), (1, 2, 3)}\n<class 'dict'>\n{3}"
       },
       {
         "name": "test10.py",
-        "code": "dict0 = {}\t# 创建空字典\ndict0['name'] = 'zhang';\ndict0['age'] = 40;\n\nprint(\"dict0:\", dict0)\n\nscores = {'数学': 95, '语文': 98} # 使用字符串作为key\nprint(scores,type(scores),dict0) # type()查看变量类型\ndict1 = {(10, 20):'it', 30: [1,2]}# 使用元组和数字作为key\nprint(dict1)\n\n\n\n\"\"\"\ndc0 = dict()\ndc1 = dict(x=10, y=20, z=30)\nprint(dc0,dc1)\nprint(dc1['x'])\ndc2 = dict([('two',2), ('one',1)]) #tuple\ndc3 = dict([['two',2], ['one',1]]) #list\nprint(dc2,dc3)\n\"\"\"\ndc2 = dict([('two',2), ('one',1)]) #tuple\ndc3 = dict([['two',2], ['one',1]]) #list\nprint(dc2,dc3)\ndc4 = dict((('two',2), ('one',1)))\ndc5 = dict((['two',2], ['one',1]))\nprint(dc4,dc5)\n\nalist = [1,2]\ndict6 = dict([[2,alist]])\nprint(f\"dict6,{dict6}\")\n\ntuple1 = (1,2,3,4,5,0,0,0)\nlable = '1'\ndict7 = {tuple1:lable}\nprint(f\"dict7, {dict7}\")\n\nkeys = ['语文','数学','体育']\nvalues = [96,92,90]\ndc6 = dict(zip(keys,values))\nprint(dc6)\nprint(dc6['语文'])\n\nprint(r\"dc6['语文']:{}\".format(dc6['语文']))\n\nkeys = dc6.keys()\nfor i in keys:\n    print(f\"{i}, {dc6[i]}\")\n\ntList = [(1,2,3,4,5,0,0,1),(1,2,3,4,5,0,0,2),(1,2,3,4,5,0,0,3),(1,2,3,4,5,0,0,4),(1,2,3,4,5,0,0,5)]\nlables = [1,0,0,1,1]\ndc8 =  dict(zip(tList,lables))\nprint(dc8)\nfor i in dc8.keys():\n    print(f\"{i}, {dc8[i]}\")\n\nfor i in dc8: #dc8.keys()\n    print(i)"
+        "code": "dict0 = {}\t# 创建空字典\ndict0['name'] = 'zhang';\ndict0['age'] = 40;\n\nprint(\"dict0:\", dict0)\n\nscores = {'数学': 95, '语文': 98} # 使用字符串作为key\nprint(scores,type(scores),dict0) # type()查看变量类型\ndict1 = {(10, 20):'it', 30: [1,2]}# 使用元组和数字作为key\nprint(dict1)\n\n\n\n\"\"\"\ndc0 = dict()\ndc1 = dict(x=10, y=20, z=30)\nprint(dc0,dc1)\nprint(dc1['x'])\ndc2 = dict([('two',2), ('one',1)]) #tuple\ndc3 = dict([['two',2], ['one',1]]) #list\nprint(dc2,dc3)\n\"\"\"\ndc2 = dict([('two',2), ('one',1)]) #tuple\ndc3 = dict([['two',2], ['one',1]]) #list\nprint(dc2,dc3)\ndc4 = dict((('two',2), ('one',1)))\ndc5 = dict((['two',2], ['one',1]))\nprint(dc4,dc5)\n\nalist = [1,2]\ndict6 = dict([[2,alist]])\nprint(f\"dict6,{dict6}\")\n\ntuple1 = (1,2,3,4,5,0,0,0)\nlable = '1'\ndict7 = {tuple1:lable}\nprint(f\"dict7, {dict7}\")\n\nkeys = ['语文','数学','体育']\nvalues = [96,92,90]\ndc6 = dict(zip(keys,values))\nprint(dc6)\nprint(dc6['语文'])\n\nprint(r\"dc6['语文']:{}\".format(dc6['语文']))\n\nkeys = dc6.keys()\nfor i in keys:\n    print(f\"{i}, {dc6[i]}\")\n\ntList = [(1,2,3,4,5,0,0,1),(1,2,3,4,5,0,0,2),(1,2,3,4,5,0,0,3),(1,2,3,4,5,0,0,4),(1,2,3,4,5,0,0,5)]\nlables = [1,0,0,1,1]\ndc8 =  dict(zip(tList,lables))\nprint(dc8)\nfor i in dc8.keys():\n    print(f\"{i}, {dc8[i]}\")\n\nfor i in dc8: #dc8.keys()\n    print(i)",
+        "title": "字典的创建方式、键的要求、keys() 遍历",
+        "notes": [
+          "dict0['name'] = zhang 是边建边加；scores = {'数学':95} 是字面量创建。",
+          "键必须是可哈希的不可变类型：字符串、数字、元组可以，列表不行。",
+          "dict([('two',2),('one',1)]) 和 dict(zip(keys, values)) 都能从序列构造字典。",
+          "遍历字典默认遍历键；.keys() 拿键、.values() 拿值、.items() 拿键值对。",
+          "dict7 = {tuple1: lable} 用整个元组当键，打印时键就是一整个长元组。"
+        ],
+        "pitfall": "for i in dc8 遍历的是键；键是长元组时打印出来是一长串，别误以为是值。",
+        "output": "dict0: {'name': 'zhang', 'age': 40}\n{'数学': 95, '语文': 98} <class 'dict'> {'name': 'zhang', 'age': 40}\n{(10, 20): 'it', 30: [1, 2]}\n{'two': 2, 'one': 1} {'two': 2, 'one': 1}\n{'two': 2, 'one': 1} {'two': 2, 'one': 1}\ndict6,{2: [1, 2]}\ndict7, {(1, 2, 3, 4, 5, 0, 0, 0): '1'}\n{'语文': 96, '数学': 92, '体育': 90}\n96\ndc6['语文']:96\n语文, 96\n数学, 92\n体育, 90\n{(1, 2, 3, 4, 5, 0, 0, 1): 1, (1, 2, 3, 4, 5, 0, 0, 2): 0, (1, 2, 3, 4, 5, 0, 0, 3): 0, (1, 2, 3, 4, 5, 0, 0, 4): 1, (1, 2, 3, 4, 5, 0, 0, 5): 1}\n(1, 2, 3, 4, 5, 0, 0, 1), 1\n(1, 2, 3, 4, 5, 0, 0, 2), 0\n(1, 2, 3, 4, 5, 0, 0, 3), 0\n(1, 2, 3, 4, 5, 0, 0, 4), 1\n(1, 2, 3, 4, 5, 0, 0, 5), 1\n(1, 2, 3, 4, 5, 0, 0, 1)\n(1, 2, 3, 4, 5, 0, 0, 2)\n(1, 2, 3, 4, 5, 0, 0, 3)\n(1, 2, 3, 4, 5, 0, 0, 4)\n(1, 2, 3, 4, 5, 0, 0, 5)"
       },
       {
         "name": "test11.py",
-        "code": "dc = dict((['two',90], ['one',80], ['three',100]))\nprint(dc['one'],dc['two'])\t# 键存在\n#print(dc['five'])\t# 键不存在\ndc = dict(two=80, one=90, three=100, four=59)\nprint(dc)\ndc['four']=89\nprint(dc)\ndel(dc['four'])\nprint(dc)\ndel dc\nprint(dc)"
+        "code": "dc = dict((['two',90], ['one',80], ['three',100]))\nprint(dc['one'],dc['two'])\t# 键存在\n#print(dc['five'])\t# 键不存在\ndc = dict(two=80, one=90, three=100, four=59)\nprint(dc)\ndc['four']=89\nprint(dc)\ndel(dc['four'])\nprint(dc)\ndel dc\nprint(dc)",
+        "title": "字典的增改删，以及 del 之后再用会 NameError",
+        "notes": [
+          "dict((['two',90],['one',80],['three',100])) 用列表的列表构造字典，每个内层是一对键值。",
+          "dc['four'] = 89：键存在就改值，不存在就新增。",
+          "del(dc['four']) 删的是这一对键值；del dc 删的是整个变量名。",
+          "del dc 之后再 print(dc) 会 NameError: name 'dc' is not defined——这是本文件唯一报错的地方，属于故意演示。"
+        ],
+        "pitfall": "del dc['four'] 和 del dc 完全不同：前者删一个元素，后者把变量本身删掉。",
+        "output": "80 90\n{'two': 80, 'one': 90, 'three': 100, 'four': 59}\n{'two': 80, 'one': 90, 'three': 100, 'four': 89}\n{'two': 80, 'one': 90, 'three': 100}",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter3\\test11.py\", line 11, in <module>\n    print(dc)\n          ^^\nNameError: name 'dc' is not defined"
       },
       {
         "name": "test14.py",
-        "code": "import random\n\n\ndef main():\n    # 游戏选项\n    options = ['剪刀', '石头', '布']\n\n    # 玩家赢的组合\n    winning_combinations = [\n        ['剪刀', '布'],  # 剪刀赢布\n        ['石头', '剪刀'],  # 石头赢剪刀\n        ['布', '石头']  # 布赢石头\n    ]\n\n    print(\"欢迎来到猜拳游戏！\")\n    print(\"请输入你的选择：0-剪刀，1-石头，2-布\")\n\n    # 让玩家输入选择\n    while True:\n        try:\n            player_choice_index = int(input(\"请输入 0、1 或 2：\"))\n            if player_choice_index in [0, 1, 2]:\n                break\n            else:\n                print(\"输入无效，请输入 0、1 或 2！\")\n        except ValueError:\n            print(\"输入无效，请输入数字！\")\n\n    player_choice = options[player_choice_index]\n    print(f\"\\n你选择了：{player_choice}\")\n\n    # 计算机随机选择\n    computer_choice_index = random.randint(0, 2)\n    computer_choice = options[computer_choice_index]\n    print(f\"计算机选择了：{computer_choice}\\n\")\n\n    # 判断输赢\n    if player_choice == computer_choice:\n        print(\"平局！\")\n    elif [player_choice, computer_choice] in winning_combinations:\n        print(\"你赢了！\")\n    else:\n        print(\"你输了！\")\n\n\nif __name__ == \"__main__\":\n    main()"
+        "code": "import random\n\n\ndef main():\n    # 游戏选项\n    options = ['剪刀', '石头', '布']\n\n    # 玩家赢的组合\n    winning_combinations = [\n        ['剪刀', '布'],  # 剪刀赢布\n        ['石头', '剪刀'],  # 石头赢剪刀\n        ['布', '石头']  # 布赢石头\n    ]\n\n    print(\"欢迎来到猜拳游戏！\")\n    print(\"请输入你的选择：0-剪刀，1-石头，2-布\")\n\n    # 让玩家输入选择\n    while True:\n        try:\n            player_choice_index = int(input(\"请输入 0、1 或 2：\"))\n            if player_choice_index in [0, 1, 2]:\n                break\n            else:\n                print(\"输入无效，请输入 0、1 或 2！\")\n        except ValueError:\n            print(\"输入无效，请输入数字！\")\n\n    player_choice = options[player_choice_index]\n    print(f\"\\n你选择了：{player_choice}\")\n\n    # 计算机随机选择\n    computer_choice_index = random.randint(0, 2)\n    computer_choice = options[computer_choice_index]\n    print(f\"计算机选择了：{computer_choice}\\n\")\n\n    # 判断输赢\n    if player_choice == computer_choice:\n        print(\"平局！\")\n    elif [player_choice, computer_choice] in winning_combinations:\n        print(\"你赢了！\")\n    else:\n        print(\"你输了！\")\n\n\nif __name__ == \"__main__\":\n    main()",
+        "title": "猜拳游戏：while True + try/except 校验输入",
+        "notes": [
+          "options = ['剪刀','石头','布']：用下标 0/1/2 对应三种手势。",
+          "while True 里先 int(input())；输入不是数字会 ValueError，被 except 捕获提示重输；数字不在 0 到 2 则提示重新输入。",
+          "用 [player, computer] in winning_combinations 判断胜负——列表 in 列表是判断是否存在这个子列表。",
+          "random.randint(0,2) 让电脑随机出拳，所以每次运行结果可能不同（本次输入 1 出石头，电脑出布，判你输了）。"
+        ],
+        "pitfall": "结果随机，别背死输出；要能说清 random.randint(0,2) 取的是 0、1、2 三个整数（含两端）。",
+        "output": "欢迎来到猜拳游戏！\n请输入你的选择：0-剪刀，1-石头，2-布\n请输入 0、1 或 2：\n你选择了：石头\n计算机选择了：布\n\n你输了！",
+        "stdin": "1\n"
       }
     ],
     "updated": false
@@ -5907,7 +6172,7 @@ window.CODE_LAB = [
           "A&B 交集、A|B 并集、A-B 差集（在 A 不在 B）、A^B 对称差（只属于其中一个集合）。"
         ],
         "pitfall": "id 的具体数字每次运行都不一样，考试只会问 is / == 的 True/False，不会让你背地址。",
-        "output": "id x:  2161295350528\nid y:  2161308922368\nid z:  2161295350528\nx is y:  False\nx is not y:  True\nz is x:  True\nx == y:  True\nz == x:  True\n1\nA&B {1, 3, 5}\nA|B {1, 2, 3, 4, 5, 7, 9, 11}\nA-B {2, 4}\nA^B {2, 4, 7, 9, 11}"
+        "output": "id x:  2227893085632\nid y:  2227895030784\nid z:  2227893085632\nx is y:  False\nx is not y:  True\nz is x:  True\nx == y:  True\nz == x:  True\n1\nA&B {1, 3, 5}\nA|B {1, 2, 3, 4, 5, 7, 9, 11}\nA-B {2, 4}\nA^B {2, 4, 7, 9, 11}"
       },
       {
         "name": "test4.py",
@@ -6104,7 +6369,7 @@ window.CODE_LAB = [
           "set1.add(l1) 抛 TypeError: unhashable type: 'list'——列表是可变类型、不可哈希，不能放进集合（也不能当字典键）。"
         ],
         "pitfall": "集合/字典的键必须是可哈希（不可变）的对象；列表、字典、集合都放不进去，元组可以（只要其元素也都可哈希）。",
-        "output": "32 8 91 5\nsorted(tp):  [8, 10, 16, 25, 32]\n<reversed object at 0x000002AE91FFBFD0>\n<class 'reversed'>\nlist(temp1) is [32, 8, 16, 25, 10].\ntemp2:  <enumerate object at 0x000002AE8FE115D0>\n[(0, 10), (1, 25), (2, 16), (3, 8), (4, 32)]\nIndex 0: 10\nIndex 1: 25\nIndex 2: 16\nIndex 3: 8\nIndex 4: 32\n1. set1:  {3, 4}\n2. set1:  {3, 4}\n1 l1:  [3, 5]\n2 l1:  [3, 5]",
+        "output": "32 8 91 5\nsorted(tp):  [8, 10, 16, 25, 32]\n<reversed object at 0x000001966E6A7FD0>\n<class 'reversed'>\nlist(temp1) is [32, 8, 16, 25, 10].\ntemp2:  <enumerate object at 0x000001966E694810>\n[(0, 10), (1, 25), (2, 16), (3, 8), (4, 32)]\nIndex 0: 10\nIndex 1: 25\nIndex 2: 16\nIndex 3: 8\nIndex 4: 32\n1. set1:  {3, 4}\n2. set1:  {3, 4}\n1 l1:  [3, 5]\n2 l1:  [3, 5]",
         "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\更新后的chapter\\chapter6\\chapter6\\test1.py\", line 36, in <module>\n    set2=set1.add(l1)\n         ^^^^^^^^^^^^\nTypeError: unhashable type: 'list'"
       },
       {
@@ -6232,7 +6497,7 @@ window.CODE_LAB = [
           "多重推导式里的 if 归属于离它最近的那层 for。"
         ],
         "pitfall": "嵌套 for 推导式中元素顺序是“外层慢、内层快”；zip 则是按位置一一配对，两者结果完全不同。",
-        "output": "[1, 5, 7, 9]\n[1, 5, 9]\n[1, 2, 3, 4]\nls2 [4, 8, 12, 16]\n[2, 3, 6, 5]\n[4, 5, 6, 5, 6, 7, 6, 7, 8]\n[4, 6, 8]\n<zip object at 0x00000213F7BC06C0>\n<class 'list'>\n[5, 6]"
+        "output": "[1, 5, 7, 9]\n[1, 5, 9]\n[1, 2, 3, 4]\nls2 [4, 8, 12, 16]\n[2, 3, 6, 5]\n[4, 5, 6, 5, 6, 7, 6, 7, 8]\n[4, 6, 8]\n<zip object at 0x000002101ED3EC80>\n<class 'list'>\n[5, 6]"
       },
       {
         "name": "test12.py",
@@ -6262,7 +6527,7 @@ window.CODE_LAB = [
           "关键：生成器耗尽后再 list(tp2) 得到空列表 []——生成器只能遍历一次。"
         ],
         "pitfall": "生成器/迭代器是“一次性”的，用过就空；要重复使用必须先 list() 存成列表。",
-        "output": "<generator object <genexpr> at 0x000001C8E94D9A40>\n(4, 8, 12, 16)\n<generator object <genexpr> at 0x000001C8E8E093C0>\ne is 2\ne is 3\ne is 6\ne is 5\nThis is the end!\n[]"
+        "output": "<generator object <genexpr> at 0x000001E559FAF440>\n(4, 8, 12, 16)\n<generator object <genexpr> at 0x000001E55A241A40>\ne is 2\ne is 3\ne is 6\ne is 5\nThis is the end!\n[]"
       },
       {
         "name": "test14.py",
@@ -6320,7 +6585,7 @@ window.CODE_LAB = [
           "dc.__hash__ 打印的是方法对象本身，因为字典不可哈希，不能进集合。"
         ],
         "pitfall": "可哈希的前提是不可变；看 id 是否变化就能判断一个操作是原地修改还是产生了新对象。",
-        "output": "{1, 2, 3}\n1 st is {frozenset({5, 6}), 1, 2, 3}.\nst in line 14 {frozenset({5, 6}), 1, 2, 3}\nst in line 19 {1, 2, 3, (1, 2), frozenset({5, 6})}\nid(li1) in line 21:  2816846851264 [1, 2]\nid(li1) in line 23:  2816846851264 [1, 2, 5]\n1\n2\n5\n<class 'str'> bjut\nstr hash in line 35 -1297545297608529462\nid(str) in line 36 : 2816811661232\n<class 'str'> Bjut\nstr hash  in line 40:  3825793460595472327\nid(str) in line 41:  2816811735408\ntp hash: 529344067295497451\nfst hash:  6221592716431983538\nst hash:  None\n{1: 1, 2: 2} <class 'dict'>\ndc hash  None\n2 st is {1, 2, 3, (1, 2), (1, 2, 3), frozenset({5, 6})}.\nhash:  -1297545297608529462\nhash:  -1297545297608529462\nTrue\ndc hash: None"
+        "output": "{1, 2, 3}\n1 st is {frozenset({5, 6}), 1, 2, 3}.\nst in line 14 {frozenset({5, 6}), 1, 2, 3}\nst in line 19 {1, 2, 3, (1, 2), frozenset({5, 6})}\nid(li1) in line 21:  1736948767424 [1, 2]\nid(li1) in line 23:  1736948767424 [1, 2, 5]\n1\n2\n5\n<class 'str'> bjut\nstr hash in line 35 -2422057868883882054\nid(str) in line 36 : 1736948767088\n<class 'str'> Bjut\nstr hash  in line 40:  3965067029610410870\nid(str) in line 41:  1736948770864\ntp hash: 529344067295497451\nfst hash:  6221592716431983538\nst hash:  None\n{1: 1, 2: 2} <class 'dict'>\ndc hash  None\n2 st is {1, 2, 3, (1, 2), (1, 2, 3), frozenset({5, 6})}.\nhash:  -2422057868883882054\nhash:  -2422057868883882054\nTrue\ndc hash: None"
       },
       {
         "name": "test18.py",
@@ -6407,7 +6672,7 @@ window.CODE_LAB = [
           "print(type(add)) 说明函数是一等对象，可以赋值、传参、返回。",
           "if __name__ == '__main__': 下的代码只在“直接运行本文件”时执行，被 import 时不执行。"
         ],
-        "output": "33\ntype(add) is <class 'function'>\nadd is <function add at 0x0000024759FD22A0>\nid(add) is 2505475695264"
+        "output": "33\ntype(add) is <class 'function'>\nadd is <function add at 0x000001FEED2B62A0>\nid(add) is 2194412364448"
       },
       {
         "name": "test2.py",
@@ -6420,7 +6685,7 @@ window.CODE_LAB = [
           "由 from test1 import add 可见：被导入模块的顶层代码不会因 import 而重复执行（有 __main__ 保护）。"
         ],
         "pitfall": "Python 没有函数重载，同名 def 只会保留最后一个；想按参数个数区分必须自己写判断或用默认参数。",
-        "output": "ok\n33\nadd_return(11,22) is 33\nadd_object(11,22) is 33\nTrue\ntype(fun): <class 'function'>\nfun: <function fun at 0x000002B56E415120>\n id(fun): 2978262110496"
+        "output": "ok\n33\nadd_return(11,22) is 33\nadd_object(11,22) is 33\nTrue\ntype(fun): <class 'function'>\nfun: <function fun at 0x0000019B3B85A2A0>\n id(fun): 1766230172320"
       },
       {
         "name": "test3.py",
@@ -6446,7 +6711,7 @@ window.CODE_LAB = [
           "for 循环 5 次，每次都多打印一行 a 1 和一行 b <function ...>。"
         ],
         "pitfall": "局部变量 a 在每次调用时都重新创建，所以不会累加；要累加必须用闭包 nonlocal 或全局变量。",
-        "output": "a 1\na 1\nb <function test2 at 0x0000027DB15DA2A0>\na 1\nb <function test2 at 0x0000027DB15DA2A0>\na 1\nb <function test2 at 0x0000027DB15DA2A0>\na 1\nb <function test2 at 0x0000027DB15DA2A0>\na 1\nb <function test2 at 0x0000027DB15DA2A0>"
+        "output": "a 1\na 1\nb <function test2 at 0x0000020DB6C28F40>\na 1\nb <function test2 at 0x0000020DB6C28F40>\na 1\nb <function test2 at 0x0000020DB6C28F40>\na 1\nb <function test2 at 0x0000020DB6C28F40>\na 1\nb <function test2 at 0x0000020DB6C28F40>"
       },
       {
         "name": "test5.py",
@@ -6567,7 +6832,7 @@ window.CODE_LAB = [
           "注意运算优先级：先算 b*c 再加 a，所以 1+2*3 = 7，不是 9。"
         ],
         "pitfall": "lambda 的函数体只能是一个表达式，不能写 if 语句块、循环等复杂结构。",
-        "output": "请输入一个整数：5!=120\n<function <lambda> at 0x00000254FC31A2A0>\n7",
+        "output": "请输入一个整数：5!=120\n<function <lambda> at 0x0000025A49188F40>\n7",
         "stdin": "5\n"
       },
       {
@@ -6582,7 +6847,7 @@ window.CODE_LAB = [
           "而循环里 print(fun1()) 每次都新建一个闭包对象，所以打印的是函数对象地址而不是数值。"
         ],
         "pitfall": "闭包的状态保存在“那一次 fun1() 调用”的局部变量里；重新调用 fun1() 会得到全新的计数器，从 0 开始。",
-        "output": "<function fun1.<locals>.fun2 at 0x000001F5D084A340>\n<function fun1.<locals>.fun2 at 0x000001F5D084A2A0>\n第0 次调用计数器，记录值为：1\n<function fun1.<locals>.fun2 at 0x000001F5D084A2A0>\n第1 次调用计数器，记录值为：2\n<function fun1.<locals>.fun2 at 0x000001F5D084A2A0>\n第2 次调用计数器，记录值为：3\n<function fun1.<locals>.fun2 at 0x000001F5D084A2A0>\n第3 次调用计数器，记录值为：4\n<function fun1.<locals>.fun2 at 0x000001F5D084A2A0>\n第4 次调用计数器，记录值为：5",
+        "output": "<function fun1.<locals>.fun2 at 0x0000022C63379D00>\n<function fun1.<locals>.fun2 at 0x0000022C63378F40>\n第0 次调用计数器，记录值为：1\n<function fun1.<locals>.fun2 at 0x0000022C63378F40>\n第1 次调用计数器，记录值为：2\n<function fun1.<locals>.fun2 at 0x0000022C63378F40>\n第2 次调用计数器，记录值为：3\n<function fun1.<locals>.fun2 at 0x0000022C63378F40>\n第3 次调用计数器，记录值为：4\n<function fun1.<locals>.fun2 at 0x0000022C63378F40>\n第4 次调用计数器，记录值为：5",
         "stdin": "5\n"
       },
       {
@@ -6625,7 +6890,7 @@ window.CODE_LAB = [
           "wrapper 内部的 print 在装饰那一刻就执行，因此先输出 1.、<class 'function'>、2.。",
           "真正调用 test() 时执行的是 inner：先打印验证权限，再调用原函数打印 test。"
         ],
-        "output": "1.  <function test at 0x000001FD92DBA2A0>\n<class 'function'>\n2. 正在装饰...\n3. 正在验证权限\ntest"
+        "output": "1.  <function test at 0x000001A4181D8F40>\n<class 'function'>\n2. 正在装饰...\n3. 正在验证权限\ntest"
       },
       {
         "name": "test18.py",
@@ -6639,7 +6904,7 @@ window.CODE_LAB = [
           "两个 time.sleep 让装饰过程与运行过程有明显时间间隔，便于观察顺序。"
         ],
         "pitfall": "离函数越近的装饰器越先装饰（越在内层），但执行时越靠外层的包装器越先运行。",
-        "output": "3, 2026-11-16 13:48:08.889866\nwarpper2:  <function test at 0x0000025CFBF751C0>\n正在装饰 2\n2, 2026-11-16 13:48:13.890564\nwrapper1:  <function wrapper2.<locals>.inner2 at 0x0000025CFBF76160>\n正在装饰 1\n正在验证权限 1\n正在验证权限 2\n1, 2026-11-16 13:48:15.891314\ntest"
+        "output": "3, 2026-11-16 14:31:46.054139\nwarpper2:  <function test at 0x0000013FE37A8B80>\n正在装饰 2\n2, 2026-11-16 14:31:51.054877\nwrapper1:  <function wrapper2.<locals>.inner2 at 0x0000013FE37ABC40>\n正在装饰 1\n正在验证权限 1\n正在验证权限 2\n1, 2026-11-16 14:31:53.055475\ntest"
       },
       {
         "name": "test19.py",
@@ -6654,7 +6919,7 @@ window.CODE_LAB = [
           "所以输出先是一行调用日志（含时间、函数名、参数），然后是 myfunc1 的结果 7。"
         ],
         "pitfall": "装饰器里一定要 return 原函数的调用结果，否则被装饰函数就“没有返回值”了。",
-        "output": "2026-11-16 13:48:21.026379 , myfunc1 was called (3, 4){}\n7"
+        "output": "2026-11-16 14:31:58.101476 , myfunc1 was called (3, 4){}\n7"
       },
       {
         "name": "test20.py",
@@ -6667,7 +6932,7 @@ window.CODE_LAB = [
           "之后再 for i in res，只剩下最后一个元素 25，所以 lm 是 [25]。"
         ],
         "pitfall": "map/filter/zip 在 Python 3 都返回一次性迭代器，取过的元素不会再有；要保留请先 list()。",
-        "output": "<class 'map'>\n<map object at 0x000001CAA3453E20>\n1\n4\n9\n16\n[25]"
+        "output": "<class 'map'>\n<map object at 0x0000023BD345FA30>\n1\n4\n9\n16\n[25]"
       },
       {
         "name": "test21.py",
@@ -6905,7 +7170,7 @@ window.CODE_LAB = [
           "del player1 后对象仍有 player2 引用所以不销毁；“销毁”在程序结束时才打印。"
         ],
         "pitfall": "单例要在 __new__ 里控制对象创建；__init__ 每次实例化都会执行，需要额外标志位防止重复初始化。",
-        "output": "初始化音乐播放器\n<__main__.MusicPlayer object at 0x0000023E967EFC10>\n<__main__.MusicPlayer object at 0x0000023E967EFC10>\n销毁"
+        "output": "初始化音乐播放器\n<__main__.MusicPlayer object at 0x000001D51287EA50>\n<__main__.MusicPlayer object at 0x000001D51287EA50>\n销毁"
       },
       {
         "name": "test15.py",
@@ -7084,55 +7349,82 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test1.py",
-        "code": "#print(name)\nls=[1,2,3]\nprint(ls[2])\n\n# indexoutofbound\n\n\nprint('y'<'x'==False)\n\n#print(6**2/3)"
+        "code": "#print(name)\nls=[1,2,3]\nprint(ls[2])\n\n# indexoutofbound\n\n\nprint('y'<'x'==False)\n\n#print(6**2/3)",
+        "output": "3\nFalse"
       },
       {
         "name": "test2.py",
-        "code": "\nclass Car:\n    color='red'\n\ncar=Car()\nprint(car.color)\nprint(car.logo)"
+        "code": "\nclass Car:\n    color='red'\n\ncar=Car()\nprint(car.color)\nprint(car.logo)",
+        "output": "red",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test2.py\", line 7, in <module>\n    print(car.logo)\n          ^^^^^^^^\nAttributeError: 'Car' object has no attribute 'logo'"
       },
       {
         "name": "test3.py",
-        "code": "from chapter7.test19 import logit\n\n@logit()\ndef test31():\n    num1=int(input(\"请输入被除数：\"))\n    num2=int(input(\"请输入除数：\"))\n    try:\n        print(\"结果为\",num1/num2)\n    except ZeroDivisionError as error:\n        print(f\"错误是: {error}\")\n        print(\"出错了\")\n\ntest31()"
+        "code": "from chapter7.test19 import logit\n\n@logit()\ndef test31():\n    num1=int(input(\"请输入被除数：\"))\n    num2=int(input(\"请输入除数：\"))\n    try:\n        print(\"结果为\",num1/num2)\n    except ZeroDivisionError as error:\n        print(f\"错误是: {error}\")\n        print(\"出错了\")\n\ntest31()",
+        "output": "",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test3.py\", line 1, in <module>\n    from chapter7.test19 import logit\nModuleNotFoundError: No module named 'chapter7'"
       },
       {
         "name": "test4.py",
-        "code": "num1=int(input(\"请输入被除数：\"))\nnum2=int(input(\"请输入除数：\"))\ntry:\n    print(\"结果为\",num1/num2)\nexcept ZeroDivisionError as error:\n    print(\"出错了,原因是：\",error)"
+        "code": "num1=int(input(\"请输入被除数：\"))\nnum2=int(input(\"请输入除数：\"))\ntry:\n    print(\"结果为\",num1/num2)\nexcept ZeroDivisionError as error:\n    print(\"出错了,原因是：\",error)",
+        "output": "请输入被除数：",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test4.py\", line 1, in <module>\n    num1=int(input(\"请输入被除数：\"))\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: invalid literal for int() with base 10: '张三'",
+        "stdin": "张三\n"
       },
       {
         "name": "test5.py",
-        "code": "try:\n    num1 = int(input(\"请输入被除数：\"))\n    num2 = int(input(\"请输入除数：\"))\n    print(\"结果为\",num1/num2)\nexcept (ZeroDivisionError,ValueError) as error:\n    print(\"出错了,原因是：\",error)"
+        "code": "try:\n    num1 = int(input(\"请输入被除数：\"))\n    num2 = int(input(\"请输入除数：\"))\n    print(\"结果为\",num1/num2)\nexcept (ZeroDivisionError,ValueError) as error:\n    print(\"出错了,原因是：\",error)",
+        "output": "请输入被除数：请输入除数：结果为 0.6666666666666666",
+        "stdin": "2\n3\n"
       },
       {
         "name": "test6.py",
-        "code": "try:\n    num1=int(input(\"请输入被除数：\"))\n    num2=int(input(\"请输入除数：\"))\n    print(\"结果为\",num1/num2)\nexcept Exception as error:\n    print(\"出错了,原因是：\",error)\nfinally:\n    print(\"今天天气不错！\")"
+        "code": "try:\n    num1=int(input(\"请输入被除数：\"))\n    num2=int(input(\"请输入除数：\"))\n    print(\"结果为\",num1/num2)\nexcept Exception as error:\n    print(\"出错了,原因是：\",error)\nfinally:\n    print(\"今天天气不错！\")",
+        "output": "请输入被除数：出错了,原因是： EOF when reading a line\n今天天气不错！"
       },
       {
         "name": "test7.py",
-        "code": "num1=int(input(\"请输入被除数：\"))\nnum2=int(input(\"请输入除数：\"))\ntry:\n    result=num1/num2\nexcept Exception as error:\n    print(\"出错了,原因是：\",error)\nelse:\n    print(result)"
+        "code": "num1=int(input(\"请输入被除数：\"))\nnum2=int(input(\"请输入除数：\"))\ntry:\n    result=num1/num2\nexcept Exception as error:\n    print(\"出错了,原因是：\",error)\nelse:\n    print(result)",
+        "output": "请输入被除数：请输入除数：",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test7.py\", line 2, in <module>\n    num2=int(input(\"请输入除数：\"))\n             ^^^^^^^^^^^^^^^^^^^^^\nEOFError: EOF when reading a line",
+        "stdin": "5\n"
       },
       {
         "name": "test8.py",
-        "code": "\n\ntry:\n    num1 = int(input(\"请输入被除数：\"))\n    num2 = int(input(\"请输入除数：\"))\n    result=num1/num2\nexcept Exception as error:\n    print(\"出错了,原因是：\",error)\nelse:\n    print(result)\nfinally:\n    print(\"这是一定要执行的代码\")"
+        "code": "\n\ntry:\n    num1 = int(input(\"请输入被除数：\"))\n    num2 = int(input(\"请输入除数：\"))\n    result=num1/num2\nexcept Exception as error:\n    print(\"出错了,原因是：\",error)\nelse:\n    print(result)\nfinally:\n    print(\"这是一定要执行的代码\")",
+        "output": "请输入被除数：出错了,原因是： EOF when reading a line\n这是一定要执行的代码"
       },
       {
         "name": "test9.py",
-        "code": "#raise IndexError\nraise IndexError()\n#raise IndexError(\"索引超出范围\")"
+        "code": "#raise IndexError\nraise IndexError()\n#raise IndexError(\"索引超出范围\")",
+        "output": "",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test9.py\", line 2, in <module>\n    raise IndexError()\nIndexError"
       },
       {
         "name": "test10.py",
-        "code": "try:\n    raise IndexError('索引超出范围')\n#except Exception as error:\nexcept:\n    raise"
+        "code": "try:\n    raise IndexError('索引超出范围')\n#except Exception as error:\nexcept:\n    raise",
+        "output": "",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test10.py\", line 2, in <module>\n    raise IndexError('索引超出范围')\nIndexError: 索引超出范围"
       },
       {
         "name": "test11.py",
-        "code": "\nnum1=int(input(\"请输入被除数：\"))\nnum2=int(input(\"请输入除数：\"))\n#if num2==0:\n#    print('除数不能为 0')\nassert num2!=0,'除数不能为 0'\nprint(num1/num2)"
+        "code": "\nnum1=int(input(\"请输入被除数：\"))\nnum2=int(input(\"请输入除数：\"))\n#if num2==0:\n#    print('除数不能为 0')\nassert num2!=0,'除数不能为 0'\nprint(num1/num2)",
+        "output": "请输入被除数：",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test11.py\", line 2, in <module>\n    num1=int(input(\"请输入被除数：\"))\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: invalid literal for int() with base 10: '张三'",
+        "stdin": "张三\n"
       },
       {
         "name": "test12.py",
-        "code": "class ShortInputError(Exception):\n    def __init__(self,length,atleast):\n        self.length=length\n        self.atleast=atleast\n\ntry:\n    text=input(\"请输入密码：\")\n    if len(text)<6:\n        raise ShortInputError(len(text),6)\nexcept Exception as error:\n    print(f\"ShortInputError:输入密码的长度是{error.length},密码长度至少应该是{error.atleast}\")"
+        "code": "class ShortInputError(Exception):\n    def __init__(self,length,atleast):\n        self.length=length\n        self.atleast=atleast\n\ntry:\n    text=input(\"请输入密码：\")\n    if len(text)<6:\n        raise ShortInputError(len(text),6)\nexcept Exception as error:\n    print(f\"ShortInputError:输入密码的长度是{error.length},密码长度至少应该是{error.atleast}\")",
+        "output": "请输入密码：",
+        "err": "  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test12.py\", line 11, in <module>\n    print(f\"ShortInputError:输入密码的长度是{error.length},密码长度至少应该是{error.atleast}\")\n                                             ^^^^^^^^^^^^\nAttributeError: 'EOFError' object has no attribute 'length'"
       },
       {
         "name": "test13.py",
-        "code": "def div():\n    try:\n        print(\"div() 开 始 执 行 \")\n        num1=int(input(\"请输入被除数：\"))\n        num2=int(input(\"请输入除数：\"))\n        res1=num1/num2\n        return res1\n    except Exception as error:\n        #print(f\"div--捕获到异常信息{error}\")\n        raise error\ndef mul():\n    print(\"mul() 开 始 执 行 \")\n    num3=int(input(\"请输入乘数：\"))\n    res2=num3*div()\n    return res2\n\ndef test():\n    try:\n        res3=mul()\n        print(res3)\n    except Exception as error:\n        print(f\"test--捕获到异常信息{error}\")\n        raise error\n\n\ntest()"
+        "code": "def div():\n    try:\n        print(\"div() 开 始 执 行 \")\n        num1=int(input(\"请输入被除数：\"))\n        num2=int(input(\"请输入除数：\"))\n        res1=num1/num2\n        return res1\n    except Exception as error:\n        #print(f\"div--捕获到异常信息{error}\")\n        raise error\ndef mul():\n    print(\"mul() 开 始 执 行 \")\n    num3=int(input(\"请输入乘数：\"))\n    res2=num3*div()\n    return res2\n\ndef test():\n    try:\n        res3=mul()\n        print(res3)\n    except Exception as error:\n        print(f\"test--捕获到异常信息{error}\")\n        raise error\n\n\ntest()",
+        "output": "mul() 开 始 执 行 \n请输入乘数：div() 开 始 执 行 \n请输入被除数：test--捕获到异常信息EOF when reading a line",
+        "err": "vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 10, in div\n    raise error\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter9\\test13.py\", line 4, in div\n    num1=int(input(\"请输入被除数：\"))\n             ^^^^^^^^^^^^^^^^^^^^^^^\nEOFError: EOF when reading a line",
+        "stdin": "7\n"
       }
     ],
     "updated": false
@@ -7150,47 +7442,65 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test1.py",
-        "code": "m=ord('A') #ord 获取字符的unicode 十进制编码\nprint(m)\nprint(bin(m))\nn=ord('中') #ord 获取字符的unicode 十进制编码\nprint(n)\nprint(f\"bin(n): {bin(n)}\")\nprint(chr(65))\nprint(chr(20013))\nprint((3.5*4.6)==True)"
+        "code": "m=ord('A') #ord 获取字符的unicode 十进制编码\nprint(m)\nprint(bin(m))\nn=ord('中') #ord 获取字符的unicode 十进制编码\nprint(n)\nprint(f\"bin(n): {bin(n)}\")\nprint(chr(65))\nprint(chr(20013))\nprint((3.5*4.6)==True)",
+        "output": "65\n0b1000001\n20013\nbin(n): 0b100111000101101\nA\n中\nFalse"
       },
       {
         "name": "test2.py",
-        "code": "f = open(\"test.txt\", \"w\")\nf.write( \"Python is a great language.\\n\")\nf.write( \"Python is a great language.\")\nprint(f\"f.name: {f.name}\")\nprint(f.mode)\nprint(f.closed)\nf.close()\nprint(\"1: \" + str(f.closed))\nf.write( \"Python is a great language.\")"
+        "code": "f = open(\"test.txt\", \"w\")\nf.write( \"Python is a great language.\\n\")\nf.write( \"Python is a great language.\")\nprint(f\"f.name: {f.name}\")\nprint(f.mode)\nprint(f.closed)\nf.close()\nprint(\"1: \" + str(f.closed))\nf.write( \"Python is a great language.\")",
+        "output": "f.name: test.txt\nw\nFalse\n1: True",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test2.py\", line 9, in <module>\n    f.write( \"Python is a great language.\")\nValueError: I/O operation on closed file."
       },
       {
         "name": "test3.py",
-        "code": "with open(\"test.txt\", \"w\") as f:\n    f.write( \"Python is a great language.\")\n    print(f.name)\n    print(f.mode)\n    print(f.closed)\nprint(f.closed)"
+        "code": "with open(\"test.txt\", \"w\") as f:\n    f.write( \"Python is a great language.\")\n    print(f.name)\n    print(f.mode)\n    print(f.closed)\nprint(f.closed)",
+        "output": "test.txt\nw\nFalse\nTrue"
       },
       {
         "name": "test4.py",
-        "code": "class MyContext(object):\n    def __enter__(self):\n        print('__enter__() called')\n        return self\n\n    def description(self):\n        print('my name is MyContestManager')\n\n    def __exit__(self ,e_t ,e_v ,t_b):\n        print('__exit__() called')\n        print(f\"e_t: {str(e_t)}\")\n        print(f\"e_v: {str(e_v)}\")\n        print(f\"t_b: {str(t_b)}\")\n\nwith MyContext() as a:\n    a.description()\n    print('a is called')\n    raise ValueError(\"bjut error\")"
+        "code": "class MyContext(object):\n    def __enter__(self):\n        print('__enter__() called')\n        return self\n\n    def description(self):\n        print('my name is MyContestManager')\n\n    def __exit__(self ,e_t ,e_v ,t_b):\n        print('__exit__() called')\n        print(f\"e_t: {str(e_t)}\")\n        print(f\"e_v: {str(e_v)}\")\n        print(f\"t_b: {str(t_b)}\")\n\nwith MyContext() as a:\n    a.description()\n    print('a is called')\n    raise ValueError(\"bjut error\")",
+        "output": "__enter__() called\nmy name is MyContestManager\na is called\n__exit__() called\ne_t: <class 'ValueError'>\ne_v: bjut error\nt_b: <traceback object at 0x000001AE3710E540>",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test4.py\", line 18, in <module>\n    raise ValueError(\"bjut error\")\nValueError: bjut error"
       },
       {
         "name": "test5.py",
-        "code": "string= \"Python is a great language.\\nYeah its great!!\\n\"\n\nwith open(\"test.txt\", \"w\") as f:\n    size=f.write(string)\n    print(size)"
+        "code": "string= \"Python is a great language.\\nYeah its great!!\\n\"\n\nwith open(\"test.txt\", \"w\") as f:\n    size=f.write(string)\n    print(size)",
+        "output": "45"
       },
       {
         "name": "test6.py",
-        "code": "string= \"Python is a great language.\\nYeah its great!!\\n\"\nwith open(\"test.txt\", \"w\") as f:\n    size=f.writelines(string)\n    print(size)"
+        "code": "string= \"Python is a great language.\\nYeah its great!!\\n\"\nwith open(\"test.txt\", \"w\") as f:\n    size=f.writelines(string)\n    print(size)",
+        "output": "None"
       },
       {
         "name": "test7.py",
-        "code": "\nwith open('test.txt',mode='r') as f:\n    #print(f.read(2))\n    #print(f.readline())\n    a = f.readlines();\n    for b in range(len(a)):\n        print(f\"{b}:, {a[b]}\")\n    #print(f.readlines())"
+        "code": "\nwith open('test.txt',mode='r') as f:\n    #print(f.read(2))\n    #print(f.readline())\n    a = f.readlines();\n    for b in range(len(a)):\n        print(f\"{b}:, {a[b]}\")\n    #print(f.readlines())",
+        "output": "",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test7.py\", line 2, in <module>\n    with open('test.txt',mode='r') as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'test.txt'"
       },
       {
         "name": "test8.py",
-        "code": "with open('test.txt') as f:\n    print(f.tell())\n    print(f.read(5))\n    print(f.tell())"
+        "code": "with open('test.txt') as f:\n    print(f.tell())\n    print(f.read(5))\n    print(f.tell())",
+        "output": "",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test8.py\", line 1, in <module>\n    with open('test.txt') as f:\n         ^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'test.txt'"
       },
       {
         "name": "test9.py",
-        "code": "#with open('test.txt') as f:\n    #f.seek(5,0)\n    #f.seek(3,1)\n\n\nwith open('test.txt','rb') as f:\n    f.seek(5,0)\n    local = f.seek(3,1)\n    print(local)\n    print(f.tell())\n    print(f.read())"
+        "code": "#with open('test.txt') as f:\n    #f.seek(5,0)\n    #f.seek(3,1)\n\n\nwith open('test.txt','rb') as f:\n    f.seek(5,0)\n    local = f.seek(3,1)\n    print(local)\n    print(f.tell())\n    print(f.read())",
+        "output": "",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test9.py\", line 6, in <module>\n    with open('test.txt','rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'test.txt'"
       },
       {
         "name": "test10.py",
-        "code": "#f = open(\"demo.csv\",\"w\",encoding=\"GB2312\")\nls = [\"小米\",\"华为\",\"苹果\"]\n#f.write(','.join(ls)+'\\n')\t#\t只能写入字符串\n#f.close()\n\nprint('&'.join(ls))\n\nf = open(\"demo.csv\",\"r\")\nls = f.read().strip('\\n').split(',')\nf.close()\nprint(ls)"
+        "code": "#f = open(\"demo.csv\",\"w\",encoding=\"GB2312\")\nls = [\"小米\",\"华为\",\"苹果\"]\n#f.write(','.join(ls)+'\\n')\t#\t只能写入字符串\n#f.close()\n\nprint('&'.join(ls))\n\nf = open(\"demo.csv\",\"r\")\nls = f.read().strip('\\n').split(',')\nf.close()\nprint(ls)",
+        "output": "小米&华为&苹果",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test10.py\", line 8, in <module>\n    f = open(\"demo.csv\",\"r\")\n        ^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'demo.csv'"
       },
       {
         "name": "test11.py",
-        "code": "\"\"\"\nf = open(\"demo.csv\",\"w\")\nls = [\n    ['1','2','3','4'],\n    ['5','6','7','8'],\n    ['9','10','11','12']\n]\nfor row in ls:\n    f.write(\",\".join(row)+\"\\n\")\nf.close()\n\"\"\"\nf = open(\"demo.csv\",\"r\")\nls = []\nfor line in f:\n    ls.append(line.strip('\\n').split(','))\n\nf.close()\nprint(ls)\nprint(ls[2][3])\nprint(ls[3][3])\nprint(int(ls[2][3])+int(ls[3][3]))"
+        "code": "\"\"\"\nf = open(\"demo.csv\",\"w\")\nls = [\n    ['1','2','3','4'],\n    ['5','6','7','8'],\n    ['9','10','11','12']\n]\nfor row in ls:\n    f.write(\",\".join(row)+\"\\n\")\nf.close()\n\"\"\"\nf = open(\"demo.csv\",\"r\")\nls = []\nfor line in f:\n    ls.append(line.strip('\\n').split(','))\n\nf.close()\nprint(ls)\nprint(ls[2][3])\nprint(ls[3][3])\nprint(int(ls[2][3])+int(ls[3][3]))",
+        "output": "",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter10\\test11.py\", line 12, in <module>\n    f = open(\"demo.csv\",\"r\")\n        ^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'demo.csv'"
       }
     ],
     "updated": false
@@ -7208,55 +7518,73 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test1.py",
-        "code": "import os\n\nprint(os.getcwd())\npath=r'd:\\test'\nprint(os.listdir(path))\npath2=r'd:\\test\\example3'\nos.mkdir(path2)\nprint(os.listdir(path))\n#path1=r'd:\\test\\1'\n#os.remove(path1)\n#print(os.listdir(path))"
+        "code": "import os\n\nprint(os.getcwd())\npath=r'd:\\test'\nprint(os.listdir(path))\npath2=r'd:\\test\\example3'\nos.mkdir(path2)\nprint(os.listdir(path))\n#path1=r'd:\\test\\1'\n#os.remove(path1)\n#print(os.listdir(path))",
+        "output": "C:\\Users\\djej\\AppData\\Local\\Temp\\run_11_mfhmm_g1",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\\test1.py\", line 5, in <module>\n    print(os.listdir(path))\n          ^^^^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'd:\\\\test'"
       },
       {
         "name": "test2.py",
-        "code": "import sys\n\nprint(sys.version)\nprint(sys.platform)\nprint(sys.path[0])\nprint(sys.argv)\nprint(sys.stdin)\nprint(sys.executable)"
+        "code": "import sys\n\nprint(sys.version)\nprint(sys.platform)\nprint(sys.path[0])\nprint(sys.argv)\nprint(sys.stdin)\nprint(sys.executable)",
+        "output": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]\nwin32\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\n['E:\\\\cd_E\\\\vscode project\\\\Python_class\\\\pythonProject-2025\\\\chapter11\\\\test2.py']\n<_io.TextIOWrapper name='<stdin>' mode='r' encoding='utf-8'>\nE:\\anaconda\\envs\\leaf_gcn\\python.exe"
       },
       {
         "name": "test3.py",
-        "code": "import sys\nprint(sys.getdefaultencoding())\ni = 0\nwhile i<2:\n    x = sys.stdin.readline()\t# 读入一行，无提示字符串，输入数据多一个'\\n'\n    print(len(x))\n    sys.stdout.write(str(len(x)) + '\\n')\n    y = input('请输入：')\n    print(len(y))\n    i += 1\nsys.exit(8)"
+        "code": "import sys\nprint(sys.getdefaultencoding())\ni = 0\nwhile i<2:\n    x = sys.stdin.readline()\t# 读入一行，无提示字符串，输入数据多一个'\\n'\n    print(len(x))\n    sys.stdout.write(str(len(x)) + '\\n')\n    y = input('请输入：')\n    print(len(y))\n    i += 1\nsys.exit(8)",
+        "output": "utf-8\n10\n10\n请输入：",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\\test3.py\", line 8, in <module>\n    y = input('请输入：')\n        ^^^^^^^^^^^^^^^^^\nEOFError: EOF when reading a line",
+        "stdin": "hello.txt\n"
       },
       {
         "name": "test4.py",
-        "code": "import time\n\nstartTime=time.perf_counter()\nt1=time.time()\nprint(f\"t1: {t1}\")\nprint(f\"time.ctime(t1): {time.ctime(t1)}\")\n\nt2=time.localtime(t1)\nprint(f\"t2: {t2}\")\nprint(time.gmtime(t1))\n\nt3=time.strftime(\"%Y-%m-%d %H:%M:%S\",t2)\nprint(f\"t3: {t3}\")\n\nt4=time.strptime(t3,\"%Y-%m-%d %H:%M:%S\")\nprint(f\"t4: {t4}\")\ntime.sleep(1)\n\nendTime=time.perf_counter()\nt5=endTime-startTime\nprint(t5)"
+        "code": "import time\n\nstartTime=time.perf_counter()\nt1=time.time()\nprint(f\"t1: {t1}\")\nprint(f\"time.ctime(t1): {time.ctime(t1)}\")\n\nt2=time.localtime(t1)\nprint(f\"t2: {t2}\")\nprint(time.gmtime(t1))\n\nt3=time.strftime(\"%Y-%m-%d %H:%M:%S\",t2)\nprint(f\"t3: {t3}\")\n\nt4=time.strptime(t3,\"%Y-%m-%d %H:%M:%S\")\nprint(f\"t4: {t4}\")\ntime.sleep(1)\n\nendTime=time.perf_counter()\nt5=endTime-startTime\nprint(t5)",
+        "output": "t1: 1794810725.2231772\ntime.ctime(t1): Mon Nov 16 14:32:05 2026\nt2: time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=14, tm_min=32, tm_sec=5, tm_wday=0, tm_yday=320, tm_isdst=0)\ntime.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=6, tm_min=32, tm_sec=5, tm_wday=0, tm_yday=320, tm_isdst=0)\nt3: 2026-11-16 14:32:05\nt4: time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=14, tm_min=32, tm_sec=5, tm_wday=0, tm_yday=320, tm_isdst=-1)\n1.0165280000001076"
       },
       {
         "name": "test5.py",
-        "code": "\nimport time\nt0=time.time()\n\nimport datetime\nfrom datetime import date\nd1 = datetime.date(2023, 4, 13)\nprint(d1)\n\nd2 = date.today()\nprint(\"当前日期:\", d2)\ntimestamp = date.fromtimestamp(t0)\n\nprint(\"日期:\", timestamp)\nd3 = date.timetuple(d2)\nprint(\"d3\", d3)\nd4 = date.toordinal(d2)\nprint(\"d4\", d4)\n\nw1= date.isoweekday(d2)\nprint(\"w1:\", w1)\nprint(\"date.isocalendar(d2)\", date.isocalendar(d2))\nprint(\"date.isoformat(d2)\", date.isoformat(d2))"
+        "code": "\nimport time\nt0=time.time()\n\nimport datetime\nfrom datetime import date\nd1 = datetime.date(2023, 4, 13)\nprint(d1)\n\nd2 = date.today()\nprint(\"当前日期:\", d2)\ntimestamp = date.fromtimestamp(t0)\n\nprint(\"日期:\", timestamp)\nd3 = date.timetuple(d2)\nprint(\"d3\", d3)\nd4 = date.toordinal(d2)\nprint(\"d4\", d4)\n\nw1= date.isoweekday(d2)\nprint(\"w1:\", w1)\nprint(\"date.isocalendar(d2)\", date.isocalendar(d2))\nprint(\"date.isoformat(d2)\", date.isoformat(d2))",
+        "output": "2023-04-13\n当前日期: 2026-11-16\n日期: 2026-11-16\nd3 time.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=0, tm_yday=320, tm_isdst=-1)\nd4 739936\nw1: 1\ndate.isocalendar(d2) datetime.IsoCalendarDate(year=2026, week=47, weekday=1)\ndate.isoformat(d2) 2026-11-16"
       },
       {
         "name": "test6.py",
-        "code": "import calendar\nc0 = calendar.firstweekday()\nprint(c0)\ncalendar.setfirstweekday(0)\nc1 = calendar.firstweekday()\nprint(c1)\nprint(calendar.isleap(2022))\nprint(calendar.month(2026, 5, w=2, l=1))\t# 输出某年某月日历"
+        "code": "import calendar\nc0 = calendar.firstweekday()\nprint(c0)\ncalendar.setfirstweekday(0)\nc1 = calendar.firstweekday()\nprint(c1)\nprint(calendar.isleap(2022))\nprint(calendar.month(2026, 5, w=2, l=1))\t# 输出某年某月日历",
+        "output": "0\n0\nFalse\n      May 2026\nMo Tu We Th Fr Sa Su\n             1  2  3\n 4  5  6  7  8  9 10\n11 12 13 14 15 16 17\n18 19 20 21 22 23 24\n25 26 27 28 29 30 31"
       },
       {
         "name": "test7.py",
-        "code": "import math\n\nprint(math.nan)\nprint(math.fabs(-10))\nprint(math.log2(5))\nx = math.radians(60)\nprint(x)\nprint(math.sin(x))"
+        "code": "import math\n\nprint(math.nan)\nprint(math.fabs(-10))\nprint(math.log2(5))\nx = math.radians(60)\nprint(x)\nprint(math.sin(x))",
+        "output": "nan\n10.0\n2.321928094887362\n1.0471975511965976\n0.8660254037844386"
       },
       {
         "name": "test8.py",
-        "code": "import random\nrandom.seed(100)\nprint(\"random: \", random.random())\nprint(\"randint: \", random.randint(1,10) )\nprint(\"random uniform: \", random.uniform(1.1,5.4))\nprint(\"random choice: \", random.choice(['剪刀', '石头', '布']))\nprint(\"random randrange: \", random.randrange(1,100,2) )\nprint(\"random sample: \", random.sample('zyxwvutsrqponmlkjihgfedcba',5)) # 从多个字符中生成指定数量的随机字符\nr=[1,3,5,6,7]\nrandom.shuffle(r)\nprint(r)"
+        "code": "import random\nrandom.seed(100)\nprint(\"random: \", random.random())\nprint(\"randint: \", random.randint(1,10) )\nprint(\"random uniform: \", random.uniform(1.1,5.4))\nprint(\"random choice: \", random.choice(['剪刀', '石头', '布']))\nprint(\"random randrange: \", random.randrange(1,100,2) )\nprint(\"random sample: \", random.sample('zyxwvutsrqponmlkjihgfedcba',5)) # 从多个字符中生成指定数量的随机字符\nr=[1,3,5,6,7]\nrandom.shuffle(r)\nprint(r)",
+        "output": "random:  0.1456692551041303\nrandint:  8\nrandom uniform:  5.19238612215497\nrandom choice:  剪刀\nrandom randrange:  91\nrandom sample:  ['n', 'c', 'o', 'm', 'j']\n[5, 3, 6, 7, 1]"
       },
       {
         "name": "test9.py",
-        "code": "import subprocess\nfrom multiprocessing import Process\nimport os\nimport time\n\ndef task_process():\n    for i in range(5):\n        #time.sleep(2)\n        print(f\"{time.ctime(time.time())}: 子进程pid 为 {os.getpid()},执行\")\n\nif \t__name__== '__main__':\n    process = Process(target=task_process)  # 创建子进程\n    process.start()\n    for i in range(3):  # 主程序执行两次\n        time.sleep(2)\n        print(f'{time.ctime(time.time())}: 父进程pid 为 {os.getpid()}, 执行')"
+        "code": "import subprocess\nfrom multiprocessing import Process\nimport os\nimport time\n\ndef task_process():\n    for i in range(5):\n        #time.sleep(2)\n        print(f\"{time.ctime(time.time())}: 子进程pid 为 {os.getpid()},执行\")\n\nif \t__name__== '__main__':\n    process = Process(target=task_process)  # 创建子进程\n    process.start()\n    for i in range(3):  # 主程序执行两次\n        time.sleep(2)\n        print(f'{time.ctime(time.time())}: 父进程pid 为 {os.getpid()}, 执行')",
+        "output": "Mon Nov 16 14:32:06 2026: 子进程pid 为 29640,执行\nMon Nov 16 14:32:06 2026: 子进程pid 为 29640,执行\nMon Nov 16 14:32:06 2026: 子进程pid 为 29640,执行\nMon Nov 16 14:32:06 2026: 子进程pid 为 29640,执行\nMon Nov 16 14:32:06 2026: 子进程pid 为 29640,执行\nMon Nov 16 14:32:08 2026: 父进程pid 为 26192, 执行\nMon Nov 16 14:32:10 2026: 父进程pid 为 26192, 执行\nMon Nov 16 14:32:12 2026: 父进程pid 为 26192, 执行"
       },
       {
         "name": "test10.py",
-        "code": "from multiprocessing import Process\nimport os\nimport time\nclass MyProcess(Process):\n    def __init__(self):\n        super().__init__()\n    def run(self):\t# 重写run()方法\n        for i in range(3):\t# 任务执行两次\n            time.sleep(1)\n            print(f\"子进程pid 为 {os.getpid()},执行\")\n\nif __name__ == \"__main__\":\n    process = MyProcess()\t# 创建子进程\n    process.start()\n    for i in range(3):\t# 主程序执行两次\n        time.sleep(1)\n        print(f\"父进程pid 为 {os.getpid()},执行\")"
+        "code": "from multiprocessing import Process\nimport os\nimport time\nclass MyProcess(Process):\n    def __init__(self):\n        super().__init__()\n    def run(self):\t# 重写run()方法\n        for i in range(3):\t# 任务执行两次\n            time.sleep(1)\n            print(f\"子进程pid 为 {os.getpid()},执行\")\n\nif __name__ == \"__main__\":\n    process = MyProcess()\t# 创建子进程\n    process.start()\n    for i in range(3):\t# 主程序执行两次\n        time.sleep(1)\n        print(f\"父进程pid 为 {os.getpid()},执行\")",
+        "output": "父进程pid 为 8892,执行\n父进程pid 为 8892,执行\n父进程pid 为 8892,执行\n子进程pid 为 1976,执行\n子进程pid 为 1976,执行\n子进程pid 为 1976,执行"
       },
       {
         "name": "test11.py",
-        "code": "import threading\nfrom threading import Thread\nimport time\n\ndef task_thread():\n    for i in range(2):\n        time.sleep(1)\n        print(f\"{time.ctime(time.time())}: 子线程为 {threading.currentThread().name}, i ={i}\")\n\nif __name__ == \"__main__\":\n    thread = Thread(target=task_thread)\n    thread.start()\n    for i in range(2):\n        time.sleep(1)\n        print(f\"{time.ctime(time.time())}: 父线程为 {threading.currentThread().name}, i={i}\")"
+        "code": "import threading\nfrom threading import Thread\nimport time\n\ndef task_thread():\n    for i in range(2):\n        time.sleep(1)\n        print(f\"{time.ctime(time.time())}: 子线程为 {threading.currentThread().name}, i ={i}\")\n\nif __name__ == \"__main__\":\n    thread = Thread(target=task_thread)\n    thread.start()\n    for i in range(2):\n        time.sleep(1)\n        print(f\"{time.ctime(time.time())}: 父线程为 {threading.currentThread().name}, i={i}\")",
+        "output": "Mon Nov 16 14:32:16 2026: 子线程为 Thread-1 (task_thread), i =0\nMon Nov 16 14:32:16 2026: 父线程为 MainThread, i=0\nMon Nov 16 14:32:17 2026: 子线程为 Thread-1 (task_thread), i =1\nMon Nov 16 14:32:17 2026: 父线程为 MainThread, i=1",
+        "err": "time())}: 子线程为 {threading.currentThread().name}, i ={i}\")\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\\test11.py:15: DeprecationWarning: currentThread() is deprecated, use current_thread() instead\n  print(f\"{time.ctime(time.time())}: 父线程为 {threading.currentThread().name}, i={i}\")"
       },
       {
         "name": "test12.py",
-        "code": "from threading import Thread\nimport threading\nimport time\n\nclass MyThread(Thread):\t# 定义线程类\n    def __init__(self):\n        super().__init__()\n    def run(self):\n        for i in range(2):\n            time.sleep(1)\n            print(f\"子线程 {threading.currentThread().name}, i = {i}\")\n\nif __name__ == \"__main__\":\n    thread = MyThread()\n    thread.start()\n    for i in range(2):\n        time.sleep(1)\n        print(f\"父线程 {threading.currentThread().name}, i = {i}\")"
+        "code": "from threading import Thread\nimport threading\nimport time\n\nclass MyThread(Thread):\t# 定义线程类\n    def __init__(self):\n        super().__init__()\n    def run(self):\n        for i in range(2):\n            time.sleep(1)\n            print(f\"子线程 {threading.currentThread().name}, i = {i}\")\n\nif __name__ == \"__main__\":\n    thread = MyThread()\n    thread.start()\n    for i in range(2):\n        time.sleep(1)\n        print(f\"父线程 {threading.currentThread().name}, i = {i}\")",
+        "output": "子线程 Thread-1, i = 0\n父线程 MainThread, i = 0\n父线程 MainThread, i = 1\n子线程 Thread-1, i = 1",
+        "err": " current_thread() instead\n  print(f\"子线程 {threading.currentThread().name}, i = {i}\")\nE:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter11\\test12.py:18: DeprecationWarning: currentThread() is deprecated, use current_thread() instead\n  print(f\"父线程 {threading.currentThread().name}, i = {i}\")"
       },
       {
         "name": "test13.py",
-        "code": "import asyncio\nimport time\n\nasync def firstCorouctine(n): # 定义协程\n    for i in range(2):\n        await asyncio.sleep(2)\n        print(f'{time.ctime(time.time())}: 协程{n}执行……')\n        await asyncio.sleep(2)\n\ncoroutine1 = firstCorouctine(1)\ncoroutine2 = firstCorouctine(2)\n\nloop = asyncio.get_event_loop()\n\ntask1 = loop.create_task(coroutine1)\ntask2 = loop.create_task(coroutine2)\n\nloop.run_until_complete(task1)\nloop.run_until_complete(task2)"
+        "code": "import asyncio\nimport time\n\nasync def firstCorouctine(n): # 定义协程\n    for i in range(2):\n        await asyncio.sleep(2)\n        print(f'{time.ctime(time.time())}: 协程{n}执行……')\n        await asyncio.sleep(2)\n\ncoroutine1 = firstCorouctine(1)\ncoroutine2 = firstCorouctine(2)\n\nloop = asyncio.get_event_loop()\n\ntask1 = loop.create_task(coroutine1)\ntask2 = loop.create_task(coroutine2)\n\nloop.run_until_complete(task1)\nloop.run_until_complete(task2)",
+        "output": "Mon Nov 16 14:32:21 2026: 协程1执行……\nMon Nov 16 14:32:21 2026: 协程2执行……\nMon Nov 16 14:32:25 2026: 协程1执行……\nMon Nov 16 14:32:25 2026: 协程2执行……"
       }
     ],
     "updated": false
@@ -7274,31 +7602,43 @@ window.CODE_LAB = [
     "files": [
       {
         "name": "test1.py",
-        "code": "import numpy as np\n\n#data = np.random.uniform(-0.5,1,(4,4))\t#随机生成一个取值从-0.5 到1 的4×4 的二维数组\n\naList = [[1,2,3],[4,5,6],[7,8,9]]\n\ndata = np.array(aList)\n\nprint(data)\n\ndmax=np.max(data,axis=0) #求数组中的最大值。若不加 axis 则求所有元素中的最大值，若axis=0 则求出每列最大值，若axis=1 或-1 则求出每行最大值\nprint(dmax)\n\ndmin=np.min(data,axis=0)\t# 求数组中的最小值。若不加 axis 则求所有元素中的最小值，若axis=0 则求出每列最小值，若axis=1 或-1 则求 出每行最小值\nprint(dmin)\n\ndmea=np.mean(data)\nprint(\"dmea: \",dmea)\ndmed=np.median(data)\ndvar=np.var(data)\ndstd=np.std(data)\ndata.ndim"
+        "code": "import numpy as np\n\n#data = np.random.uniform(-0.5,1,(4,4))\t#随机生成一个取值从-0.5 到1 的4×4 的二维数组\n\naList = [[1,2,3],[4,5,6],[7,8,9]]\n\ndata = np.array(aList)\n\nprint(data)\n\ndmax=np.max(data,axis=0) #求数组中的最大值。若不加 axis 则求所有元素中的最大值，若axis=0 则求出每列最大值，若axis=1 或-1 则求出每行最大值\nprint(dmax)\n\ndmin=np.min(data,axis=0)\t# 求数组中的最小值。若不加 axis 则求所有元素中的最小值，若axis=0 则求出每列最小值，若axis=1 或-1 则求 出每行最小值\nprint(dmin)\n\ndmea=np.mean(data)\nprint(\"dmea: \",dmea)\ndmed=np.median(data)\ndvar=np.var(data)\ndstd=np.std(data)\ndata.ndim",
+        "output": "[[1 2 3]\n [4 5 6]\n [7 8 9]]\n[7 8 9]\n[1 2 3]\ndmea:  5.0"
       },
       {
         "name": "test2.py",
-        "code": "import pandas as pd\nimport numpy as np\n\ndser=pd.Series(np.random.uniform(-0.5,1,10))\nprint(dser)\n\nprint(dser.get(1))\n\nddat=pd.DataFrame(np.random.uniform(-0.5,1,(4,4)))\n\nprint(ddat)\nprint(dser.axes)\nprint(ddat.axes)\nprint(dser.ndim)\nprint(ddat.ndim)\nprint(dser.shape)\nprint(ddat.shape)\nprint(dser)\nprint(ddat)\nprint(dser.head(2))\nprint(ddat.head(2))\nprint(dser.isnull())\nprint(ddat.notnull())\nprint(dser.sum())\nprint(dser.mean())"
+        "code": "import pandas as pd\nimport numpy as np\n\ndser=pd.Series(np.random.uniform(-0.5,1,10))\nprint(dser)\n\nprint(dser.get(1))\n\nddat=pd.DataFrame(np.random.uniform(-0.5,1,(4,4)))\n\nprint(ddat)\nprint(dser.axes)\nprint(ddat.axes)\nprint(dser.ndim)\nprint(ddat.ndim)\nprint(dser.shape)\nprint(ddat.shape)\nprint(dser)\nprint(ddat)\nprint(dser.head(2))\nprint(ddat.head(2))\nprint(dser.isnull())\nprint(ddat.notnull())\nprint(dser.sum())\nprint(dser.mean())",
+        "output": "0   -0.113313\n1    0.512654\n2   -0.063215\n3    0.187344\n4    0.149687\n5   -0.332711\n6   -0.340729\n7   -0.221145\n8    0.055581\n9    0.971487\ndtype: float64\n0.5126543108588897\n          0         1         2         3\n0  0.119749 -0.098840  0.777326 -0.037051\n1  0.540048  0.699430  0.877605 -0.108532\n2  0.099556  0.522985 -0.337722 -0.419478\n3  0.501685 -0.329036 -0.197339 -0.038421\n[RangeIndex(start=0, stop=10, step=1)]\n[RangeIndex(start=0, stop=4, step=1), RangeIndex(start=0, stop=4, step=1)]\n1\n2\n(10,)\n(4, 4)\n0   -0.113313\n1    0.512654\n2   -0.063215\n3    0.187344\n4    0.149687\n5   -0.332711\n6   -0.340729\n7   -0.221145\n8    0.055581\n9    0.971487\ndtype: float64\n          0         1         2         3\n0  0.119749 -0.098840  0.777326 -0.037051\n1  0.540048  0.699430  0.877605 -0.108532\n2  0.099556  0.522985 -0.337722 -0.419478\n3  0.501685 -0.329036 -0.197339 -0.038421\n0   -0.113313\n1    0.512654\ndtype: float64\n          0        1         2         3\n0  0.119749 -0.09884  0.777326 -0.037051\n1  0.540048  0.69943  0.877605 -0.108532\n0    False\n1    False\n2    False\n3    False\n4    False\n5    False\n6    False\n7    False\n8    False\n9    False\ndtype: bool\n      0     1     2     3\n0  True  True  True  True\n1  True  True  True  True\n2  True  True  True  True\n3  True  True  True  True\n0.8056392024337248\n0.08056392024337247"
       },
       {
         "name": "test3.py",
-        "code": "import matplotlib.pyplot as plt\nimport numpy as np\n\nfig=plt.figure(num=1,figsize=(4,4))\n\nplt.plot([1,2,3,4],[1,2,3,2])\n\nplt.show()"
+        "code": "import matplotlib.pyplot as plt\nimport numpy as np\n\nfig=plt.figure(num=1,figsize=(4,4))\n\nplt.plot([1,2,3,4],[1,2,3,2])\n\nplt.show()",
+        "output": "",
+        "err": "E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter12\\test3.py:8: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  plt.show()"
       },
       {
         "name": "test4.py",
-        "code": "import jieba as jieba\n\nseg_list = jieba.cut(\"小红打算到中国科学院研究生院图书馆学习\", cut_all=False)\nprint(\"精准模式: \" + \"，\".join(seg_list))\t# 精确模式\nseg_list = jieba.cut(\"小红打算到中国科学院研究生院图书馆学习\", cut_all=True)\nprint(\"全模式: \" + \"/ \".join(seg_list))\t# 全模式\nseg_list = jieba.cut_for_search(\"小红打算到中国科学院研究生院图书馆学习\")\nprint(\"搜索引擎模式:\"+\"，\".join(seg_list))\t# 搜索引擎模式"
+        "code": "import jieba as jieba\n\nseg_list = jieba.cut(\"小红打算到中国科学院研究生院图书馆学习\", cut_all=False)\nprint(\"精准模式: \" + \"，\".join(seg_list))\t# 精确模式\nseg_list = jieba.cut(\"小红打算到中国科学院研究生院图书馆学习\", cut_all=True)\nprint(\"全模式: \" + \"/ \".join(seg_list))\t# 全模式\nseg_list = jieba.cut_for_search(\"小红打算到中国科学院研究生院图书馆学习\")\nprint(\"搜索引擎模式:\"+\"，\".join(seg_list))\t# 搜索引擎模式",
+        "output": "精准模式: 小红，打算，到，中国科学院，研究生院，图书馆，学习\n全模式: 小/ 红/ 打算/ 算到/ 中国/ 中国科学院/ 科学/ 科学院/ 学院/ 研究/ 研究生/ 研究生院/ 图书/ 图书馆/ 图书馆学/ 书馆/ 学习\n搜索引擎模式:小红，打算，到，中国，科学，学院，科学院，中国科学院，研究，研究生，研究生院，图书，书馆，图书馆，学习",
+        "err": "s early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\nBuilding prefix dict from the default dictionary ...\nLoading model from cache C:\\Users\\djej\\AppData\\Local\\Temp\\jieba.cache\nLoading model cost 0.360 seconds.\nPrefix dict has been built successfully."
       },
       {
         "name": "test5.py",
-        "code": "import jieba.posseg as pseg\nwords = pseg.cut(\"我爱北京天安门\")\nfor w in words:\n    print(w.word,w.flag)"
+        "code": "import jieba.posseg as pseg\nwords = pseg.cut(\"我爱北京天安门\")\nfor w in words:\n    print(w.word,w.flag)",
+        "output": "我 r\n爱 v\n北京 ns\n天安门 ns",
+        "err": "s early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\nBuilding prefix dict from the default dictionary ...\nLoading model from cache C:\\Users\\djej\\AppData\\Local\\Temp\\jieba.cache\nLoading model cost 0.362 seconds.\nPrefix dict has been built successfully."
       },
       {
         "name": "test7.py",
-        "code": "a=1\nb=2\nc=a  if  a>b  else  a+b\n\nprint('y'<'x'==False)\n\nnum_list=[1,2,3]\n\nimport time\nprint(time.time())\nprint(time.localtime())\n#print(time.strftime())\nprint(time.ctime)"
+        "code": "a=1\nb=2\nc=a  if  a>b  else  a+b\n\nprint('y'<'x'==False)\n\nnum_list=[1,2,3]\n\nimport time\nprint(time.time())\nprint(time.localtime())\n#print(time.strftime())\nprint(time.ctime)",
+        "output": "False\n1794810750.8365788\ntime.struct_time(tm_year=2026, tm_mon=11, tm_mday=16, tm_hour=14, tm_min=32, tm_sec=30, tm_wday=0, tm_yday=320, tm_isdst=0)\n<built-in function ctime>"
       },
       {
         "name": "test8.py",
-        "code": "a=int(input('input a number:\\n'))\nprint(\"a\",bin(a))\nb=a>>4\n\nprint(\"b\",bin(b))\nc=~(~0<<4)\nprint(\"c\",bin(c))\nd=b&c\nprint(f\"{bin(a)},{bin(d)}\")"
+        "code": "a=int(input('input a number:\\n'))\nprint(\"a\",bin(a))\nb=a>>4\n\nprint(\"b\",bin(b))\nc=~(~0<<4)\nprint(\"c\",bin(c))\nd=b&c\nprint(f\"{bin(a)},{bin(d)}\")",
+        "output": "input a number:",
+        "err": "Traceback (most recent call last):\n  File \"E:\\cd_E\\vscode project\\Python_class\\pythonProject-2025\\chapter12\\test8.py\", line 1, in <module>\n    a=int(input('input a number:\\n'))\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: invalid literal for int() with base 10: '张三'",
+        "stdin": "张三\n"
       }
     ],
     "updated": false
