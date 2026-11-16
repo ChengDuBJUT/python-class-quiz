@@ -681,44 +681,123 @@
     updateProgress();
   }
 
-  /* —— 问 DeepSeek：按固定格式打包题目 —— */
-  function buildAiPrompt(q) {
+  /* —— 问 DeepSeek：把「题目 + 我的作答 + 参考答案」打包成讲解请求 —— */
+  // 分级上限：先按完整长度发，超了再逐级压缩，尽量保住「自动填入输入框」
+  var AI_CAPS = [
+    { mine: 900, ref: 1600 },
+    { mine: 500, ref: 900 },
+    { mine: 240, ref: 600 },
+    { mine: 120, ref: 320 }
+  ];
+  var AI_URL_BUDGET = 6000;  // 实测官网能吃下约 1.7KB 的 ?q=，留足余量
+
+  function clipText(s, max, asCode) {
+    s = String(s == null ? '' : s);
+    if (s.length <= max) return s;
+    return s.slice(0, max) + (asCode ? '\n# ' : '\n') +
+      '…（后面还有 ' + (s.length - max) + ' 字，已省略）';
+  }
+
+  // 把我的作答还原成可读文本：选择题带上选项内容，判断题转成中文
+  function myAnswerText(q, record) {
+    if (!record) return '';
+    if (q.type === 'single' || q.type === 'coderead' || q.type === 'multi') {
+      var picked = q.type === 'multi'
+        ? (record.choice || [])
+        : (record.choice ? [record.choice] : []);
+      if (!picked.length) return '';
+      return picked.map(function (letter) {
+        var hit = (q.options || []).filter(function (o) { return o.charAt(0) === letter; })[0];
+        return hit || String(letter);
+      }).join('；');
+    }
+    if (q.type === 'judge') {
+      if (record.choice == null) return '';
+      return record.choice ? '正确' : '错误';
+    }
+    return String(record.text || '').trim();
+  }
+
+  function buildAiPrompt(q, caps) {
+    var cap = caps || AI_CAPS[0];
+    var record = state.answers[q.id];
+    var answered = !!(record && record.submitted);
+    var mine = answered ? myAnswerText(q, record) : '';
+    var isWrite = (q.type === 'code' || q.type === 'short');
     var L = [];
-    L.push('你是一名 Python 课程助教。请独立解答下面这道题，并严格按要求的格式输出。');
+
+    L.push(answered
+      ? '我在做 Python 课后习题，这道题我已经做过了。请像助教一样帮我把这道题讲透，别再替我重答一遍。'
+      : '我在做 Python 课后习题，这道题还没动笔。请像助教一样点一下我思路，先别把答案直接给我。');
     L.push('');
-    L.push('【题目信息】');
-    L.push('- 章节：第' + q.chapter + '章 ' + String(q.chapterTitle || '').trim());
-    L.push('- 题型：' + (TYPE_LABEL[q.type] || q.type));
-    L.push('');
-    L.push('【题干】');
+    L.push('第' + q.chapter + '章 ' + String(q.chapterTitle || '').trim() + ' · ' + (TYPE_LABEL[q.type] || q.type));
     L.push(String(q.stem || '').trim());
     if (q.code) {
       L.push('');
-      L.push('【代码】');
+      L.push('这段代码：');
       L.push('```python');
       L.push(String(q.code).replace(/\s+$/, ''));
       L.push('```');
     }
     if (q.options && q.options.length) {
       L.push('');
-      L.push('【选项】');
+      L.push('选项：');
       q.options.forEach(function (o) { L.push(String(o)); });
     }
-    L.push('');
-    L.push('【输出格式】');
-    if (q.type === 'single' || q.type === 'coderead' || q.type === 'judge') {
-      L.push('1. 第一行只写「答案：」加选项字母（判断题写「正确」或「错误」），不要附加解释；');
-      L.push('2. 然后分点说明为什么选它、其他选项错在哪里；');
-    } else if (q.type === 'blank') {
-      L.push('1. 第一行只写「答案：」加标准答案，有多种等价写法就用 / 分隔；');
-      L.push('2. 再用一两句话说明依据；');
-    } else {
-      L.push('1. 先写「答案：」加一句解题思路；');
-      L.push('2. 再给可直接运行的完整代码，用 ```python 代码块，关键步骤写中文注释；');
-      L.push('3. 最后列出 2–3 个易错点，每行以「易错点：」开头；');
+
+    if (answered) {
+      L.push('');
+      if (mine) {
+        L.push('我的答案：');
+        if (isWrite) {
+          L.push('```python');
+          L.push(clipText(mine, cap.mine, true));
+          L.push('```');
+        } else {
+          L.push(clipText(mine, cap.mine));
+        }
+      } else {
+        L.push('我的答案：这题我没作答，直接看了参考答案。');
+      }
+      L.push('');
+      L.push('参考答案：');
+      var ref = answerTextOf(q);
+      if (isWrite) {
+        L.push('```python');
+        L.push(clipText(ref, cap.ref, true));
+        L.push('```');
+      } else {
+        L.push(clipText(ref, cap.ref));
+      }
     }
-    L.push('另外：全部用中文回答；不要输出 Markdown 表格；不要重复抄写题目原文。');
+
+    L.push('');
+    if (!answered) {
+      L.push('只讲思路和关键提示，不要写出最终答案或完整代码；中文口语，两三句话说清就够了。');
+    } else if (mine) {
+      L.push('请先自己对比我的答案和参考答案，再按下面的顺序讲：');
+      L.push('- 两个答案对不上：指出我错在哪，我大概是把哪个概念弄混了，那个概念本来的意思是什么；');
+      L.push('- 两个答案对得上（或者我是蒙对的）：讲清这题背后真正的道理，以及最容易栽跟头的地方。');
+      L.push(isWrite
+        ? '如果要指我的代码，直接说第几行、哪一句有问题。'
+        : '不要抄题目原文，也别套「答案：」「分点说明」这类模板。');
+      L.push('像坐在旁边讲题那样，中文口语，三四段话就够。');
+    } else {
+      L.push('这题我没做出来，直接看的答案，所以别讲「你错在哪」，讲清这题该从哪儿想起、为什么会走到参考答案这条路，再点一下最容易想岔的地方。中文口语，三四段话。');
+    }
     return L.join('\n');
+  }
+
+  // 逐级压缩：优先保住「官网自动填入」，压到最短仍超限才退回裸链接走粘贴
+  function pickPrompt(q) {
+    var last = null;
+    for (var i = 0; i < AI_CAPS.length; i++) {
+      last = buildAiPrompt(q, AI_CAPS[i]);
+      if (encodeURIComponent(last).length + 28 <= AI_URL_BUDGET) {
+        return { prompt: last, autoFill: true, level: i, compressed: i > 0 };
+      }
+    }
+    return { prompt: last, autoFill: false, level: AI_CAPS.length - 1, compressed: true };
   }
 
   function legacyCopy(text) {
@@ -760,22 +839,31 @@
   function askDeepSeek() {
     var q = currentQ();
     if (!q) return;
-    var prompt = buildAiPrompt(q);
+    var record = state.answers[q.id];
+    var answered = !!(record && record.submitted);
+    var built = pickPrompt(q);
+    var prompt = built.prompt;
     var bare = 'https://chat.deepseek.com/';
     var url = bare;
     // 实测：官网会把 ?q= 的内容自动填进输入框（不自动发送）；过长才退回裸链接走手动粘贴
-    var withPrompt = bare + '?q=' + encodeURIComponent(prompt);
-    if (withPrompt.length <= 6000) url = withPrompt;
+    if (built.autoFill) url = bare + '?q=' + encodeURIComponent(prompt);
     var win = window.open(url, '_blank');
     if (win) {
       try { win.opener = null; } catch (e) {}
     }
     copyText(prompt).then(function (ok) {
-      if (ok) {
-        showAiHint('已在新标签打开 DeepSeek：输入框通常会自动填好，直接按 Enter 发送；若为空，粘贴（Ctrl/⌘ + V）即可。');
+      if (!ok) {
+        window.prompt('自动复制被浏览器拦截，请手动复制下面的内容（Ctrl/⌘ + C）：', prompt);
+        showAiHint('自动复制被拦截，已把内容弹出来供手动复制。', 'bad');
+        return;
+      }
+      if (!built.autoFill) {
+        showAiHint('这题内容比较长，已复制到剪贴板：在 DeepSeek 里粘贴（Ctrl/⌘ + V）发送即可。');
+      } else if (answered) {
+        showAiHint('已打开 DeepSeek：题目、你的答案、参考答案都带过去了，直接按 Enter 发送。'
+          + (built.compressed ? '（题太长，答案做了截断）' : ''));
       } else {
-        window.prompt('自动复制被浏览器拦截，请手动复制下面的题目（Ctrl/⌘ + C）：', prompt);
-        showAiHint('自动复制被拦截，已弹出题目供手动复制。', 'bad');
+        showAiHint('已打开 DeepSeek：这题你还没作答，所以只让它给思路。做完再点一次，它就会针对你的答案讲。');
       }
     });
     if (!win) {
@@ -1301,6 +1389,7 @@
     },
     peekAnswer: onPeek,
     buildAiPrompt: buildAiPrompt,
+    pickPrompt: pickPrompt,
     askDeepSeek: askDeepSeek,
     getState: function () { return state; }
   };
