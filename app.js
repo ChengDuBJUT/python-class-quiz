@@ -763,7 +763,7 @@
     var prompt = buildAiPrompt(q);
     var bare = 'https://chat.deepseek.com/';
     var url = bare;
-    // 官方网页不支持 URL 预填，但装了自动发送脚本的用户可直接生效；过长则退回裸链接
+    // 实测：官网会把 ?q= 的内容自动填进输入框（不自动发送）；过长才退回裸链接走手动粘贴
     var withPrompt = bare + '?q=' + encodeURIComponent(prompt);
     if (withPrompt.length <= 6000) url = withPrompt;
     var win = window.open(url, '_blank');
@@ -772,7 +772,7 @@
     }
     copyText(prompt).then(function (ok) {
       if (ok) {
-        showAiHint('题目已复制。切到 DeepSeek 标签页，粘贴（Ctrl/⌘ + V）发送即可。');
+        showAiHint('已在新标签打开 DeepSeek：输入框通常会自动填好，直接按 Enter 发送；若为空，粘贴（Ctrl/⌘ + V）即可。');
       } else {
         window.prompt('自动复制被浏览器拦截，请手动复制下面的题目（Ctrl/⌘ + C）：', prompt);
         showAiHint('自动复制被拦截，已弹出题目供手动复制。', 'bad');
