@@ -106,10 +106,18 @@
     return !!(q && OBJECTIVE[q.type]);
   }
 
+  // 题库来自 docx 抽取，个别选项曾被换行/逗号切碎成空串（如 ch8 选择题(5)）。
+  // 这里统一过滤「只有字母标点、没有实际内容」的废选项，避免练习页出现空白选项行。
+  function optionList(q) {
+    return (q.options || []).filter(function (o) {
+      return /^[A-Za-z][.、．)]\s*\S/.test(String(o).trim());
+    });
+  }
+
   // 「不会，看答案」时用于直接展示的正确答案文案
   function answerTextOf(q) {
     if (q.type === 'single' || q.type === 'coderead') {
-      var hit = (q.options || []).filter(function (o) { return o.charAt(0) === q.answer; })[0];
+      var hit = optionList(q).filter(function (o) { return o.charAt(0) === q.answer; })[0];
       return hit || String(q.answer);
     }
     if (q.type === 'judge') return q.answer ? '正确' : '错误';
@@ -349,7 +357,7 @@
 
     if (q.type === 'single' || q.type === 'coderead') {
       html += '<div class="options" id="opts">';
-      (q.options || []).forEach(function (opt) {
+      (optionList(q)).forEach(function (opt) {
         var letter = opt.charAt(0);
         var checked = saved && saved.choice != null && saved.choice === letter;
         html += '<label class="opt' + (checked ? ' selected' : '') + '" data-letter="' + letter + '">' +
@@ -729,7 +737,7 @@
         : (record.choice ? [record.choice] : []);
       if (!picked.length) return '';
       return picked.map(function (letter) {
-        var hit = (q.options || []).filter(function (o) { return o.charAt(0) === letter; })[0];
+        var hit = optionList(q).filter(function (o) { return o.charAt(0) === letter; })[0];
         return hit || String(letter);
       }).join('；');
     }
@@ -762,10 +770,10 @@
       L.push(String(q.code).replace(/\s+$/, ''));
       L.push('```');
     }
-    if (q.options && q.options.length) {
+    if (optionList(q).length) {
       L.push('');
       L.push('选项：');
-      q.options.forEach(function (o) { L.push(String(o)); });
+      optionList(q).forEach(function (o) { L.push(String(o)); });
     }
 
     // 教材里有些题没给答案（写「略」或占位说明），不能当参考答案喂给 AI

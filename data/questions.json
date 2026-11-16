@@ -2734,14 +2734,13 @@
     "sourceLocator": "第8章 习题 选择题 (5)",
     "stem": "以下表示C类继承A类和B类的格式中，正确的是(　　)。",
     "options": [
-      "A. class C A,",
-      "B. ",
-      "C. class C(A,B)",
-      "D. class C(A,B):",
-      "E. class C A and",
-      "F. "
+      "A. class C A,B:",
+      "B. class C(A,B)",
+      "C. class C(A,B):",
+      "D. class C A and B:"
     ],
-    "answer": "C"
+    "answer": "C",
+    "explanation": "Python 的类继承写成 class 子类(父类1, 父类2):  —— 父类列表放在圆括号里、用逗号隔开，整行以冒号结尾。A 和 D 用空格/and 连接父类，语法错误；B 少了行尾的冒号，也是语法错误，所以只有 C 正确。注意区别：C 有冒号、B 没有。"
   },
   {
     "id": "ch8-judge-01",
