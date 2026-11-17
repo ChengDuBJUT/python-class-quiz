@@ -75,7 +75,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await p.evaluate(() => { document.getElementById('btn-enter').click(); });
   await sleep(500);
   const afterReload = await p.evaluate(() => ({
-    toggle: document.getElementById('toggle-notes').checked,
+    toggle: document.getElementById('toggle-notes').getAttribute('aria-pressed') === 'true',
     note: (document.getElementById('note-input') || {}).value || '',
     mode: window.QuizApp.getState().mode
   }));

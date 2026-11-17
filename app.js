@@ -108,6 +108,11 @@
     if (el) el.textContent = '导出笔记（' + noteCount() + '）';
   }
 
+  function syncNotesToggle() {
+    var el = document.getElementById('toggle-notes');
+    if (el) el.setAttribute('aria-pressed', state.notesEnabled ? 'true' : 'false');
+  }
+
   // 翻页 / 重渲染前把正在输入的笔记落盘，避免丢字
   function flushNote() {
     if (!pendingNote) return;
@@ -1066,6 +1071,7 @@
   function syncModeChips() {
     var mode = state.mode || 'all';
     document.querySelectorAll('.mode-chips .chip').forEach(function (el) {
+      if (el.id === 'toggle-notes') return; /* 笔记是开关，不跟练习模式抢 active */
       el.classList.toggle('active', el.getAttribute('data-mode') === mode);
     });
     var paperPanel = document.getElementById('paper-panel');
@@ -1132,8 +1138,7 @@
     var fs = document.getElementById('filter-scope');
     if (fs) fs.value = state.examOnly ? 'exam' : 'all';
     document.getElementById('toggle-shuffle').checked = !!state.shuffle;
-    var nt = document.getElementById('toggle-notes');
-    if (nt) nt.checked = !!state.notesEnabled;
+    syncNotesToggle();
     var ne = document.getElementById('btn-notes-export');
     var ni = document.getElementById('btn-notes-import');
     if (ne) {
@@ -1520,10 +1525,11 @@
   }
   var notesToggle = document.getElementById('toggle-notes');
   if (notesToggle) {
-    notesToggle.addEventListener('change', function (e) {
+    notesToggle.addEventListener('click', function () {
       flushNote();
-      state.notesEnabled = e.target.checked;
+      state.notesEnabled = !state.notesEnabled;
       saveState();
+      syncNotesToggle();
       var ne = document.getElementById('btn-notes-export');
       var ni = document.getElementById('btn-notes-import');
       if (ne) {
@@ -1781,4 +1787,28 @@
     if (mq.addEventListener) mq.addEventListener('change', onChange);
     else if (mq.addListener) mq.addListener(onChange);
   }
+})();
+
+/* ===== 更新日志小面板 ===== */
+(function () {
+  var btn = document.getElementById('btn-changelog');
+  var panel = document.getElementById('changelog-panel');
+  var close = document.getElementById('btn-changelog-close');
+  if (!btn || !panel) return;
+
+  function show(on) {
+    panel.classList.toggle('hidden', !on);
+    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    show(panel.classList.contains('hidden'));
+  });
+  if (close) close.addEventListener('click', function () { show(false); });
+  document.addEventListener('click', function (e) {
+    if (!panel.contains(e.target) && e.target !== btn) show(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.classList.contains('hidden')) show(false);
+  });
 })();
