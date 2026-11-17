@@ -16,7 +16,7 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=20261117b" />
+  <link rel="stylesheet" href="styles.css?v=20261117c" />
 </head>
 <body>
   <div class="wrap">
@@ -181,6 +181,8 @@
         <button class="btn ghost" id="btn-home" type="button">返回首页</button>
         <button class="chip kw-chip hidden" id="filter-keyword" type="button" title="点一下取消关键词筛选"></button>
         <button class="btn ghost hidden" id="btn-notes-export" type="button" title="把笔记导出成 .json 备份，换电脑或清缓存前用">导出笔记</button>
+        <button class="btn ghost hidden" id="btn-notes-import" type="button" title="从之前导出的 .json 恢复笔记">导入</button>
+        <input type="file" id="notes-file" accept=".json,application/json" class="hidden" />
       </div>
 
       <div class="card" id="practice-card">
@@ -283,14 +285,14 @@
 
     <footer class="note">
       <strong>2026-11 新考纲</strong>：选择 40×1 + 填空 10×2 + 编程 8×5 + 附加 10，范围第 1–12 章；<strong>判断题并入选择题、简答题并入填空题</strong>（所以这两类题同样是考试范围，练习页会提示考试形式）；编程题只考第 1–8 章 + 第 10 章文件，<strong>必考一道文件、一道递归和数制转换</strong>，第 9/11/12 章编程按不考处理。按这份考纲补了 <b>67 道题</b>（数制转换、递归、文件读写、类方法/静态方法、变量作用域、命名空间、编码方式、缩进、对象状态，含 14 道带真实运行结果的编程题与 3 道附加题），并新增「<b>考纲对照</b>」页把 20 个考点逐条对到题量。判断题、简答题、第 9–12 章编程题与 pythonProject 代码自测仍保留，用「考试范围 / 复习拓展」标签区分。<br>
-      题库说明：客观题答案以任课教师 0429 勘误版《1-12习题答案》为准（沿用原教材的 2 处填空、6 处选择、3 处判断题已在勘误中改正，改动的题目在解析里写明原答案与理由；判断题答案以 Wingdings 符号 √/× 或「对、错」印出，均按原文录入）。<strong>简答题 60 道已全部补齐标准答案</strong>：其中 22 道直接取自教材各章「习题答案」简答部分（按语义逐条对齐题号，非按序号顺排），其余 38 道教材印为「略」，现依据第 1-12 章课件原文整理，并在答案下方标注 📖 出处（章 + 页码）供回查。<strong>代码复习</strong>：第 4-11 章示例已按教师后续发布的两批「更新后的chapter」版本替换（共 121 个文件，带「更新版」角标），并为全部 157 个 .py 文件都附上真实运行输出、关键注释与易错点（含第 9-11 章异常/文件/标准库的改版与第 12 章的 numpy/pandas 示例），代码上方还有「🤖 DeepSeek」「🤖 千问」两个按钮，一点就把这段代码和它的真实运行结果一起发过去，问一句「这段代码是什么意思、运行结果为什么是这样」<strong>两个 AI 可以换着用</strong>：题库页的「问 DeepSeek」旁边也加了「问千问」，一家免费额度用完了就换另一家，题目和答案一样带过去；代码自测题按「读结果 / 讲机制 / 找错」三种考法重新命制（共 62 道），答案均由实际执行结果核验。新增<strong>「按考纲组卷」</strong>：一键生成 40 选择 + 10 填空 + 8 编程 + 1 附加的 59 题模拟卷（编程保底含文件 / 递归 / 数制转换）；练习页可打开<strong>「题目笔记」</strong>在本机给每题写注释（默认关闭，下次自动带出，可导出备份）。本站为纯静态页面，无外链依赖、无数据上传。<strong>深色模式</strong>：点右上角 🌙 切换，也可以什么都不点——首次访问会跟随系统设置，手动选过之后按你的选择记住（存在本机 localStorage）。
+      题库说明：客观题答案以任课教师 0429 勘误版《1-12习题答案》为准（沿用原教材的 2 处填空、6 处选择、3 处判断题已在勘误中改正，改动的题目在解析里写明原答案与理由；判断题答案以 Wingdings 符号 √/× 或「对、错」印出，均按原文录入）。<strong>简答题 60 道已全部补齐标准答案</strong>：其中 22 道直接取自教材各章「习题答案」简答部分（按语义逐条对齐题号，非按序号顺排），其余 38 道教材印为「略」，现依据第 1-12 章课件原文整理，并在答案下方标注 📖 出处（章 + 页码）供回查。<strong>代码复习</strong>：第 4-11 章示例已按教师后续发布的两批「更新后的chapter」版本替换（共 121 个文件，带「更新版」角标），并为全部 157 个 .py 文件都附上真实运行输出、关键注释与易错点（含第 9-11 章异常/文件/标准库的改版与第 12 章的 numpy/pandas 示例），代码上方还有「🤖 DeepSeek」「🤖 千问」两个按钮，一点就把这段代码和它的真实运行结果一起发过去，问一句「这段代码是什么意思、运行结果为什么是这样」<strong>两个 AI 可以换着用</strong>：题库页的「问 DeepSeek」旁边也加了「问千问」，一家免费额度用完了就换另一家，题目和答案一样带过去；代码自测题按「读结果 / 讲机制 / 找错」三种考法重新命制（共 62 道），答案均由实际执行结果核验。新增<strong>「按考纲组卷」</strong>：一键生成 40 选择 + 10 填空 + 8 编程 + 1 附加的 59 题模拟卷（编程保底含文件 / 递归 / 数制转换）；练习页可打开<strong>「题目笔记」</strong>在本机给每题写注释（默认关闭，下次自动带出，可导出 / 导入备份）。本站为纯静态页面，无外链依赖、无数据上传。<strong>深色模式</strong>：点右上角 🌙 切换，也可以什么都不点——首次访问会跟随系统设置，手动选过之后按你的选择记住（存在本机 localStorage）。
     </footer>
   </div>
 
-  <script src="data/questions.js?v=20261117b"></script>
-  <script src="data/syllabus.js?v=20261117b"></script>
-  <script src="app.js?v=20261117b"></script>
-  <script src="code_lab.js?v=20261117b"></script>
-  <script src="syllabus_view.js?v=20261117b"></script>
+  <script src="data/questions.js?v=20261117c"></script>
+  <script src="data/syllabus.js?v=20261117c"></script>
+  <script src="app.js?v=20261117c"></script>
+  <script src="code_lab.js?v=20261117c"></script>
+  <script src="syllabus_view.js?v=20261117c"></script>
 </body>
 </html>

@@ -1135,10 +1135,12 @@
     var nt = document.getElementById('toggle-notes');
     if (nt) nt.checked = !!state.notesEnabled;
     var ne = document.getElementById('btn-notes-export');
+    var ni = document.getElementById('btn-notes-import');
     if (ne) {
       ne.classList.toggle('hidden', !state.notesEnabled);
       refreshNotesExport();
     }
+    if (ni) ni.classList.toggle('hidden', !state.notesEnabled);
     state.sessionEnded = false;
     updateKeywordChip();
     syncModeChips();
@@ -1523,10 +1525,12 @@
       state.notesEnabled = e.target.checked;
       saveState();
       var ne = document.getElementById('btn-notes-export');
+      var ni = document.getElementById('btn-notes-import');
       if (ne) {
         ne.classList.toggle('hidden', !state.notesEnabled);
         refreshNotesExport();
       }
+      if (ni) ni.classList.toggle('hidden', !state.notesEnabled);
       renderQuestion();
     });
   }
@@ -1546,6 +1550,39 @@
       a.click();
       document.body.removeChild(a);
       setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+  }
+  var notesImport = document.getElementById('btn-notes-import');
+  var notesFile = document.getElementById('notes-file');
+  if (notesImport && notesFile) {
+    notesImport.addEventListener('click', function () { notesFile.click(); });
+    notesFile.addEventListener('change', function (e) {
+      var f = e.target.files && e.target.files[0];
+      if (!f) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        try {
+          var obj = JSON.parse(reader.result);
+          var incoming = (obj && typeof obj.notes === 'object') ? obj.notes : obj;
+          if (!incoming || typeof incoming !== 'object' || Array.isArray(incoming)) throw new Error('bad');
+          var clean = {};
+          Object.keys(incoming).forEach(function (k) {
+            if (typeof incoming[k] === 'string' && incoming[k]) clean[k] = incoming[k];
+          });
+          var n = Object.keys(clean).length;
+          if (!n) throw new Error('empty');
+          if (!confirm('备份里有 ' + n + ' 条笔记。确定合并到本机？\n同一道题以备份里的为准，现有其他笔记保留。')) return;
+          Object.keys(clean).forEach(function (k) { notes[k] = clean[k]; });
+          saveNotes();
+          refreshNotesExport();
+          renderQuestion();
+          alert('已导入 ' + n + ' 条笔记。');
+        } catch (err) {
+          alert('导入失败：这个文件不是本站导出的笔记 JSON。');
+        }
+        e.target.value = '';
+      };
+      reader.readAsText(f);
     });
   }
   window.addEventListener('pagehide', flushNote);
