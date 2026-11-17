@@ -2,6 +2,7 @@
   'use strict';
 
   var STORAGE_KEY = 'python-basics-quiz-v1';
+  var NOTES_KEY = 'python-basics-quiz-notes-v1';
   var TYPE_LABEL = {
     single: '单选题', blank: '填空题', judge: '判断题',
     short: '简答题', code: '编程题', coderead: '代码自测'
@@ -33,7 +34,9 @@
       scoreCorrect: 0,
       scoreTotal: 0,
       paperIds: null,
+      paperName: '',
       keyword: null,
+      notesEnabled: false,
       sessionEnded: false
     };
   }
@@ -74,6 +77,47 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch (e) {}
+  }
+
+  /* —— 题目笔记：独立 key 存，默认关闭，只留在本机 —— */
+  var notes = loadNotes();
+  var noteTimer = null;
+  var pendingNote = null;
+
+  function loadNotes() {
+    try {
+      var o = JSON.parse(localStorage.getItem(NOTES_KEY) || '{}');
+      return (o && typeof o === 'object' && !Array.isArray(o)) ? o : {};
+    } catch (e) { return {}; }
+  }
+
+  function saveNotes() {
+    try {
+      localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+      return true;
+    } catch (e) {
+      alert('笔记保存失败：浏览器本地存储已满或处于隐私模式。\n建议先点工具栏的「导出笔记」备份，再删掉一些旧笔记。');
+      return false;
+    }
+  }
+
+  function noteCount() { return Object.keys(notes).filter(function (k) { return !!notes[k]; }).length; }
+
+  function refreshNotesExport() {
+    var el = document.getElementById('btn-notes-export');
+    if (el) el.textContent = '导出笔记（' + noteCount() + '）';
+  }
+
+  // 翻页 / 重渲染前把正在输入的笔记落盘，避免丢字
+  function flushNote() {
+    if (!pendingNote) return;
+    var p = pendingNote;
+    pendingNote = null;
+    if (noteTimer) { clearTimeout(noteTimer); noteTimer = null; }
+    if (p.value) notes[p.id] = p.value;
+    else delete notes[p.id];
+    saveNotes();
+    refreshNotesExport();
   }
 
   function isFavorite(id) {
@@ -328,6 +372,8 @@
     summary.classList.add('hidden');
     practiceCard.classList.remove('hidden');
 
+    flushNote();
+
     currentAnswered = false;
     setAnswerControls(true);
     var aiHint = document.getElementById('ai-hint');
@@ -358,6 +404,9 @@
     html += q.exam ? '<span class="exam-tag">考试范围</span>'
                    : '<span class="review-tag">复习拓展</span>';
     if (q.hard) html += '<span class="hard-tag">附加题</span>';
+    if (state.mode === 'paper' && state.paperName) {
+      html += '<span class="paper-tag">' + escapeHtml(state.paperName) + '</span>';
+    }
     html += '</div>';
     html += '<button type="button" class="fav-btn' + (favOn ? ' on' : '') + '" id="btn-fav" aria-pressed="' +
       (favOn ? 'true' : 'false') + '"><span class="heart">' + (favOn ? '♥' : '♡') +
@@ -372,6 +421,19 @@
     }
     if (q.code) {
       html += '<pre class="code-block">' + escapeHtml(q.code) + '</pre>';
+    }
+
+    // 题目笔记：开关默认关闭，打开后按题 id 存本机，下次做到同一题自动带出
+    if (state.notesEnabled) {
+      var noteVal = notes[q.id] || '';
+      html += '<div class="note-area">' +
+        '<div class="note-head"><b>📝 我的笔记</b>' +
+        '<span class="note-status" id="note-status">' + (noteVal ? '已保存' : '') + '</span></div>' +
+        '<textarea id="note-input" class="note-input" placeholder="记下这题的坑 / 记法 / 为什么错，下次做到会自动显示…">' +
+        escapeHtml(noteVal) + '</textarea>' +
+        '<div class="note-foot"><span class="hint" id="note-count">' + noteVal.length +
+        ' 字 · 只存在这台设备</span><button type="button" class="note-clear" id="note-clear"' +
+        (noteVal ? '' : ' disabled') + '>删除这条</button></div></div>';
     }
 
     if (q.type === 'single' || q.type === 'coderead') {
@@ -413,6 +475,8 @@
     html += '<div id="reveal" class="reveal' + (saved && saved.submitted ? '' : ' hidden') + '"></div>';
     area.innerHTML = html;
 
+    bindNoteEditor(q);
+
     var favBtn = document.getElementById('btn-fav');
     if (favBtn) {
       favBtn.addEventListener('click', function () {
@@ -440,6 +504,51 @@
 
     bindOptionClicks();
     updateProgress();
+  }
+
+  function bindNoteEditor(q) {
+    var input = document.getElementById('note-input');
+    if (!input) return;
+    var status = document.getElementById('note-status');
+    var count = document.getElementById('note-count');
+    var clear = document.getElementById('note-clear');
+
+    input.addEventListener('input', function () {
+      var val = input.value;
+      pendingNote = { id: q.id, value: val };
+      if (status) status.textContent = '输入中…';
+      if (count) count.textContent = val.length + ' 字 · 只存在这台设备';
+      if (clear) clear.disabled = !val;
+      if (noteTimer) clearTimeout(noteTimer);
+      noteTimer = setTimeout(function () {
+        if (!pendingNote) return;
+        var p = pendingNote;
+        pendingNote = null;
+        noteTimer = null;
+        if (p.value) notes[p.id] = p.value;
+        else delete notes[p.id];
+        var ok = saveNotes();
+        refreshNotesExport();
+        if (status) status.textContent = ok ? (p.value ? '已保存' : '已删除') : '保存失败';
+      }, 350);
+    });
+    // 失焦立刻落盘，不用等 debounce
+    input.addEventListener('blur', flushNote);
+
+    if (clear) {
+      clear.addEventListener('click', function () {
+        if (!notes[q.id]) return;
+        if (!confirm('删除这道题的笔记？（其他题的笔记不受影响）')) return;
+        delete notes[q.id];
+        saveNotes();
+        refreshNotesExport();
+        input.value = '';
+        pendingNote = null;
+        if (status) status.textContent = '已删除';
+        if (count) count.textContent = '0 字 · 只存在这台设备';
+        clear.disabled = true;
+      });
+    }
   }
 
   function bindOptionClicks() {
@@ -1023,6 +1132,13 @@
     var fs = document.getElementById('filter-scope');
     if (fs) fs.value = state.examOnly ? 'exam' : 'all';
     document.getElementById('toggle-shuffle').checked = !!state.shuffle;
+    var nt = document.getElementById('toggle-notes');
+    if (nt) nt.checked = !!state.notesEnabled;
+    var ne = document.getElementById('btn-notes-export');
+    if (ne) {
+      ne.classList.toggle('hidden', !state.notesEnabled);
+      refreshNotesExport();
+    }
     state.sessionEnded = false;
     updateKeywordChip();
     syncModeChips();
@@ -1241,9 +1357,55 @@
     var picked = proportional ? sampleProportional(pool, n) : shuffle(pool.slice()).slice(0, n);
     // ensure shuffled paper order
     picked = shuffle(picked);
+    applyPaper(picked, '');
+  }
 
+  // 按老师 2026-11 考纲一键组卷：40 选择 + 10 填空 + 8 编程 + 1 附加，全部只从考试范围抽。
+  // 编程 8 道里给「文件 / 递归 / 数制转换」各保底 1 道，避免随机抽出来三缺一。
+  function questionText(q) {
+    return (q.stem || '') + ' ' + (q.code || '') + ' ' + (q.options || []).join(' ');
+  }
+
+  function startSyllabusPaper() {
+    var exam = bank.filter(function (q) { return !!q.exam; });
+    function grab(pool, n) { return shuffle(pool.slice()).slice(0, n); }
+
+    var choice = grab(exam.filter(function (q) {
+      return q.type === 'single' || q.type === 'judge';
+    }), 40);
+    var blank = grab(exam.filter(function (q) {
+      return q.type === 'blank' || q.type === 'short';
+    }), 10);
+
+    var codePool = exam.filter(function (q) { return q.type === 'code' && !q.hard; });
+    var MUSTS = [
+      { name: '文件读写', tokens: ['文件', 'open(', 'read', 'write', 'csv', '.txt'] },
+      { name: '递归', tokens: ['递归', '阶乘', '斐波那契', '汉诺塔'] },
+      { name: '数制转换', tokens: ['进制', '二进制', '八进制', '十六进制'] }
+    ];
+    var codePick = [];
+    var used = {};
+    MUSTS.forEach(function (m) {
+      var cand = grab(codePool.filter(function (q) {
+        if (used[q.id]) return false;
+        var text = questionText(q);
+        return m.tokens.some(function (t) { return text.indexOf(t) >= 0; });
+      }), 1);
+      if (cand.length) { used[cand[0].id] = 1; codePick.push(cand[0]); }
+    });
+    codePick = codePick.concat(grab(codePool.filter(function (q) { return !used[q.id]; }),
+      8 - codePick.length));
+
+    var hard = grab(exam.filter(function (q) { return !!q.hard; }), 1);
+    var picked = choice.concat(blank, codePick, hard);
+    // 按题型分块排序：选择 1–40、填空 41–50、编程 51–58、附加 59
+    applyPaper(picked, '考纲模拟卷 · ' + picked.length + ' 题');
+  }
+
+  function applyPaper(picked, name) {
     state.mode = 'paper';
     state.paperIds = picked.map(function (q) { return q.id; });
+    state.paperName = name || '';
     state.answers = {};
     state.scoreCorrect = 0;
     state.scoreTotal = 0;
@@ -1251,6 +1413,7 @@
     state.order = state.paperIds.slice();
     state.shuffle = true;
     state.sessionEnded = false;
+    state.keyword = null;
     lastMissedIds = [];
     saveState();
     showPractice();
@@ -1353,6 +1516,39 @@
       renderQuestion();
     });
   }
+  var notesToggle = document.getElementById('toggle-notes');
+  if (notesToggle) {
+    notesToggle.addEventListener('change', function (e) {
+      flushNote();
+      state.notesEnabled = e.target.checked;
+      saveState();
+      var ne = document.getElementById('btn-notes-export');
+      if (ne) {
+        ne.classList.toggle('hidden', !state.notesEnabled);
+        refreshNotesExport();
+      }
+      renderQuestion();
+    });
+  }
+  var notesExport = document.getElementById('btn-notes-export');
+  if (notesExport) {
+    notesExport.addEventListener('click', function () {
+      flushNote();
+      var payload = {
+        app: 'python-class-quiz-notes', version: 1, exportedAt: new Date().toISOString(),
+        count: noteCount(), notes: notes
+      };
+      var url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }));
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'python-quiz-notes-' + new Date().toISOString().slice(0, 10) + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+  }
+  window.addEventListener('pagehide', flushNote);
   var examQuick = document.getElementById('btn-exam-only');
   if (examQuick) {
     examQuick.addEventListener('click', function () {
@@ -1438,6 +1634,8 @@
   if (paperScope) paperScope.addEventListener('change', updatePaperPoolHint);
   document.getElementById('paper-n').addEventListener('input', updatePaperPoolHint);
   document.getElementById('btn-start-paper').addEventListener('click', startPaper);
+  var startSyl = document.getElementById('btn-start-syllabus');
+  if (startSyl) startSyl.addEventListener('click', startSyllabusPaper);
 
   document.addEventListener('keydown', function (e) {
     var tag = (e.target && e.target.tagName || '').toLowerCase();
