@@ -60,28 +60,36 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   console.log('输入后状态:', saved1.status, '| 导出按钮:', saved1.exportLabel,
     '| 已存笔记数:', Object.keys(saved1.stored).length);
 
-  // 翻到下一题再回来
+  // 翻到下一题再回来：面板默认收起，但重新点开内容还在
   await p.evaluate(() => document.getElementById('btn-next').click());
   await sleep(300);
-  const on2 = await p.evaluate(() => (document.getElementById('note-input') || {}).value || '(空)');
+  const on2 = await p.evaluate(() => !document.getElementById('note-input'));
   await p.evaluate(() => document.getElementById('btn-prev').click());
   await sleep(300);
-  const back1 = await p.evaluate(() => document.getElementById('note-input').value);
-  console.log('第2题笔记:', on2 === '' ? '(空，正确)' : on2.slice(0, 20), '| 回到第1题笔记保留:', back1 === NOTE);
+  const back1 = await p.evaluate(() => !document.getElementById('note-input'));
+  console.log('换题后自动收起:', on2, '| 切回后仍收起:', back1);
+  await p.evaluate(() => document.getElementById('toggle-notes').click());
+  await sleep(300);
+  const reOpen = await p.evaluate(() => (document.getElementById('note-input') || {}).value || '');
+  console.log('重新点开带出原笔记:', reOpen === NOTE);
 
-  // 刷新页面，开关与笔记都应在
+  // 刷新页面：默认收起，笔记内容不丢
   await p.reload({ waitUntil: 'networkidle0' });
   await sleep(500);
   await p.evaluate(() => { document.getElementById('btn-enter').click(); });
   await sleep(500);
   const afterReload = await p.evaluate(() => ({
-    toggle: document.getElementById('toggle-notes').getAttribute('aria-pressed') === 'true',
-    note: (document.getElementById('note-input') || {}).value || '',
+    pressed: document.getElementById('toggle-notes').getAttribute('aria-pressed'),
+    noInput: !document.getElementById('note-input'),
     mode: window.QuizApp.getState().mode
   }));
-  console.log('刷新后 开关:', afterReload.toggle, '| 笔记保留:', afterReload.note === NOTE, '| mode:', afterReload.mode);
+  console.log('刷新后 默认关:', afterReload.pressed === 'false' && afterReload.noInput, '| mode:', afterReload.mode);
+  await p.evaluate(() => document.getElementById('toggle-notes').click());
+  await sleep(300);
+  const reloadNote = await p.evaluate(() => (document.getElementById('note-input') || {}).value || '');
+  console.log('刷新后点开 笔记仍在:', reloadNote === NOTE);
 
-  // 关掉开关：输入框消失，但笔记数据仍在
+  // 再点一次开关：输入框消失，但笔记数据仍在
   await p.evaluate(() => document.getElementById('toggle-notes').click());
   await sleep(300);
   const off = await p.evaluate(() => ({

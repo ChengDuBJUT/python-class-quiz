@@ -36,7 +36,6 @@
       paperIds: null,
       paperName: '',
       keyword: null,
-      notesEnabled: false,
       sessionEnded: false
     };
   }
@@ -79,10 +78,14 @@
     } catch (e) {}
   }
 
-  /* —— 题目笔记：独立 key 存，默认关闭，只留在本机 —— */
+  /* —— 题目笔记：独立 key 存，只留在本机 ——
+     笔记内容按题 id 持久化；面板开关是会话内的临时状态：
+     换题 / 下次打开页面都默认收起，避免一直占着做题界面。 */
   var notes = loadNotes();
   var noteTimer = null;
   var pendingNote = null;
+  var noteOpenId = null; // 当前展开了笔记面板的题目 id（不持久化）
+  var lastRenderedQid = null; // 上一道渲染的题；题目变化即收起笔记面板
 
   function loadNotes() {
     try {
@@ -397,6 +400,11 @@
 
     var saved = state.answers[q.id];
     var favOn = isFavorite(q.id);
+    /* 换题（含刷新后首次渲染）就把笔记面板收起，笔记内容仍在、下次点开自动带出 */
+    if (lastRenderedQid !== q.id) {
+      noteOpenId = null;
+      lastRenderedQid = q.id;
+    }
     var html = '';
     html += '<div class="q-head"><div class="q-head-left">';
     html += '<span class="q-type">' + escapeHtml(TYPE_LABEL[q.type] || q.type) +
@@ -408,9 +416,10 @@
       html += '<span class="paper-tag">' + escapeHtml(state.paperName) + '</span>';
     }
     html += '</div>';
+    var noteOn = noteOpenId === q.id;
     html += '<div class="q-head-actions">';
-    html += '<button type="button" class="note-toggle-btn' + (state.notesEnabled ? ' on' : '') +
-      '" id="toggle-notes" aria-pressed="' + (state.notesEnabled ? 'true' : 'false') +
+    html += '<button type="button" class="note-toggle-btn' + (noteOn ? ' on' : '') +
+      '" id="toggle-notes" aria-pressed="' + (noteOn ? 'true' : 'false') +
       '" title="给这道题记笔记，只存在这台设备；再点一次关闭"><span>📝</span> 笔记</button>';
     html += '<button type="button" class="fav-btn' + (favOn ? ' on' : '') + '" id="btn-fav" aria-pressed="' +
       (favOn ? 'true' : 'false') + '"><span class="heart">' + (favOn ? '♥' : '♡') +
@@ -427,8 +436,8 @@
       html += '<pre class="code-block">' + escapeHtml(q.code) + '</pre>';
     }
 
-    // 题目笔记：开关默认关闭，打开后按题 id 存本机，下次做到同一题自动带出
-    if (state.notesEnabled) {
+    // 题目笔记：面板默认收起；点开后按题 id 存本机，内容下次做到同一题自动带出
+    if (noteOn) {
       var noteVal = notes[q.id] || '';
       html += '<div class="note-area">' +
         '<div class="note-head"><b>📝 我的笔记</b>' +
@@ -1137,12 +1146,7 @@
     if (fs) fs.value = state.examOnly ? 'exam' : 'all';
     document.getElementById('toggle-shuffle').checked = !!state.shuffle;
     var ne = document.getElementById('btn-notes-export');
-    var ni = document.getElementById('btn-notes-import');
-    if (ne) {
-      ne.classList.toggle('hidden', !state.notesEnabled);
-      refreshNotesExport();
-    }
-    if (ni) ni.classList.toggle('hidden', !state.notesEnabled);
+    if (ne) refreshNotesExport();
     state.sessionEnded = false;
     updateKeywordChip();
     syncModeChips();
@@ -1526,16 +1530,11 @@
     questionArea.addEventListener('click', function (e) {
       var btn = e.target.closest ? e.target.closest('#toggle-notes') : null;
       if (!btn) return;
+      var q = currentQ();
+      if (!q) return;
       flushNote();
-      state.notesEnabled = !state.notesEnabled;
-      saveState();
-      var ne = document.getElementById('btn-notes-export');
-      var ni = document.getElementById('btn-notes-import');
-      if (ne) {
-        ne.classList.toggle('hidden', !state.notesEnabled);
-        refreshNotesExport();
-      }
-      if (ni) ni.classList.toggle('hidden', !state.notesEnabled);
+      /* 换题默认收起：这里只在当前题上切换，翻到别的题 noteOpenId 自然失配 */
+      noteOpenId = (noteOpenId === q.id) ? null : q.id;
       renderQuestion();
     });
   }
