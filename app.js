@@ -108,11 +108,6 @@
     if (el) el.textContent = '导出笔记（' + noteCount() + '）';
   }
 
-  function syncNotesToggle() {
-    var el = document.getElementById('toggle-notes');
-    if (el) el.setAttribute('aria-pressed', state.notesEnabled ? 'true' : 'false');
-  }
-
   // 翻页 / 重渲染前把正在输入的笔记落盘，避免丢字
   function flushNote() {
     if (!pendingNote) return;
@@ -413,10 +408,14 @@
       html += '<span class="paper-tag">' + escapeHtml(state.paperName) + '</span>';
     }
     html += '</div>';
+    html += '<div class="q-head-actions">';
+    html += '<button type="button" class="note-toggle-btn' + (state.notesEnabled ? ' on' : '') +
+      '" id="toggle-notes" aria-pressed="' + (state.notesEnabled ? 'true' : 'false') +
+      '" title="给这道题记笔记，只存在这台设备；再点一次关闭"><span>📝</span> 笔记</button>';
     html += '<button type="button" class="fav-btn' + (favOn ? ' on' : '') + '" id="btn-fav" aria-pressed="' +
       (favOn ? 'true' : 'false') + '"><span class="heart">' + (favOn ? '♥' : '♡') +
       '</span> ' + (favOn ? '已收藏' : '收藏') + '</button>';
-    html += '</div>';
+    html += '</div></div>';
     html += '<div class="stem">' + escapeHtml(q.stem) + '</div>';
     // 2026-11 新考纲：判断并入选择、简答并入填空，提醒一下出题形式
     if (q.type === 'judge') {
@@ -1071,7 +1070,6 @@
   function syncModeChips() {
     var mode = state.mode || 'all';
     document.querySelectorAll('.mode-chips .chip').forEach(function (el) {
-      if (el.id === 'toggle-notes') return; /* 笔记是开关，不跟练习模式抢 active */
       el.classList.toggle('active', el.getAttribute('data-mode') === mode);
     });
     var paperPanel = document.getElementById('paper-panel');
@@ -1138,7 +1136,6 @@
     var fs = document.getElementById('filter-scope');
     if (fs) fs.value = state.examOnly ? 'exam' : 'all';
     document.getElementById('toggle-shuffle').checked = !!state.shuffle;
-    syncNotesToggle();
     var ne = document.getElementById('btn-notes-export');
     var ni = document.getElementById('btn-notes-import');
     if (ne) {
@@ -1523,13 +1520,15 @@
       renderQuestion();
     });
   }
-  var notesToggle = document.getElementById('toggle-notes');
-  if (notesToggle) {
-    notesToggle.addEventListener('click', function () {
+  /* 笔记开关在题头里，每次 renderQuestion 都会重建，用事件委托 */
+  var questionArea = document.getElementById('question-area');
+  if (questionArea) {
+    questionArea.addEventListener('click', function (e) {
+      var btn = e.target.closest ? e.target.closest('#toggle-notes') : null;
+      if (!btn) return;
       flushNote();
       state.notesEnabled = !state.notesEnabled;
       saveState();
-      syncNotesToggle();
       var ne = document.getElementById('btn-notes-export');
       var ni = document.getElementById('btn-notes-import');
       if (ne) {

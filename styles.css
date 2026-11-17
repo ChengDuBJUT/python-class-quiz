@@ -319,6 +319,29 @@ textarea { min-height: 110px; resize: vertical; }
 }
 .fav-btn .heart { font-size: 1rem; line-height: 1; }
 
+/* 题头右侧：笔记开关 + 收藏，同款胶囊按钮 */
+.q-head-actions { display: inline-flex; align-items: center; gap: 0.45rem; flex-shrink: 0; }
+.note-toggle-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+.note-toggle-btn.on {
+  color: var(--accent);
+  border-color: var(--accent-line-strong);
+  background: var(--accent-soft);
+}
+
 .stem {
   font-size: 1.08rem;
   font-family: var(--serif);
@@ -487,14 +510,6 @@ footer.note {
   font-weight: 600;
   opacity: 0.9;
 }
-.notes-chip { white-space: nowrap; }
-.notes-chip[aria-pressed="true"] {
-  background: var(--accent-soft);
-  border-color: var(--accent-line-strong);
-  color: var(--accent);
-  font-weight: 600;
-}
-
 /* Paper panel */
 .paper-panel {
   margin-top: 0.75rem;
@@ -1291,7 +1306,21 @@ body, .card { transition: background-color .18s ease, color .18s ease; }
 }
 .note-clear:hover:not(:disabled) { color: var(--cinnabar); border-color: var(--cinnabar-line); }
 .note-clear:disabled { opacity: 0.45; cursor: default; }
-#btn-notes-export, #btn-notes-import { font-size: 0.76rem; padding: 0.3rem 0.6rem; min-width: 6.5rem; text-align: center; }
+/* 工具栏第二排：重新开始 / 交卷 / 返回首页 / 导出笔记 / 导入，五个等宽 */
+.toolbar-actions {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+.toolbar-actions .btn {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.86rem;
+  text-align: center;
+  white-space: nowrap;
+}
 
-/* 窄屏下题头标签换行时，别把「收藏」两字拆成竖排 */
-#btn-fav { white-space: nowrap; }
+/* 窄屏下题头标签换行时，别把「笔记 / 收藏」两字拆成竖排 */
+#btn-fav, #toggle-notes { white-space: nowrap; }

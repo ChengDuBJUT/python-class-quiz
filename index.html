@@ -16,7 +16,7 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=20261117g" />
+  <link rel="stylesheet" href="styles.css?v=20261117h" />
 </head>
 <body>
   <div class="wrap">
@@ -158,7 +158,6 @@
         <div class="mode-chips compact" id="practice-modes">
           <button type="button" class="chip" data-mode="all">全部练习</button>
           <button type="button" class="chip" data-mode="favorites">收藏</button>
-          <button type="button" class="chip notes-chip" id="toggle-notes" aria-pressed="false" title="笔记只保存在这台设备的浏览器里，默认关闭">📝 题目笔记</button>
           <button type="button" class="chip" data-mode="wrong">错题</button>
           <button type="button" class="chip" data-mode="paper">抽题组卷</button>
         </div>
@@ -200,12 +199,14 @@
           </select>
         </div>
         <label class="toggle" id="shuffle-wrap"><input type="checkbox" id="toggle-shuffle" /> 随机顺序</label>
-        <button class="btn secondary" id="btn-restart" type="button">重新开始</button>
-        <button class="btn secondary" id="btn-finish" type="button">交卷</button>
-        <button class="btn ghost" id="btn-home" type="button">返回首页</button>
         <button class="chip kw-chip hidden" id="filter-keyword" type="button" title="点一下取消关键词筛选"></button>
-        <button class="btn ghost hidden" id="btn-notes-export" type="button" title="把笔记导出成 .json 备份，换电脑或清缓存前用">导出笔记</button>
-        <button class="btn ghost hidden" id="btn-notes-import" type="button" title="从之前导出的 .json 恢复笔记">导入</button>
+        <div class="toolbar-actions">
+          <button class="btn secondary" id="btn-restart" type="button">重新开始</button>
+          <button class="btn secondary" id="btn-finish" type="button">交卷</button>
+          <button class="btn ghost" id="btn-home" type="button">返回首页</button>
+          <button class="btn ghost hidden" id="btn-notes-export" type="button" title="把笔记导出成 .json 备份，换电脑或清缓存前用">导出笔记</button>
+          <button class="btn ghost hidden" id="btn-notes-import" type="button" title="从之前导出的 .json 恢复笔记">导入</button>
+        </div>
         <input type="file" id="notes-file" accept=".json,application/json" class="hidden" />
       </div>
 
@@ -310,10 +311,10 @@
     <footer class="note">纯静态站点 · 进度只存本机浏览器 · 更新记录见右上角「更新日志」</footer>
   </div>
 
-  <script src="data/questions.js?v=20261117g"></script>
-  <script src="data/syllabus.js?v=20261117g"></script>
-  <script src="app.js?v=20261117g"></script>
-  <script src="code_lab.js?v=20261117g"></script>
-  <script src="syllabus_view.js?v=20261117g"></script>
+  <script src="data/questions.js?v=20261117h"></script>
+  <script src="data/syllabus.js?v=20261117h"></script>
+  <script src="app.js?v=20261117h"></script>
+  <script src="code_lab.js?v=20261117h"></script>
+  <script src="syllabus_view.js?v=20261117h"></script>
 </body>
 </html>
